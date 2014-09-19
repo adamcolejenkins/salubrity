@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'templates/index'
+
   devise_for :users
 
   root :to => 'home#index'

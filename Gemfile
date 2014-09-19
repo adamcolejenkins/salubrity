@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'angular-rails-templates'
 
 gem 'devise', '~> 3.3.0'
-gem 'slim'
+gem 'slim-rails'
 gem 'active_model_serializers'
 gem 'jquery-ui-rails'
 gem 'acts_as_list'
