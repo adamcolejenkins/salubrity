@@ -1,0 +1,69 @@
+form.indent-fields(name="form" ng-submit="saveSurvey(survey)" novalidate="novalidate" autocomplete="off")
+  
+  .section-header
+    .tag
+      i.fa.fa-file-text-o
+    h3 = t 'surveys.form.details.title'
+
+  .form-group
+    label(for="title") Title
+    input#title.form-control(ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required")
+
+  .form-group
+    label(for="description") Description
+    input#description.form-control(ng-model="survey.description" autocomplete="off")
+
+  .form-group
+    label(for="permalink") Permalink
+    .input-group
+      span.input-group-addon
+        | {{siteUrl}}
+      input#permalink.form-control(ng-model="survey.guid" autocomplete="off" required="required")
+    p.small.muted = t "surveys.form.details.permalink_example"
+
+    .alert.alert-warning(ng-show="form.guid.$error.unique")
+      i.fa.fa-warning 
+      = t "surveys.form.details.permalink_unique_warning"
+  
+  .section-header
+    .tag
+      i.fa.fa-clock-o
+    h3 = t 'surveys.form.scheduling.title'
+
+  .form-group
+    label(for="scheduled")
+      = t 'surveys.form.scheduling.activate_label'
+      input.icheck(type="checkbox" ng-model="survey.scheduled" ng-checked="survey.scheduled")
+
+  .form-group(ng-show="survey.scheduled")
+    section.form-left
+
+      label(for="scheduled_start") Start
+      div.description = t 'surveys.form.scheduling.start_describe'
+
+      .dropdown
+        .input-group(tooltip="Select a start date & time" tooltip-placement="left")
+          span.input-group-btn
+            button.btn.btn-primary.dropdown-toggle(type="button")
+              i.fa.fa-calendar-o
+          input.form-control(ng-model="survey.scheduled_start" autocomplete="off")
+
+          datetimepicker.dropdown-menu.datetimepicker-dropdown-bottom-right(ng-model="survey.scheduled_start")
+
+    section.form-right
+
+      label(for="scheduled_stop") Stop
+      div.description = t 'surveys.form.scheduling.stop_describe'
+
+      .dropdown
+        .input-group(tooltip="Select an end date & time" tooltip-placement="left")
+          span.input-group-btn
+            button.btn.btn-primary.dropdown-toggle(type="button")
+              i.fa.fa-calendar-o
+          input.form-control(ng-model="survey.scheduled_stop" autocomplete="off")
+
+          datetimepicker.dropdown-menu.datetimepicker-dropdown-bottom-right(ng-model="survey.scheduled_stop")
+
+  .form-buttons
+    button.btn.btn-success.btn-xl(ng-disabled="form.$invalid" type="submit") {{btnLabel}}
+    = link_to "Or cancel", surveys_path()

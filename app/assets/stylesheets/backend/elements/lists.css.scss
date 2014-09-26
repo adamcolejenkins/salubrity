@@ -1,0 +1,98 @@
+/*Nav Pills*/
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: $primary-color;
+}
+
+/*List Group*/
+.list-group-item:first-child {border-radius:0;-webkit-border-radius:0;}
+.list-group-item:last-child {border-radius:0;-webkit-border-radius:0;}
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+.list-group-item i{min-width:15px;display:inline-block !important;text-align:center;}
+.list-group-item h4{margin-bottom:8px;font-size:17px;}
+.list-group-item h4{margin-bottom:8px;font-size:15px;}
+.list-group-item{
+	font-size:12px;
+	padding: 13px 15px;
+	line-height:22px;
+}
+
+a.list-group-item:hover{
+	border-left:5px solid $primary-color;
+	border-color: $primary-color;
+	padding-left: 11px;
+}
+a.list-group-item:hover + a.list-group-item{
+	border-top-color: $primary-color;
+}
+.list-group .active:hover{
+	padding-left: 15px;
+	border-left:1px solid $primary-color;
+}
+
+.block {
+    @include make-md-column(12);
+    & > .block-item {
+        @include make-row();
+        margin-bottom: 20px;
+        background: $gray-light;
+        &, * {
+            cursor: pointer !important;
+        }
+        div.details {
+            @include make-sm-column(6);
+            padding: 20px;
+            div.name {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 40px;
+            }
+        }
+        div.options {
+            @include make-sm-column(6);
+            padding: 20px;
+            text-align: right;
+            position: relative;
+            z-index: 550;
+        }
+        div.view {
+            @include make-md-column(12);
+            background-color: $gray-lighter;
+            padding: 20px;
+            color: $text-color;
+
+            .layout {
+                > span { display:inline-block; width: 100%; margin-right: 5px; }
+                &.twoColumns > span { width: 48%; }
+                &.threeColumns > span { width: 30%; }
+                &.sideBySide > span { width: auto; }
+            }
+        }
+        ul.options {
+            @extend .list-inline;
+            margin-bottom: 0px;
+            position: relative;
+            z-index: 600;
+            li {
+                margin-left: 15px;
+                a {
+                    width: 40px;
+                    height: 40px;
+                    background: $gray-lighter;
+                    display: block;
+                    text-align: center;
+                    line-height: 40px;
+                    position: relative;
+                    z-index: 650;
+                    i {
+                        position: relative;
+                        top: 2px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

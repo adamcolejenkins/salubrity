@@ -10,9 +10,15 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body(ng-app="salubrity")
-    .container
-      = render "layouts/header"
-      = render "layouts/flash"
-      = yield
-      = render "layouts/footer"
+  body(ng-app="salubrity" ng-controller="AppCtrl")
+    .wrap
+      header
+        = render :partial => "layouts/header"
+      nav
+        = render :partial => "layouts/navigation"
+      flash
+        = render :partial => "layouts/flash"
+      main
+        = yield
+      footer
+        = render :partial => "layouts/footer"

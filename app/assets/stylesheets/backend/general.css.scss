@@ -1,0 +1,72 @@
+
+html{height:100%;}
+
+.overflow-hidden{
+  overflow:hidden;
+}
+
+.disabled {
+    &:hover {
+      * {
+        cursor: not-allowed;
+      }
+    }
+}
+
+.no-margin{margin:0 !important;}
+.no-margin-y{margin-top:0 !important;margin-bottom:0 !important;}
+.no-margin-x{margin-left:0 !important;margin-right:0 !important;}
+.no-margin-top{margin-top:0 !important;}
+.no-margin-bottom{margin-bottom:0 !important;}
+.no-margin-left{margin-left:0 !important;}
+.no-margin-right{margin-right:0 !important;}
+
+.big-text{
+  font-size:61px;line-height: 70px !important;
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.2);
+  padding-bottom:5px;
+}
+
+.jumbotron {
+margin-top: 20px;
+}
+
+#pcont{
+  margin-left: 216px;
+  position:relative;
+}
+#pcont.container-fluid{
+  padding: 0;
+  overflow: hidden;
+}
+.container-fluid{ padding: 0;}
+
+.back-to-top {
+    position: fixed;
+    bottom: 0;
+    right: 0px;
+    text-decoration: none;
+    color: #FFF;
+    background-color: rgba(39,41,48,0.8);
+    font-size: 12px;
+    padding: 9px 12px;
+    display: none;
+}
+
+
+.back-to-top i{
+  font-size:15px;
+}
+
+.back-to-top:hover {
+    color: #FFF;
+    background-color: rgba(39,41,48,1);
+}
+
+.back-to-top:focus{
+  color:#FFF;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+display: none !important;
+}

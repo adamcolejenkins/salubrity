@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  guid: MyString
+  logo_path: MyString
+  status: MyString
+  scheduled: false
+  scheduled_start: 2014-09-19 08:53:36
+  scheduled_stop: 2014-09-19 08:53:36
+  deleted_at: 2014-09-19 08:53:36
+
+two:
+  title: MyString
+  description: MyText
+  guid: MyString
+  logo_path: MyString
+  status: MyString
+  scheduled: false
+  scheduled_start: 2014-09-19 08:53:36
+  scheduled_stop: 2014-09-19 08:53:36
+  deleted_at: 2014-09-19 08:53:36

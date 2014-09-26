@@ -1,62 +1,44 @@
 Rails.application.routes.draw do
-  get 'templates/index'
+  get 'frontend/index'
 
   devise_for :users
 
+  namespace :api, defaults: {format: :json} do
+    devise_scope :user do
+      resource :session, only: [:create, :destroy]
+    end
+    resources :surveys do
+      resources :fields do
+        resources :field_choices
+      end
+    end
+  end
+
   root :to => 'home#index'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # get '/dashboard' => 'templates#index'
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get '/surveys' => 'templates#index'
+  get '/survey/:id' => 'templates#index'
+  get '/survey/create' => 'templates#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get '/survey/:id/build' => 'templates#index', as: 'surveys_build'
+  get '/survey/:id/design' => 'templates#index', as: 'surveys_design'
+  get '/survey/:id/configure' => 'templates#index', as: 'surveys_configure'
+  get '/survey/:id/analyze' => 'templates#index', as: 'surveys_analyze'
+  
+  # get '/surveys/:survey_id/fields/:id' => 'templates#index'
+  # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'templates#index'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # get '/reports' => 'templates#index'
+  # get '/reports/:id' => 'templates#index'
+  # get '/reports/create' => 'templates#index'
+  # get '/reports/:id/edit' => 'templates#index'
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  # get '/users' => 'templates#index'
+  # get '/users/invite' => 'templates#index'
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get ':guid' => 'response#index', constraints: { guid: /[a-z\-]+/ }
 end

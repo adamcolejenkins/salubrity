@@ -1,0 +1,109 @@
+div(ng-controller="SurveyBuildCtrl")
+  form name="form" ng-submit="saveFieldSettings(field)" 
+
+    .pageslide-header
+      a.close ng-click="close()" 
+        i.fa.fa-times
+      h2.pageslide-title Field Settings
+
+    .pageslide-body
+
+      .row
+        .col-md-12
+          .form-group
+            label for="label" 
+              | Field Label
+            textarea#label.form-control name="label" ng-model="field.label" rows="4" 
+      .row
+        .col-md-6
+          .form-group
+            label
+              | Type
+            select.select2.pageslide-select disabled="disabled" ng-model="field.field_type" ng-options="k as v for (k,v) in types"
+
+        .col-md-6 ng-show="property('layout')" 
+          .form-group
+            label for=""  Layout
+            select.select2.pageslide-select ng-model="field.layout" ng-options="k as v for (k,v) in layouts"
+
+        .col-md-6 ng-show="property('field_size')" 
+          .form-group
+            label Size
+            select.select2.pageslide-select ng-model="field.field_size" ng-options="k as v for (k,v) in sizes"
+
+        .col-md-6 ng-show="property('display')" 
+          .form-group
+            label Display
+            select.select2.pageslide-select ng-model="field.display_as" ng-options="k as v for (k,v) in displays"
+
+      .row ng-show="property('choices')" 
+        .col-md-12
+          .form-group
+            label Choices
+            ul.list-unstyled.choices(ui-sortable="" ng-model="field.field_choices")
+              li ng-repeat="choice in field.field_choices | orderBy:priority" 
+                input.icheck.small ng-model="field.predefined_value" type="radio" value="{{choice.key}}" 
+                
+                span.handle
+                  i.fa.fa-bars
+
+                input.form-control.input-sm autocomplete="false" ng-model="choice.label" type="text" ng-blur="updateChoice(choice, $index)"
+                
+                i.fa.fa-plus-circle.color-success ng-click="addChoice($index)" ng-show="!$first" 
+                i.fa.fa-minus-circle.color-danger ng-click="deleteChoice(choice, $index)" 
+      .row
+        .col-md-6
+          .form-group
+            label Options
+            .radio
+              label
+                input.icheck name="required" ng-model="field.required" type="checkbox" 
+                  span Required
+        .col-md-6
+          .form-group
+            label Visibility
+            .radio
+              label
+                input.icheck name="visibility" ng-model="field.visibility" type="radio" value="public" 
+                  span Everyone
+            .radio
+              label
+                input.icheck name="visibility" ng-model="field.visibility" type="radio" value="private" 
+                  span Admin Only
+
+      .row ng-show="property('range')" 
+        .col-md-12
+          .form-group
+            label Range
+            .row
+              .col-md-6
+                input.form-control ng-model="field.range_min" prefix="Min" type="text" ui-touchspin="" 
+              .col-md-6
+                input.form-control ng-model="field.range_max" prefix="Max" type="text" ui-touchspin="" 
+
+      .row ng-show="property('increment')" 
+        .col-md-6
+          .form-group
+            label Increment
+            input.form-control ng-model="field.increment" step="5" type="text" ui-touchspin="" 
+
+      .row ng-show=("field.properties.settings.indexOf('values') !== -1") 
+        .col-md-12
+          .form-group
+            label for="value"  Predefined Value
+            input#value.form-control name="values" ng-model="field.predefinedValue" type="text" 
+
+      .row
+        .col-md-12
+          .form-group
+            label for="instructions"  Instructions for User
+            textarea#instructions.form-control name="instructions" ng-model="field.instructions" rows="6" 
+
+    /! Buttons
+    .pageslide-footer
+      button.btn.btn-danger.btn-rad ng-click="deleteField(field.id, field.type);close()" tooltip=("Delete this field.") tooltip-placement="left" 
+        i.fa.fa-trash-o
+      button.btn.btn-success.btn-rad type="submit" 
+        i.fa.fa-save
+        | Save Field
+

@@ -1,0 +1,100 @@
+div.layout {
+    @include make-row();
+    section.sidebar {
+        @include make-sm-column(4);
+        background: $gray-lighter;
+        height: 100%;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    section.content {
+        @include make-sm-column(8);
+    }
+}
+
+div.layout {
+    .button {
+        @include make-md-column(6);
+        margin-bottom: 5px;
+    }
+}
+
+.block.welcome,
+.block.thankyou {
+    .block-item {
+        background: $gray-lighter;
+        border-color: $gray;
+    }
+}
+
+.block.fields {
+    & > .block-item {
+        border: 1px dashed transparent;
+        &:hover {
+            border-color: $gray;
+        }
+        div.details {
+            div.name {
+                font-size: 100%;
+                min-height: 40px;
+                font-weight: normal;
+                line-height: normal;
+            }
+        }
+        .form-control[disabled], .form-control[readonly] {
+            background-color: #fff;
+        }
+        div.view {
+            display: none;
+        }
+        &.editing {
+            z-index: 1100;
+            -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            div.view {
+                display: block;
+            }
+        }
+    }
+}
+
+.sort {
+    position: relative;
+    display: block;
+    list-style: none;
+}
+.sort-list {
+    display: block;
+    position: relative;
+    list-style: none;
+    // margin: 0px;
+    // padding: 0px;
+}
+.sort-item,
+.sort-empty,
+.sort-placeholder {
+    display: block;
+    position: relative;
+    min-height: 20px;
+    // margin: 0;
+    // padding: 0;
+}
+.sort-placeholder,
+.sort-empty {
+    margin: 5px 0;
+    padding: 0;
+    min-height: 30px;
+    background: #FFF !important;
+    border: 1px dashed #b6bcbf !important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.sort-item {
+    z-index: 10;
+}
+.sort-dragel {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}

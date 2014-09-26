@@ -1,0 +1,10 @@
+.ng-cloak(ng-init="init()")
+
+  hgroup
+    div.title
+      h2 = t 'surveys.edit.title'
+      h3.thin
+        small = t 'surveys.edit.describe'
+
+  section.survey-form
+    = render "templates/surveys/form"

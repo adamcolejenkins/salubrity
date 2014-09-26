@@ -21,3 +21,28 @@
 
 en:
   hello: "Hello world"
+  surveys:
+    form:
+      details:
+        title: "Survey Details"
+        permalink_example: "Example: this-is-a-proper-permalink"
+        permalink_unique_warning: "Oops! That url is already taken"
+      scheduling:
+        title: "Scheduling Details"
+        activate_label: "Activate survey scheduling"
+        start_describe: "When would you like this survey to start being shown to the public?"
+        stop_describe: "When would you like this survey to stop being shown to the public?"
+    list:
+      title: "My Surveys"
+      describe: "Your available surveys. Build, edit or delete them here"
+      create_button_label: "New Survey"
+      no_surveys: "You haven't created any surveys yet"
+    create:
+      title: "Create a Survey"
+      describe: "If you build if, they will come. So let's build a survey!"
+    edit:
+      title: "Edit Survey"
+      describe: "Tinker with it all you want!"
+    build:
+      no_fields_text: "This survey has no fields, create one above!"
+      create_field_button_label: "Add Field"

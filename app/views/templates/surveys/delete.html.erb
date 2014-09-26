@@ -1,0 +1,14 @@
+<div ng-controller="SurveyListCtrl">
+    <div class="modal-header">
+        <h3 class="modal-title">This is the point of no return!</h3>
+        <button class="close" ng-click="cancel()">×</button>
+    </div>
+    <div class="modal-body text-center">
+        <h4><strong>{{ survey.title }}</strong> will be deleted!</h4>
+        <p>All fields, responses and reports will be deleted with this survey.</ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger btn-mono3 btn-flat" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-danger btn-mono3 btn-flat" ng-click="proceed()">Delete</button>
+    </div>
+</div>

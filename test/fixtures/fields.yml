@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survey_id: 
+  label: MyText
+  fieldType: MyString
+  options: MyText
+  order: 1
+  required: false
+  visibility: MyString
+  predefinedValue: MyString
+  deleted_at: 2014-09-19 08:55:54
+
+two:
+  survey_id: 
+  label: MyText
+  fieldType: MyString
+  options: MyText
+  order: 1
+  required: false
+  visibility: MyString
+  predefinedValue: MyString
+  deleted_at: 2014-09-19 08:55:54

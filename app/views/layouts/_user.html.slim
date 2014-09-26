@@ -1,0 +1,22 @@
+.user-container.navbar-right
+  .user
+    .image
+      a href=""
+        = image_tag("avatars/male.252x252.png", alt: current_user.email)
+
+    .button
+      i.fa.fa-angle-down
+
+    .details
+      .name
+        = current_user.name
+
+    ul
+      li
+        a href=""
+          i.fa.fa-user
+          | Account
+      li
+        = link_to destroy_user_session_path, method: :delete
+          i.fa.fa-sign-out
+          | Logout

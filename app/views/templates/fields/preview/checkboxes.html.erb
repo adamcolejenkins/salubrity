@@ -1,0 +1,8 @@
+<div class="list-unstyled layout {{field.options.layout}}">
+    <span ng-repeat="choice in field.options.choices">
+        <label>
+            <input type="checkbox" value="{{$index}}" ng-model="field.values" ng-checked="field.values == '{{$index}}'" class="icheck small">
+            <span>{{ choice.value }}</span>
+        </label>
+    </span>
+</div>

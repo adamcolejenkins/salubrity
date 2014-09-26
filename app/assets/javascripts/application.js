@@ -12,5 +12,25 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require bootstrap-sprockets
 //= require turbolinks
+
+// Angular Directives
+//= require angular
+//= require angular-resource
+//= require angular-route
+//= require ng-underscore/build/ng-underscore.js
+//= require angular-bootstrap/ui-bootstrap-tpls
+//= require angular-ui-sortable/sortable
+
+
+// Vendor assets
+//= require jquery-icheck/icheck
+//= require select2/select2
+//= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
+
+// Our Angular app files
+//= require salubrity
+
 //= require_tree .

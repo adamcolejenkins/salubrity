@@ -1,0 +1,119 @@
+$header-height: 50px;
+
+header {
+    & > .row {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .logo {
+        background: #fff url('/assets/logo.png') no-repeat;
+        background-size: 100%;
+        width: 118px;
+        height: 30px;
+        text-indent: -9999px;
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+           only screen and (-moz-min-device-pixel-ratio: 1.5),
+           only screen and (-o-min-device-pixel-ratio: 3/2),
+           only screen and (min-device-pixel-ratio: 1.5) {
+        .logo {
+            background-image: url('/assets/logo@2x.png');
+        }
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+    div.user-container {
+        // height: $header-height;
+        width: 100%;
+        position: relative;
+        z-index: 500;
+        div.user {
+            position: absolute;
+            right: 0;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-top: -10px;
+            img {
+                width: 30px;
+                height: 30px;
+                margin: 10px;
+                margin-right: 0;
+                margin-top: 10px;
+            }
+            div.button {
+                float: right;
+                margin-right: 10px;
+                i {
+                    display: inline-block;
+                    line-height: $header-height;
+                }
+            }
+            div.details {
+                float: right;
+                padding-right: 20px;
+                cursor: default;
+                font-weight: 300;
+                // padding-bottom: 5px;
+                // margin-top: 10px;
+                line-height: $header-height;
+                div.role {
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+            div.image {
+                float: right;
+            }
+            &:hover {
+                background: #EDF1F2;
+                color: #6E768E;
+                ul {
+                    display: block;
+                }
+            }
+            ul {
+                display: none;
+                clear: both;
+                margin: 0;
+                list-style: none;
+                padding: 10px 5px;
+                li {
+                    padding: 10px 0;
+                    border-top: 1px solid #D9D9D9;
+                    &:first-child {
+                        border-top: 0;
+                    }
+                    a {
+                        display: block;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                    i {
+                        display: inline-block;
+                        margin-right: 15px;
+                        position: relative;
+                        top: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+nav {
+  ul.nav.navbar-nav li:first-child a {
+    padding-left: 0;
+    span {
+      display: inline-block;
+    }
+  }
+  ul.nav.navbar-nav i {
+    font-size: 18px;
+    & + span {
+      padding-left: 7px;
+    }
+  }
+}

@@ -1,0 +1,241 @@
+//
+// Pageslider
+// --------------------------------------------------
+
+// .pageslide-open      - body class for killing the scroll
+// .pageslide           - container to scroll within
+// .pageslide-dialog    - positioning shell for the actual modal
+// .pageslide-content   - actual pageslide w/ bg and corners and shit
+
+$pageslide-background: $primary-color;
+$pageslide-text-color: #fff;
+$pageslide-title-padding: 20px;
+$pageslide-title-line-height: auto;
+$pageslide-title-height: 80px;
+$pageslide-footer-height: 80px;
+
+$pageslide-inner-padding: 20px;
+
+$pageslide-width: 400px;
+$pageslide-width-sm: 300px;
+$pageslide-width-lg: 500px;
+
+
+// Kill the scroll on the body
+.pageslide-open {
+    overflow: hidden;
+}
+
+// Container that the pageslide scrolls within
+.pageslide {
+    // display: none;
+    overflow: hidden;
+    position: fixed;
+    // height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $zindex-modal;
+    -webkit-overflow-scrolling: touch;
+
+    // Prevent Chrome on Windows from adding a focus outline.
+    outline: 0;
+
+    // When sliding the pageslide, animate it to slide right
+    &.slide .pageslide-dialog {
+        @include translate3d(-100%, 0, 0);
+        @include transition-transform(0.3s ease-out);
+    }
+    &.in .pageslide-dialog { @include translate3d(0, 0, 0) }
+}
+
+.pageslide-dialog {
+    width: $pageslide-width;
+    height: 100%;
+
+    &.pageslide-sm {
+        width: $pageslide-width-sm;
+    }
+    &.pageslide-lg {
+        width: $pageslide-width-lg;
+    }
+}
+
+// Actual pageslide
+.pageslide-content {
+    // remove focus outline from opened pageslide
+    outline: 0;
+}
+
+.pageslide-header, .pageslide-footer, .pageslide-body {
+    background-color: $pageslide-background;
+    background-clip: padding-box;
+}
+
+.pageslide-header, .pageslide-footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.pageslide-header {
+    padding: $pageslide-title-padding;
+    border-bottom: 1px solid lighten($pageslide-background, 5%);
+    height: $pageslide-title-height;
+}
+// Close icon
+.pageslide-header .close {
+    margin-top: 2px;
+    color: $text-color;
+}
+
+// Title text within header
+.modal-title {
+    color: $pageslide-text-color;
+    margin: 0;
+    line-height: $pageslide-title-line-height;
+}
+
+// Pageslide body
+.pageslide-body {
+    padding: $pageslide-inner-padding;
+    position:absolute;
+    top: $pageslide-title-height;
+    bottom: $pageslide-footer-height;
+    width:100%;
+    overflow-y: scroll;
+}
+
+// Footer (for actions)
+.pageslide-footer {
+    bottom: 0;
+    height: $pageslide-footer-height;
+    padding: $pageslide-inner-padding;
+    text-align: right;
+    border-top: 1px solid lighten($pageslide-background, 5%);
+    @extend .clearfix;
+
+    // properly space out buttons
+    .btn + .btn {
+        margin-left: 5px;
+        margin-bottom: 0;
+    }
+    // but override that for button groups
+    .btn-group .btn + .btn {
+        margin-left: -1px;
+    }
+    // and override it for block buttons as well
+    .btn-block + .btn-block {
+        margin-left: 0;
+    }
+}
+
+.pageslide {
+
+    .form-group {
+        > label {
+            display: block;
+            font-weight: 400;
+        }
+        .form-control {
+            background: lighten($pageslide-background, 5%);
+            border-color: transparent;
+        }
+    }
+
+    .select2-container .select2-choice {
+        border: none;
+        background-color: lighten($pageslide-background, 5%);
+    }
+    .select2-container {
+        width: 100%;
+    }
+    .select2-choice {
+        font-size: 12px;
+        color: #788086;
+    }
+    .select2-container .select2-choice .select2-arrow, .input-group-addon {
+        border:none;
+    }
+    .input-group-addon {
+        background-color: lighten($pageslide-background, 7%) !important;
+    }
+
+    .btn-primary, .select2-container .select2-choice .select2-arrow {
+        background-color: lighten($pageslide-background, 10%);
+    }
+
+    label {
+        div + span {
+            font-size: 12px;
+            color: #788086;
+            font-weight: 400;
+        }
+    }
+
+    .icheckbox_flat-green,
+    .iradio_flat-green {
+        background-image: url(/assets/green.icheck.png);
+    }
+
+    .radio, .checkbox {
+        padding-left: 0px;
+    }
+
+    .choices {
+        li {
+            margin-bottom: 5px;
+            > * {
+                display: inline-block;
+            }
+            > div {
+                width: 20px;
+                margin-right: 5px;
+            }
+            .form-control {
+                margin-left: 7px;
+                margin-right: 2px;
+                width: 75%;
+            }
+            i {
+                margin-top: 4px;
+                margin-left: 3px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+           only screen and (-moz-min-device-pixel-ratio: 1.5),
+           only screen and (-o-min-device-pixel-ratio: 3/2),
+           only screen and (min-device-pixel-ratio: 1.5) {
+        .icheckbox_flat-green,
+        .iradio_flat-green {
+            background-image: url('/assets/green.icheck@2x.png');
+        }
+    }
+}
+
+.select2-drop.pageslide-select {
+    background: lighten($pageslide-background, 8%);
+    border: none;
+    color: #788086;
+    font-size: 12px;
+
+    .select2-results .select2-highlighted {
+        background-color: $green;
+    }
+    .select2-search {
+        margin-top: 4px;
+        input {
+            border-color: lighten($pageslide-background, 3%);
+            background: lighten($pageslide-background, 5%) url(/assets/select2.png) no-repeat scroll 100% -22px;
+        }
+    }
+    .select2-results .select2-no-results {
+        background-color: $red;
+        color: #fff;
+    }
+}

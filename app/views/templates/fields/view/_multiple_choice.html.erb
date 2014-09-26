@@ -1,0 +1,14 @@
+<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+  <div class="choice <%= field.layout %> <%= field.display %>">
+    <% field.field_choices.each do |choice| %>
+    <span>
+      <input
+        type="radio"
+        name="<%= field.id %>-<%= choice.key %>"
+        id="<%= field.id %>-<%= choice.key %>"
+        required="<%= field.required %>">
+        <label for=""><%= choice.label %></label>
+    </span>
+    <% end %>
+  </div>
+</div>

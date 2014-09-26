@@ -1,0 +1,9 @@
+<select name="" id="" class="cs-select cs-skin-boxes fs-anim-lower">
+  <% field.field_choices.each do |choice| %>
+  <option
+    value="<%= choice.key %>"
+    ng-repeat="choice in field.field_choices">
+    <%= choice.label %>
+  </option>
+  <% end %>
+</select>

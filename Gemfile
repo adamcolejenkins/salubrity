@@ -30,17 +30,20 @@ end
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'angular-rails-templates'
-
 gem 'devise', '~> 3.3.0'
 gem 'slim-rails'
-gem 'active_model_serializers'
+
+gem 'active_model_serializers', '~> 0.8.0'
 gem 'jquery-ui-rails'
 gem 'acts_as_list'
 
 group :test do
   gem 'rspec-rails'
   gem 'factory_girl'
+end
+
+group :development do
+  gem 'web-console', '2.0.0.beta3'
 end
 
 # Use ActiveModel has_secure_password
