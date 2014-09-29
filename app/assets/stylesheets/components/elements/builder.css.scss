@@ -5,9 +5,6 @@
     @include block-grid($per-row: 2);
     li {
       padding-bottom: 5px;
-      &:nth-child(odd) {
-        padding-left: 0px;
-      }
     }
     button {
       @include button-base;

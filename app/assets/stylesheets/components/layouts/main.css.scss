@@ -6,10 +6,10 @@
 
 .wrap > header {
   & > section.branding {
-    @include grid-column($columns: 6, $collapse: true);
+    @include grid-column($columns: 6);
   }
   & > section.actions {
-    @include grid-column($columns: 6, $last-column: true, $collapse: true);
+    @include grid-column($columns: 6, $last-column: true);
   }
 }
 
@@ -25,7 +25,7 @@
 
 .wrap > main {
   hgroup {
-    @include grid-row($behavior: nest);
+    @include grid-row();
     margin-top: 30px;
     margin-bottom: 30px;
     & > div.title {
@@ -36,12 +36,8 @@
       text-align: right;
     }
     & + .layout {
-      @include grid-row($behavior: nest);
+      @include grid-row();
       
-      &.builder {
-        @include grid-row();
-      }
-
       & section.sidebar {
         @include grid-column($columns: 4);
       }
@@ -61,10 +57,10 @@
     a { font-weight: bold; }
   }
   & > section.copyright {
-    @include grid-column($columns: 8, $collapse: true);
+    @include grid-column($columns: 8);
   }
   & > section.support {
-    @include grid-column($columns: 4, $last-column: true, $collapse: true);
+    @include grid-column($columns: 4, $last-column: true);
     text-align: right;
   }
 }

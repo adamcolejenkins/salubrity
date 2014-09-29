@@ -1,6 +1,7 @@
 $button-size: 40px;
 
 .block {
+  @include grid-column($columns: 12);
   .block-item {
     @include grid-row();
     border-radius: $global-radius;

@@ -9,7 +9,6 @@
 .top-bar-section {
   ul {
     li.icon:not(.has-form):first-child a:not(.button) {
-      padding-left: 0px;
       padding-right: 0px;
       & > i {
         font-size: rem-calc(18px);
