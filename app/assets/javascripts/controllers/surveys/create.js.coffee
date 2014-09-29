@@ -20,7 +20,7 @@
 
       $scope.saveSurvey = (survey) ->
         @SurveyService.create survey, (survey) ->
-          $location.url "/surveys/#{survey.id}/build"
+          $location.url "/survey/#{survey.id}/build"
 
 
       serverErrorHandler = ->
