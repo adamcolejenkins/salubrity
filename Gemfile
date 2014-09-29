@@ -59,8 +59,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# heroku
-gem 'rails_12factor', group: :production
 
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
+
+# heroku
+gem 'rails_12factor', group: :production
