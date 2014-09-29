@@ -15,21 +15,21 @@ form.indent-fields(name="form" ng-submit="saveSurvey(survey)" novalidate="novali
       label(for="description") Description
       input.radius#description(type="text" ng-model="survey.description" autocomplete="off")
 
-  .form-group
-    .full
-      label(for="permalink") Permalink
-      .row.collapse.prefix-radius
-        .small-3.columns
-          span.prefix
-            | {{siteUrl}}
-        .small-9.columns
-          input#permalink(type="text" ng-model="survey.guid" autocomplete="off" required="required")
+  / .form-group
+  /   .full
+  /     label(for="permalink") Permalink
+  /     .row.collapse.prefix-radius
+  /       .small-3.columns
+  /         span.prefix
+  /           | {{siteUrl}}
+  /       .small-9.columns
+  /         input#permalink(type="text" ng-model="survey.guid" autocomplete="off" required="required")
       
-      p.small.muted = t "surveys.form.details.permalink_example"
+  /     p.small.muted = t "surveys.form.details.permalink_example"
 
-      .alert.alert-warning(ng-show="form.guid.$error.unique")
-        i.fa.fa-warning 
-        = t "surveys.form.details.permalink_unique_warning"
+  /     .alert.alert-warning(ng-show="form.guid.$error.unique")
+  /       i.fa.fa-warning 
+  /       = t "surveys.form.details.permalink_unique_warning"
   
   .form-header
     .tag
