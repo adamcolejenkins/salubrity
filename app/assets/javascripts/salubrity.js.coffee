@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.sortable', 'ngUnderscore'
+  'ngResource', 'ngRoute', 'mm.foundation', 'ui.sortable', 'ngTouch'
 ]
 
 

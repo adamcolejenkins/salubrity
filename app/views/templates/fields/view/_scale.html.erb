@@ -1,0 +1,22 @@
+<div class="clearfix fs-anim-lower">
+  <!-- <div class="fa-slider-before"><%= field.range_min %></div> -->
+  <div id="slider-link-<%= field.id %>"></div>
+  <!-- <div class="fs-slider-after"><%= field.range_max %></div> -->
+  <input type="hidden" name="response[<%= field.field_type %>]" id="slider-value-<%= field.id %>" value="">
+</div>
+
+<script>
+  $("#slider-link-<%= field.id %>").noUiSlider({
+    start: [<%= field.predefined_value %>],
+    step: <%= field.increment %>,
+    range: {
+      'min': <%= field.range_min %>,
+      'max': <%= field.range_max %>
+    }
+  });
+  $("#slider-link-<%= field.id %>").noUiSlider_pips({
+    mode: 'steps',
+    density: <%= field.range_max %>
+  });
+  $("#slider-link-<%= field.id %>").Link('lower').to("slider-value-<%= field.id %>", 'value');
+</script>

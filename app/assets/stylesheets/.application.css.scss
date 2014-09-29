@@ -1,0 +1,104 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ */
+
+//= require jquery-icheck/skins/flat/green
+//= require select2/select2
+
+// Place all the styles related to the backend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "backend/config-prusia";
+@import "backend/variables";
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*LESS CSS pre-processor*/
+@import "backend/elements";
+
+/*CONFIG AND GENERAL STYLE*/
+@import "backend/general";
+@import "backend/helpers";
+@import "backend/typography";
+
+/*HEADER*/
+@import "backend/dropdown-menu";
+// @import "backend/navbar";
+@import "backend/header";
+@import "backend/page-head";
+@import "backend/page-aside";
+@import "backend/profile-menu";
+
+/*BODY*/
+@import "backend/block-panels";
+@import "backend/boxed";
+@import "backend/forms";
+@import "backend/main-container";
+// @import "backend/sidebar";
+@import "backend/topbar";
+
+/*PAGES*/
+@import "backend/404";
+// @import "backend/gallery";
+@import "backend/login";
+// @import "backend/page-email";
+// @import "backend/page-code-editor";
+@import "backend/page-profile";
+@import "backend/page-search";
+@import "backend/sign-up";
+@import "backend/builder";
+@import "backend/fs-form";
+
+/*ELEMENTS*/
+@import "backend/elements/accordions";
+@import "backend/elements/alerts";
+@import "backend/elements/buttons";
+@import "backend/elements/calendar";
+@import "backend/elements/charts";
+@import "backend/elements/chat";
+@import "backend/elements/chat-widget";
+@import "backend/elements/circle";
+@import "backend/elements/ckeditor";
+@import "backend/elements/color-boxes";
+@import "backend/elements/date-picker";
+@import "backend/elements/empty-state";
+@import "backend/elements/gritter";
+@import "backend/elements/icons";
+@import "backend/elements/labels_badges";
+@import "backend/elements/lists";
+@import "backend/elements/modals";
+@import "backend/elements/multiselect";
+@import "backend/elements/nano-scroll";
+@import "backend/elements/nestable-lists";
+@import "backend/elements/pageslide";
+@import "backend/elements/pagination";
+@import "backend/elements/porlets";
+@import "backend/elements/progress";
+@import "backend/elements/select2";
+@import "backend/elements/slider";
+@import "backend/elements/switch";
+@import "backend/elements/tables";
+@import "backend/elements/tabs";
+@import "backend/elements/tiles";
+@import "backend/elements/timeline";
+@import "backend/elements/timerange";
+@import "backend/elements/todo-widget";
+@import "backend/elements/tickets-widget";
+@import "backend/elements/treeview";
+@import "backend/elements/validation";
+@import "backend/elements/widgets";
+@import "backend/elements/wizard";
+
+/*RESPONSIVE*/
+@import "backend/responsive";

@@ -1,10 +1,38 @@
-@defaultSettings = ['label', 'type', 'options', 'visibility', 'instructions']
+@defaultSettings = ['label', 'instructions']
 
 @salubrity
   
   .constant 'CONFIG',
 
     fieldTypes: [
+      {
+        enabled: true,
+        label: 'Welcome Screen',
+        type: 'intro',
+        icon: 'sign-in',
+        noSort: true,
+        templates: {
+          view: '/templates/fields/view/into.html'
+        },
+        settings: @defaultSettings.concat('attachment', 'intro'),
+        defaults: {
+          button_label: 'Start'
+        }
+      },{
+        enabled: true,
+        label: 'Thank You Screen',
+        type: 'outro',
+        icon: 'sign-out',
+        noSort: true,
+        templates: {
+          view: '/templates/fields/view/outro.html'
+        },
+        settings: @defaultSettings.concat('attachment', 'outro'),
+        defaults: {
+          button_label: 'Again',
+          button_mode: 'reload'
+        }
+      },
       {
         enabled: true,
         label: 'Single Line Text',
@@ -14,11 +42,10 @@
           preview: '/templates/fields/preview/single_line_text.html',
           view: '/templates/fields/view/single_line_text.html'
         },
-        settings: @defaultSettings.concat('range', 'field_size', 'values'),
+        settings: @defaultSettings.concat('range', 'value', 'options', 'visibility', 'required'),
         defaults: {
           required: true,
-          visibility: 'public',
-          field_size: 'medium'
+          visibility: 'public'
         }
       },{
         enabled: true,
@@ -29,11 +56,10 @@
           preview: '/templates/fields/preview/paragraph_text.html',
           view: '/templates/fields/view/paragraph_text.html'
         },
-        settings: @defaultSettings.concat('range', 'field_size', 'values'),
+        settings: @defaultSettings.concat('range', 'value', 'options', 'visibility', 'required'),
         defaults: {
           required: true,
-          visibility: 'public',
-          field_size: 'medium'
+          visibility: 'public'
         }
       },{
           enabled: true,
@@ -44,15 +70,10 @@
               preview: '/templates/fields/preview/multiple_choice.html',
               view: '/templates/fields/view/multiple_choice.html'
           },
-          settings: @defaultSettings.concat('choices', 'layout', 'display'),
+          settings: @defaultSettings.concat('choices', 'layout', 'display', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public',
-              field_choices: [
-                  { label: "First Choice", key: "first_choice" },
-                  { label: "Second Choice", key: "second_choice" },
-                  { label: "Third Choice", key: "third_choice" }
-              ],
               layout: 'oneColumn',
               display_as: 'standard'
           }
@@ -65,11 +86,10 @@
               preview: '/templates/fields/preview/number.html',
               view: '/templates/fields/view/number.html'
           },
-          settings: @defaultSettings.concat('range', 'field_size', 'values'),
+          settings: @defaultSettings.concat('range', 'value', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
-              visibility: 'public',
-              field_size: 'medium'
+              visibility: 'public'
           }
       },{
           enabled: true,
@@ -80,15 +100,10 @@
               preview: '/templates/fields/preview/checkboxes.html',
               view: '/templates/fields/view/checkboxes.html'
           },
-          settings: @defaultSettings.concat('choices', 'layout', 'display'),
+          settings: @defaultSettings.concat('choices', 'layout', 'display', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public',
-              field_choices: [
-                  { label: "First Choice", key: "first_choice" },
-                  { label: "Second Choice", key: "second_choice" },
-                  { label: "Third Choice", key: "third_choice" }
-              ],
               layout: 'oneColumn',
               display_as: 'standard'
           }
@@ -101,15 +116,10 @@
               preview: '/templates/fields/preview/dropdown.html',
               view: '/templates/fields/view/dropdown.html'
           },
-          settings: @defaultSettings.concat('choices'),
+          settings: @defaultSettings.concat('choices', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
-              visibility: 'public',
-              field_choices: [
-                  { label: "First Choice", key: "first_choice" },
-                  { label: "Second Choice", key: "second_choice" },
-                  { label: "Third Choice", key: "third_choice" }
-              ]
+              visibility: 'public'
           }
       },{
           enabled: true,
@@ -120,7 +130,7 @@
               preview: '/templates/fields/preview/scale.html',
               view: '/templates/fields/view/scale.html'
           },
-          settings: @defaultSettings.concat('range', 'values', 'increment'),
+          settings: @defaultSettings.concat('range', 'value', 'increment', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public'
@@ -134,7 +144,7 @@
               preview: '/templates/fields/preview/rating.html',
               view: '/templates/fields/view/rating.html'
           },
-          settings: @defaultSettings.concat('range', 'values'),
+          settings: @defaultSettings.concat('range', 'value', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public'
@@ -148,7 +158,7 @@
               preview: '/templates/fields/preview/date.html',
               view: '/templates/fields/view/date.html'
           },
-          settings: @defaultSettings.concat('date_format', 'values'),
+          settings: @defaultSettings.concat('date_format', 'value', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public'
@@ -162,7 +172,7 @@
               preview: '/templates/fields/preview/time.html',
               view: '/templates/fields/view/time.html'
           },
-          settings: @defaultSettings.concat('time_format', 'values'),
+          settings: @defaultSettings.concat('time_format', 'value', 'options', 'visibility', 'required'),
           defaults: {
               required: true,
               visibility: 'public'

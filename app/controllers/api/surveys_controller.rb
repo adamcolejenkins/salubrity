@@ -40,6 +40,6 @@ class Api::SurveysController < Api::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def safe_params
-    params.require(:survey).permit(:title, :description, :guid, :logo_path, :status, :scheduled, :scheduled_start, :scheduled_stop)
+    params.require(:survey).permit(:title, :description, :guid, :intro_id, :outro_id, :logo_path, :status, :scheduled, :scheduled_start, :scheduled_stop)
   end
 end

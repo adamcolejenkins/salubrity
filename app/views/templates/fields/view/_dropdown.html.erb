@@ -1,8 +1,8 @@
-<select name="" id="" class="cs-select cs-skin-boxes fs-anim-lower">
+<select name="" id="" class="cs-select cs-skin-border fs-anim-lower" required="<%= field.required %>">
+  <option value="" disabled selected>Select a Provider</option>
   <% field.field_choices.each do |choice| %>
   <option
-    value="<%= choice.key %>"
-    ng-repeat="choice in field.field_choices">
+    value="<%= choice.key %>">
     <%= choice.label %>
   </option>
   <% end %>

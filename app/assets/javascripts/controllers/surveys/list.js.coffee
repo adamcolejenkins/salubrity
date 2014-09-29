@@ -13,8 +13,9 @@
       $scope.surveys = @SurveysService.all()
 
 
-    $scope.build = (survey) ->
-      $location.path("/survey/#{survey.id}/build")
+    $scope.build = (survey) -> $location.path("/survey/#{survey.id}/build")
+
+    $scope.create = -> $location.path("/survey/create")
 
 
     $scope.deleteSurvey = (survey) ->

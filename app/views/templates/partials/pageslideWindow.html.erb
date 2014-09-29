@@ -1,5 +1,9 @@
-<div tabindex="-1" role="dialog" class="pageslide slide" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)">
-    <div class="pageslide-dialog" ng-class="{'pageslide-sm': size == 'sm', 'pageslide-lg': size == 'lg'}">
-        <div class="pageslide-content" ng-transclude></div>
+<div tabindex="-1" role="dialog" class="pagestack slide" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)">
+    <div class="pagestack-dialog" ng-class="{'pagestack-sm': size == 'sm', 'pagestack-lg': size == 'lg'}">
+        <div class="pagestack-sidebar" ng-transclude></div>
+        <div class="pagestack-content">
+          <!-- <img ng-src="/assets/placholder.jpg" class="background-image blur shade"> -->
+          PAGESTACK CONTENT
+        </div>
     </div>
 </div>

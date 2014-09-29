@@ -19,8 +19,8 @@
         $scope.btnLabel = 'Save Survey'
 
 
-      $scope.saveSurvey = (survey) ->
-        @SurveyService.update survey, (survey) ->
+      $scope.saveSurvey = (params) ->
+        @SurveyService.update($scope.survey, params).then ->
           $location.url "/surveys"
 
 

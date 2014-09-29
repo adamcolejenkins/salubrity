@@ -1,13 +1,5 @@
-div.row
-  div.button
-    a.btn.btn-block.btn-success(ng-click="addWelcome()")
-      i.fa.fa-sign-in
-      | Welcome Screen
-  div.button
-    a.btn.btn-block.btn-primary(ng-click="addThankYou()")
-      i.fa.fa-sign-out
-      | Thank You Screen
-  div.button(ng-repeat="button in fieldTypes | orderBy:label")
-    a.btn.btn-block(ng-show="button.enabled" ng-click="proceed(button)")
-      i.fa class="fa-{{button.icon}}"
-      | {{button.label}}
+ul.button-grid
+  li(ng-repeat="field in fieldTypes")
+    button ng-if="field.enabled" ng-click="addField(field)" class="field-{{field.type}}"
+      i.fa class="fa-{{field.icon}}"
+      |  {{field.label}}

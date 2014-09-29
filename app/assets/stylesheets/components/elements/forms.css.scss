@@ -1,0 +1,210 @@
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="color"],
+textarea {
+  // @include radius($global-radius);
+}
+
+// Select2 overrides
+.select2-container {
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  @include grid-row($behavior: nest);
+  .full {
+    @include grid-column($columns: 12);
+  }
+  .half {
+    @include grid-column($columns: 12);
+    @media #{$large-up} {
+      @include grid-column($columns: 6);
+    }
+   }
+  .half:first-child {
+    .bootstrap-touchspin {
+      padding-left: 0px;
+    }
+  }
+}
+
+// Touchspin overrides
+.bootstrap-touchspin {
+  @include grid-row($behavior: nest);
+  margin-right: 10px;
+
+  .input-group-btn {
+    @include grid-column($columns: 2, $collapse: true);
+  }
+  .input-group-addon {
+    @include grid-column($columns: 2, $collapse: true);
+    @extend .prefix;
+  }
+
+  .input-group-btn:first-child .button {
+    border-top-left-radius: $global-radius;
+    border-bottom-left-radius: $global-radius;
+  }
+  .input-group-btn:last-child .button {
+    border-top-right-radius: $global-radius;
+    border-bottom-right-radius: $global-radius;
+  }
+  input {
+    @include grid-column($columns: 6, $collapse: true);
+    border-radius: 0px;
+  }
+}
+
+.inverse {
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="week"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  input[type="color"],
+  textarea {
+    background-color: $inverse-input-bg-color;
+    border-color: transparent;
+    color: $inverse-input-font-color;
+  }
+
+  .select2-container-active .select2-choice,
+  .select2-container-active .select2-choices {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  .select2-container .select2-choice {
+    border: none;
+    background-color: $inverse-input-bg-color;
+    background-image: none;
+    padding: $form-spacing / 2;
+    height: auto;
+  }
+  .select2-container {
+    width: 80%;
+  }
+  .select2-choice {
+    font-size: $input-font-size;
+    color: $inverse-input-font-color;
+  }
+  .input-group-btn .button, .select2-container .select2-choice .select2-arrow, .input-group-addon {
+    border: none;
+    background-image: none;
+    background-color: lighten($inverse-input-bg-color, 5%) !important;
+    font-size: $input-font-size;
+    color: $inverse-input-font-color !important;
+  }
+
+  .input-group-addon {
+    background-color: lighten($inverse-input-bg-color, 2%) !important;
+  }
+
+  .btn-primary, .select2-container .select2-choice .select2-arrow {
+    width: 25px;
+  }
+
+  .choices {
+    li {
+      margin-bottom: 5px;
+      > * {
+        display: inline-block;
+      }
+      > div {
+        width: 20px;
+        margin-right: 5px;
+      }
+      input {
+        margin-left: 7px;
+        margin-right: 2px;
+        width: 75%;
+        margin-bottom: 0;
+      }
+      i {
+        margin-top: 4px;
+        margin-left: 3px;
+        cursor: pointer;
+      }
+    }
+  }
+
+}
+
+label {
+  div + span {
+    font-size: $input-font-size;
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
+
+div.form-header {
+  overflow: hidden;
+  margin-bottom: 20px;
+  h3 {
+    display: inline-block;
+    margin-top: 25px;
+  }
+  div.tag {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border: 2px solid #6E768E;
+    border-radius: 50%;
+    line-height: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 40px;
+    position: relative;
+    color: #6E768E;
+    i {
+      position: relative;
+      font-size: 16px;
+      top: 2px;
+    }
+  }
+}
+form.indent-fields {
+  & > .form-group,
+  & > .form-buttons {
+    margin-left: 85px;
+    margin-bottom: 20px;
+    .description {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+div.form-buttons {
+  margin-top: 40px;
+}
+
+input[required].ng-invalid.ng-dirty,
+input[required].ng-pristine {
+  border-left-color: $alert-color !important;
+  border-left-width: 2px;
+}
+input[required].ng-valid {
+  border-left-color: $success-color !important;
+  border-left-width: 2px;
+}

@@ -206,7 +206,7 @@ angular.module( 'salubrity' )
 
     var $pageslideProvider = {
         options: {
-            backdrop: true,
+            backdrop: false,
             keyboard: true
         },
         $get: ['$injector', '$rootScope', '$q', '$http', '$templateCache', '$controller', '$pageslideStack', function ($injector, $rootScope, $q, $http, $templateCache, $controller, $pageslideStack) {

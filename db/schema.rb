@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922211756) do
+ActiveRecord::Schema.define(version: 20140928164827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20140922211756) do
   end
 
   add_index "field_choices", ["field_id"], name: "index_field_choices_on_field_id", using: :btree
+
+  create_table "field_options", force: true do |t|
+    t.integer  "field_id"
+    t.string   "meta_key"
+    t.text     "meta_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "field_options", ["field_id"], name: "index_field_options_on_field_id", using: :btree
 
   create_table "fields", force: true do |t|
     t.integer  "survey_id"
@@ -44,11 +54,20 @@ ActiveRecord::Schema.define(version: 20140922211756) do
 
   add_index "fields", ["survey_id"], name: "index_fields_on_survey_id", using: :btree
 
+  create_table "survey_options", force: true do |t|
+    t.integer  "survey_id"
+    t.string   "meta_key"
+    t.text     "meta_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "survey_options", ["survey_id"], name: "index_survey_options_on_survey_id", using: :btree
+
   create_table "surveys", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "guid"
-    t.string   "logo_path"
     t.string   "status",          default: "draft"
     t.boolean  "scheduled",       default: false
     t.datetime "scheduled_start"
@@ -56,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140922211756) do
     t.time     "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "opts"
   end
 
   create_table "users", force: true do |t|

@@ -4,6 +4,8 @@ class Survey < ActiveRecord::Base
 
   scope :guid, -> (guid) { where(guid: guid).first }
 
+  store :opts, :accessors => [:intro_id, :outro_id, :logo_path], coder: JSON
+
   validates :title, presence: true
   validates :guid, presence: true
 end

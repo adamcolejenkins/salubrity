@@ -1,68 +1,78 @@
 form.indent-fields(name="form" ng-submit="saveSurvey(survey)" novalidate="novalidate" autocomplete="off")
   
-  .section-header
+  .form-header
     .tag
       i.fa.fa-file-text-o
     h3 = t 'surveys.form.details.title'
 
   .form-group
-    label(for="title") Title
-    input#title.form-control(ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required")
+    .full
+      label(for="title") Title
+      input.radius#title(type="text" ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required")
 
   .form-group
-    label(for="description") Description
-    input#description.form-control(ng-model="survey.description" autocomplete="off")
+    .full
+      label(for="description") Description
+      input.radius#description(type="text" ng-model="survey.description" autocomplete="off")
 
   .form-group
-    label(for="permalink") Permalink
-    .input-group
-      span.input-group-addon
-        | {{siteUrl}}
-      input#permalink.form-control(ng-model="survey.guid" autocomplete="off" required="required")
-    p.small.muted = t "surveys.form.details.permalink_example"
+    .full
+      label(for="permalink") Permalink
+      .row.collapse.prefix-radius
+        .small-3.columns
+          span.prefix
+            | {{siteUrl}}
+        .small-9.columns
+          input#permalink(type="text" ng-model="survey.guid" autocomplete="off" required="required")
+      
+      p.small.muted = t "surveys.form.details.permalink_example"
 
-    .alert.alert-warning(ng-show="form.guid.$error.unique")
-      i.fa.fa-warning 
-      = t "surveys.form.details.permalink_unique_warning"
+      .alert.alert-warning(ng-show="form.guid.$error.unique")
+        i.fa.fa-warning 
+        = t "surveys.form.details.permalink_unique_warning"
   
-  .section-header
+  .form-header
     .tag
       i.fa.fa-clock-o
     h3 = t 'surveys.form.scheduling.title'
 
   .form-group
-    label(for="scheduled")
-      = t 'surveys.form.scheduling.activate_label'
-      input.icheck(type="checkbox" ng-model="survey.scheduled" ng-checked="survey.scheduled")
+    .full
+      label(for="scheduled")
+        = t 'surveys.form.scheduling.activate_label'
+        input.icheck(type="checkbox" ng-model="survey.scheduled" ng-checked="survey.scheduled")
 
   .form-group(ng-show="survey.scheduled")
-    section.form-left
+    .half
 
       label(for="scheduled_start") Start
       div.description = t 'surveys.form.scheduling.start_describe'
 
-      .dropdown
-        .input-group(tooltip="Select a start date & time" tooltip-placement="left")
-          span.input-group-btn
-            button.btn.btn-primary.dropdown-toggle(type="button")
-              i.fa.fa-calendar-o
-          input.form-control(ng-model="survey.scheduled_start" autocomplete="off")
+      .row.collapse.prefix-radius(tooltip="Select a start date & time" tooltip-placement="left")
+        .small-1.columns
+          button.button.prefix(dropdown-toggle="#schedule-start-dropdown")
+            i.fa.fa-calendar-o
+          ul.f-dropdown
+            li Calendar picker here
 
-          datetimepicker.dropdown-menu.datetimepicker-dropdown-bottom-right(ng-model="survey.scheduled_start")
+        .small-11.columns
+          input(type="text" ng-model="survey.scheduled_start" autocomplete="off")
 
-    section.form-right
+    .half
 
       label(for="scheduled_stop") Stop
       div.description = t 'surveys.form.scheduling.stop_describe'
 
-      .dropdown
-        .input-group(tooltip="Select an end date & time" tooltip-placement="left")
-          span.input-group-btn
-            button.btn.btn-primary.dropdown-toggle(type="button")
-              i.fa.fa-calendar-o
-          input.form-control(ng-model="survey.scheduled_stop" autocomplete="off")
+      .row.collapse.prefix-radius(tooltip="Select an end date & time" tooltip-placement="left")
+        .small-1.columns
+          button.button.prefix(dropdown-toggle="#schedule-stop-dropdown")
+            i.fa.fa-calendar-o
+          ul.f-dropdown
+            li Calendar picker here
+            
+        .small-11.columns
+          input(type="text" ng-model="survey.scheduled_stop" autocomplete="off")
 
-          datetimepicker.dropdown-menu.datetimepicker-dropdown-bottom-right(ng-model="survey.scheduled_stop")
 
   .form-buttons
     button.btn.btn-success.btn-xl(ng-disabled="form.$invalid" type="submit") {{btnLabel}}

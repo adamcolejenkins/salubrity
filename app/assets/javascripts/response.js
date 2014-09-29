@@ -16,6 +16,8 @@
 
 //= require modernizr/modernizr
 //= require classie/classie
+//= require nouislider
+//= require_tree ./frontend
 
 /**
  * fullscreenForm.js v1.0.0
@@ -216,14 +218,14 @@
             } ); 
             break;
 
-          /*
+          
           // for our custom select we would do something like:
           case 'div' : 
             [].slice.call( fld.querySelectorAll( 'ul > li' ) ).forEach( function( inp ) {
               inp.addEventListener( 'click', function(ev) { self._nextField(); } );
             } ); 
             break;
-          */
+          
         }
       }
     } );
@@ -490,3 +492,4 @@
   window.FForm = FForm;
 
 })( window );
+

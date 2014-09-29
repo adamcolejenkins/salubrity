@@ -280,92 +280,95 @@ button.fs-continue,
   font-size: 1.2em;
 }
 
-.fs-fields .fs-radio-custom input[type="radio"] {
+
+
+.fs-fields .fs-radio-buttons input[type="radio"] {
   position: absolute;
   display: block;
-  margin: 30px auto 20px;
-  margin: 0 auto 20px;
   width: 100%;
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
-.fs-fields > li .fs-radio-custom span {
+.fs-fields > li .fs-radio-buttons span {
   float: left;
   position: relative;
-  margin-right: 3%;
-  padding: 10px;
-  max-width: 200px;
-  width: 30%;
+  padding-right: 3%;
+  // max-width: 200px;
+  width: 25%;
   text-align: center;
   font-weight: 700;
   font-size: 50%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.fs-fields > li .fs-radio-custom span label {
-  color: rgba(0,0,0,0.4);
+.fs-fields > li .fs-radio-buttons span label {
+  color: rgba(0,0,0,0.6);
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
 
-.fs-form-overview .fs-fields > li .fs-radio-custom span {
+.fs-form-overview .fs-fields > li .fs-radio-buttons span {
   max-width: 140px;
 }
 
-.fs-form-overview .fs-fields > li .fs-radio-custom span {
+.fs-form-overview .fs-fields > li .fs-radio-buttons span {
   font-size: 75%;
 }
 
-.fs-fields > li .fs-radio-custom label {
+.fs-fields > li .fs-radio-buttons label {
   display: block;
-  padding-top: 100%;
+  // padding-top: 100%;
   width: 100%;
   height: 100%;
+  padding: 20px 0;
   cursor: pointer;
+  background-color: #fffed8;
+  border-radius: 3px;
 }
 
-.fs-fields .fs-radio-custom label::after {
+.fs-fields .fs-radio-buttons label::after {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
-  background-position: 50% 0%;
-  background-size: 85%;
-  background-repeat: no-repeat;
+  // background-position: 50% 0%;
+  // background-size: 85%;
+  // background-repeat: no-repeat;
   content: '';
-  opacity: 0.5;
+  // opacity: 0.5;
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
 
-.fs-fields .fs-radio-custom label.radio-mobile::after {
-  background-image: url(../mobile.svg);
-}
+// .fs-fields .fs-radio-buttons label.radio-mobile::after {
+//   background-image: url(../mobile.svg);
+// }
 
-.fs-fields .fs-radio-custom label.radio-social::after {
-  background-image: url(../social.svg);
-}
+// .fs-fields .fs-radio-buttons label.radio-social::after {
+//   background-image: url(../social.svg);
+// }
 
-.fs-fields .fs-radio-custom label.radio-conversion::after {
-  background-image: url(../conversion.svg);
-}
+// .fs-fields .fs-radio-buttons label.radio-conversion::after {
+//   background-image: url(../conversion.svg);
+// }
 
-.fs-fields .fs-radio-custom label:hover::after,
+.fs-fields .fs-radio-buttons label:hover::after,
 .fs-fields input[type="radio"]:focus + label::after,
 .fs-fields input[type="radio"]:checked + label::after {
   opacity: 1;
 }
 
-.fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+.fs-fields .fs-radio-buttons input[type="radio"]:checked + label {
   color: #fffed8;
 }
 
-.fs-form-overview .fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+.fs-form-overview .fs-fields .fs-radio-buttons input[type="radio"]:checked + label {
   color: rgba(0,0,0,0.8);
 }
 

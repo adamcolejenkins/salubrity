@@ -3,7 +3,11 @@ class Api::FieldsController < Api::BaseController
 
   # GET /api/surveys/1/fields
   def index
-    render json: survey.fields
+    if params[:type]
+      render json: survey.fields.where(field_type: params[:type]).first
+    else
+      render json: survey.fields.where(["field_type != ? and field_type != ?", 'intro', 'outro'])
+    end
   end
 
   # GET /api/surveys/1/fields/1
@@ -42,7 +46,7 @@ class Api::FieldsController < Api::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def safe_params
-    params.require(:field).permit(:survey_id, :label, :field_type, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :required, :visibility, :predefined_value, :priority, :target_priority)
+    params.require(:field).permit(:survey_id, :label, :field_type, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :required, :visibility, :predefined_value, :priority, :target_priority, :attachment_type, :attachment_url, :button_label, :button_mode, :button_url)
   end
 end
 

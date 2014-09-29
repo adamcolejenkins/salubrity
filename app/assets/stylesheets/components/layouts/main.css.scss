@@ -1,0 +1,70 @@
+.wrap > header,
+.wrap > main,
+.wrap > footer {
+  @include grid-row();
+}
+
+.wrap > header {
+  & > section.branding {
+    @include grid-column($columns: 6, $collapse: true);
+  }
+  & > section.actions {
+    @include grid-column($columns: 6, $last-column: true, $collapse: true);
+  }
+}
+
+.wrap > nav {
+  @extend .contain-to-grid;
+  & > nav {
+    @extend .top-bar;
+    & > section {
+      @extend .top-bar-section;
+    }
+  }
+}
+
+.wrap > main {
+  hgroup {
+    @include grid-row($behavior: nest);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    & > div.title {
+      @include grid-column($columns: 8);
+    }
+    & > div.actions {
+      @include grid-column($columns: 4, $last-column: true);
+      text-align: right;
+    }
+    & + .layout {
+      @include grid-row($behavior: nest);
+      
+      &.builder {
+        @include grid-row();
+      }
+
+      & section.sidebar {
+        @include grid-column($columns: 4);
+      }
+      & section.content {
+        @include grid-column($columns: 8, $last-column: true);
+      }
+    }
+  }
+}
+
+.wrap > footer {
+  margin-top: 30px;
+  & > section {
+    border-top: 1px solid $secondary-color;
+    padding-top: 15px;
+    p { font-size: 13px; }
+    a { font-weight: bold; }
+  }
+  & > section.copyright {
+    @include grid-column($columns: 8, $collapse: true);
+  }
+  & > section.support {
+    @include grid-column($columns: 4, $last-column: true, $collapse: true);
+    text-align: right;
+  }
+}

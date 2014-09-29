@@ -3,11 +3,7 @@
   hgroup
     div.title
       h2 = t 'surveys.list.title'
-      h3.hthin
-        small = t 'surveys.list.describe'
-
-    div.actions
-      = link_to t('surveys.list.create_button_label'), survey_create_path(), class: "btn btn-success btn-lg"
+      
 
   div.empty-state(ng-show="surveys == 0")
     div.content 
@@ -15,26 +11,40 @@
         i.fa.fa-meh-o
       = t 'surveys.list.no_surveys'
 
-  section.block(tooltip="Click to build" tooltip_placement="top")
-    div.block-item(ng-repeat="survey in surveys" ng-click="build(survey)")
+  section.layout
+    div.block(data-equalizer="")
 
-      .details
-        .name 
-          ' {{survey.title}}
+      div.block-item.new(ng-click="create()")
+        .details
+          .name New Survey
 
-      .options
-        ul.options
-          li
-            ' {{survey.responses.length || 0}} responses
-          li
-            = link_to '/{{survey.guid}}', tooltip: 'Preview', target:"_self"
-              i.fa.fa-external-link
-          li
-            = link_to '/survey/{{survey.id}}/analyze', tooltip: 'Metrics', disabled: 'disabled'
-              i.fa.fa-pie-chart
-          li
-            = link_to 'duplicate(survey, $index)', tooltip: "Duplicate"
-              i.fa.fa-copy
-          li
-            = link_to "#", ng_click: "delete(survey, $index)", tooltip: "Delete"
-              i.fa.fa-trash-o
+      div.block-item(ng-repeat="survey in surveys" ng-click="build(survey)" tooltip="Click to build" tooltip_placement="left" tooltip-animation="false")
+
+        .details
+          .status(class="{{survey.status}}")
+            span
+              i.fa.fa-dot-circle-o
+          .name 
+            ' {{survey.title}}
+
+        .options
+          ul.actions
+            li
+              small.subheader
+                | {{survey.responses.length || 0}} responses
+            li
+              = link_to '/{{survey.guid}}', tooltip: 'Preview', tooltip_animation:"false", target:"_self"
+                i.fa.fa-external-link
+            li
+              = link_to '/survey/{{survey.id}}/analyze', tooltip: 'Metrics', tooltip_animation:"false", disabled: 'disabled'
+                i.fa.fa-pie-chart
+            li
+              = link_to 'duplicate(survey, $index)', tooltip: "Duplicate", tooltip_animation:"false"
+                i.fa.fa-copy
+            li
+              = link_to "#", ng_click: "delete(survey, $index)", tooltip: "Delete", tooltip_animation:"false"
+                i.fa.fa-trash-o
+
+  section.count
+    p.text-center.subheader
+      | {{surveys.length || 0}} surveys

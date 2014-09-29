@@ -1,10 +1,9 @@
-div.row
-  section.branding
-    h1
-      = link_to root_path
-        .logo Salubrity
-  section.actions
-    - if user_signed_in?
-      = render "layouts/user"
-    - else
-      = link_to "Login", new_user_session_path, class: 'btn btn-success navbar-btn'
+section.branding
+  h1
+    = link_to root_path
+      .logo Salubrity
+section.actions
+  - if user_signed_in?
+    = render "layouts/user"
+  - else
+    = link_to "Login", new_user_session_path, class: 'btn btn-success navbar-btn'

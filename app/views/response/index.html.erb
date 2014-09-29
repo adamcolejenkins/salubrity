@@ -4,15 +4,18 @@
     <h1><%= @survey.title %></h1>
   </div>
   <!-- Form -->
-  <form id="myForm" class="fs-form fs-form-full" autocomplete="off">
+  <form id="myForm" class="fs-form fs-form-full" autocomplete="off" action="">
     <ol class="fs-fields">
       <% @survey.fields.each do |field| %>
         <% if field.visibility === 'public' %>
-          <li>
+          <li data-input-trigger>
             <label
               class="fs-field-label fs-anim-upper"
               for="<%= field.field_type %>-<%= field.id %>"
-              data-info="<%= field.instructions %>"><%= field.label %></label>
+              <% if field.instructions.to_s.length > 0 %>
+              data-info="<%= field.instructions %>"
+              <% end %>
+              ><%= field.label %></label>
             
             <%= render partial: "templates/fields/view/#{field.field_type}", locals: { :field => field } %>
 
@@ -28,14 +31,20 @@
   (function() {
     var formWrap = document.getElementById( 'fs-form-wrap' );
 
-    // [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
-    //   new SelectFx( el, {
-    //     stickyPlaceholder: false,
-    //     onChange: function(val){
-    //       document.querySelector('span.cs-placeholder').style.backgroundColor = val;
-    //     }
-    //   });
-    // } );
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx( el, {
+        stickyPlaceholder: false,
+        onChange: function(val){
+          // document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+          for(var i = 0, j = el.options.length; i < j; ++i) {
+            if(el.options[i].value === val) {
+               el.options[i].selected = 'selected';
+               break;
+            }
+          }
+        }
+      });
+    } );
 
     new FForm( formWrap, {
       onReview : function() {

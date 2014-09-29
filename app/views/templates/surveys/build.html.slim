@@ -8,35 +8,43 @@
         small
           | {{survey.description}}
   
-  div.layout
-    section.sidebar
+  div.layout.builder(data-equalizer="")
+
+    section.sidebar(data-equalizer-watch="")
       div(ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl")
 
-    section.content
+    section.content(data-equalizer-watch="")
 
-      div.block.welcome
-        div.block-item
-          | Place your Welcome screen here
+      .block.empty.intro(ng-hide="survey.intro_id")
+        .block-item
+          .details
+            | Add your Welcome Screen here.
 
-      div.block.sort-list.fields(ui-sortable="sortableOptions" ng-model="survey.fields" tooltip="Double click to edit, drag to reorder.")
-        div.block-item.sort-item(ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="" id="{{field.title}}" ng-dblclick="editField(field, $event)")
+      .block.empty(ng-show="survey.fields == 0")
+        .block-item
+          .details
+            | Add your questions here.
+      
+      ul.timeline ui-sortable="sortableOptions" ng-model="survey.fields" tooltip="Double click to edit, drag to reorder." ng-hide="survey.fields == 0"
+        
+        li.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
 
-          div.sort-content
+          i.fa class="fa-{{field.properties.icon}}"
+          span.date
+            | {{field.priority}}
+          div.content
             div.details
-              div.name 
-                | {{field.label}}
+              | {{field.label}}
             div.options
-              ul.options
+              ul.actions
+                li ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
+                  a.add tooltip="Duplicate field" tooltip_placement="left"
+                    i.fa.fa-copy
                 li
-                  a.delete(ng-click="deleteField(field, $index)" tooltip="Delete field" tooltip_placement="left")
+                  a.delete ng-click="deleteField(field, $index)" tooltip="Delete field" tooltip_placement="right"
                     i.fa.fa-trash-o
-            div.view
-              div(ng-include="field.properties.templates.preview")
-              div(ng-show="field.instructions")
-                h5 Instructions
-                p 
-                  | {{field.instructions}}
-
-      div.block.thankyou
-        div.block-item
-          | Place your Thank You screen here
+      
+      .block.empty.outro(ng-hide="survey.outro_id")
+        .block-item
+          .details
+            | Add your Thank You Screen here.

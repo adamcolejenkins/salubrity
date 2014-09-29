@@ -9,50 +9,76 @@
 
 
   .controller 'SurveyBuildCtrl', 
-    ($scope, $rootScope, $routeParams, $timeout, $filter, $modal, $pageslide, Survey, Field) ->
+    ($scope, $rootScope, $routeParams, $timeout, $modal, $pageslide, Survey, Field, FieldChoice) ->
 
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
 
       $scope.init = ->
-        @FieldService = new Field($routeParams.id, serverErrorHandler)
-        @SurveyService = new Survey(serverErrorHandler)
-        $scope.survey = @SurveyService.find $routeParams.id
-        $scope.survey.fields = bindProperties $scope.survey.fields
+        $scope.FieldService = new Field($routeParams.id, serverErrorHandler)
+        $scope.SurveyService = new Survey(serverErrorHandler)
+        $scope.survey = $scope.SurveyService.find $routeParams.id
+        # $scope.fields = $scope.FieldService.all()
+        # $timeout(->
+        #   $scope.survey.intro = $scope.FieldService.find($scope.survey.intro_id) if $scope.survey.intro_id
+        #   $scope.survey.outro = $scope.FieldService.find($scope.survey.outro_id) if $scope.survey.outro_id
+        # 500)
 
 
-      $scope.addField = () ->
-        @modal = $modal.open
-          templateUrl: '/templates/fields/add.html'
-          windowTemplateUrl: '/templates/partials/modalWindow.html'
-          controller: 'FieldAddCtrl'
-          windowClass: 'md-show'
-          resolve:
-            data: -> $scope.survey
+      $scope.addField = (field) ->
 
-        @modal.result.then (field) ->
-          $scope.survey.fields.push bindProperties(field)
+        # Set default field data
+        fieldData = angular.extend(
+          field_type: field.type
+          label: 'Untitled ' + field.label
+        , field.defaults)
+
+        $scope.FieldService.create(fieldData).then (field) ->
+
+          # Loop through default field choices and add them
+          # TODO: This could be done server-side
+          # angular.forEach fieldData.field_choices, (choice, index) ->
+          #   new FieldChoice($scope.survey.id, field.id, serverErrorHandler).create(choice)
+
+          # Display Field Settings window
+          $scope.editField(field)
+
+          # Set survey intro ID and scope if Intro field
+          if field.field_type == 'intro'
+            field.priority = 1
+            $scope.priorityChanged(field)
+            updateSurvey(intro_id: field.id)
+            $scope.survey.fields.unshift field
+
+          # Set survey outro ID and scope if Outro field
+          else if field.field_type == 'outro'
+            updateSurvey(outro_id: field.id)
+            $scope.survey.fields.push field
+
+          # Otherwise add field to field list
+          else
+            if $scope.survey.outro_id
+              field.priority = $scope.survey.fields.length - 1
+              $scope.priorityChanged(field)
+              $scope.survey.fields.splice $scope.survey.fields.length - 1, 0, field
+            else
+              console.log "outro_id: FALSE"
+              $scope.survey.fields.push(field)
 
 
       $scope.editField = (field, $event) ->
-        
-        angular.element($event.currentTarget).addClass 'editing'
-
-        FieldService = @FieldService
+        FieldService = $scope.FieldService
 
         @pageslide = $pageslide.open
           templateUrl: '/templates/fields/settings.html'
           controller: 'FieldSettingsCtrl'
           resolve:
             data: -> field
-
-        @pageslide.result.then ->
-          angular.element($event.currentTarget).removeClass 'editing'
         
 
       $scope.deleteField = (field, index) ->
 
-        FieldService = @FieldService
+        FieldService = $scope.FieldService
 
         # Display a modal confirmation window
         @modal = $modal.open
@@ -69,9 +95,14 @@
           FieldService.delete(field)
           $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
 
+          if field.field_type == 'intro'
+            updateSurvey(intro_id: null)
+          else if field.field_type == 'outro'
+            updateSurvey(outro_id: null)
+
 
       $scope.priorityChanged = (field) ->
-        @FieldService.update(field, target_priority: field.priority)
+        $scope.FieldService.update(field, target_priority: field.priority)
         updatePriorities()
 
 
@@ -83,7 +114,10 @@
           ui.placeholder.height ui.item.height()
 
         update: (e, ui) ->
-          
+          # TODO: Don't let item priority be last
+          if ui.item.scope().field.properties.noSort == true
+            ui.item.sortable.cancel()
+
           domIndexOf = (e) -> e.siblings().andSelf().index(e)
           newPriority = domIndexOf(ui.item)
 
@@ -94,20 +128,6 @@
 
       serverErrorHandler = ->
         alert("There was a server error, please reload the page and try again.")
-
-
-      bindProperties = (field) ->
-        if angular.isArray field
-          angular.forEach field, (value, key) ->
-            value.properties = $filter('fieldTypeSearch')('type', value.field_type)
-        else
-          field.properties = $filter('fieldTypeSearch')('type', field.field_type) if field
-
-        field
-
-
-      setFields = (fields) -> 
-        $scope.survey.fields = bindProperties(fields)
 
 
       updatePriorities = ->
@@ -129,3 +149,9 @@
 
       fieldsBelow = (field) ->
         $scope.survey.fields.slice($scope.survey.fields.indexOf(field), $scope.survey.fields.length)
+
+
+      updateSurvey = (params) ->
+        angular.extend($scope.survey, params)
+        $scope.SurveyService.update($scope.survey, params)
+        console.log params, $scope.survey

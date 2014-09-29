@@ -28,7 +28,10 @@
     "select2": "~3.5.1",
     "ng-underscore": "~0.1.0",
     "modernizr": "~2.8.3",
-    "classie": "~1.0.1"
+    "classie": "~1.0.1",
+    "angular-foundation": "~0.3.1",
+    "nouislider": "~7.0.8",
+    "angular-touch": "~1.2.25"
   },
   "dependencies": {}
 }
