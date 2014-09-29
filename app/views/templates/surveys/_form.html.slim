@@ -9,6 +9,8 @@ form.indent-fields(name="form" ng-submit="saveSurvey(survey)" novalidate="novali
     .full
       label(for="title") Title
       input.radius#title(type="text" ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required")
+      small
+        | Permalink: {{siteUrl}}{{survey.guid}}
 
   .form-group
     .full
