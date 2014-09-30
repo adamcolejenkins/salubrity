@@ -9,6 +9,16 @@ $button-size: 40px;
     padding: 20px;
     margin-bottom: 20px;
     cursor: pointer;
+    position: relative;
+
+    a.trigger {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+    }
 
     &.new {
       background: $success-color;
@@ -44,6 +54,8 @@ $button-size: 40px;
 
 .block-item .options,
 .timeline .options {
+  position: relative;
+  z-index: 20;
   text-align: right;
   ul.actions {
     @extend .inline-list;

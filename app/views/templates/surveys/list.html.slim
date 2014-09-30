@@ -14,11 +14,14 @@
   section.layout
     div.block(data-equalizer="")
 
-      div.block-item.new(ng-click="create()")
+      div.block-item.new
+        = link_to '', '/survey/create', class: 'trigger'
         .details
           .name New Survey
 
-      div.block-item(ng-repeat="survey in surveys" ng-click="build(survey)" tooltip="Click to build" tooltip_placement="left" tooltip-animation="false")
+      div.block-item(ng-repeat="survey in surveys" tooltip="Click to build" tooltip_placement="left" tooltip-animation="false")
+        
+        = link_to '', '/survey/{{survey.id}}/build', class: 'trigger'
 
         .details
           .status(class="{{survey.status}}")
@@ -38,9 +41,9 @@
             li
               = link_to '/survey/{{survey.id}}/analyze', tooltip: 'Metrics', tooltip_animation:"false", disabled: 'disabled'
                 i.fa.fa-pie-chart
-            li
-              = link_to 'duplicate(survey, $index)', tooltip: "Duplicate", tooltip_animation:"false"
-                i.fa.fa-copy
+            / li
+            /   = link_to 'duplicate(survey, $index)', tooltip: "Duplicate", tooltip_animation:"false"
+            /     i.fa.fa-copy
             li
               = link_to "#", ng_click: "delete(survey, $index)", tooltip: "Delete", tooltip_animation:"false"
                 i.fa.fa-trash-o
