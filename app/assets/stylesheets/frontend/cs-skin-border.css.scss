@@ -29,8 +29,8 @@ div.cs-skin-border {
 
 .cs-skin-border > span::after,
 .cs-skin-border .cs-selected span::after {
-  font-family: 'font-awesome';
-  content: '\e000';
+  font-family: 'FontAwesome';
+  content: '\f063';
 }
 
 .cs-skin-border ul span::after {
@@ -39,7 +39,7 @@ div.cs-skin-border {
 }
 
 .cs-skin-border .cs-selected span::after {
-  content: '\e00e';
+  content: '\f062';
   color: #ddd9c9;
   // font-size: 1em;
   opacity: 1;
@@ -48,13 +48,13 @@ div.cs-skin-border {
 }
 
 .cs-skin-border.cs-active > span {
-  background: #fff;
-  border-color: #fff;
-  color: #2980b9;
+  background: #6e768e;
+  border-color: #6e768e;
+  color: #fff;
 }
 
 .cs-skin-border .cs-options {
-  color: #2980b9;
+  color: #fff;
   font-size: 0.75em;
   opacity: 0;
   -webkit-transition: opacity 0.2s, visibility 0s 0.2s;
@@ -75,5 +75,5 @@ div.cs-skin-border {
 
 .cs-skin-border .cs-options li span:hover,
 .cs-skin-border li.cs-focus span {
-  background: #f5f3ec;
+  background: rgba(255,255,255,0.4);
 }

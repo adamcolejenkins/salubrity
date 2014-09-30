@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  color: #fff;
+  // color: #fff;
 }
 
 .overview .fs-form-wrap {
@@ -305,7 +305,7 @@ button.fs-continue,
 }
 
 .fs-fields > li .fs-radio-buttons span label {
-  color: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.9);
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
@@ -327,6 +327,19 @@ button.fs-continue,
   cursor: pointer;
   background-color: #fffed8;
   border-radius: 3px;
+}
+
+.fs-fields > li .fs-radio-buttons {
+  span:nth-child(1) label { background-color: #da645a }
+  span:nth-child(2) label { background-color: #f3ae73 }
+  span:nth-child(3) label { background-color: #b0c47f }
+  span:nth-child(4) label { background-color: #588c75 }
+  span.intro {
+    margin: 0 auto !important;
+    label {
+      background-color: #588c75;
+    }
+  }
 }
 
 .fs-fields .fs-radio-buttons label::after {
@@ -369,7 +382,11 @@ button.fs-continue,
 }
 
 .fs-form-overview .fs-fields .fs-radio-buttons input[type="radio"]:checked + label {
-  color: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.8);
+}
+
+.fs-form-overview .fs-fields .fs-radio-buttons input[type="radio"]:not(:checked) + label {
+  opacity: .5;
 }
 
 .fs-fields textarea {
@@ -510,7 +527,7 @@ button.fs-continue,
 
 .fs-nav-dots button:hover::before,
 .fs-nav-dots button.fs-dot-current::before {
-  background: #fffed8;
+  background: #9dd6ae;
 }
 
 /* Progress bar */
@@ -519,7 +536,7 @@ button.fs-continue,
   top: 0;
   width: 0%;
   height: 0.5em;
-  background: #fffed8;
+  background: #9dd6ae;
   -webkit-transition: width 0.3s ease-in-out;
   transition: width 0.3s ease-in-out;
 }
@@ -530,7 +547,7 @@ button.fs-continue,
   top: 0;
   right: 0;
   overflow: hidden;
-  color: rgba(0,0,0,0.4);
+  color: rgba(0,0,0,0.6);
   margin: 40px;
   width: 2em;
   font-weight: 700;
@@ -629,7 +646,7 @@ button.fs-continue,
 button.fs-submit,
 button.fs-continue {
   padding: 0.6em 1.5em;
-  border: 3px solid #232529;
+  border: 3px solid #2a3237;
   border-radius: 40px;
   font-weight: 700;
   color: rgba(0,0,0,0.4);
@@ -642,8 +659,8 @@ button.fs-continue {
 }
 
 .fs-form-overview .fs-submit {
-  border-color: #232529;
-  color: #232529;
+  border-color: #2a3237;
+  color: #2a3237;
 }
 
 button.fs-continue {
@@ -657,7 +674,7 @@ button.fs-continue {
 button.fs-submit:hover,
 button.fs-submit:focus,
 button.fs-continue:hover {
-  background: #232529;
+  background: #2a3237;
   color: #fff;
 }
 
@@ -886,4 +903,77 @@ input[type=text]::-ms-clear {
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
+}
+
+
+
+
+// Range Slider
+.noUi-background {
+  box-shadow: none;
+  background: rgba(#6e768e, .3);
+}
+.noUi-horizontal .noUi-handle {
+  width: 50px;
+  height: 44px;
+  top: -14px;
+  left: -25px;
+  border-color: darken(#6e768e, 10%);
+}
+.noUi-handle:before,
+.noUi-handle:after {
+  height: 22px;
+  left: 22px;
+  top: 10px;
+  background: lighten(#6e768e, 15%);
+}
+.noUi-handle:after {
+  left: 25px;
+}
+.noUi-handle {
+  background: #6e768e;
+  box-shadow: none;
+}
+.noUi-active {
+  background: darken(#6e768e, 10%);
+}
+
+.fs-form.fs-form-overview {
+  .noUi-background {
+    background: lighten(#fffed8, 2%);
+  }
+  
+  .noUi-handle {
+    background: #3b3f45;
+    border-color: none;
+  }
+
+  .fs-fields li.scale {
+    padding-bottom: 4em;
+  }
+
+  .fs-fields li.intro,
+  .fs-fields li.outro {
+    display: none;
+  }
+
+  .fs-fields .cs-select {
+    border-color: transparent;
+  }
+}
+
+.fs-fields .fs-slider-before,
+.fs-fields .fs-slider-after {
+  width: 20%;
+  float: left;
+  // text-align: center;
+  font-weight: bold;
+  font-size: 4rem;
+  line-height: normal;
+}
+.fs-fields .fs-slider {
+  float: left;
+  width: 70%;
+  // height: 75px;
+  padding: 2rem 0;
 }

@@ -8,7 +8,7 @@
     <ol class="fs-fields">
       <% @survey.fields.each do |field| %>
         <% if field.visibility === 'public' %>
-          <li data-input-trigger>
+          <li data-input-trigger class="<%= field.field_type %>">
             <label
               class="fs-field-label fs-anim-upper"
               for="<%= field.field_type %>-<%= field.id %>"
@@ -23,7 +23,7 @@
         <% end %>
       <% end %>
     </ol><!-- /fs-fields -->
-    <button class="fs-submit" type="submit">Submit answers</button>
+    <button class="fs-submit" onClick="window.location.reload()" type="submit">Submit answers</button>
   </form>
 </div>
 

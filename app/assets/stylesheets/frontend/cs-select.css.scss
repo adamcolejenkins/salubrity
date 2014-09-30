@@ -75,9 +75,9 @@ div.cs-select:focus {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  background: #fff;
+  background: #6e768e;
   visibility: hidden;
-  z-index: 10000;
+  z-index: 20000;
   max-height: 200px;
   overflow-y: scroll;
 }

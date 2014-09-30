@@ -14,18 +14,25 @@ html, body, .container {
 }
 
 body {
-  background: #3b3f45;
-  color: #fff;
+  background: #2a3237;
+  color: #6e768e;
   font-weight: 400;
   font-size: 1em;
   font-family: 'Raleway', Arial, sans-serif;
   overflow: hidden;
   overflow-y: scroll;
   min-height: 590px;
+  background-image: url(/assets/clinic-background.jpg);
+  background-size: cover;
+  
+  &.overview {
+    background-image: none;
+  }
+
 }
 
 a {
-  color: rgba(0,0,0,0.3);
+  color: #6e768e;
   text-decoration: none;
   outline: none;
 }

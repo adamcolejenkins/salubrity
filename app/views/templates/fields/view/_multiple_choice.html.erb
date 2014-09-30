@@ -8,7 +8,8 @@
       >
       <input
         type="radio"
-        name="<%= field.id %>-<%= choice.key %>"
+        name="<%= field.field_type %>-<%= field.id %>"
+        value="<%= choice.key %>"
         id="<%= field.id %>-<%= choice.key %>"
         required="<%= field.required %>">
       <label for=""><%= choice.label %></label>
