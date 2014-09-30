@@ -24,7 +24,9 @@
 //= require ng-underscore/build/ng-underscore.js
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
-
+//= require datatables
+//= require datatables-plugins/integration/foundation/dataTables.foundation
+//= require responsive-tables/responsive-tables
 
 // Vendor assets
 //= require jquery-icheck/icheck
@@ -36,4 +38,6 @@
 
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){ 
+  $(document).foundation();
+});

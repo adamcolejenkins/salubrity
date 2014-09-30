@@ -31,7 +31,10 @@
     "classie": "~1.0.1",
     "angular-foundation": "~0.3.1",
     "nouislider": "~7.0.8",
-    "angular-touch": "~1.2.25"
+    "angular-touch": "~1.2.25",
+    "datatables": "~1.10.2",
+    "datatables-plugins": "*",
+    "responsive-tables": "https://github.com/zurb/responsive-tables.git"
   },
   "dependencies": {}
 }

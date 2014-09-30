@@ -6,66 +6,141 @@
       h3.subheader Missouri Orthopaedic Institute
       
   
-  section.analytics.responses.row
+  section.analytics.layout
+    
+    .metrics
 
-    div.small-3.columns
-      div.panel.text-center
-        h5 Unique Visits
-        p 4
-    div.small-3.columns
-      div.panel.text-center
-        h5 Responses
-        p 10
-    div.small-3.columns
-      div.panel.text-center
-        h5 Completion
-        p 98%
-    div.small-3.columns
-      div.panel.text-center
-        h5 Avg Time to Complete
-        p 41:30
+      .metrics-panel
+        hgroup
+          h4 Visits
+          h5 13
+      .metrics-panel
+        hgroup
+          h4 Responses
+          h5 12
+      .metrics-panel
+        hgroup
+          h4 Completion
+          h5 92%
+      .metrics-panel
+        hgroup
+          h4 Avg Time to Complete
+          h5 3:30
 
   
-  .medium-12.columns
+    .results
 
-    h3 Results
+      h3 Results
 
-    table
-      thead
-        tr
-          th width="16.6%" Which provider did you see today?
-          th width="16.6%" How often did this provider show respect for what you had to say?
-          th width="16.6%" How often did this provider show respect for what you had to say?
-          th width="16.6%" How often did this provider listen carefully to you?
-          th width="16.6%" How often did this provider explain things in a way that was easy to understand?
-          th width="16.6%" Using a number from 0 to 10, with 0 as the worst and 10 as the best, what number would you use to rate this provider?
-      
-      tbody
-        tr
-          td Ajay Aggarwal, MD
-          td Almost Always
-          td Always
-          td Always
-          td Always
-          td 9
-        tr
-          td Jacqueline Beshears, FNP
-          td Almost Always
-          td Always
-          td Always
-          td Always
-          td 10
-        tr
-          td Ben Beaumont, PA
-          td Never
-          td Always
-          td Always
-          td Always
-          td 8
-        tr
-          td Ajay Aggarwal, MD
-          td Almost
-          td Always
-          td Almost Never
-          td Always
-          td 10
+      table#results-table.responsive
+        thead
+          tr
+            td style="width: 155px" 
+              div tooltip="Which provider did you see today?" tooltip-animation="false"
+                span.ellipsis Which provider did you see today?
+            td style="width: 155px"
+              div tooltip="How often did this provider show respect for what you had to say?" tooltip-animation="false"
+                span.ellipsis How often did this provider show respect for what you had to say?
+            td style="width: 155px"
+              div tooltip="How often did this provider show respect for what you had to say?" tooltip-animation="false"
+                span.ellipsis How often did this provider show respect for what you had to say?
+            td style="width: 155px"
+              div tooltip="How often did this provider listen carefully to you?" tooltip-animation="false"
+                span.ellipsis How often did this provider listen carefully to you?
+            td style="width: 155px"
+              div tooltip="How often did this provider explain things in a way that was easy to understand?" tooltip-animation="false"
+                span.ellipsis How often did this provider explain things in a way that was easy to understand?
+            td style="width: 155px"
+              div tooltip="Using a number from 0 to 10, with 0 as the worst and 10 as the best, what number would you use to rate this provider?" tooltip-animation="false"
+                span.ellipsis Using a number from 0 to 10, with 0 as the worst and 10 as the best, what number would you use to rate this provider?
+        
+        tbody
+          tr
+            td Ajay Aggarwal, MD
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 9
+          tr
+            td Jacqueline Beshears, FNP
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 10
+          tr
+            td Ben Beaumont, PA
+            td Never
+            td Always
+            td Always
+            td Always
+            td 8
+          tr
+            td Ajay Aggarwal, MD
+            td Almost
+            td Always
+            td Almost Never
+            td Always
+            td 10
+          tr
+            td Ajay Aggarwal, MD
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 9
+          tr
+            td Jacqueline Beshears, FNP
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 10
+          tr
+            td Ben Beaumont, PA
+            td Never
+            td Always
+            td Always
+            td Always
+            td 8
+          tr
+            td Ajay Aggarwal, MD
+            td Almost
+            td Always
+            td Almost Never
+            td Always
+            td 10
+          tr
+            td Ajay Aggarwal, MD
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 9
+          tr
+            td Jacqueline Beshears, FNP
+            td Almost Always
+            td Always
+            td Always
+            td Always
+            td 10
+          tr
+            td Ben Beaumont, PA
+            td Never
+            td Always
+            td Always
+            td Always
+            td 8
+          tr
+            td Ajay Aggarwal, MD
+            td Almost
+            td Always
+            td Almost Never
+            td Always
+            td 10
+
+javascript:
+  $('table#results-table').dataTable({
+    autoWidth: false
+  });

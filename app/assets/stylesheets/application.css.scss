@@ -13,6 +13,8 @@
 
 //= require jquery-icheck/skins/flat/green
 //= require select2/select2
+//= require datatables-plugins/integration/foundation/dataTables.foundation
+//= require responsive-tables/responsive-tables
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -39,3 +41,4 @@
 @import "components/elements/timeline";
 @import "components/elements/page-stack";
 @import "components/elements/forms";
+@import "components/elements/analytics";
