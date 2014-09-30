@@ -26,12 +26,15 @@ section.analytics {
   .results {
     @include grid-column($columns: 12);
 
+    .results-table {
+      overflow: auto;
+      width: 100%;
+    }
+
     table {
-      overflow-x: scroll;
-      width: inherit;
       thead {
         td {
-          min-width: 155px;
+          min-width: 170px;
           div {
             width: 100%;
             position: relative;
@@ -55,6 +58,12 @@ section.analytics {
           text-align: center;
         }
       }
+    }
+    .dataTables_scrollHead {
+      overflow-y: auto !important;
+    }
+    .dataTables_sizing {
+      display: none;
     }
     .dataTables_filter,
     .dataTables_length {
