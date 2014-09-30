@@ -24,7 +24,7 @@ en:
   surveys:
     form:
       details:
-        title: "Survey Details"
+        title: "Clinic Details"
         permalink_example: "Example: this-is-a-proper-permalink"
         permalink_unique_warning: "Oops! That url is already taken"
       scheduling:
@@ -33,15 +33,15 @@ en:
         start_describe: "When would you like this survey to start being shown to the public?"
         stop_describe: "When would you like this survey to stop being shown to the public?"
     list:
-      title: "My Surveys"
+      title: "My Clinics"
       describe: "Your available surveys. Build, edit or delete them here"
       create_button_label: "New Survey"
       no_surveys: "You haven't created any surveys yet"
     create:
-      title: "Create a Survey"
-      describe: "If you build if, they will come. So let's build a survey!"
+      title: "New Clinic"
+      describe: "If you build it, they will come. So let's open a clinic for this survey!"
     edit:
-      title: "Edit Survey"
+      title: "Edit Clinic"
       describe: "Tinker with it all you want!"
     build:
       no_fields_text: "This survey has no fields, create one above!"
