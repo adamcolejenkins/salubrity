@@ -1,15 +1,7 @@
 @salubrity
   
-  .config ($routeProvider) ->
-
-  
-    $routeProvider.when '/survey/create',
-      templateUrl: '/templates/surveys/create.html'
-      controller: 'SurveyCreateCtrl'
-
-
   .controller 'SurveyCreateCtrl', 
-    ($scope, $routeParams, $location, Survey) ->
+    ($scope, Survey, $location, $modalInstance) ->
 
 
       $scope.init = ->
@@ -18,10 +10,16 @@
         $scope.btnLabel = 'Build Survey'
 
 
-      $scope.saveSurvey = (survey) ->
+      $scope.proceed = (survey) ->
         @SurveyService.create survey, (survey) ->
-          $location.url "/survey/#{survey.id}/build"
+          $modalInstance.close()
+          $location.path "/surveys/#{survey.id}/build"
 
 
       serverErrorHandler = ->
-        alert("There was a server error, please reload the page and try again.")
+        swal(
+          title: 'Error!'
+          text: "There was a server error, please reload the page and try again."
+          type: 'error'
+          confirmButtonText: 'Ok'
+        )

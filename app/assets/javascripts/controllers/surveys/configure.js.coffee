@@ -1,20 +1,21 @@
 @salubrity
   
-  .config ($routeProvider) ->
+  .config ($stateProvider) ->
 
   
-    $routeProvider.when '/survey/:id/configure',
+    $stateProvider.state 'surveys.configure',
+      url: '/:id/configure'
       templateUrl: '/templates/surveys/edit.html'
       controller: 'SurveyConfigureCtrl'
 
 
   .controller 'SurveyConfigureCtrl', 
-    ($scope, $routeParams, $location, Survey) ->
+    ($scope, $stateParams, $location, Survey) ->
 
 
       $scope.init = ->
         @SurveyService = new Survey(serverErrorHandler)
-        $scope.survey = @SurveyService.find $routeParams.id
+        $scope.survey = @SurveyService.find $stateParams.id
         $scope.siteUrl = $location.protocol() + '://' + $location.host() + '/'
         $scope.btnLabel = 'Save Survey'
 

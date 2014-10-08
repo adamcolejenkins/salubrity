@@ -1,81 +1,11 @@
-form.indent-fields(name="form" ng-submit="saveSurvey(survey)" novalidate="novalidate" autocomplete="off")
+form.form-horizontal role="form" name="surveyForm" autocomplete="off" novalidate="novalidate"
   
-  .form-header
-    .tag
-      i.fa.fa-file-text-o
-    h3 = t 'surveys.form.details.title'
+  .form-group
+    label.control-label.col-sm-2 for="title" Title
+    .col-sm-10
+      input.form-control#title type="text" ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required"
 
   .form-group
-    .full
-      label(for="title") Title
-      input.radius#title(type="text" ng-model="survey.title" autcomplete="off" autofocus="autofocus" required="required")
-      small
-        | Permalink: {{siteUrl}}{{survey.guid}}
-
-  .form-group
-    .full
-      label(for="description") Description
-      input.radius#description(type="text" ng-model="survey.description" autocomplete="off")
-
-  / .form-group
-  /   .full
-  /     label(for="permalink") Permalink
-  /     .row.collapse.prefix-radius
-  /       .small-3.columns
-  /         span.prefix
-  /           | {{siteUrl}}
-  /       .small-9.columns
-  /         input#permalink(type="text" ng-model="survey.guid" autocomplete="off" required="required")
-      
-  /     p.small.muted = t "surveys.form.details.permalink_example"
-
-  /     .alert.alert-warning(ng-show="form.guid.$error.unique")
-  /       i.fa.fa-warning 
-  /       = t "surveys.form.details.permalink_unique_warning"
-  
-  .form-header
-    .tag
-      i.fa.fa-clock-o
-    h3 = t 'surveys.form.scheduling.title'
-
-  .form-group
-    .full
-      label(for="scheduled")
-        = t 'surveys.form.scheduling.activate_label'
-        input.icheck(type="checkbox" ng-model="survey.scheduled" ng-checked="survey.scheduled")
-
-  .form-group(ng-show="survey.scheduled")
-    .half
-
-      label(for="scheduled_start") Start
-      div.description = t 'surveys.form.scheduling.start_describe'
-
-      .row.collapse.prefix-radius(tooltip="Select a start date & time" tooltip-placement="left")
-        .small-1.columns
-          button.button.prefix(dropdown-toggle="#schedule-start-dropdown")
-            i.fa.fa-calendar-o
-          ul.f-dropdown
-            li Calendar picker here
-
-        .small-11.columns
-          input(type="text" ng-model="survey.scheduled_start" autocomplete="off")
-
-    .half
-
-      label(for="scheduled_stop") Stop
-      div.description = t 'surveys.form.scheduling.stop_describe'
-
-      .row.collapse.prefix-radius(tooltip="Select an end date & time" tooltip-placement="left")
-        .small-1.columns
-          button.button.prefix(dropdown-toggle="#schedule-stop-dropdown")
-            i.fa.fa-calendar-o
-          ul.f-dropdown
-            li Calendar picker here
-            
-        .small-11.columns
-          input(type="text" ng-model="survey.scheduled_stop" autocomplete="off")
-
-
-  .form-buttons
-    button.btn.btn-success.btn-xl(ng-disabled="form.$invalid" type="submit") {{btnLabel}}
-    = link_to "Or cancel", surveys_path()
+    label.control-label.col-sm-2 for="description" Description
+    .col-sm-10
+      input.form-control#description type="text" ng-model="survey.description" autocomplete="off" required="required"

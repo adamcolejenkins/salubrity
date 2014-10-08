@@ -1,29 +1,23 @@
 @salubrity
   
-  .config ($routeProvider) ->
-
+  .config ($stateProvider) ->
   
-    $routeProvider.when '/survey/:id/build',
+    $stateProvider.state 'surveys.build',
+      url: '/:id/build'
       templateUrl: '/templates/surveys/build.html'
       controller: 'SurveyBuildCtrl'
 
 
   .controller 'SurveyBuildCtrl', 
-    ($scope, $rootScope, $routeParams, $timeout, $modal, $pageslide, Survey, Field, FieldChoice) ->
+    ($scope, $rootScope, $stateParams, $timeout, $modal, $pageslide, Survey, Field, FieldChoice, $location) ->
 
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
 
-      $scope.init = ->
-        $scope.FieldService = new Field($routeParams.id, serverErrorHandler)
-        $scope.SurveyService = new Survey(serverErrorHandler)
-        $scope.survey = $scope.SurveyService.find $routeParams.id
-        # $scope.fields = $scope.FieldService.all()
-        # $timeout(->
-        #   $scope.survey.intro = $scope.FieldService.find($scope.survey.intro_id) if $scope.survey.intro_id
-        #   $scope.survey.outro = $scope.FieldService.find($scope.survey.outro_id) if $scope.survey.outro_id
-        # 500)
-
+      # $scope.init = ->
+      @FieldService = new Field($stateParams.id, serverErrorHandler)
+      $scope.SurveyService = new Survey(serverErrorHandler)
+      $scope.survey = $scope.SurveyService.find $stateParams.id
 
       $scope.addField = (field) ->
 
@@ -33,12 +27,7 @@
           label: 'Untitled ' + field.label
         , field.defaults)
 
-        $scope.FieldService.create(fieldData).then (field) ->
-
-          # Loop through default field choices and add them
-          # TODO: This could be done server-side
-          # angular.forEach fieldData.field_choices, (choice, index) ->
-          #   new FieldChoice($scope.survey.id, field.id, serverErrorHandler).create(choice)
+        @FieldService.create(fieldData).then (field) ->
 
           # Display Field Settings window
           $scope.editField(field)
@@ -67,7 +56,7 @@
 
 
       $scope.editField = (field, $event) ->
-        FieldService = $scope.FieldService
+        FieldService = @FieldService
 
         @pageslide = $pageslide.open
           templateUrl: '/templates/fields/settings.html'
@@ -78,31 +67,70 @@
 
       $scope.deleteField = (field, index) ->
 
-        FieldService = $scope.FieldService
+        FieldService = @FieldService
 
-        # Display a modal confirmation window
-        @modal = $modal.open
-          templateUrl: '/templates/fields/delete.html'
-          windowTemplateUrl: '/templates/partials/modalWindow.html'
-          controller: 'FieldDeleteCtrl'
-          windowClass: 'md-show danger'
-          resolve:
-            data: -> field
+        swal(
+          title: 'Are you sure?'
+          text: "You will not be able to recover this field and its results."
+          type: 'warning'
+          showCancelButton: true
+          confirmButtonColor: '#DD6B55'
+          confirmButtonText: 'Yes, delete it!'
+          , ->
+            # Lower priorities of fields
+            lowerPrioritiesBelow field
+            # Delete field via the API
+            FieldService.delete field
+            # Remove clinic from the list
+            $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
+            # Update the survey intro/outro IDs
+            if field.field_type == 'intro'
+              updateSurvey(intro_id: null)
+            else if field.field_type == 'outro'
+              updateSurvey(outro_id: null)
+        )
 
-        # Proceed to delete
-        @modal.result.then (field) ->
-          lowerPrioritiesBelow(field)
-          FieldService.delete(field)
-          $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
 
-          if field.field_type == 'intro'
-            updateSurvey(intro_id: null)
-          else if field.field_type == 'outro'
-            updateSurvey(outro_id: null)
+      $scope.deleteSurvey = (survey) ->
+
+        swal(
+          title: 'Are you sure?'
+          text: 'Deleting this survey will delete all results, including results tied to clinics and providers.'
+          type: 'warning'
+          showCancelButton: true
+          confirmButtonColor: '#DD6B55'
+          confirmButtonText: 'Yes, delete it!'
+          , ->
+            $timeout(->
+              swal(
+                title: 'Are you absolutely sure?'
+                text: 'This cannot be undone, what\'s done is done. There is absolutely no return.'
+                type: 'warning'
+                showCancelButton: true
+                cancelButtonText: 'I\'m having second thoughts!'
+                confirmButtonColor: '#DD6B55'
+                confirmButtonText: 'Yes, I\'m absolutely sure, delete it!'
+                , ->
+                  $scope.SurveyService.delete($scope.survey).then ->
+                    $timeout(->
+                      swal(
+                        title: 'Successfully deleted survey!'
+                        text: 'I hope you didn\'t need that.'
+                        confirmButtonColor: '#A5DC86'
+                        type: 'success'
+                      )
+                      # Remove clinic from the list
+                      $scope.$parent.surveys.splice $scope.$parent.surveys.indexOf(survey), 1
+                      # Redirect to clinic list
+                      $location.path('/surveys')
+                    , 300)
+              )
+            , 300)
+        )
 
 
       $scope.priorityChanged = (field) ->
-        $scope.FieldService.update(field, target_priority: field.priority)
+        @FieldService.update(field, target_priority: field.priority)
         updatePriorities()
 
 
@@ -127,7 +155,12 @@
 
 
       serverErrorHandler = ->
-        alert("There was a server error, please reload the page and try again.")
+        swal(
+          title: 'Error!'
+          text: "There was a server error, please reload the page and try again."
+          type: 'error'
+          confirmButtonText: 'Ok'
+        )
 
 
       updatePriorities = ->
@@ -154,4 +187,3 @@
       updateSurvey = (params) ->
         angular.extend($scope.survey, params)
         $scope.SurveyService.update($scope.survey, params)
-        console.log params, $scope.survey

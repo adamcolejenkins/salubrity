@@ -1,15 +1,15 @@
 @salubrity
   
-  .config ($routeProvider) ->
-
+  .config ($stateProvider) ->
   
-    $routeProvider.when '/survey/:id/analyze',
+    $stateProvider.state 'surveys.analyze',
+      url: '/survey/:id/analyze'
       templateUrl: '/templates/surveys/analyze.html'
       controller: 'SurveyAnalyzeCtrl'
 
 
   .controller 'SurveyAnalyzeCtrl', 
-    ($scope, $routeParams, $location, Survey) ->
+    ($scope, $stateParams, $location, Survey) ->
 
 
       $scope.init = ->

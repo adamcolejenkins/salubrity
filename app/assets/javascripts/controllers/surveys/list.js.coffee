@@ -1,25 +1,34 @@
 @salubrity
 
-  .config ($routeProvider) ->
+  .config ($stateProvider) ->
 
-    $routeProvider.when '/surveys',
-      templateUrl: '/templates/surveys/list.html'
+    $stateProvider.state 'surveys',
+      url: '/surveys'
       controller: 'SurveyListCtrl'
+      templateUrl: '/templates/surveys/list.html'
   
-  .controller "SurveyListCtrl", ($scope, $rootScope, $routeParams, $location, Survey) ->
+
+  .controller "SurveyListCtrl", ($scope, $rootScope, Survey, $modal) ->
 
     $scope.init = ->
-      @SurveysService = new Survey(serverErrorHandler)
-      $scope.surveys = @SurveysService.all()
+      @SurveyService = new Survey(serverErrorHandler)
+      $scope.surveys = @SurveyService.all()
 
 
-    $scope.build = (survey) -> $location.path("/survey/#{survey.id}/build")
+    $scope.createSurvey = ->
+      SurveyService = @SurveyService
 
-    $scope.create = -> $location.path("/survey/create")
+      # Display a modal form
+      @modal = $modal.open
+        templateUrl: '/templates/surveys/new.html'
+        windowTemplateUrl: '/templates/partials/modalFormWindow.html'
+        controller: 'SurveyCreateCtrl'
 
-
-    $scope.deleteSurvey = (survey) ->
-      
 
     serverErrorHandler = ->
-      alert("There was a server error, please reload the page and try again.")
+      swal(
+        title: 'Error!'
+        text: "There was a server error, please reload the page and try again."
+        type: 'error'
+        confirmButtonText: 'Ok'
+      )

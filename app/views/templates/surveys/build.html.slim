@@ -1,50 +1,41 @@
-.ng-cloak(ng-init="init()")
+.mail-inbox.builder.message ng-init="init()"
 
-  hgroup
-    div.title
-      h2 
-        | {{survey.title}}
-      h3.thin
-        small
-          | {{survey.description}}
+  .head
+    h3 
+      | {{survey.title}}
+      span
+        a href="#" ng-click="" tooltip="Preview"
+          i.fa.fa-external-link
+        a href="#" ng-click="" tooltip="Design"
+          i.fa.fa-paint-brush
+        a href="#" ng-click="editSurvey(survey)" tooltip="Configure"
+          i.fa.fa-cog
+        a href="#" ng-click="deleteSurvey(survey)" tooltip="Delete"
+          i.fa.fa-trash
+
+    h4.thin
+      small
+        | {{survey.description}}
   
-  div.layout.builder(data-equalizer="")
-
-    section.sidebar(data-equalizer-watch="")
-      div(ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl")
-
-    section.content(data-equalizer-watch="")
-
-      .block.empty.intro(ng-hide="survey.intro_id")
-        .block-item
-          .details
-            | Add your Welcome Screen here.
-
-      .block.empty(ng-show="survey.fields == 0")
-        .block-item
-          .details
-            | Add your questions here.
+  .filters ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl"
       
-      ul.timeline ui-sortable="sortableOptions" ng-model="survey.fields" tooltip="Double click to edit, drag to reorder." ng-hide="survey.fields == 0"
+  .fields tooltip="Double click to edit, drag to reorder." ng-hide="survey.fields == 0"
+    
+    .mails ui-sortable="sortableOptions" ng-model="survey.fields"
+
+      .item.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
         
-        li.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
-
+        div
           i.fa class="fa-{{field.properties.icon}}"
-          span.date
-            | {{field.priority}}
-          div.content
-            div.details
-              | {{field.label}}
-            div.options
-              ul.actions
-                li ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
-                  a.add tooltip="Duplicate field" tooltip_placement="left"
-                    i.fa.fa-copy
-                li
-                  a.delete ng-click="deleteField(field, $index)" tooltip="Delete field" tooltip_placement="right"
-                    i.fa.fa-trash-o
-      
-      .block.empty.outro(ng-hide="survey.outro_id")
-        .block-item
-          .details
-            | Add your Thank You Screen here.
+
+        div
+          div.tools.pull-right
+            .btn-group
+              button.btn-sm.btn-link tooltip="Duplicate field" ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
+                  i.fa.fa-copy
+              button.btn-sm.btn-link ng-click="deleteField(field, $index)" tooltip="Delete field"
+                  i.fa.fa-trash-o
+          h4.from
+            | {{field.properties.label}}
+          p.msg
+            | {{field.label}}
