@@ -1,0 +1,12 @@
+.ng-cloak ng-init="init()"
+  
+  .modal-header
+    h3 Edit Provider
+    button.close.md-close type="button" aria-hidden="true" ng-click="close()" ×
+
+  .modal-body.form
+    = render 'templates/providers/form'
+
+  .modal-footer
+    button.btn.btn-primary.btn-mono2.btn-flat ng-click="close()" Cancel
+    button.btn.btn-primary.btn-mono2.btn-flat ng-click="proceed(provider)" ng-disabled="providerForm.$invalid" Save Provider
