@@ -7,6 +7,7 @@ class Survey < ActiveRecord::Base
   before_save :translate_slug
 
   validates :title, presence: true
+  validates :guid, uniqueness: true
 
   def translate_slug
     self.guid = self.title.parameterize('-')
