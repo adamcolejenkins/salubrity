@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @clinic.title
+p
+  strong Survey:
+  = @clinic.survey
+p
+  strong Address:
+  = @clinic.address
+p
+  strong Address2:
+  = @clinic.address2
+p
+  strong City:
+  = @clinic.city
+p
+  strong State:
+  = @clinic.state
+p
+  strong Zip:
+  = @clinic.zip
+p
+  strong Phone:
+  = @clinic.phone
+p
+  strong Guid:
+  = @clinic.guid
+
+= link_to 'Edit', edit_clinic_path(@clinic)
+'|
+= link_to 'Back', clinics_path

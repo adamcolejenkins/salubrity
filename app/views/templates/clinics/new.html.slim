@@ -1,0 +1,12 @@
+.ng-cloak ng-init="init()"
+  
+  .modal-header
+    h3 New Clinic
+    button.close.md-close type="button" ng-click="close()" aria-hidden="true" ×
+
+  .modal-body.form
+    = render 'templates/clinics/form'
+
+  .modal-footer
+    button.btn.btn-primary.btn-mono-l1.btn-rad ng-click="close()" Cancel
+    button.btn.btn-success.btn-mono-l1.btn-rad ng-click="proceed(clinic)" ng-disabled="clinicForm.$invalid" Save & Add Providers
