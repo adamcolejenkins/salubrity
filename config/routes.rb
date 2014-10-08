@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'frontend/index'
 
   devise_for :users
@@ -12,6 +13,10 @@ Rails.application.routes.draw do
         resources :field_choices
       end
     end
+    resources :clinics do
+      resources :providers
+    end
+    get 's3/token'
   end
 
   root :to => 'home#index'
@@ -19,13 +24,19 @@ Rails.application.routes.draw do
   # get '/dashboard' => 'templates#index'
 
   get '/surveys' => 'templates#index'
-  get '/survey/:id' => 'templates#index'
-  get '/survey/create' => 'templates#index'
+  get '/surveys/:id' => 'templates#index'
+  get '/surveys/new' => 'templates#index', as: 'new_survey'
 
-  get '/survey/:id/build' => 'templates#index', as: 'surveys_build'
-  get '/survey/:id/design' => 'templates#index', as: 'surveys_design'
-  get '/survey/:id/configure' => 'templates#index', as: 'surveys_configure'
-  get '/survey/:id/analyze' => 'templates#index', as: 'surveys_analyze'
+  get '/surveys/:id/build' => 'templates#index', as: 'surveys_build'
+  get '/surveys/:id/design' => 'templates#index', as: 'surveys_design'
+  get '/surveys/:id/configure' => 'templates#index', as: 'surveys_configure'
+  get '/surveys/:id/analyze' => 'templates#index', as: 'surveys_analyze'
+
+  get '/clinics' => 'templates#index'
+  get '/clinics/:id' => 'templates#index'
+  get '/clinics/new' => 'templates#index', as: 'new_clinic'
+
+  get '/clinics/:id/configure' => 'templates#index'
   
   # get '/surveys/:survey_id/fields/:id' => 'templates#index'
   # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'templates#index'

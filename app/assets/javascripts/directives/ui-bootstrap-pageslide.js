@@ -62,7 +62,7 @@ angular.module( 'salubrity' )
     });
 
     function removePageslideWindow(pageslideInstance) {
-        var body = $document.find('body').eq(0);
+        var builder = $document.find('.mail-inbox.builder .fields').eq(0);
         var pageslideWindow = openedWindows.get(pageslideInstance).value;
 
         // clean up the stack
@@ -71,7 +71,7 @@ angular.module( 'salubrity' )
         // remove window DOM element
         removeAfterAnimate(pageslideWindow.pageslideDomEl, pageslideWindow.pageslideScope, 300, function () {
             pageslideWindow.pageslideScope.$destroy();
-            body.toggleClass(OPENED_PAGESLIDE_CLASS, openedWindows.length() > 0);
+            builder.toggleClass(OPENED_PAGESLIDE_CLASS, openedWindows.length() > 0);
             checkRemoveBackdrop();
         });
     }
@@ -143,14 +143,14 @@ angular.module( 'salubrity' )
             keyboard: pageslide.keyboard
         });
 
-        var body = $document.find('body').eq(0),
+        var builder = $document.find('.mail-inbox.builder .fields').eq(0),
             currBackdropIndex = backdropIndex();
 
-        if (currBackdropIndex >= 0 && !backdropDomEl) {
+        if (currBackdropIndex >= 0 && !backdropDomEl || false) {
             backdropScope = $rootScope.$new(true);
             backdropScope.index = currBackdropIndex;
             backdropDomEl = $compile('<div modal-backdrop></div>')(backdropScope);
-            body.append(backdropDomEl);
+            builder.append(backdropDomEl);
         }
 
         var angularDomEl = angular.element('<div pageslide-window></div>');
@@ -164,8 +164,8 @@ angular.module( 'salubrity' )
 
         var pageslideDomEl = $compile(angularDomEl)(pageslide.scope);
         openedWindows.top().value.pageslideDomEl = pageslideDomEl;
-        body.append(pageslideDomEl);
-        body.addClass(OPENED_PAGESLIDE_CLASS);
+        builder.append(pageslideDomEl);
+        builder.addClass(OPENED_PAGESLIDE_CLASS);
 
     };
 

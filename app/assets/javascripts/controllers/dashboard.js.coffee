@@ -1,11 +1,12 @@
 @salubrity
 
-  .config ($routeProvider) ->
+  .config ($stateProvider) ->
 
-    $routeProvider.when '/dashboard',
+    $stateProvider.state 'dashboard',
+      url: '/dashboard'
       templateUrl: '/templates/dashboard.html'
       controller: 'DashboardCtrl'
   
-  .controller "DashboardCtrl", ($scope, $routeParams, $location, Survey) ->
+  .controller "DashboardCtrl", ($scope, $stateParams, $location, Survey) ->
 
     

@@ -1,64 +1,75 @@
-nav
-  section
+ul.cl-vnavigation
+  
+  li
+    = link_to '#'
+      i.fa.fa-home
+      span Dashboard
 
-    - if user_signed_in?
+  li
+    = link_to surveys_path
+      i.fa.fa-list-alt
+      span Surveys
 
-      / Survey List Nav
-      ul.left(ng-show="current.page('survey', 'list')")
+  li
+    = link_to clinics_path
+      i.fa.fa-map-marker.nav-icon
+      span Clinics
 
-        li
-          = link_to 'My Clinics', surveys_path, class: 'color-success'
-      
-      / Survey Sub Navigation
-      ul.left(ng-show="!current.page('survey', 'list')")
-        li.icon
-          = link_to surveys_path, class: 'color-success'
-            i.fa.fa-arrow-left
+  li
+    = link_to '#'
+      i.fa.fa-bar-chart-o
+      span Analytics
+  
+  / Super User only
+  li
+    = link_to '#'
+      i.fa.fa-cog
+      span Configuration
 
-      ul.left(ng-show="current.page('survey', 'create')")
-        li.active
-          = link_to 'New Survey', nil
+  / / Survey List Nav
+  / ul.left(ng-show="current.page('survey', 'list')")
 
-      ul.left(ng-show="current.ctrl('survey') && id")
+  /   li
+  /     = link_to 'My Clinics', surveys_path, class: 'color-success'
+  
+  / / Survey Sub Navigation
+  / ul.left(ng-show="!current.page('survey', 'list')")
+  /   li.icon
+  /     = link_to surveys_path, class: 'color-success'
+  /       i.fa.fa-arrow-left
 
-        li(ng-class="{'active': current.action('build'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/build"
-            span Build
+  / ul.left(ng-show="current.page('survey', 'create')")
+  /   li.active
+  /     = link_to 'New Survey', nil
 
-        li.divider
-          i.fa.fa-chevron-right
+  / ul.left(ng-show="current.ctrl('survey') && id")
 
-        li(ng-class="{'active': current.action('design'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/design"
-            span Design
+  /   li(ng-class="{'active': current.action('build'), 'disabled': !id}")
+  /     = link_to "/survey/{{id}}/build"
+  /       span Build
 
-        li.divider
-          i.fa.fa-chevron-right
+  /   li.divider
+  /     i.fa.fa-chevron-right
 
-        li(ng-class="{'active': current.action('configure'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/configure"
-            span Configure
+  /   li(ng-class="{'active': current.action('design'), 'disabled': !id}")
+  /     = link_to "/survey/{{id}}/design"
+  /       span Design
 
-        li.divider
-          i.fa.fa-chevron-right
+  /   li.divider
+  /     i.fa.fa-chevron-right
 
-        li(ng-class="{'active': current.action('analyze'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/analyze"
-            span Analyze
+  /   li(ng-class="{'active': current.action('configure'), 'disabled': !id}")
+  /     = link_to "/survey/{{id}}/configure"
+  /       span Configure
 
-      ul.right ng-show="current.ctrl('survey') && id && false"
+  /   li.divider
+  /     i.fa.fa-chevron-right
 
-        li.has-form
-          = link_to 'Preview my survey', nil, class: 'radius success button'
-    
-    - else
+  /   li(ng-class="{'active': current.action('analyze'), 'disabled': !id}")
+  /     = link_to "/survey/{{id}}/analyze"
+  /       span Analyze
 
-      / Welcome Nav
-      ul.left
+  / ul.right ng-show="current.ctrl('survey') && id && false"
 
-        li
-          = link_to 'Tour', ''
-        li
-          = link_to 'Use Cases', ''
-        li
-          = link_to 'Contact', ''
+  /   li.has-form
+  /     = link_to 'Preview my survey', nil, class: 'radius success button'

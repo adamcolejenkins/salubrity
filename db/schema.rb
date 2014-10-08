@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930161249) do
+ActiveRecord::Schema.define(version: 20141006200603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clinics", force: true do |t|
+    t.string   "title"
+    t.integer  "survey_id"
+    t.string   "guid"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state",      limit: 2
+    t.integer  "zip",        limit: 8
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
 
   create_table "field_choices", force: true do |t|
     t.integer  "field_id"
@@ -53,6 +69,19 @@ ActiveRecord::Schema.define(version: 20140930161249) do
   end
 
   add_index "fields", ["survey_id"], name: "index_fields_on_survey_id", using: :btree
+
+  create_table "providers", force: true do |t|
+    t.integer  "clinic_id"
+    t.string   "name"
+    t.string   "position"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "providers", ["clinic_id"], name: "index_providers_on_clinic_id", using: :btree
 
   create_table "survey_options", force: true do |t|
     t.integer  "survey_id"

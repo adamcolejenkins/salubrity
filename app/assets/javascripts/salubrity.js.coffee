@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ngRoute', 'mm.foundation', 'ui.sortable', 'ngTouch'
+  'ngResource', 'ui.router', 'ui.bootstrap', 'ui.sortable', 'ngTouch', 'ngS3upload'
 ]
 
 
@@ -14,29 +14,35 @@
 
 
 # Here we define our main route
-@salubrity.config ($routeProvider, $locationProvider) ->
+@salubrity.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
 
   # Enable HTML5mode
   $locationProvider.html5Mode true;
 
-  # Default route for our app
-  $routeProvider.when '/', redirectTo: '/surveys'
-
   # If no route, redirect to /
-  $routeProvider.otherwise '/'
+  $urlRouterProvider.otherwise '/'
+
+
+# Set the AWS Upload theme
+@salubrity.config (ngS3Config) ->
+
+  # We will use the Bootstrap3 theme
+  # TODO: Create own theme
+  ngS3Config.theme = 'flatdream'
+
 
 # Angular run methods
-@salubrity.run ($rootScope, $route) ->
+@salubrity.run ($rootScope, $state) ->
 
   # On routeChangeSuccess, set our current controller, action && id
-  $rootScope.$on '$routeChangeSuccess', ->
-    ctrl = $route.current.controller.split(/(?=[A-Z])/).map (s) ->
+  $rootScope.$on '$stateChangeSuccess', ->
+    ctrl = $state.current.controller.split(/(?=[A-Z])/).map (s) ->
       s.toLowerCase()
     ctrl.pop()
 
     $rootScope.controller = ctrl[0]
     $rootScope.action = ctrl[1]
-    $rootScope.id = $route.current.params.id
+    $rootScope.id = $state.params.id
 
 # Main App controller
 @salubrity.controller 'AppCtrl', ($scope, $rootScope) ->
