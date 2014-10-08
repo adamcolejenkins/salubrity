@@ -15,35 +15,35 @@
 .btn-default:active{box-shadow:none; background: #f5f5f5;}
 
 .btn-primary, .btn-primary:focus {background-color: $primary-color;border-color: transparent; color:#fff;}
-.btn-primary:hover, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {background-color: $primary-color + 10% ;border-color: transparent;}
-.btn-primary:active{box-shadow:none; background: $primary-color - 10%;}
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {background-color: lighten($primary-color, 10%) ;border-color: transparent;}
+.btn-primary:active{box-shadow:none; background: darken($primary-color, 10%);}
  
 .btn-success, .btn-success:focus {background-color: $dark-green;border-color: transparent;}
-.btn-success:hover, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success{ background-color: $dark-green + 10%; border-color: transparent;}
-.btn-success:active{box-shadow:none; background: $dark-green - 10%;}
+.btn-success:hover, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success{ background-color: lighten($dark-green, 10%); border-color: transparent;}
+.btn-success:active{box-shadow:none; background: darken($dark-green, 10%);}
 
 
 .btn-info, .btn-info:focus {background-color: $blue;border-color: transparent;}
-.btn-info:hover, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {background-color: $blue + 10%;	border-color: transparent;}
-.btn-info:active{box-shadow:none; background: $blue - 10%;}
+.btn-info:hover, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {background-color: lighten($blue, 10%);	border-color: transparent;}
+.btn-info:active{box-shadow:none; background: darken($blue, 10%);}
 
 
 .btn-warning, .btn-warning:focus {background-color: $orange;border-color: transparent;}
-.btn-warning:hover, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning{ background-color: $orange + 10%;	border-color: transparent;}
-.btn-warning:active{box-shadow:none; background: $orange - 10%;}
+.btn-warning:hover, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning{ background-color: lighten($orange, 10%);	border-color: transparent;}
+.btn-warning:active{box-shadow:none; background: darken($orange, 10%);}
 
 
 .btn-danger, .btn-danger:focus { background-color: $red; border-color: transparent;}
-.btn-danger:hover, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger{ background-color: $red + 10%; border-color: transparent;}
-.btn-danger:active{box-shadow:none; background: $red - 10%;}
+.btn-danger:hover, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger{ background-color: lighten($red, 10%); border-color: transparent;}
+.btn-danger:active{box-shadow:none; background: darken($red, 10%);}
 
 .btn-prusia, .btn-prusia:focus { background-color: $prusia; border-color: transparent; color: #fff;}
-.btn-prusia:hover, .btn-prusia:active, .btn-prusia.active, .open .dropdown-toggle.btn-prusia{ color: #fff;background-color: $prusia + 10%; border-color: transparent;}
-.btn-prusia:active{box-shadow:none; background: $prusia - 10%;}
+.btn-prusia:hover, .btn-prusia:active, .btn-prusia.active, .open .dropdown-toggle.btn-prusia{ color: #fff;background-color: lighten($prusia, 10%); border-color: transparent;}
+.btn-prusia:active{box-shadow:none; background: darken($prusia, 10%);}
 
 .btn-dark, .btn-dark:focus { background-color: $dark; border-color: transparent; color: #fff;}
-.btn-dark:hover, .btn-dark:active, .btn-dark.active, .open .dropdown-toggle.btn-dark{ color: #fff;background-color: $dark + 10%; border-color: transparent;}
-.btn-dark:active{box-shadow:none; background: $dark - 10%;}
+.btn-dark:hover, .btn-dark:active, .btn-dark.active, .open .dropdown-toggle.btn-dark{ color: #fff;background-color: lighten($dark, 10%); border-color: transparent;}
+.btn-dark:active{box-shadow:none; background: darken($dark, 10%);}
 
 .btn-rad{border-radius:2px;-webkit-border-radius:2px;}
 
@@ -132,67 +132,85 @@
 
 /*Monochromatic tones*/
 
+/*MONO-l1*/
+.btn-mono-l1.btn-primary{background-color: darken($primary-color, 7%);}
+.btn-mono-l1.btn-primary:hover{background-color: darken($primary-color, 5%);}
+.btn-mono-l1.btn-primary:disabled{background-color: darken($primary-color, 3%);border:none;}
+.btn-mono-l1.btn-success{background-color: darken($dark-green, 7%);}
+.btn-mono-l1.btn-success:hover{background-color: darken($dark-green, 5%);}
+.btn-mono-l1.btn-success:disabled{background-color: darken($dark-green, 3%);border:none;}
+.btn-mono-l1.btn-info{background-color: darken($blue, 7%);}
+.btn-mono-l1.btn-info:hover{background-color: darken($blue, 5%);}
+.btn-mono-l1.btn-warning{background-color: darken($orange, 7%);}
+.btn-mono-l1.btn-warning:hover{background-color: darken($orange, 5%);}
+.btn-mono-l1.btn-danger{background-color: darken($red, 7%);}
+.btn-mono-l1.btn-danger:hover{background-color: darken($red, 5%);}
+.btn-mono-l1.btn-prusia{background-color: darken($prusia, 7%);}
+.btn-mono-l1.btn-prusia:hover{background-color: darken($prusia, 5%);}
+.btn-mono-l1.btn-dark{background-color: darken($dark, 7%);}
+.btn-mono-l1.btn-dark:hover{background-color: darken($dark, 5%);}
+
 /*MONO1*/
-.btn-mono1.btn-primary{background-color: $primary-color - 10%;}
-.btn-mono1.btn-primary:hover{background-color: $primary-color - 5%;}
-.btn-mono1.btn-success{background-color: $dark-green - 10%;}
-.btn-mono1.btn-success:hover{background-color: $dark-green - 5%;}
-.btn-mono1.btn-info{background-color: $blue - 10%;}
-.btn-mono1.btn-info:hover{background-color: $blue - 5%;}
-.btn-mono1.btn-warning{background-color: $orange - 10%;}
-.btn-mono1.btn-warning:hover{background-color: $orange - 5%;}
-.btn-mono1.btn-danger{background-color: $red - 10%;}
-.btn-mono1.btn-danger:hover{background-color: $red - 5%;}
-.btn-mono1.btn-prusia{background-color: $prusia - 10%;}
-.btn-mono1.btn-prusia:hover{background-color: $prusia - 5%;}
-.btn-mono1.btn-dark{background-color: $dark - 10%;}
-.btn-mono1.btn-dark:hover{background-color: $dark - 5%;}
+.btn-mono1.btn-primary{background-color: darken($primary-color, 10%);}
+.btn-mono1.btn-primary:hover{background-color: darken($primary-color, 5%);}
+.btn-mono1.btn-success{background-color: darken($dark-green, 10%);}
+.btn-mono1.btn-success:hover{background-color: darken($dark-green, 5%);}
+.btn-mono1.btn-info{background-color: darken($blue, 10%);}
+.btn-mono1.btn-info:hover{background-color: darken($blue, 5%);}
+.btn-mono1.btn-warning{background-color: darken($orange, 10%);}
+.btn-mono1.btn-warning:hover{background-color: darken($orange, 5%);}
+.btn-mono1.btn-danger{background-color: darken($red, 10%);}
+.btn-mono1.btn-danger:hover{background-color: darken($red, 5%);}
+.btn-mono1.btn-prusia{background-color: darken($prusia, 10%);}
+.btn-mono1.btn-prusia:hover{background-color: darken($prusia, 5%);}
+.btn-mono1.btn-dark{background-color: darken($dark, 10%);}
+.btn-mono1.btn-dark:hover{background-color: darken($dark, 5%);}
 
 /*MONO2*/
-.btn-mono2.btn-primary{background-color: $primary-color - 20%;}
-.btn-mono2.btn-primary:hover{background-color: $primary-color - 15%;}
-.btn-mono2.btn-success{background-color: $dark-green - 20%;}
-.btn-mono2.btn-success:hover{background-color: $dark-green - 15%;}
-.btn-mono2.btn-info{background-color: $blue - 20%;}
-.btn-mono2.btn-info:hover{background-color: $blue - 15%;}
-.btn-mono2.btn-warning{background-color: $orange - 20%;}
-.btn-mono2.btn-warning:hover{background-color: $orange - 15%;}
-.btn-mono2.btn-danger{background-color: $red - 20%;}
-.btn-mono2.btn-danger:hover{background-color: $red - 15%;}
-.btn-mono2.btn-prusia{background-color: $prusia - 20%;}
-.btn-mono2.btn-prusia:hover{background-color: $prusia - 15%;}
-.btn-mono2.btn-dark{background-color: $dark - 20%;}
-.btn-mono2.btn-dark:hover{background-color: $dark - 15%;}
+.btn-mono2.btn-primary{background-color: darken($primary-color, 20%);}
+.btn-mono2.btn-primary:hover{background-color: darken($primary-color, 15%);}
+.btn-mono2.btn-success{background-color: darken($dark-green, 20%);}
+.btn-mono2.btn-success:hover{background-color: darken($dark-green, 15%);}
+.btn-mono2.btn-info{background-color: darken($blue, 20%);}
+.btn-mono2.btn-info:hover{background-color: darken($blue, 15%);}
+.btn-mono2.btn-warning{background-color: darken($orange, 20%);}
+.btn-mono2.btn-warning:hover{background-color: darken($orange, 15%);}
+.btn-mono2.btn-danger{background-color: darken($red, 20%);}
+.btn-mono2.btn-danger:hover{background-color: darken($red, 15%);}
+.btn-mono2.btn-prusia{background-color: darken($prusia, 20%);}
+.btn-mono2.btn-prusia:hover{background-color: darken($prusia, 15%);}
+.btn-mono2.btn-dark{background-color: darken($dark, 20%);}
+.btn-mono2.btn-dark:hover{background-color: darken($dark, 15%);}
 /*MONO3*/
-.btn-mono3.btn-primary{background-color: $primary-color - 30%;}
-.btn-mono3.btn-primary:hover{background-color: $primary-color - 25%;}
-.btn-mono3.btn-success{background-color: $dark-green - 30%;}
-.btn-mono3.btn-success:hover{background-color: $dark-green - 25%;}
-.btn-mono3.btn-info{background-color: $blue - 30%;}
-.btn-mono3.btn-info:hover{background-color: $blue - 25%;}
-.btn-mono3.btn-warning{background-color: $orange - 30%;}
-.btn-mono3.btn-warning:hover{background-color: $orange - 25%;}
-.btn-mono3.btn-danger{background-color: $red - 30%;}
-.btn-mono3.btn-danger:hover{background-color: $red - 25%;}
-.btn-mono3.btn-prusia{background-color: $prusia - 30%;}
-.btn-mono3.btn-prusia:hover{background-color: $prusia - 25%;}
-.btn-mono3.btn-dark{background-color: $dark - 30%;}
-.btn-mono3.btn-dark:hover{background-color: $dark - 25%;}
+.btn-mono3.btn-primary{background-color: darken($primary-color, 30%);}
+.btn-mono3.btn-primary:hover{background-color: darken($primary-color, 25%);}
+.btn-mono3.btn-success{background-color: darken($dark-green, 30%);}
+.btn-mono3.btn-success:hover{background-color: darken($dark-green, 25%);}
+.btn-mono3.btn-info{background-color: darken($blue, 30%);}
+.btn-mono3.btn-info:hover{background-color: darken($blue, 25%);}
+.btn-mono3.btn-warning{background-color: darken($orange, 30%);}
+.btn-mono3.btn-warning:hover{background-color: darken($orange, 25%);}
+.btn-mono3.btn-danger{background-color: darken($red, 30%);}
+.btn-mono3.btn-danger:hover{background-color: darken($red, 25%);}
+.btn-mono3.btn-prusia{background-color: darken($prusia, 30%);}
+.btn-mono3.btn-prusia:hover{background-color: darken($prusia, 25%);}
+.btn-mono3.btn-dark{background-color: darken($dark, 30%);}
+.btn-mono3.btn-dark:hover{background-color: darken($dark, 25%);}
 /*MONO4*/
-.btn-mono4.btn-primary{background-color: $primary-color - 40%;}
-.btn-mono4.btn-primary:hover{background-color: $primary-color - 35%;}
-.btn-mono4.btn-success{background-color: $dark-green - 40%;}
-.btn-mono4.btn-success:hover{background-color: $dark-green - 35%;}
-.btn-mono4.btn-info{background-color: $blue - 40%;}
-.btn-mono4.btn-info:hover{background-color: $blue - 35%;}
-.btn-mono4.btn-warning{background-color: $orange - 40%;}
-.btn-mono4.btn-warning:hover{background-color: $orange - 35%;}
-.btn-mono4.btn-danger{background-color: $red - 40%;}
-.btn-mono4.btn-danger:hover{background-color: $red - 35%;}
-.btn-mono4.btn-prusia{background-color: $prusia - 40%;}
-.btn-mono4.btn-prusia:hover{background-color: $prusia - 35%;}
-.btn-mono4.btn-dark{background-color: $dark - 40%;}
-.btn-mono4.btn-dark:hover{background-color: $dark - 35%;}
+.btn-mono4.btn-primary{background-color: darken($primary-color, 40%);}
+.btn-mono4.btn-primary:hover{background-color: darken($primary-color, 35%);}
+.btn-mono4.btn-success{background-color: darken($dark-green, 40%);}
+.btn-mono4.btn-success:hover{background-color: darken($dark-green, 35%);}
+.btn-mono4.btn-info{background-color: darken($blue, 40%);}
+.btn-mono4.btn-info:hover{background-color: darken($blue, 35%);}
+.btn-mono4.btn-warning{background-color: darken($orange, 40%);}
+.btn-mono4.btn-warning:hover{background-color: darken($orange, 35%);}
+.btn-mono4.btn-danger{background-color: darken($red, 40%);}
+.btn-mono4.btn-danger:hover{background-color: darken($red, 35%);}
+.btn-mono4.btn-prusia{background-color: darken($prusia, 40%);}
+.btn-mono4.btn-prusia:hover{background-color: darken($prusia, 35%);}
+.btn-mono4.btn-dark{background-color: darken($dark, 40%);}
+.btn-mono4.btn-dark:hover{background-color: darken($dark, 35%);}
 
 /*Specific icons size*/
 
@@ -249,16 +267,16 @@
 .btn-flickr.bg{background:#0063dc;color:#fff;border:0;}
 .btn-github.bg{background:#333;color:#fff;border:0;}
 /*active socials*/
-.btn-facebook.bg:active, .btn-facebook.bg.active {background:#3b5998 - 20%;}
-.btn-twitter.bg:active, .btn-twitter.bg.active{background:#00aced - 20%;}
-.btn-google-plus.bg:active, .btn-google-plus.bg.active{background:#dd4b39 - 20%;}
-.btn-dribbble.bg:active, .btn-dribbble.bg.active{background:#ea4c89 - 20%;}
-.btn-linkedin.bg:active, .btn-linkedin.bg.active{background:#0e76a8 - 20%;}
-.btn-youtube.bg:active, .btn-youtube.bg.active{background:#c4302b - 20%;}
-.btn-pinterest.bg:active, .btn-pinterest.bg.active{background:#c8232c - 20%;}
-.btn-tumblr.bg:active, .btn-tumblr.bg.active{background:#34526f - 20%;}
-.btn-flickr.bg:active, .btn-flickr.bg.active{background:#0063dc - 20%;}
-.btn-github.bg:active, .btn-github.bg.active{background:#333 - 20%;}
+.btn-facebook.bg:active, .btn-facebook.bg.active {background:darken(#3b5998, 20%);}
+.btn-twitter.bg:active, .btn-twitter.bg.active{background:darken(#00aced, 20%);}
+.btn-google-plus.bg:active, .btn-google-plus.bg.active{background:darken(#dd4b39, 20%);}
+.btn-dribbble.bg:active, .btn-dribbble.bg.active{background:darken(#ea4c89, 20%);}
+.btn-linkedin.bg:active, .btn-linkedin.bg.active{background:darken(#0e76a8, 20%);}
+.btn-youtube.bg:active, .btn-youtube.bg.active{background:darken(#c4302b, 20%);}
+.btn-pinterest.bg:active, .btn-pinterest.bg.active{background:darken(#c8232c, 20%);}
+.btn-tumblr.bg:active, .btn-tumblr.bg.active{background:darken(#34526f, 20%);}
+.btn-flickr.bg:active, .btn-flickr.bg.active{background:darken(#0063dc, 20%);}
+.btn-github.bg:active, .btn-github.bg.active{background:darken(#333, 20%);}
 
 .btn.bg i{color:#FFF;}
 .btn:active, .btn.active{ box-shadow: none; }
@@ -314,4 +332,4 @@ button::-moz-focus-inner {
 }
 
 /*disable*/
-.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary.active{background-color: $primary-color - 40%; border-color: $primary-color - 40%;}
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary.active{background-color: darken($primary-color, 40%); border-color: darken($primary-color, 40%);}

@@ -38,15 +38,15 @@
 }
 
 .fuelux .wizard ul li.complete:hover {
-	background: $primary-color - 20%;
+	background: darken($primary-color, 20%);
 }
 
 .fuelux .wizard ul li.complete:hover .chevron:before{
-    border-left-color: $primary-color - 20%;
+    border-left-color: darken($primary-color, 20%);
 }
 
 .fuelux .wizard ul li.complete .chevron{
-	border-left-color: $primary-color - 25%;
+	border-left-color: darken($primary-color, 25%);
 }
 
 .fuelux .wizard ul li.complete .chevron:before {
@@ -99,7 +99,7 @@
     line-height: 10px;
     height: 20px;
     width: 20px;
-    border: $primary-color - 10%;
+    border: darken($primary-color, 10%);
     background: $primary-color;
     margin-right: 12px;
     border-radius: 50%;
@@ -117,7 +117,7 @@
     line-height: 10px;
     height: 20px;
     width: 20px;
-    border: $dark-green - 10%;
+    border: darken($dark-green, 10%);
     background: $dark-green;
     margin-right: 12px;
     border-radius: 50%;

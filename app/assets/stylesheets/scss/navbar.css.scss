@@ -29,7 +29,7 @@ padding: 22px;
 }
 
 .navbar-default .navbar-brand:hover{
-	color: #2c3e50 - 10%;
+	color: darken(#2c3e50, 10%);
 }
 
 .navbar-default  .navbar-nav > .active > a, .navbar-default  .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
@@ -42,7 +42,7 @@ padding: 22px;
   font-weight: 400;
 }
 .navbar-default  .navbar-nav > li > a:hover {
-	color:#2c3e50 - 10%;
+	color:darken(#2c3e50, 10%);
 }
 .navbar-default  .navbar-nav > li.button  {
 	padding: 17px 6px;
@@ -126,7 +126,7 @@ padding: 22px;
   font-size: 14px;
   text-align: center;
   width: 20px;
-	vertical-align: middle;
+	/*vertical-align: w+;*/
 	position:absolute;
 	left:10px;
 	top:14px;
@@ -204,7 +204,7 @@ padding: 22px;
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
     background-color: $lightedp-color;
-    color: #2c3e50 - 10%;
+    color: darken(#2c3e50, 10%);
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: $primary-color;

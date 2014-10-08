@@ -17,9 +17,13 @@
   text-transform:uppercase;
   text-align:center;
   padding:20px 25px;
+  
+  width: 280px;
+  position: absolute;
+  bottom: 0;
 }
 .page-aside.email .compose .btn{
-  background:#58BE89;
+  background: $dark-green;
   width:100%;
   border:0;
   border-radius:3px !important;
@@ -57,7 +61,7 @@
 }
 
 .page-aside.email .mail-nav ul li a .label, .page-aside.app .app-nav ul.nav li a .label{border-radius:2px;}
-.page-aside.email .mail-nav ul li a .label.label-default, .page-aside.app .app-nav ul.nav li a .label.label-default{background:#A1A1A1 + 20%;}
+.page-aside.email .mail-nav ul li a .label.label-default, .page-aside.app .app-nav ul.nav li a .label.label-default{background:lighten(#A1A1A1, 20%);}
 
 .page-aside.email .mail-nav ul li a .label.label1, .page-aside.app .app-nav ul li a .label.label1{background:#19B698;}
 .page-aside.email .mail-nav ul li a .label.label2, .page-aside.app .app-nav ul li a .label.label2{background:#E85647;}
@@ -97,7 +101,7 @@
 }
 
 .mail-inbox .head input[type="text"]:focus, .main-app .head input[type="text"]:focus{
-  border-color:#2598F9 + 30%;
+  border-color:lighten(#2598F9, 30%);
 }
 
 .mail-inbox .filters, .main-app .filters{
@@ -107,6 +111,10 @@
 
 .mail-inbox .filters .checkbox, .main-app .filters .checkbox{
   margin-right: 8px;
+}
+
+.mail-inbox .filters .btn {
+  margin-bottom: 0px !important;
 }
 
 .mail-inbox .mails, .main-app .items{

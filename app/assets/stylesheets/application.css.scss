@@ -1,0 +1,107 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ */
+
+//= require sweetalert
+//= require jquery-icheck/skins/flat/green
+//= require jquery-icheck/skins/square/green
+//= require jquery-icheck/skins/square/blue
+//= require select2/select2
+//= require jquery.niftymodals/css/component
+//= require datatables-plugins/integration/foundation/dataTables.foundation
+//= require responsive-tables/responsive-tables
+//= require jasny.bootstrap/extend/css/jasny-bootstrap.min
+//= require jquery.vectormaps/jquery-jvectormap-1.2.2
+
+// Place all the styles related to the backend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "bourbon";
+
+/*SCSS CSS pre-processor*/
+@import "scss/elements";
+
+/*CONFIG AND GENERAL STYLE*/
+@import "scss/config-wine";
+@import "scss/general";
+@import "scss/helpers";
+@import "scss/typography";
+
+/*HEADER*/
+@import "scss/dropdown-menu";
+@import "scss/navbar"; 
+@import "scss/page-head";
+@import "scss/page-aside";
+@import "scss/profile-menu";
+
+/*BODY*/
+@import "scss/block-panels";
+@import "scss/boxed";
+@import "scss/forms";
+@import "scss/main-container";
+@import "scss/sidebar";
+@import "scss/topbar";
+
+/*PAGES*/
+@import "scss/404";
+@import "scss/gallery";
+@import "scss/login";
+@import "scss/page-email";
+@import "scss/page-code-editor";
+@import "scss/page-profile";
+@import "scss/page-search";
+@import "scss/sign-up";
+ 
+/*ELEMENTS*/
+@import "scss/elements/accordions";
+@import "scss/elements/alerts";
+@import "scss/elements/buttons";
+@import "scss/elements/calendar";
+@import "scss/elements/charts";
+@import "scss/elements/chat";
+@import "scss/elements/chat-widget";
+@import "scss/elements/circle";
+@import "scss/elements/ckeditor";
+@import "scss/elements/color-boxes";
+@import "scss/elements/date-picker";
+@import "scss/elements/gritter";
+@import "scss/elements/icons";
+@import "scss/elements/labels_badges";
+@import "scss/elements/lists";
+@import "scss/elements/modals";
+@import "scss/elements/multiselect";
+@import "scss/elements/nano-scroll";
+@import "scss/elements/nestable-lists";
+@import "scss/elements/pagination";
+@import "scss/elements/porlets";
+@import "scss/elements/progress";
+@import "scss/elements/select2";
+@import "scss/elements/slider";
+@import "scss/elements/switch";
+@import "scss/elements/tables";
+@import "scss/elements/tabs";
+@import "scss/elements/tiles";
+@import "scss/elements/timeline";
+@import "scss/elements/timerange";
+@import "scss/elements/todo-widget";
+@import "scss/elements/tickets-widget";
+@import "scss/elements/treeview";
+@import "scss/elements/validation";
+@import "scss/elements/widgets";
+@import "scss/elements/wizard";
+
+/*RESPONSIVE*/
+@import "scss/responsive";

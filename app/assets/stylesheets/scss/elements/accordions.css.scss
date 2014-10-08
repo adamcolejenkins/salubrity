@@ -79,12 +79,12 @@
 	background-color: $primary-color;
 	color:#FFF;
 	transition:background-color 200ms ease-in-out;
-	border-bottom:1px solid $primary-color - 40%;
+	border-bottom:1px solid darken($primary-color, 40%);
 }
 
-.accordion.accordion-semi .panel-heading.success a{background-color: $dark-green;border-bottom:1px solid $dark-green - 40%;}
-.accordion.accordion-semi .panel-heading.warning a{background-color: $orange;border-bottom:1px solid $orange - 40%;}
-.accordion.accordion-semi .panel-heading.danger a{background-color: $red;border-bottom:1px solid $red - 40%;}
+.accordion.accordion-semi .panel-heading.success a{background-color: $dark-green;border-bottom:1px solid darken($dark-green, 40%);}
+.accordion.accordion-semi .panel-heading.warning a{background-color: $orange;border-bottom:1px solid darken($orange, 40%);}
+.accordion.accordion-semi .panel-heading.danger a{background-color: $red;border-bottom:1px solid darken($red, 40%);}
 
 
 .accordion.accordion-semi .panel-heading a.collapsed{

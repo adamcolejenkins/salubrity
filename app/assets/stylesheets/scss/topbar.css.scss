@@ -10,15 +10,15 @@
 }
 #head-nav.topbar .navbar-toggle{
   box-shadow: none;
-  background-color: $primary-color - 15%;
+  background-color: darken($primary-color, 15%);
   border: none;
   margin-right: 15px;
 }
 #head-nav.topbar .navbar-nav > li > a{ color: #fff;}
 #head-nav.topbar .navbar-nav > .active > a, #head-nav.topbar .navbar-nav > .active > a:hover, #head-nav.topbar .navbar-nav > .active > a:focus{
-background-color: $primary-color + 10%;}
+background-color: lighten($primary-color, 10%);}
 #head-nav.topbar .navbar-nav > .open > a, #head-nav.topbar .navbar-nav > .open > a:hover, #head-nav.topbar .navbar-nav > .open > a:focus{
-background-color: $primary-color + 10%;}
+background-color: lighten($primary-color, 10%);}
 
 #head-nav.topbar .navbar-nav > .dropdown > a .caret{
     border-bottom-color: #fff;

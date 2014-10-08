@@ -172,14 +172,14 @@ overflow:hidden;
 	padding:0 20px;
 	display:inline-block;
 	width:49%;
-	vertical-align: top;
+	/*vertical-align: w+;*/
  }
  
  .block .total-data,  .widget-block .total-data, .block-flat .total-data{
 	padding:15px;
 	display:inline-block;
 	width:100%;
-	vertical-align: top;
+	/*vertical-align: w+;*/
 	position:relative;
  }
  .block .dropdown-menu,  .widget-block .dropdown-menu , .block-flat .dropdown-menu{margin:-1px 0 0 0;border-radius:1px;-webkit-border-radius:1px;}

@@ -10,7 +10,7 @@
 background: #fff;
 }
 
-.dd-handle:hover { color: #FFF; background: $primary-color; border-color:$primary-color - 20%; }
+.dd-handle:hover { color: #FFF; background: $primary-color; border-color:darken($primary-color, 20%); }
 
 .dd-item > button { color:#555;font-family: FontAwesome;display: block; position: relative; cursor: pointer; float: left; width: 25px; height: 20px; margin: 8px 2px; padding: 0; text-indent: 100%; white-space: nowrap; overflow: hidden; border: 0; background: transparent; font-size: 10px; line-height: 1; text-align: center; }
 .dd-item > button:before { content: ""; display: block; position: absolute; width: 100%; text-align: center; text-indent: 0; }
@@ -57,4 +57,4 @@ background: $primary-color;
 height:36px;
 }
 .dd3-handle:before { content: '='; display: block; position: absolute; left: 0; top: 7px; width: 100%; text-align: center; text-indent: 0; color: #fff; font-size: 20px; font-weight: normal; }
-.dd3-handle:hover { background: $primary-color - 10%; } 
+.dd3-handle:hover { background: darken($primary-color, 10%); } 

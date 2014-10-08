@@ -62,7 +62,7 @@
 .nav-tabs > li > a:hover, .nav-tabs > li > a:active{
 	background:transparent;
 	border:1px solid transparent;
-	color: $primary-color - 20%;
+	color: darken($primary-color, 20%);
 	border-radius:2px 2px 0 0;
 	-webkit-border-radius:2px 2px 0 0;
 }

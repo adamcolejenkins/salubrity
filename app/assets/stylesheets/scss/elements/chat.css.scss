@@ -8,7 +8,7 @@
 .cbp-spmenu>.header{
 	padding: 20px;
   min-height: 64px;
-	background: $primary-color + 10%;
+	background: lighten($primary-color, 10%);
   position: relative;
 }
 .cbp-spmenu>.header h3{
@@ -149,7 +149,7 @@
 }
 #chat-box>.header{
   background: $primary-color;
-  border-bottom: 4px solid $primary-color - 10%;
+  border-bottom: 4px solid darken($primary-color, 10%);
   padding: 15px;
 }
 #chat-box>.header > span{
@@ -260,7 +260,7 @@
 }
 
 .side-chat .contacts li a:hover {
-  background: $sidebar-color + 10%;
+  background: lighten($sidebar-color, 10%);
 }
 
 

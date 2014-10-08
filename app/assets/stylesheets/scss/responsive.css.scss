@@ -152,7 +152,7 @@
   }
 	.navbar-default .navbar-nav > li.button > a > i {
 		font-size: 17px;
-		vertical-align: middle;
+		/*vertical-align: w+;*/
 	}
 	
 	.navbar-default .navbar-nav > li.button .dropdown-menu{
@@ -198,13 +198,13 @@
   }
   #head-nav.topbar .user-nav{display:block;}
   #head-nav.topbar .user-nav > .open > a, #head-nav.topbar .user-nav > .open > a:hover, #head-nav.topbar .user-nav > .open > a:focus{
-  background-color: $primary-color + 10% !important;}
+  background-color: lighten($primary-color, 10%) !important;}
   #head-nav.topbar .profile_menu .dropdown-toggle{ color: #fff !important; padding: 10px;}
   #head-nav.topbar .dropdown.profile_menu .dropdown-menu{background: transparent;}
   #head-nav.topbar .dropdown.profile_menu .dropdown-menu:before{ display:none;}
   #head-nav.topbar .navbar-nav .dropdown .dropdown-menu>li>a{color:#fff;}
   #head-nav.topbar .not-nav{
-  background: $primary-color - 10%;
+  background: darken($primary-color, 10%);
   display:block;
   float:none;
 }

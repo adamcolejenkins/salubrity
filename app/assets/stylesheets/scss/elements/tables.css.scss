@@ -25,15 +25,15 @@ table .primary-emphasis, table .primary-emphasis-dark{
 	border-color: $primary-color;
 	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
-table .primary-emphasis-dark{background-color: $primary-color - 20%;}
+table .primary-emphasis-dark{background-color: darken($primary-color, 20%);}
 
 table .success-emphasis, table .success-emphasis-dark{
-	background: $primary-color - 20%;
+	background: darken($primary-color, 20%);
 	color: #FFF;
-	border-color: $primary-color - 20%;
+	border-color: darken($primary-color, 20%);
 	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
-table .success-emphasis-dark{background-color:$primary-color - 20%;border-color:$primary-color - 20%;}
+table .success-emphasis-dark{background-color:darken($primary-color, 20%);border-color:darken($primary-color, 20%);}
 
 table .warning-emphasis, table .warning-emphasis-dark{
 	background: #FC9700;
@@ -146,7 +146,7 @@ table.list.no-border{
   border-top: 0;
 }
 table.list .items td{
-  vertical-align: middle;
+  /*vertical-align: w+;*/
   padding: 5px;
 }
 table.list .items td .progress{
@@ -157,7 +157,7 @@ table.list .items td .progress .progress-bar{
   line-height: 12px;
 }
 table.list .items td > span{
-  vertical-align: top;
+  /*vertical-align: w+;*/
 }
 table.list .items td p span{
   display: block;

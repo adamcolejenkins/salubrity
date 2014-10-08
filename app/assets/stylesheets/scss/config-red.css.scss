@@ -1,11 +1,11 @@
 /*General colors palette*/
 $primary-color: #FC796B;
-$subp-color: ($primary-color - 13%);
-$lightedp-color: ($primary-color + 10%);
+$subp-color: darken($primary-color, 13%);
+$lightedp-color: lighten($primary-color, 10%);
 $text-color: #FFF;
 
 /*General elements*/
-$link-color: ($primary-color + 10%);
+$link-color: lighten($primary-color, 10%);
 $sidebar-color: #272930;
 
 /*Flat palette*/

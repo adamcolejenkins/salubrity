@@ -14,3 +14,9 @@
 .cl-mcont h1 {
     line-height: 1.3em;
 }
+
+
+// Grid
+section.layout {
+  @include make-row();
+}

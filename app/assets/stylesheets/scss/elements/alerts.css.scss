@@ -1,30 +1,30 @@
 /*Alerts*/
 .alert {border-radius:0;-webkit-border-radius:0;box-shadow: 0;}					
-.alert .sign{color: rgba(0,0,0,0.2);font-size:20px;vertical-align: middle;margin-right:5px;text-align:center;width:25px; display: inline-block;}					
+.alert .sign{color: rgba(0,0,0,0.2);font-size:20px;/*vertical-align: w+;*/margin-right:5px;text-align:center;width:25px; display: inline-block;}					
 .alert .close{text-shadow: none;}					
 .alert-primary {
     background-color: $primary-color;
-    border-color: $primary-color - 10%;
+    border-color: darken($primary-color, 10%);
     color: #fff;
 }
 .alert-success {
     background-color: $dark-green;
-    border-color: $dark-green - 10%;
+    border-color: darken($dark-green, 10%);
     color: #fff;
 }
 .alert-info {
     background-color: $blue;
-    border-color: $blue - 10%;
+    border-color: darken($blue, 10%);
     color: #fff;
 }
 .alert-warning {
     background-color: $orange;
-    border-color: $orange - 10%;
+    border-color: darken($orange, 10%);
     color: #fff;
 }
 .alert-danger {
     background-color: $red;
-    border-color: $red - 10%;
+    border-color: darken($red, 10%);
     color: #fff;
 }
 
@@ -80,26 +80,26 @@
 }
 
 .alert-white.alert-danger .icon, .alert-white.alert-danger .icon:after{
-	border-color: $red - 10%;
+	border-color: darken($red, 10%);
 	background: $red;
 }
 
 .alert-white.alert-info .icon, .alert-white.alert-info .icon:after{
-	border-color:$blue - 10%;
+	border-color:darken($blue, 10%);
 	background: $blue;
 }
 
 .alert-white.alert-warning .icon, .alert-white.alert-warning .icon:after{
-	border-color: $orange - 10%;
+	border-color: darken($orange, 10%);
 	background: $orange;
 }
 
 .alert-white.alert-success .icon, .alert-white.alert-success .icon:after{
-	border-color: $dark-green - 10%;
+	border-color: darken($dark-green, 10%);
 	background: $dark-green;
 }
 .alert-white.alert-primary .icon, .alert-white.alert-primary .icon:after{
-	border-color: $primary-color - 10%;
+	border-color: darken($primary-color, 10%);
 	background: $primary-color;
 }
 
@@ -155,25 +155,25 @@
 }
 
 .alert-white-alt.alert-danger .icon, .alert-white-alt.alert-danger .icon:after{
-	border-color: $red - 10%;
+	border-color: darken($red, 10%);
 	background: $red;
 }
 
 .alert-white-alt.alert-info .icon, .alert-white-alt.alert-info .icon:after{
-	border-color:$blue - 10%;
+	border-color:darken($blue, 10%);
 	background: $blue;
 }
 
 .alert-white-alt.alert-warning .icon, .alert-white-alt.alert-warning .icon:after{
-	border-color: $orange - 10%;
+	border-color: darken($orange, 10%);
 	background: $orange;
 }
 .alert-white-alt.alert-success .icon, .alert-white-alt.alert-success .icon:after{
-	border-color: $dark-green - 10%;
+	border-color: darken($dark-green, 10%);
 	background: $dark-green;
 }
 .alert-white-alt.alert-primary .icon, .alert-white-alt.alert-primary .icon:after{
-	border-color: $primary-color - 10%;
+	border-color: darken($primary-color, 10%);
 	background: $primary-color;
 }
 

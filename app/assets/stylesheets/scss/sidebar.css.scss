@@ -24,10 +24,15 @@
 	font-size:21px;
 }
 .sidebar-logo{
-  background: $primary-color url(../images/logo.png) no-repeat 15px 19px;
+  background: $primary-color url(/assets/logo.png) no-repeat 25px 19px;
   padding:15px 20px;
   display: block;
   height: 64px;
+
+  @include retina {
+    background-image: url('/assets/logo@2x.png');
+    background-size: 120px 30px;
+  }
 }
 .sidebar-logo .logo a{
   font-size: 24px;
@@ -123,7 +128,7 @@ background-color: $primary-color;
 .sub-menu li a:hover {background-color: rgba(0, 0, 0, 0.1);}
 
 .cl-vnavigation li a:hover{
-	background-color: $sidebar-color - 5%;
+	background-color: darken($sidebar-color, 5%);
 }
 
 /*Collapsed Sidebar*/
@@ -133,7 +138,12 @@ background-color: $primary-color;
 }
 .sb-collapsed .sidebar-logo{
   padding: 4px 0 5px;
-  background: url("../images/logo.png") no-repeat scroll 23px -48px $primary-color;
+  background: $primary-color url(/assets/logo.icon.png) no-repeat 25px 19px;
+
+  @include retina {
+    background-image: url('/assets/logo.icon@2x.png');
+    background-size: 30px 30px;
+  }
 }
 .sb-collapsed .sidebar-logo .logo a{
   content:" ";
@@ -204,7 +214,7 @@ background-color: $primary-color;
 }
 
 .cl-sidebar .collapse-button button:hover{
-  background: $sidebar-color - 10%;
+  background: darken($sidebar-color, 10%);
 }
 
 #cl-wrapper.fixed-menu .menu-space{
@@ -322,7 +332,7 @@ background-color: $primary-color;
 }
 
 .cl-vnavigation li ul{
-  background-color: $sidebar-color - 10%;
+  background-color: darken($sidebar-color, 10%);
 	display:none;
 	margin:0;
 	padding:0;

@@ -13,6 +13,10 @@
   max-width: none;
 }
 
+.md-modal {
+  outline:none;
+}
+
 .full-color .md-content{background-color: $primary-color;color: #fff;}
 .full-color .modal-content{background-color: $primary-color;color: #fff;}
 .full-color.success .md-content{background-color: $dark-green;color: #fff;}
@@ -90,43 +94,43 @@ border:0;
 }
 .colored-header .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $primary-color - 20% !important;
+  border-bottom: 5px solid darken($primary-color, 20%) !important;
   background-color: $primary-color;
   color: #fff;
 }
 .colored-header.success .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $dark-green - 20% !important;
+  border-bottom: 5px solid darken($dark-green, 20%) !important;
   background-color: $dark-green;
   color: #fff;
 }
 .colored-header.info .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $blue - 20% !important;
+  border-bottom: 5px solid darken($blue, 20%) !important;
   background-color: $blue;
   color: #fff;
 }
 .colored-header.warning .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $orange - 20% !important;
+  border-bottom: 5px solid darken($orange, 20%) !important;
   background-color: $orange;
   color: #fff;
 }
 .colored-header.danger .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $red - 20% !important;
+  border-bottom: 5px solid darken($red, 20%) !important;
   background-color: $red;
   color: #fff;
 }
 .colored-header.prusia .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $prusia - 20% !important;
+  border-bottom: 5px solid darken($prusia, 20%) !important;
   background-color: $prusia;
   color: #fff;
 }
 .colored-header.dark .modal-header{
   padding: 20px;
-  border-bottom: 5px solid $dark - 20% !important;
+  border-bottom: 5px solid darken($dark, 20%) !important;
   background-color: $dark;
   color: #fff;
 }
@@ -206,5 +210,37 @@ body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom
   .custom-width{
     width: 90%;
     max-width: none;
+  }
+}
+
+// Elastic animations
+.md-elastic .md-content {
+  @include animation(elasticOpen 0.3s);
+  opacity: 0;
+}
+.md-show.md-elastic .md-content {
+  @include animation(elasticClose 0.3s);
+  opacity: 1;
+}
+@include keyframes(elasticOpen) {
+  0% {
+    @include transform(scale(0.7));
+  }
+  40% {
+    @include transform(scale(1.05));
+  }
+  80% {
+    @include transform(scale(0.95));
+  }
+  100% {
+    @include transform(scale(1));
+  }
+}
+@include keyframes(elasticClose) {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(0.5));
   }
 }

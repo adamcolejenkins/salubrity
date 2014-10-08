@@ -61,7 +61,7 @@
 }
 
 .page-aside.codeditor .mail-nav ul li a .label{border-radius:2px;}
-.page-aside.codeditor .mail-nav ul li a .label.label-default{background:#A1A1A1 + 20%;}
+.page-aside.codeditor .mail-nav ul li a .label.label-default{background:lighten(#A1A1A1, 20%);}
 
 .page-aside.codeditor .mail-nav ul li a .label.label1{background:#19B698;}
 .page-aside.codeditor .mail-nav ul li a .label.label2{background:#E85647;}
@@ -106,7 +106,7 @@
 }
 
 .mail-inbox .head input[type="text"]:focus{
-  border-color:#2598F9 + 30%;
+  border-color:lighten(#2598F9, 30%);
 }
 
 .mail-inbox .filters{

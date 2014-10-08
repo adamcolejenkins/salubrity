@@ -20,3 +20,47 @@
 code{white-space: normal;}
 
 .clear{clear:both;}
+
+
+$tooltip-arrow-size: 10px;
+.tooltip {
+    .tooltip-inner {
+        background-color: rgba($prusia, 0.9) !important;
+        border-radius: 3px;
+        padding: 8px 10px;
+    }
+    &.left {
+        .tooltip-arrow {
+            border-left-color: rgba($prusia, 0.9) !important;
+        }
+    }
+    &.right {
+        .tooltip-arrow {
+            border-right-color: rgba($prusia, 0.9) !important;
+        }
+    }
+    &.top {
+        .tooltip-arrow {
+            border-top-color: rgba($prusia, 0.9) !important;
+        }
+    }
+    &.bottom {
+        .tooltip-arrow {
+            border-bottom-color: rgba($prusia, 0.9) !important;
+        }
+    }
+}
+
+.empty[ng-show] {
+    text-align: center;
+    padding-top: 10em;
+    & > i:before {
+        font-size: 25em;
+        color: darken(#F0F0F0, 5%);
+    }
+    h3 { font-size: 3em; }
+    p { font-size: 1.5em; }
+    h3, p {
+        color: darken(#F0F0F0, 15%);
+    }
+}
