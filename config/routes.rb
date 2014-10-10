@@ -51,5 +51,5 @@ Rails.application.routes.draw do
 
   get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
 
-  get ':guid' => 'response#index', constraints: { guid: /[a-z\-]+/ }
+  get '/s/:guid' => 'response#index', constraints: { guid: /[a-z\-]+/ }
 end
