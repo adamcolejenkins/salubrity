@@ -4,27 +4,38 @@ class Api::ProvidersController < Api::BaseController
   # GET /providers
   # GET /providers.json
   def index
-    render json: clinic.providers
+    @providers = Provider.all
   end
 
   # GET /providers/1
   # GET /providers/1.json
   def show
-    render json: @provider
   end
 
   # POST /providers
   # POST /providers.json
   def create
-    @provider = clinic.providers.create!(provider_params)
-    render json: @provider, status: :created
+    @provider = clinic.providers.new(provider_params)
+    
+    respond_to do |format|
+      if @provider.save
+        format.json { render :show, status: :created }
+      else
+        format.json { render json: @provider.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /providers/1
   # PATCH/PUT /providers/1.json
   def update
-    @provider.update_attributes(provider_params)
-    render json: @provider, status: :ok
+    respond_to do |format|
+      if @provider.update(provider_params)
+        format.json { render :show, status: :ok }
+      else
+        format.json { render json: @provider.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /providers/1

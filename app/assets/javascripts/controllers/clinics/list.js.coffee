@@ -2,22 +2,24 @@
 
   .config ($stateProvider) ->
 
+    # Let Angular know about our state
     $stateProvider.state 'clinics',
       url: '/clinics'
       controller: 'ClinicListCtrl'
       templateUrl: '/templates/clinics/index.html'
+      resolve:
+        Clinics: (ClinicService) -> new ClinicService().all()
 
 
   .controller 'ClinicListCtrl',
-    ($scope, Clinic, $modal) ->
+    ($scope, Clinics, ClinicService, $modal) ->
 
+      # Initialize Scope
       $scope.init = ->
-        @ClinicService = new Clinic(serverErrorHandler)
-        $scope.clinics = @ClinicService.all()
+        $scope.clinics = Clinics
 
-
+      # Create button click handler
       $scope.create = ->
-        ClinicService = @ClinicService
 
         # Display a modal form
         @modal = $modal.open
@@ -27,10 +29,4 @@
 
 
 
-      serverErrorHandler = ->
-        swal(
-          title: 'Error!'
-          text: "There was a server error, please reload the page and try again."
-          type: 'error'
-          confirmButtonText: 'Ok'
-        )
+        

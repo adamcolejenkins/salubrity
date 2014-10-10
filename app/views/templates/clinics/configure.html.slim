@@ -1,69 +1,35 @@
-.mail-inbox.configure.message.ng-cloak ng-init="init()"
-  
-  .head
-    h3
-      | {{clinic.title}} 
-      small
-        i.fa.fa-long-arrow-right
-        em
-          |  {{clinic.survey.title}} Survey
-      span
-        a href="#" ng-click="spreviewSurvey(clinic)" tooltip="Launch Survey"
-          i.fa.fa-rocket
-        a href="#" ng-click="editClinic(clinic)" tooltip="Edit Clinic"
-          i.fa.fa-cog
-        a href="#" ng-click="deleteClinic(clinic)" tooltip="Delete Clinic"
-          i.fa.fa-trash
+.ng-cloak ng-init="init()"
 
-  .filters.clearfix
-    span.pull-left
-      button.btn.btn-success.btn-sm ng-click="addProvider()"
-        i.fa.fa-plus
-        |  Add Provider
-
-    .btn-group.pull-right
-      button.btn.btn-default.btn-sm.disabled
-        i.fa.fa-upload
-      button.btn.btn-default.btn-sm.disabled
-        i.fa.fa-download
-
-    .btn-group.pull-right
-      button.btn.btn-sm.btn-flat.btn-default.dropdown-toggle type="button" data-toggle="dropdown" 
-        | Order By  
-        span.caret
-      ul.dropdown-menu role="menu"
-        li
-          a href="#" ng-click="predicate = 'name'" 
-            | Provider Name  
-            i.fa.fa-check.pull-right ng-show="predicate == 'name'"
-        li
-          a href="#" ng-click="predicate = '-created_at'" 
-            | Recently Added  
-            i.fa.fa-check.pull-right ng-show="predicate == '-created_at'"
-
-  .mails
-
-    .item ng-repeat="provider in clinic.providers | orderBy:predicate"
-      div
-        i.fa.fa-user.fa-2x
-      div
-
-        h4.from
-          | {{provider.name}}
-        p.msg
-          | {{provider.position}}
-      
-      .tools.pull-right
-          .btn-group
-            button.btn-sm.btn-link ng-click="editProvider(provider)" tooltip="Edit Provider"
-              i.fa.fa-pencil 
-            button.btn-sm.btn-link ng-click="deleteProvider(provider)" tooltip="Delete Provider"
-              i.fa.fa-trash-o
-
-  .empty ng-show="!clinic.providers.length"
-    i.fa.fa-user
-    h3 No Providers
-    p 
-      | Add a provider above by clicking the 
-      i.fa.fa-plus
-      |  button.
+  .cl-mcont
+    
+    .page-head
+      h2
+        | {{clinic.title}} 
+        small.hthin
+          i.fa.fa-long-arrow-right
+          em
+            |  {{clinic.survey.title}} Survey
+        span
+          a href="#" ng-click="previewSurvey(clinic)" tooltip="Launch Survey"
+            i.fa.fa-rocket
+          a href="#" ng-click="deleteClinic(clinic)" tooltip="Delete Clinic"
+            i.fa.fa-trash
+    
+    .row
+      .col-md-12
+        ul.nav.nav-pills
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})"
+              i.fa.fa-cog
+              |  Settings
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.design({id: clinic.id})"
+              i.fa.fa-paint-brush
+              |  Design
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.providers({id: clinic.id})"
+              i.fa.fa-user-md
+              |  Providers
+    
+    .row
+      .col-md-12 ui-view=""

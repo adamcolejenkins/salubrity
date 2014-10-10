@@ -6,7 +6,7 @@
 
     fieldTypes: [
       {
-        enabled: true,
+        enabled: false,
         label: 'Welcome Screen',
         type: 'intro',
         icon: 'sign-in',
@@ -19,7 +19,7 @@
           button_label: 'Start'
         }
       },{
-        enabled: true,
+        enabled: false,
         label: 'Thank You Screen',
         type: 'outro',
         icon: 'sign-out',

@@ -23,6 +23,7 @@
 //= require angular-sanitize
 //= require angular-ui-router
 //= require angular-touch
+//= require angular-animate
 //= require ng-underscore/build/ng-underscore.js
 //= require angular-bootstrap/ui-bootstrap-tpls
 //= require angular-ui-sortable/sortable
@@ -39,9 +40,9 @@
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 //= require jquery.maskedinput/jquery.maskedinput
 //= require jasny.bootstrap/extend/js/jasny-bootstrap.min
+//= require bootstrap.switch/bootstrap-switch.min
+//= require bootstrap.slider/js/bootstrap-slider
 //= require sweetalert
-//= require jquery.vectormaps/jquery-jvectormap-1.2.2.min
-//= require jquery.vectormaps/maps/jquery-jvectormap-us-merc-en
 
 
 //= require behaviour/core

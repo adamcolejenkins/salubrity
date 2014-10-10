@@ -14,10 +14,10 @@
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
 
-      # $scope.init = ->
-      @FieldService = new Field($stateParams.id, serverErrorHandler)
-      $scope.SurveyService = new Survey(serverErrorHandler)
-      $scope.survey = $scope.SurveyService.find $stateParams.id
+      $scope.init = ->
+        @FieldService = new Field($stateParams.id, serverErrorHandler)
+        @SurveyService = new Survey(serverErrorHandler)
+        $scope.survey = @SurveyService.find $stateParams.id
 
       $scope.addField = (field) ->
 
@@ -31,28 +31,7 @@
 
           # Display Field Settings window
           $scope.editField(field)
-
-          # Set survey intro ID and scope if Intro field
-          if field.field_type == 'intro'
-            field.priority = 1
-            $scope.priorityChanged(field)
-            updateSurvey(intro_id: field.id)
-            $scope.survey.fields.unshift field
-
-          # Set survey outro ID and scope if Outro field
-          else if field.field_type == 'outro'
-            updateSurvey(outro_id: field.id)
-            $scope.survey.fields.push field
-
-          # Otherwise add field to field list
-          else
-            if $scope.survey.outro_id
-              field.priority = $scope.survey.fields.length - 1
-              $scope.priorityChanged(field)
-              $scope.survey.fields.splice $scope.survey.fields.length - 1, 0, field
-            else
-              console.log "outro_id: FALSE"
-              $scope.survey.fields.push(field)
+          $scope.survey.fields.push(field)
 
 
       $scope.editField = (field, $event) ->
@@ -83,15 +62,20 @@
             FieldService.delete field
             # Remove clinic from the list
             $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
-            # Update the survey intro/outro IDs
-            if field.field_type == 'intro'
-              updateSurvey(intro_id: null)
-            else if field.field_type == 'outro'
-              updateSurvey(outro_id: null)
         )
 
+      $scope.editSurvey = (survey) ->
+
+        @modal = $modal.open
+          templateUrl: '/templates/surveys/edit.html'
+          windowTemplateUrl: '/templates/partials/modalFormWindow.html'
+          controller: 'SurveyEditCtrl'
+          resolve:
+            survey: -> survey
+            
 
       $scope.deleteSurvey = (survey) ->
+        SurveyService = @SurveyService
 
         swal(
           title: 'Are you sure?'
@@ -111,7 +95,7 @@
                 confirmButtonColor: '#DD6B55'
                 confirmButtonText: 'Yes, I\'m absolutely sure, delete it!'
                 , ->
-                  $scope.SurveyService.delete($scope.survey).then ->
+                  SurveyService.delete($scope.survey).then ->
                     $timeout(->
                       swal(
                         title: 'Successfully deleted survey!'
@@ -154,15 +138,6 @@
           $scope.priorityChanged(field)
 
 
-      serverErrorHandler = ->
-        swal(
-          title: 'Error!'
-          text: "There was a server error, please reload the page and try again."
-          type: 'error'
-          confirmButtonText: 'Ok'
-        )
-
-
       updatePriorities = ->
         # During rendering it's simplest to just mirror priorities based
         # on field positiions in the list
@@ -186,4 +161,8 @@
 
       updateSurvey = (params) ->
         angular.extend($scope.survey, params)
-        $scope.SurveyService.update($scope.survey, params)
+        @SurveyService.update($scope.survey, params)
+
+
+      serverErrorHandler = ->
+        alert("There was a server error, please reload the page and try again.")

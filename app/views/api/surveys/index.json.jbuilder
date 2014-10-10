@@ -1,4 +1,3 @@
-json.array!(@api_surveys) do |api_survey|
-  json.extract! api_survey, :id
-  json.url api_survey_url(api_survey, format: :json)
+json.array!(@surveys) do |survey|
+  json.extract! survey, :id, :title, :description, :guid, :status, :intro_id, :outro_id, :deleted_at, :created_at, :updated_at
 end

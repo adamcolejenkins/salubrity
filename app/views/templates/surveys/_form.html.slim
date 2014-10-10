@@ -9,3 +9,13 @@ form.form-horizontal role="form" name="surveyForm" autocomplete="off" novalidate
     label.control-label.col-sm-2 for="description" Description
     .col-sm-10
       input.form-control#description type="text" ng-model="survey.description" autocomplete="off" required="required"
+
+  .form-group
+    label.control-label.col-sm-2 for="guid" Permalink
+    .col-sm-10
+      input.form-control#guid type="text" ng-model="survey.guid" autcomplete="off" autofocus="autofocus" required="required"
+
+  .form-group
+    label.control-label.col-sm-2 for="status" Published
+    .col-sm-10
+      input.switch type="checkbox" ng-model="survey.status" ng-true-value="published" ng-false-value="draft" data-on-color="success" data-size="small" data-on-text="Published" data-off-text="Draft"

@@ -1,8 +1,9 @@
 
 
 /*Flat palette*/
-$green: #1DD2AF;
-$dark-green: #19B698;
+$green: #19B698;
+$dark-green: darken($green, 5%);
+
 $lemon: #40D47E;
 $dark-lemon: #2CC36B;
 $blue: #4AA3DF;

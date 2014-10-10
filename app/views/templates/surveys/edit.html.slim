@@ -1,10 +1,12 @@
-.ng-cloak(ng-init="init()")
+.ng-cloak ng-init="init()"
+  
+  .modal-header
+    h3 Edit Survey
+    button.close.md-close type="button" ng-click="close()" aria-hidden="true" ×
 
-  hgroup
-    div.title
-      h2 = t 'surveys.edit.title'
-      h3.thin
-        small = t 'surveys.edit.describe'
+  .modal-body.form
+    = render 'templates/surveys/form'
 
-  section.survey-form
-    = render "templates/surveys/form"
+  .modal-footer
+    button.btn.btn-default.btn-rad.btn-flat ng-click="close()" Cancel
+    button.btn.btn-success.btn-rad.btn-flat ng-click="proceed(survey)" ng-disabled="surveyForm.$invalid" Save Survey

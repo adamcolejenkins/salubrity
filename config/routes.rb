@@ -34,10 +34,10 @@ Rails.application.routes.draw do
 
   get '/clinics' => 'templates#index'
   get '/clinics/:id' => 'templates#index'
-  get '/clinics/new' => 'templates#index', as: 'new_clinic'
+  get '/clinics/:id/providers' => 'templates#index'
+  get '/clinics/:id/design' => 'templates#index'
+  get '/clinics/:id/settings' => 'templates#index'
 
-  get '/clinics/:id/configure' => 'templates#index'
-  
   # get '/surveys/:survey_id/fields/:id' => 'templates#index'
   # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'templates#index'
 

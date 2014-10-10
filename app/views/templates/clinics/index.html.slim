@@ -10,8 +10,8 @@
         ul.nav.nav-pills.nav-stacked
 
           li ng-repeat="clinic in clinics | orderBy:'title'" ng-class="{'active': id == clinic.id}"
-            a href="/clinics/{{clinic.id}}/configure"
-              i.fa.fa-map-marker
+            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})"
+              i.fa.fa-medkit
               | {{clinic.title}}
 
         .compose

@@ -1,0 +1,31 @@
+.block-flat
+  .header
+    .actions
+      button.btn.btn-success.btn-flat.btn-rad.btn-sm ng-click="addProvider()" New Provider
+    h3 Providers
+  .content
+    table.no-border.hover
+      thead.no-border
+        tr
+          th width="60%" Provider
+          th colspan="2"
+          th.text-right Actions
+      tbody.no-border-y
+        tr.items ng-repeat="provider in clinic.providers | orderBy:predicate"
+          td
+            i.fa.fa-user-md
+            strong
+              |  {{ provider.name }} 
+            | - {{ provider.position }}
+          td
+            i.fa.fa-envelope-o
+            | {{ provider.email }}
+          td
+            i.fa.fa-phone
+            | {{ provider.phone }}
+          td.text-right
+            a href="#" ng-click="editProvider(provider)"
+              i.fa.fa-pencil
+            a.color-danger href="#" ng-click="deleteProvider(provider)"
+              i.fa.fa-trash-o
+

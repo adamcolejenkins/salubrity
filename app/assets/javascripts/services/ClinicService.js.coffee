@@ -1,8 +1,8 @@
 @salubrity
   
-  .factory 'Clinic', ($resource, $http, $filter) ->
+  .factory 'ClinicService', ($resource, $http) ->
 
-    class Clinic
+    class ClinicService
       constructor: (errorHandler) ->
         @service = $resource('/api/clinics/:id',
           {id: '@id'},

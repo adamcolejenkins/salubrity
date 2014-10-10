@@ -20,7 +20,8 @@
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require jasny.bootstrap/extend/css/jasny-bootstrap.min
-//= require jquery.vectormaps/jquery-jvectormap-1.2.2
+//= require bootstrap.switch/bootstrap-switch
+//= require bootstrap.slider/css/slider
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -35,7 +36,7 @@
 @import "scss/elements";
 
 /*CONFIG AND GENERAL STYLE*/
-@import "scss/config-wine";
+@import "scss/config-blue";
 @import "scss/general";
 @import "scss/helpers";
 @import "scss/typography";
@@ -64,6 +65,7 @@
 @import "scss/page-profile";
 @import "scss/page-search";
 @import "scss/sign-up";
+@import "scss/page-config";
  
 /*ELEMENTS*/
 @import "scss/elements/accordions";

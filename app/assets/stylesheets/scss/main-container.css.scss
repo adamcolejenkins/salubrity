@@ -20,3 +20,30 @@
 section.layout {
   @include make-row();
 }
+
+.ui-view-container {
+  position: relative;
+}
+
+.reveal-view.ng-enter, .ng-leave {
+  // position: absolute;
+  // left: 0;
+  // right: 0;
+  @include transition(all 5.5s ease-in-out);
+}
+
+.reveal-view.ng-enter {
+  opacity: 0;
+}
+
+.reveal-view.ng-enter-active {
+  opacity: 1;
+}
+
+.reveal-view.ng-leave {
+  opacity: 1;
+}
+
+.reveal-view.ng-leave-active {
+  opacity: 0;
+}

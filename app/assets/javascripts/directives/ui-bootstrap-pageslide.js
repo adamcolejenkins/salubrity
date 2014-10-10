@@ -62,7 +62,7 @@ angular.module( 'salubrity' )
     });
 
     function removePageslideWindow(pageslideInstance) {
-        var builder = $document.find('.mail-inbox.builder .fields').eq(0);
+        var builder = $document.find('.cl-mcont.aside').eq(0);
         var pageslideWindow = openedWindows.get(pageslideInstance).value;
 
         // clean up the stack
@@ -143,7 +143,7 @@ angular.module( 'salubrity' )
             keyboard: pageslide.keyboard
         });
 
-        var builder = $document.find('.mail-inbox.builder .fields').eq(0),
+        var builder = $document.find('.cl-mcont.aside').eq(0),
             currBackdropIndex = backdropIndex();
 
         if (currBackdropIndex >= 0 && !backdropDomEl || false) {

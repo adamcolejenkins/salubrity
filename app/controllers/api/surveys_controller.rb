@@ -5,24 +5,33 @@ class Api::SurveysController < Api::BaseController
   # GET /api/surveys
   def index
     @surveys = Survey.filter(params.slice(:guid))
-    render json: @surveys
   end
 
   # GET /api/surveys/1
   def show
-    render json: @survey
   end
 
   # POST /api/surveys
   def create
-    @survey = Survey.create!(safe_params)
-    render json: @survey, status: :created
+    @survey = Survey.new(survey_params)
+    respond_to do |format|
+      if @survey.save
+        format.json { render :show, status: :created }
+      else
+        format.json { render json: @survey.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /api/surveys/1
   def update
-    @survey.update_attributes(safe_params)
-    render json: @survey, status: :ok
+    respond_to do |format|
+      if @survey.update(survey_params)
+        format.json { render :show, status: :ok }
+      else
+        format.json { render json: @survey.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /api/surveys/1
@@ -39,7 +48,7 @@ class Api::SurveysController < Api::BaseController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def safe_params
+  def survey_params
     params.require(:survey).permit(:title, :description, :guid, :intro_id, :outro_id, :logo_path, :status, :scheduled, :scheduled_start, :scheduled_stop)
   end
 end

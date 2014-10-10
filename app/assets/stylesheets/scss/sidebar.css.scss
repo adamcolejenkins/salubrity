@@ -109,10 +109,10 @@ background-color: $primary-color;
 }
 
 .cl-vnavigation li a{
-	border-top: 1px solid rgba(255,255,255,0.04);
+	border-top: 1px solid rgba(0,0,0,0.04);
 	display:block;
 	padding: 14px 25px;
-	color: rgba(255, 255, 255, 0.6);
+	color: rgba($sidebar-text-color, 0.6);
 	font-size: 13px;
   font-weight: 400;
   white-space: nowrap;
@@ -368,7 +368,7 @@ background-color: $primary-color;
 }
 
 .cl-vnavigation .active > a{
-    background:#2A2C34;
+    background-color: darken($sidebar-color, 10%);
    	border-left:2px solid $primary-color;
 }
 

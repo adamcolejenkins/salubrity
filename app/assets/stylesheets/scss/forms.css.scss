@@ -148,28 +148,28 @@ input::-webkit-input-speech-button {
 }
 
 // Full Color inputs
-.full-color {
-  .form-control,
-  &.select2-drop,
-  &.select2-drop .select2-search input,
-  &.selec2-drop-active,
-  .select2-container .select2-choice,
-  .select2-container .select2-choice .select2-arrow {
-    background-color: lighten($primary-color, 2%);
-    border-color: darken($primary-color, 5%);
-    color: #fff;
-  }
-  .select2-results .select2-no-results,
-  .select2-results .select2-searching,
-  .select2-results .select2-ajax-error,
-  .select2-results .select2-selection-limit {
-    background-color: lighten($primary-color, 2%);
-  }
+// .full-color {
+//   .form-control,
+//   &.select2-drop,
+//   &.select2-drop .select2-search input,
+//   &.selec2-drop-active,
+//   .select2-container .select2-choice,
+//   .select2-container .select2-choice .select2-arrow {
+//     background-color: lighten($primary-color, 2%);
+//     border-color: darken($primary-color, 5%);
+//     color: #fff;
+//   }
+//   .select2-results .select2-no-results,
+//   .select2-results .select2-searching,
+//   .select2-results .select2-ajax-error,
+//   .select2-results .select2-selection-limit {
+//     background-color: lighten($primary-color, 2%);
+//   }
 
-  .btn {
+//   .btn {
 
-  }
-}
+//   }
+// }
 
 // Angular Validation
 form[novalidate] {

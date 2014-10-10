@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ui.router', 'ui.bootstrap', 'ui.sortable', 'ngTouch', 'ngS3upload'
+  'ngResource', 'ui.router', 'ui.bootstrap', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ngAnimate'
 ]
 
 
@@ -14,7 +14,7 @@
 
 
 # Here we define our main route
-@salubrity.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
+@salubrity.config ($urlRouterProvider, $locationProvider) ->
 
   # Enable HTML5mode
   $locationProvider.html5Mode true;

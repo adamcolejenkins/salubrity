@@ -103,7 +103,6 @@ javascript:
     var height = windowHeight - (headNavHeight + builderHeadHeight + builderFiltersHeight)
 
     $('.page-stack').height(height);
-    console.log(height, '=', windowHeight, '- (', headNavHeight, '+', builderHeadHeight, '+', builderFiltersHeight, ')');
   };
   pageStackHeight();
   $(window).resize(pageStackHeight);

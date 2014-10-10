@@ -14,7 +14,7 @@
           $el.iCheck "update"
 
         $el.iCheck(
-          checkboxClass: "icheckbox_#{style} checkbox"
+          checkboxClass: "icheckbox_#{style}"
           radioClass: "iradio_#{style}"
         ).on "ifChanged", (event) ->
 
@@ -56,4 +56,20 @@
             elem.mask("99%");
           when 'currency'
             elem.mask("$999,999,999.99");
+  )
+
+.directive "switch", ($timeout) ->
+  return (
+    restrict: 'C'
+    link: (scope, elem, attrs) ->
+      $timeout ->
+        elem.bootstrapSwitch()
+  )
+
+.directive "slider", ($timeout) ->
+  return (
+    restrict: 'AC'
+    link: (scope, elem, attrs) ->
+      $timeout ->
+        elem.slider()
   )

@@ -93,6 +93,10 @@
   border-left: 1px solid #E9E9E9;
   overflow: hidden;
 
+  & > div {
+    width: 300px;
+  }
+
   &.slide {
     @include translate3d(100%, 0, 0);
     @include transition(.3s ease-out);
