@@ -1,8 +1,7 @@
 class Field < ActiveRecord::Base
   include Filterable
   belongs_to :survey
-
-  has_many :field_choices, -> { order :priority }, dependent: :destroy
+  has_many :field_choices, -> { order "priority ASC" }, dependent: :destroy
 
   acts_as_list scope: :survey, column: :priority
 
