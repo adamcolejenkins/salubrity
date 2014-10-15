@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    = tag 'meta', 'charset' => 'utf-8'
+    = tag 'meta', 'viewport' => 'width=device-width, initial-scale=1'
+    title Salubrity
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:300,200,100'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body.animated ng-app="salubrity" ng-controller="AppCtrl"
+    #cl-wrapper
+
+      .cl-sidebar
+        = render :partial => 'layouts/sidebar'
+
+      .container-fluid#pcont
+        = render :partial => 'layouts/header'
+        
+        = yield

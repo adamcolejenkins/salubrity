@@ -1,0 +1,10 @@
+/ Multiple Choice field context
+.fs-anim-lower.fs-radio-group class=("fs-radio-#{field.display_as}")
+  .choice.clearfix
+    - field.field_choices.each do |choice|
+      - if choice.attribute_present? :background_color
+        span style=("background-color: #{choice.background_color}")
+      - else
+        span
+          = answer_form.radio_button :value, choice.key, required: field.required
+          = answer_form.label :value, choice.label

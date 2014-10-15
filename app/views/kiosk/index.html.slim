@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-md-offset-2.col-md-8
+      
+      h1.text-center Kiosk Mode
+      
+      - surveys_array = @surveys.map { |survey| [survey.title, survey.guid] }
+      = select_tag :survey_guid, options_for_select(surveys_array)

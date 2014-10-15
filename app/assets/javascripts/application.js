@@ -48,6 +48,6 @@
 //= require behaviour/core
 
 // Our Angular app files
-//= require salubrity
+//= require angular/salubrity
 
-//= require_tree .
+//= require_tree ./angular

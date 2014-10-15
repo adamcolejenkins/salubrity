@@ -21,35 +21,38 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
-  # get '/dashboard' => 'templates#index'
+  # get '/dashboard' => 'angular#index'
 
-  get '/surveys' => 'templates#index'
-  get '/surveys/:id' => 'templates#index'
-  get '/surveys/new' => 'templates#index', as: 'new_survey'
+  get '/surveys' => 'angular#index'
+  get '/surveys/:id' => 'angular#index'
+  get '/surveys/new' => 'angular#index', as: 'new_survey'
 
-  get '/surveys/:id/build' => 'templates#index', as: 'surveys_build'
-  get '/surveys/:id/design' => 'templates#index', as: 'surveys_design'
-  get '/surveys/:id/configure' => 'templates#index', as: 'surveys_configure'
-  get '/surveys/:id/analyze' => 'templates#index', as: 'surveys_analyze'
+  get '/surveys/:id/build' => 'angular#index', as: 'surveys_build'
+  get '/surveys/:id/design' => 'angular#index', as: 'surveys_design'
+  get '/surveys/:id/configure' => 'angular#index', as: 'surveys_configure'
+  get '/surveys/:id/analyze' => 'angular#index', as: 'surveys_analyze'
 
-  get '/clinics' => 'templates#index'
-  get '/clinics/:id' => 'templates#index'
-  get '/clinics/:id/providers' => 'templates#index'
-  get '/clinics/:id/design' => 'templates#index'
-  get '/clinics/:id/settings' => 'templates#index'
+  get '/clinics' => 'angular#index'
+  get '/clinics/:id' => 'angular#index'
+  get '/clinics/:id/providers' => 'angular#index'
+  get '/clinics/:id/design' => 'angular#index'
+  get '/clinics/:id/settings' => 'angular#index'
 
-  # get '/surveys/:survey_id/fields/:id' => 'templates#index'
-  # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'templates#index'
+  # get '/surveys/:survey_id/fields/:id' => 'angular#index'
+  # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'angular#index'
 
-  # get '/reports' => 'templates#index'
-  # get '/reports/:id' => 'templates#index'
-  # get '/reports/create' => 'templates#index'
-  # get '/reports/:id/edit' => 'templates#index'
+  # get '/reports' => 'angular#index'
+  # get '/reports/:id' => 'angular#index'
+  # get '/reports/create' => 'angular#index'
+  # get '/reports/:id/edit' => 'angular#index'
 
-  # get '/users' => 'templates#index'
-  # get '/users/invite' => 'templates#index'
+  # get '/users' => 'angular#index'
+  # get '/users/invite' => 'angular#index'
 
-  get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
+  get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
 
-  get '/s/:guid' => 'response#index', constraints: { guid: /[a-z\-]+/ }
+  get '/kiosk' => 'angular#index'
+  
+  get '/kiosk/:guid' => 'kiosk#show', constraints: { guid: /[a-z\-]+/ }
+  post '/kiosk/:guid/create' => 'kiosk#create', constraints: { guid: /[a-z\-]+/ }, as: 'responses'
 end
