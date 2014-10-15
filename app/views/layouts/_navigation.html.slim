@@ -1,64 +1,32 @@
-nav
-  section
+ul.cl-vnavigation
+  
+  li ui-sref-active="active"
+    a href="#" ui-sref="dashboard"
+      i.fa.fa-home
+      span Dashboard
 
-    - if user_signed_in?
+  li ui-sref-active="active"
+    a href="#" ui-sref="surveys"
+      i.fa.fa-list
+      span Surveys
 
-      / Survey List Nav
-      ul.left(ng-show="current.page('survey', 'list')")
+  li ui-sref-active="active"
+    a href="#" ui-sref="clinics"
+      i.fa.fa-medkit
+      span Clinics
 
-        li
-          = link_to 'My Clinics', surveys_path, class: 'color-success'
-      
-      / Survey Sub Navigation
-      ul.left(ng-show="!current.page('survey', 'list')")
-        li.icon
-          = link_to surveys_path, class: 'color-success'
-            i.fa.fa-arrow-left
+  / li ui-sref-active="active"
+  /   a href="#" ui-sref="providers"
+  /     i.fa.fa-user-md
+  /     span Providers
 
-      ul.left(ng-show="current.page('survey', 'create')")
-        li.active
-          = link_to 'New Survey', nil
-
-      ul.left(ng-show="current.ctrl('survey') && id")
-
-        li(ng-class="{'active': current.action('build'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/build"
-            span Build
-
-        li.divider
-          i.fa.fa-chevron-right
-
-        li(ng-class="{'active': current.action('design'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/design"
-            span Design
-
-        li.divider
-          i.fa.fa-chevron-right
-
-        li(ng-class="{'active': current.action('configure'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/configure"
-            span Configure
-
-        li.divider
-          i.fa.fa-chevron-right
-
-        li(ng-class="{'active': current.action('analyze'), 'disabled': !id}")
-          = link_to "/survey/{{id}}/analyze"
-            span Analyze
-
-      ul.right ng-show="current.ctrl('survey') && id && false"
-
-        li.has-form
-          = link_to 'Preview my survey', nil, class: 'radius success button'
-    
-    - else
-
-      / Welcome Nav
-      ul.left
-
-        li
-          = link_to 'Tour', ''
-        li
-          = link_to 'Use Cases', ''
-        li
-          = link_to 'Contact', ''
+  / li ui-sref-active="active"
+  /   a href="#" ui-sref="analytics"
+  /     i.fa.fa-bar-chart-o
+  /     span Analytics
+  
+  / Super User only
+  / li ui-sref-active="active"
+  /   a href="#" ui-sref="config"
+  /     i.fa.fa-cog
+  /     span Configuration

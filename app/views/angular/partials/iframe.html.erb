@@ -1,0 +1,26 @@
+<div class="ng-cloak" ng-init="init()">
+  <div class="modal-header">
+    <h3>Previewing CLINIC</h3>
+    <button class="close" ng-click="close()">×</button>
+  </div>
+  <div class="modal-frame" style="height:800px">
+    <iframe class="preview" type="text/html" width="100%" height="100%" ng-src="{{url}}" allowfullscreen="" frameborder="0"></iframe>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary btn-flat" ng-click="close()">Done</button>
+  </div>
+</div>
+
+<script>
+  // var mframe = $('.modal-frame'),
+  //     winH = $(window).height()
+  //     mheadH = $('.modal-content .modal-header').height(),
+  //     mfootH = $('.modal-content .modal-footer').height(),
+  //     mtop = $('.modal-content').offset().top;
+
+  // var height = winH - (mheadH + mfootH + (mtop*2))
+
+  // mframe.height( height );
+
+  // console.log(height + " = " + winH + " - ("+mheadH+" + "+mfootH+" + ("+mtop+" * 2))");
+</script>

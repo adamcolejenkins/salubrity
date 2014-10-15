@@ -10,34 +10,44 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require modernizr
 //= require jquery
 //= require jquery_ujs
-//= require foundation
+//= require bootstrap-sprockets
 //= require jquery-ui
 //= require turbolinks
 
 // Angular Directives
 //= require angular
 //= require angular-resource
-//= require angular-route
+//= require angular-sanitize
+//= require angular-ui-router
 //= require angular-touch
+//= require angular-animate
 //= require ng-underscore/build/ng-underscore.js
-//= require angular-foundation/mm-foundation-tpls
+//= require angular-bootstrap/ui-bootstrap-tpls
 //= require angular-ui-sortable/sortable
 //= require datatables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
+//= require ng-s3upload
 
 // Vendor assets
+//= require jquery.cookie/jquery.cookie
 //= require jquery-icheck/icheck
+//= require jquery.niftymodals/js/jquery.modalEffects
 //= require select2/select2
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
+//= require jquery.maskedinput/jquery.maskedinput
+//= require jasny.bootstrap/extend/js/jasny-bootstrap.min
+//= require bootstrap.switch/bootstrap-switch.min
+//= require bootstrap.slider/js/bootstrap-slider
+//= require sweetalert
+
+
+//= require behaviour/core
 
 // Our Angular app files
-//= require salubrity
+//= require angular/salubrity
 
-//= require_tree .
-
-$(function(){ 
-  $(document).foundation();
-});
+//= require_tree ./angular

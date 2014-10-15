@@ -1,0 +1,37 @@
+.mail-inbox.builder.message ng-init="init()"
+
+  .head
+    h3 
+      | {{survey.title}}
+      span
+        a href="#" ng-click="editSurvey(survey)" tooltip="Configure"
+          i.fa.fa-cog
+        a href="#" ng-click="deleteSurvey(survey)" tooltip="Delete"
+          i.fa.fa-trash
+
+    h4.thin
+      small
+        | {{survey.description}}
+  
+  .filters ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl"
+      
+  .fields tooltip="Double click to edit, drag to reorder." ng-hide="survey.fields == 0"
+    
+    .mails ui-sortable="sortableOptions" ng-model="survey.fields"
+
+      .item.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
+        
+        div
+          i.fa class="fa-{{field.properties.icon}}"
+
+        div
+          div.tools.pull-right
+            .btn-group
+              button.btn-sm.btn-link tooltip="Duplicate field" ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
+                  i.fa.fa-copy
+              button.btn-sm.btn-link ng-click="deleteField(field, $index)" tooltip="Delete field"
+                  i.fa.fa-trash-o
+          h4.from
+            | {{field.properties.label}}
+          p.msg
+            | {{field.label}}

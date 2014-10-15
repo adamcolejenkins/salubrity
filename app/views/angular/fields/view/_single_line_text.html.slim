@@ -1,0 +1,10 @@
+/ <input
+/   type="text"
+/   class="fs-anim-lower <%= field.field_size %>"
+/   name="<%= field.field_type %>-<%= field.id %>"
+/   id="<%= field.field_type %>-<%= field.id %>"
+/   placeholder="<%= field.predefined_value %>"
+/   required="<%= field.required %>" />
+
+/ Single Line Text form context
+= answer_form.text_field :value, class: 'fs-anim-lower', required: field.required, placeholder: field.predefined_value

@@ -1,0 +1,37 @@
+.cl-mcont.aside(ng-init="init()")
+  
+  .page-aside.email
+    div
+      .content
+        h2.page-title My Surveys
+        p.description Manage your surveys
+    
+      .mail-nav.collapse
+        ul.nav.nav-pills.nav-stacked
+
+          li ng-repeat="survey in surveys | orderBy:'title'" ng-class="{'active': id == survey.id}"
+            a href="/surveys/{{survey.id}}/build"
+              i.fa.fa-file
+              | {{survey.title}}
+              
+        
+        .compose
+          button.btn.btn-success ng-click="createSurvey()" New Survey
+
+  .content ui-view=""
+    .empty ng-show="! id"
+      i.fa.fa-file
+      h3 My Surveys
+      p
+        | Add a new survey 
+        span(ng-show="surveys.length") or select one 
+        | to get started.
+
+
+
+javascript:
+  var asideHeight = function () {
+    $('.aside .page-aside').height( $(window).height() - $('#head-nav').height() )
+  };
+  asideHeight();
+  $(window).resize(asideHeight);

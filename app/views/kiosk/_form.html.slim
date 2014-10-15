@@ -1,0 +1,9 @@
+= form_for @kiosk do |f|
+  - if @kiosk.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@kiosk.errors.count, "error")} prohibited this kiosk from being saved:"
+      ul
+        - @kiosk.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit 'Save'

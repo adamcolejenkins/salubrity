@@ -1,0 +1,22 @@
+/ Scale field context
+.fs-anim-lower.clearfix
+  .fs-slider-before id=("fs-slider-display-#{field.id}") = field.predefined_value
+  .fs-slider
+    div id=("slider-link-#{field.id}")
+  = answer_form.hidden_field :value, id: "slider-value-#{field.id}", required: field.required
+
+
+javascript:
+  $("#slider-link-#{field.id}").noUiSlider({
+    start: [#{field.predefined_value}],
+    step: #{field.increment},
+    range: {
+      'min': #{field.range_min},
+      'max': #{field.range_max}
+    },
+    format: wNumb({
+      decimals: 0
+    })
+  });
+  $("#slider-link-#{field.id}").Link('lower').to( $("#slider-value-#{field.id}") );
+  $("#slider-link-#{field.id}").Link('lower').to( $("#fs-slider-display-#{field.id}") );

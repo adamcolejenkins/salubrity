@@ -1,0 +1,35 @@
+.ng-cloak ng-init="init()"
+
+  .cl-mcont
+    
+    .page-head
+      h2
+        | {{clinic.title}} 
+        small.hthin
+          i.fa.fa-long-arrow-right
+          em
+            |  {{clinic.survey.title}} Survey
+        span
+          a href="#" ng-click="previewSurvey(clinic)" tooltip="Launch Survey"
+            i.fa.fa-rocket
+          a href="#" ng-click="deleteClinic(clinic)" tooltip="Delete Clinic"
+            i.fa.fa-trash
+    
+    .row
+      .col-md-12
+        ul.nav.nav-pills
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})"
+              i.fa.fa-cog
+              |  Settings
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.design({id: clinic.id})"
+              i.fa.fa-paint-brush
+              |  Design
+          li ui-sref-active="active"
+            a href="#" ui-sref="clinics.configure.providers({id: clinic.id})"
+              i.fa.fa-user-md
+              |  Providers
+    
+    .row
+      .col-md-12 ui-view=""

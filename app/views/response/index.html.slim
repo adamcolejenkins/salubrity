@@ -1,0 +1,65 @@
+#fs-form-wrap.fs-form-wrap
+  
+  / Title & Logo
+  .fs-title
+    img alt=@clinic.title src="/assets/muhc-logo@1x.png" /
+    h1= @clinic.title
+
+  / Form
+  = form_for @response, html: { id: "response", class: "fs-form fs-form-full", autocomplete: "off" } do |response_form|
+
+    ol.fs-fields
+
+      / Provider
+      li class=("dropdown public") data-input-trigger=""
+        = response_form.label :provider, 'Which provider did you see today?', class: 'fs-field-label fs-anim-upper'
+        - providers_array = @clinic.providers.map { |provider| [provider.name, provider.id] }
+        = response_form.select :provider, providers_array, class: 'cs-select cs-skin-border fs-anim-lower', required: true
+
+      
+      / Dynamic fields
+      - @response.answers.each do |answer|
+        li class="#{answer.field.field_type} #{answer.field.visibility}" data-input-trigger=""
+          = response_form.fields_for answer, index: answer.id do |answer_form|
+            / Field Label
+            | <label class="fs-field-label fs-anim-upper"
+            - if answer.field.instructions.to_s.length > 0
+              | data-info="#{answer.field.instructions}"
+            | >#{answer.field.label}</label>
+            
+            / Field
+            = render partial: "templates/fields/view/#{answer.field.field_type}", locals: { :field => answer.field, :answer_form => answer_form }
+
+            = answer_form.hidden_field :started_at
+            = answer_form.hidden_field :ended_at
+
+    = response_form.hidden_field(:started_at)
+    = response_form.hidden_field(:ended_at)
+    = response_form.submit "Submit answers", class: 'fs-submit'
+
+
+javascript:
+  (function() {
+    var formWrap = document.getElementById( 'fs-form-wrap' );
+
+    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
+      new SelectFx( el, {
+        stickyPlaceholder: false,
+        onChange: function(val){
+          // document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+          for(var i = 0, j = el.options.length; i < j; ++i) {
+            if(el.options[i].value === val) {
+               el.options[i].selected = 'selected';
+               break;
+            }
+          }
+        }
+      });
+    } );
+
+    new FForm( formWrap, {
+      onReview : function() {
+        classie.add( document.body, 'overview' ); // for demo purposes only
+      }
+    } );
+  })();

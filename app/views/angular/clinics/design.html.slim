@@ -1,0 +1,94 @@
+.block-flat.designer.dark-box
+  .header
+    .row.no-margin
+      i.fa.fa-paint-brush.fa-3x.pull-left
+      h4.no-margin Survey Designer
+      p Personalize your survey with a background and custom colors.
+  .content.row.no-margin
+
+    .col-md-4.no-padding-left
+      
+      .header
+        h5
+          strong Background Image
+      .row.upload
+        .col-sm-4
+          .thumbnail
+            img src="/assets/clinic-background.jpg" ng-src="{{clinic.background.url}}" width="100%"
+        .col-sm-8
+          div
+            small.muted Current background
+          p
+            strong
+              | {{ clinic.background.filename }}
+          div
+            button.btn.btn-xs.btn-block.btn-danger.btn-rad Remove this background
+
+      .row.tools
+        .col-md-8
+          .form-group
+            label.control-label Brightness
+            div
+              input.slider.form-control ng-model="clinic.background.brightness"
+
+        .col-md-4
+          .form-group
+            label.control-label Scaling
+            div
+              button.btn.btn-xs.btn-info.btn-rad tooltip="No repeat"
+                i.fa.fa-compress
+              button.btn.btn-xs.btn-info.btn-rad tooltip="Repeat"
+                i.fa.fa-th
+              button.btn.btn-xs.btn-info.btn-rad.current tooltip="Fullscreen"
+                i.fa.fa-expand
+      hr
+      
+      .header
+        h5
+          strong Colors
+
+      .row.colors
+        .col-sm-12
+          tabset justified="true"
+            tab heading="Custom"
+              .row.colors.text-center.no-margin
+                .col-sm-4.col-sm-offset-1
+                  h6 Question
+                  div.color-box style="background-color: #19a9d5{{clinic.colors.question}}"
+                  input.form-control.input-sm.rad-2 type="text" value="#19a9d5"
+
+                .col-sm-4.col-sm-offset-2
+                  h6 Button
+                  div.color-box style="background-color: #27c24c{{clinic.colors.button}}"
+                  input.form-control.input-sm.rad-2 type="text" value="#27c24c"
+
+                .col-sm-4.col-sm-offset-1
+                  h6 Answer
+                  div.color-box style="background-color: #A3B1B2{{clinic.colors.answer}}"
+                  input.form-control.input-sm.rad-2 type="text" value="#A3B1B2"
+
+                .col-sm-4.col-sm-offset-2
+                  h6 Background
+                  div.color-box style="background-color: #3D566D{{clinic.colors.background}}"
+                  input.form-control.input-sm.rad-2 type="text" value="#3D566D"
+
+            tab heading="Palettes"
+              p.text-center There are no palettes available at this time.
+
+    .col-md-8.preview.no-padding-right.text-center
+      .row
+        .col-md-6.col-md-offset-3.clearfix
+          ul.nav.nav-tabs.nav-justified
+            li ng-class="{active: orientation == 'portrait'}"
+              a href="#" ng-click="orientation = 'portrait'" Portrait
+            li ng-class="{active: orientation == 'landscape'}"
+              a href="#" ng-click="orientation = 'landscape'" Landscape
+      
+      .row
+        .viewer class="{{orientation}}"
+          img.device src="/assets/iPad.svg" width="100%" height="100%"
+          .screen.bg-full style="background-image:url('/assets/clinic-background.jpg');"
+
+    .col-sm-12
+      hr
+      button.btn.btn-success.btn-flat.btn-rad Save Design

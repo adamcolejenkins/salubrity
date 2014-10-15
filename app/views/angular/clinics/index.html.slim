@@ -1,0 +1,34 @@
+.cl-mcont.aside ng-init="init()"
+  
+  .page-aside.email
+    div
+      .content
+        h2.page-title My Clinics
+        p.description Manage your clinics
+
+      .mail-nav.collapse
+        ul.nav.nav-pills.nav-stacked
+
+          li ng-repeat="clinic in clinics | orderBy:'title'" ng-class="{'active': id == clinic.id}"
+            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})"
+              i.fa.fa-medkit
+              | {{clinic.title}}
+
+        .compose
+          button.btn.btn-success ng-click="create()" New Clinic
+
+  .content ui-view=""
+    .empty ng-show="! id"
+      i.fa.fa-map-marker
+      h3 My Clinics
+      p
+        | Add a new clinic 
+        span(ng-show="clinics.length") or select one 
+        | to get started.
+
+javascript:
+  var asideHeight = function () {
+    $('.aside .page-aside').height( $(window).height() - $('#head-nav').height() )
+  };
+  asideHeight();
+  $(window).resize(asideHeight);
