@@ -1,0 +1,4 @@
+/ Provider Dropdown field context
+/ TODO: Change select class to kiosk-select along with directive, make it global, or just make the directive get select
+.kiosk-anim-lower
+  = collection_select(:response, :provider_id, @response.clinic.providers, :id, :name, {}, { class: 'cs-select cs-skin-border', required: field.required, placeholder: 'Select a provider'})

@@ -1,0 +1,26 @@
+form.form-horizontal role="form" name="providerForm" autocomplete="off" novalidate="novalidate"
+  
+  .form-group
+    label.control-label.col-sm-2 for="name" Name
+    .col-sm-10
+      input.form-control#name type="text" name="name" ng-model="provider.name" autocomplete="off" required="required"
+
+  .form-group
+    label.control-label.col-sm-2 for="position" Position
+    .col-sm-10
+      input.form-control#position type="text" name="position" ng-model="provider.position" autocomplete="off" required="required"
+
+  .form-group
+    label.control-label.col-sm-2 for="email" Email
+    .col-sm-10
+      input.form-control#email type="email" name="email" ng-model="provider.email" autocomplete="off" required="required"
+
+  .form-group
+    label.control-label.col-sm-2 for="phone" Phone
+    .col-sm-6
+      input.form-control#phone type="tel" name="phone" ng-model="provider.phone" autocomplete="off" mask="phone"
+  
+  .form-group.hide
+    label.control-label.col-sm-2 for="photo_url" Photo
+    .col-sm-6
+      div s3-upload="" bucket="'salubrity'" ng-model="provider.photo" s3-upload-options="{getOptionsUri: s3OptionsUri, folder: '{{clinic.id}}/providers/'}"

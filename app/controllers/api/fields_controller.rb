@@ -3,28 +3,35 @@ class Api::FieldsController < Api::BaseController
 
   # GET /api/surveys/1/fields
   def index
-    if params[:type]
-      render json: survey.fields.where(field_type: params[:type]).first
-    else
-      render json: survey.fields.where(["field_type != ? and field_type != ?", 'intro', 'outro'])
-    end
+    @fields = survey.fields.all
   end
 
   # GET /api/surveys/1/fields/1
   def show
-    render json: @field
   end
 
   # POST /api/surveys/1/fields
   def create
-    @field = survey.fields.create!(safe_params)
-    render json: @field, status: :created
+    @field = survey.fields.new(field_params)
+
+    respond_to do |format|
+      if @field.save
+        format.json { render :show, status: :created }
+      else
+        format.json { render json: @field.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /api/surveys/1/fields/1
   def update
-    @field.update_attributes(safe_params)
-    render json: @field, status: :ok
+    respond_to do |format|
+      if @field.update(field_params)
+        format.json { render :show, status: :ok }
+      else
+        format.json { render json: @field.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /api/surveys/1/fields/1
@@ -45,8 +52,8 @@ class Api::FieldsController < Api::BaseController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def safe_params
-    params.require(:field).permit(:survey_id, :label, :field_type, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :required, :visibility, :predefined_value, :priority, :target_priority, :attachment_type, :attachment_url, :button_label, :button_mode, :button_url)
+  def field_params
+    params.require(:field).permit(:survey_id, :label, :context, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :required, :visibility, :predefined_value, :priority, :target_priority, :attachment_type, :attachment_url, :button_label, :button_mode, :button_url)
   end
 end
 

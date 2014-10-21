@@ -1,0 +1,54 @@
+
+.cl-mcont{
+	background-color: #F0F0F0;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 200;
+	line-height: 21px;
+    padding: 15px 30px 30px 30px;
+    margin-top: 0;
+}
+
+.col-centered {
+  margin: auto;
+  float: none;
+}
+
+.cl-mcont.white{background:#fff;}
+
+.cl-mcont h1 {
+    line-height: 1.3em;
+}
+
+
+// Grid
+section.layout {
+  @include make-row();
+}
+
+.ui-view-container {
+  position: relative;
+}
+
+.reveal-view.ng-enter, .ng-leave {
+  // position: absolute;
+  // left: 0;
+  // right: 0;
+  @include transition(all 5.5s ease-in-out);
+}
+
+.reveal-view.ng-enter {
+  opacity: 0;
+}
+
+.reveal-view.ng-enter-active {
+  opacity: 1;
+}
+
+.reveal-view.ng-leave {
+  opacity: 1;
+}
+
+.reveal-view.ng-leave-active {
+  opacity: 0;
+}

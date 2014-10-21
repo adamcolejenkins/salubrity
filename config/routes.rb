@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'frontend/index'
 
   devise_for :users
@@ -12,33 +13,47 @@ Rails.application.routes.draw do
         resources :field_choices
       end
     end
+    resources :clinics do
+      resources :providers
+    end
+    get 's3/token'
   end
 
   root :to => 'home#index'
 
-  # get '/dashboard' => 'templates#index'
+  # get '/dashboard' => 'angular#index'
 
-  get '/surveys' => 'templates#index'
-  get '/survey/:id' => 'templates#index'
-  get '/survey/create' => 'templates#index'
+  get '/surveys' => 'angular#index'
+  get '/surveys/:id' => 'angular#index'
+  get '/surveys/new' => 'angular#index', as: 'new_survey'
 
-  get '/survey/:id/build' => 'templates#index', as: 'surveys_build'
-  get '/survey/:id/design' => 'templates#index', as: 'surveys_design'
-  get '/survey/:id/configure' => 'templates#index', as: 'surveys_configure'
-  get '/survey/:id/analyze' => 'templates#index', as: 'surveys_analyze'
+  get '/surveys/:id/build' => 'angular#index', as: 'surveys_build'
+  get '/surveys/:id/design' => 'angular#index', as: 'surveys_design'
+  get '/surveys/:id/configure' => 'angular#index', as: 'surveys_configure'
+  get '/surveys/:id/analyze' => 'angular#index', as: 'surveys_analyze'
+
+  get '/clinics' => 'angular#index'
+  get '/clinics/:id' => 'angular#index'
+  get '/clinics/:id/providers' => 'angular#index'
+  get '/clinics/:id/design' => 'angular#index'
+  get '/clinics/:id/settings' => 'angular#index'
+
+  # get '/surveys/:survey_id/fields/:id' => 'angular#index'
+  # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'angular#index'
+
+  # get '/reports' => 'angular#index'
+  # get '/reports/:id' => 'angular#index'
+  # get '/reports/create' => 'angular#index'
+  # get '/reports/:id/edit' => 'angular#index'
+
+  # get '/users' => 'angular#index'
+  # get '/users/invite' => 'angular#index'
+
+  get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
+
+  get '/kiosk' => 'kiosk#index'
   
-  # get '/surveys/:survey_id/fields/:id' => 'templates#index'
-  # get '/surveys/:survey_id/fields/:field_id/field_choices/:id' => 'templates#index'
-
-  # get '/reports' => 'templates#index'
-  # get '/reports/:id' => 'templates#index'
-  # get '/reports/create' => 'templates#index'
-  # get '/reports/:id/edit' => 'templates#index'
-
-  # get '/users' => 'templates#index'
-  # get '/users/invite' => 'templates#index'
-
-  get '/templates/:path.html' => 'templates#template', :constraints => { :path => /.+/  }
-
-  get ':guid' => 'response#index', constraints: { guid: /[a-z\-]+/ }
+  # get '/kiosk/:clinic_guid/:survey_guid' => 'kiosk#show', constraints: { clinic_guid: /[a-z\-]+/, survey_guid: /[a-z\-]+/ }, as: 'kiosk_run' ## FOR MULTIPLE SURVEYS
+  get '/kiosk/:guid/' => 'kiosk#new', constraints: { guid: /[a-z\-]+/ }, as: 'kiosk_new'
+  post '/kiosk/:guid/create' => 'kiosk#create', constraints: { guid: /[a-z\-]+/ }, as: 'responses'
 end

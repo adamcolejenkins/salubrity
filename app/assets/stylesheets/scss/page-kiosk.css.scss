@@ -1,0 +1,962 @@
+// Defaults
+$kiosk-animation-timing: 0.5s !default;
+
+$kiosk-primary-color: $primary-color !default;
+$kiosk-success-color: #b0c47f !default;
+$kiosk-info-color: $info-color !default;
+$kiosk-warning-color: $warning-color !default;
+$kiosk-danger-color: $danger-color !default;
+
+$kiosk-bg-color: #3b3f45 !default;
+$kiosk-text-color: #fff !default;
+$kiosk-info-text-color: $kiosk-info-color !default;
+$kiosk-error-text-color: $kiosk-danger-color !default;
+
+$kiosk-border-radius: 3px;
+$kiosk-border-rounded: 50%;
+
+$kiosk-form-max-width: 960px !default;
+$kiosk-form-input-text-color: #fffed8 !default;
+$kiosk-form-input-border-color: rgba(0,0,0,0.2) !default;
+
+$kiosk-form-button-border-radius: 40px !default;
+$kiosk-form-button-border-size: 2px !default;
+$kiosk-form-button-text-color: #fffed8 !default;
+$kiosk-form-button-text-color-active: #fff !default;
+$kiosk-form-button-text-color-hover: #fff !default;
+$kiosk-form-button-bg-color: $primary-color !default;
+$kiosk-form-button-bg-color-active: $primary-color !default;
+$kiosk-form-button-bg-color-hover: $primary-color !default;
+$kiosk-form-button-border-color: transparent !default;
+$kiosk-form-button-border-color-active: transparent !default;
+$kiosk-form-button-border-color-hover: transparent !default;
+
+$kiosk-controls-nav-dots-color: rgba(0,0,0,0.5) !default;
+$kiosk-controls-nav-dots-active-color: #fffed8 !default;
+$kiosk-controls-progress-bar-color: #fffed8 !default;
+$kiosk-controls-numbers-color: #000 !default;
+
+$kiosk-control-button-border-radius: 40px !default;
+$kiosk-control-button-text-color: rgba(0, 0, 0, 0.4) !default;
+$kiosk-control-button-text-color-active: #fff !default;
+$kiosk-control-button-text-color-hover: #fff !default;
+$kiosk-control-button-bg-color: transparent !default;
+$kiosk-control-button-bg-color-active: #2a3237 !default;
+$kiosk-control-button-bg-color-hover: #2a3237 !default;
+$kiosk-control-button-border-color: #2a3237 !default;
+$kiosk-control-button-border-color-active: #2a3237 !default;
+$kiosk-control-button-border-color-hover: #2a3237 !default;
+
+$kiosk-overview-title: 'Review & Submit' !default;
+$kiosk-overview-bg-color: #fffed8 !default;
+$kiosk-overview-text-color: #3b4f45 !default;
+
+$kiosk-overview-control-button-text-color: #2a3237 !default;
+$kiosk-overview-control-button-text-color-active: #2a3237 !default;
+$kiosk-overview-control-button-text-color-hover: #2a3237 !default;
+$kiosk-overview-control-button-bg-color: transparent !default;
+$kiosk-overview-control-button-bg-color-active: #2a3237 !default;
+$kiosk-overview-control-button-bg-color-hover: #2a3237 !default;
+$kiosk-overview-control-button-border-color: #2a3237 !default;
+$kiosk-overview-control-button-border-color-active: #2a3237 !default;
+$kiosk-overview-control-button-border-color-hover: #2a3237 !default;
+
+// =================================================
+// Kiosk Styles
+// =================================================
+body.kiosk.show {
+  background: $kiosk-bg-color;
+}
+.kiosk-form-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  color: $kiosk-text-color; // TODO: Clinic options with fallback
+  background-color: $kiosk-bg-color; // TODO: Clinic optiosn with fallback
+  
+  // ------------------
+  // Controls
+  // ------------------
+  button {
+    border: none;
+    background: none;
+    
+    &[disabled],
+    &.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+  
+  input:focus,
+  button:focus {
+    outline: none;
+  }
+
+  .kiosk-controls {
+    
+    // Dot Navigation
+    .kiosk-nav-dots {
+      @include position(absolute, 50% 60px null auto);
+      
+      button {
+        position: relative;
+        display: block;
+        padding: 0;
+        margin: 16px 0;
+        @include size(16px);
+        border-radius: 50%;
+        background: transparent;
+
+        &:before,
+        &:after {
+          @include position(absolute, 0px null null 0px);
+          @include backface-visibility(hidden);
+          @include size(100%);
+          border-radius: 50%;
+          background-color: $kiosk-controls-nav-dots-color;
+          content: '';
+          text-indent: 0;
+        }
+
+        &:after {
+          background-color: rgba($kiosk-controls-nav-dots-color, 0.9);
+        }
+
+        &:hover:before,
+        &.kiosk-dot-current::before {
+          background: $kiosk-controls-nav-dots-active-color;
+        }
+      }
+    }
+    
+    // Progress bar
+    .kiosk-progress {
+      @include position(fixed, 0px null null null);
+      width: 0%;
+      height: 0.5em;
+      background: $kiosk-controls-progress-bar-color;
+    }
+    
+    // Step numbers
+    .kiosk-numbers {
+      @include position(absolute, 0px 0px null null);
+      overflow: hidden;
+      color: rgba($kiosk-controls-numbers-color, 0.6);
+      margin: 40px;
+      width: 2em;
+      font-weight: 700;
+      font-size: 2em;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      cursor: default;
+
+      &:after {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        content: '/';
+        font-weight: 300;
+        opacity: 0.4;
+        left: 0;
+      }
+
+      span {
+        float: right;
+        width: 40%;
+        text-align: center;
+      }
+
+      .kiosk-number-current {
+        float: left;
+      }
+
+      .kiosk-number-new {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    button.kiosk-submit,
+    button.kiosk-continue {
+      padding: 0.6em 1.5em;
+      font-weight: 700;
+      border: 3px solid $kiosk-control-button-border-color;
+      background: $kiosk-control-button-bg-color;
+      color: $kiosk-control-button-text-color;
+      border-radius: $kiosk-control-button-border-radius;
+
+      &:hover,
+      &:focus {
+        border-color: $kiosk-control-button-border-color-hover;
+        background: $kiosk-control-button-bg-color-hover;
+        color: $kiosk-control-button-text-color-hover;
+      }
+      &:active,
+      &.active {
+        border-color: $kiosk-control-button-border-color-active;
+        background: $kiosk-control-button-bg-color-active;
+        color: $kiosk-control-button-text-color-active;
+      }
+    }
+
+    .kiosk-continue {
+      @include position(absolute, null 0px 0px null null);
+      margin: 0 40px 60px 0;
+      font-size: 1.25em;
+
+      &:after {
+        @include position(absolute, 100% null null 0px);
+        width: 100%;
+        line-height: 3;
+        text-align: center;
+        background: transparent;
+        color: $kiosk-control-button-text-color;
+        content: 'or press ENTER';
+        font-size: 0.65em;
+        pointer-events: none;
+      }
+    }
+  }
+  
+  // ------------------
+  // Text
+  // ------------------
+  
+  // Title
+  .kiosk-title {
+    @include position(absolute, 0px null null 0px);
+    margin: 0;
+    padding: 40px;
+    width: 100%;
+
+    h1 {
+      margin: 0;
+    }
+  }
+  
+  // ------------------
+  // KIOSK FORM
+  // ------------------
+  .kiosk-form {
+    position: relative;
+    text-align: left;
+    font-size: 2.5em;
+    
+    // Kiosk fields
+    .kiosk-fields {
+      position: relative;
+      margin: 0 auto;
+      padding: 0;
+      top: 0;
+      list-style: none;
+
+      & > li {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        border: none;
+        
+        // ------------------
+        // Field Labels
+        // ------------------
+        label {
+          position: relative;
+
+          &.kiosk-field-label {
+            @include inline-block;
+            padding: 0 5px 1em 0;
+            font-weight: 700;
+            pointer-events: none;
+          }
+        }
+
+        // ------------------
+        // Field Inputs
+        // ------------------
+        input[type="text"],
+        input[type="num"],
+        input[type="tel"],
+        input[type="email"] {
+          display: block;
+          margin: 0;
+          padding: 0 0 0.15em;
+          width: 100%;
+          border: none;
+          background-color: transparent;
+          border-bottom: 2px solid rgba($kiosk-form-input-border-color, 0.2);
+          color: $kiosk-form-input-text-color;
+          text-overflow: ellipsis;
+          font-weight: bold;
+          font-size: 1.5em;
+          border-radius: 0;
+
+          &:invalid {
+            box-shadow: none; // removed red shadow in FF
+          }
+
+          &:focus {
+            background-color: $kiosk-bg-color;
+          }
+        }
+
+        [required] {
+          background-image: image-url('abacusstar.svg');
+          background-position: top right;
+          background-size: 18px;
+          background-repeat: no-repeat;
+        }
+
+        textarea {
+          padding: 0.25em;
+          @include size(100% 200px);
+          border: 2px solid $kiosk-form-input-border-color;
+          background-color: transparent;
+          color: $kiosk-form-input-text-color;
+          font-weight: 700;
+          font-size: 0.85em;
+          resize: none;
+          outline: none;
+        }
+
+        // Placeholders 
+        input[type="text"],
+        input[type="num"],
+        input[type="tel"],
+        input[type="email"],
+        textarea {
+          @include placeholder {
+            color: rgba($kiosk-text-color, 0.1);
+          }
+          &:focus {
+            @include placeholder {
+              color: transparent;
+            }
+          }
+        }
+
+        .kiosk-start,
+        .kiosk-button {
+          background: $kiosk-form-button-bg-color;
+          border: $kiosk-form-button-border-size solid $kiosk-form-button-border-color;
+          color: rgba(0,0,0,0.5);
+          border-radius: $kiosk-border-radius;
+          text-align: center;
+          font-size: .5em;
+          padding: 0.6em 1.5em;
+          margin-bottom: 1em;
+          -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+          cursor: pointer;
+
+          &:hover,
+          &:focus {
+            background: $kiosk-form-button-bg-color-hover;
+            border-color: $kiosk-form-button-border-color-hover;
+            color: $kiosk-form-button-text-color-hover;
+          }
+
+          &:active,
+          &.active, 
+          &.checked {
+            background: $kiosk-form-button-bg-color-active;
+            border-color: $kiosk-form-button-border-color-active;
+            color: $kiosk-form-button-text-color-active;
+          }
+        }
+
+        .kiosk-start {
+          background-color: $kiosk-success-color;
+          &:hover {
+            background-color: darken($kiosk-success-color, 5%);
+          }
+        }
+
+        // Radio Buttons
+        .kiosk-radio-buttons {
+          span {
+            position: relative;
+            float: left;
+            width: 100%;
+            text-align: center;
+            font-weight: 700;
+            font-size: .6em;
+
+            label, input[type="radio"] {
+              border-radius: $kiosk-border-radius;
+            }
+
+            input[type="radio"] {
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              cursor: pointer;
+              z-index: 1;
+              margin: 0;
+              padding: 0;
+            }
+
+            label {
+              display: block;
+              position: relative;
+              @include size(100%);
+              padding: 0.6em 0;
+              background-color: $kiosk-form-button-bg-color;
+              color: $kiosk-form-button-text-color;
+              -webkit-transition: opacity 0.3s;
+              transition: opacity 0.3s;
+              z-index: 0;
+              opacity: .7;
+            }
+
+            input[type="radio"]:hover + label,
+            input[type="radio"]:focus + label,
+            input[type="radio"]:checked + label {
+              opacity: 1;
+              color: $kiosk-form-button-text-color-hover;
+            }
+          }
+
+          // TEMPORARY: TODO: Clinic options with fallback
+          div:nth-child(1) label { background-color: #da645a; }
+          div:nth-child(2) label { background-color: #f3ae73; }
+          div:nth-child(3) label { background-color: #b0c47f; }
+          div:nth-child(4) label { background-color: #588c75; }
+        }
+        
+        // Range Slider
+        .kiosk-slider-before {
+          width: 20%;
+          float: left;
+          font-weight: 700;
+          font-size: 2em;
+          line-height: normal;
+        }
+
+        .kiosk-slider {
+          float: left;
+          width: 70%;
+          padding: 1.5em 0;
+        }
+
+        .noUi-background {
+          box-shadow: none;
+          background: rgba(#6e768e, .3);
+          border: none;
+        }
+        .noUi-horizontal .noUi-handle {
+          width: 50px;
+          height: 44px;
+          top: -14px;
+          left: -25px;
+          border-color: darken(#6e768e, 10%);
+        }
+        .noUi-handle:before,
+        .noUi-handle:after {
+          height: 22px;
+          left: 22px;
+          top: 10px;
+          background: lighten(#6e768e, 15%);
+        }
+        .noUi-handle:after {
+          left: 25px;
+        }
+        .noUi-handle {
+          background: #6e768e;
+          box-shadow: none;
+        }
+        .noUi-active {
+          background: darken(#6e768e, 10%);
+        }
+
+        .cs-select.cs-skin-border {
+          .cs-placeholder dl {
+            margin: 0;
+          }
+        }
+
+      }
+    }
+    
+    // ------------------
+    // FULL Form
+    // ------------------
+    &.kiosk-form-full {
+      top: 32%;
+      margin: 0 auto;
+      width: 70%;
+
+      .kiosk-fields {
+        & > li {
+          &:hover {
+            z-index: 999;
+          }
+
+          label[data-info] {
+            &::after {
+              @include inline-block;
+              @include size(24px);
+              position: relative;
+              margin-left: 10px;
+              border: 2px solid rgba(0,0,0,0.4);
+              color: rgba(0,0,0,0.4);
+              border-radius: $kiosk-border-rounded;
+              content: 'i';
+              vertical-align: top;
+              text-align: center;
+              font: italic 700 14px/20px Georgia, serif;
+              cursor: pointer;
+              pointer-events: auto;
+            }
+            &::before {
+              @include position(absolute, null null 100% 0px);
+              padding: 0 0 10px;
+              min-width: 200px;
+              content: attr(data-info);
+              font-size: 0.4em;
+              color: $kiosk-info-color; // TODO: Clinic options with fallback
+              opacity: 0;
+              -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+              transition: opacity 0.3s, transform 0.3s;
+              -webkit-transform: translate3d(0,-5px,0);
+              transform: translate3d(0,-5px,0);
+              pointer-events: none;
+            }
+            &:hover::before {
+              opacity: 1;
+              -webkit-transform: translate3d(0,0,0);
+              transform: translate3d(0,0,0);
+            }
+          }
+        }
+      }
+    }
+  
+    // ------------------
+    // OVERVIEW Form
+    // ------------------
+    &.kiosk-form-overview {
+      @include size(100%);
+      padding: 2.5em 30% 6em;
+      background: $kiosk-overview-bg-color; // TODO: Clinic options with fallback
+      color: $kiosk-overview-text-color; // TODO: Clinic options with fallback
+      font-size: 1.2em;
+
+      .kiosk-fields {
+        max-width: $kiosk-form-max-width;
+
+        .intro {
+          display:none;
+        }
+
+        &::before {
+          display: block;
+          margin-bottom: 2.5em;
+          color: $kiosk-overview-text-color; // TOO: Clinic options with fallback
+          font-weight: 700;
+          font-size: 1.85em;
+          content: $kiosk-overview-title; // TOO: Clinic options with fallback
+        }
+        &[data-overview-title]::before {
+          content: attr(data-overview-title) !important;
+        }
+
+        & > li {
+          margin: 1em 0 2em;
+          padding: 0 0 2em 0;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+          border-bottom-color: transparent;
+          color: $kiosk-overview-text-color;
+          font-size: 1.2em;
+
+          &:focus {
+            background-color: $kiosk-overview-bg-color;
+          }
+        }
+
+        textarea {
+          height: 100px;
+          color: $kiosk-overview-text-color;
+          padding: 0;
+          border-color: transparent;
+
+          &:focus {
+            background: $kiosk-overview-bg-color;
+          }
+        }
+
+        .kiosk-radio-buttons {
+          input[type="radio"]:not(:checked) + label {
+            opacity: .5;
+          }
+          label {
+            font-size: 1.5em;
+          }
+        }
+
+        .noUi-background {
+          // background: lighten(#fffed8, 2%);
+        }
+        
+        .noUi-handle {
+          background: #3b3f45;
+          border-color: none;
+        }
+      }
+
+      .kiosk-submit {
+        display: block;
+        float: right;
+        background: $kiosk-overview-control-button-bg-color;
+        border-color: $kiosk-overview-control-button-border-color;
+        color: $kiosk-overview-control-button-text-color;
+        border-radius: $kiosk-control-button-border-radius;
+      }
+    }
+  }
+  
+  .kiosk-message-error {
+    @include position(absolute, null null 75% 50%);
+    z-index: 800;
+    max-width: 960px;
+    width: 70%;
+    color: $kiosk-error-text-color;
+    font-weight: 700;
+    font-size: 1em;
+  }
+
+  .kiosk-form-full,
+  .kiosk-message-error {
+    max-width: $kiosk-form-max-width;
+  }
+}
+
+// =================================================
+// Animations & Visibility
+// =================================================
+
+// ------------------
+// Form Animations
+// ------------------
+.kiosk-form {
+  // we hide the current view, switch the view class and show it again
+  &.kiosk-show {
+    @include animation(animFadeIn 0.5s);
+
+    .kiosk-fields {
+      @include animation(animMove 0.5s);
+    }
+  }
+}
+
+// ------------------
+// Form Visibility
+// ------------------
+.kiosk-form-full .kiosk-fields > li,
+.kiosk-nav-dots,
+.kiosk-progress,
+.kiosk-numbers
+button.kiosk-continue,
+.kiosk-message-error,
+.kiosk-message-final {
+  visibility: hidden;
+}
+
+.kiosk-form .kiosk-submit {
+  display: none;
+}
+
+.kiosk-show {
+  visibility: visible !important;
+}
+
+// ------------------
+// From Control Animations
+// ------------------
+.kiosk-controls {
+  
+  // Kiosk Dots
+  .kiosk-nav-dots {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    button {
+      -webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+
+      &::after,
+      &.kiosk-dot-current {
+        -webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+        transform: perspective(1000px) rotate3d(0,1,0,180deg);
+      }
+    }
+  }
+
+  // Progress Bar
+  .kiosk-progress {
+    -webkit-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+  }
+
+  // Kiosk Numbers
+  .kiosk-numbers {
+    .kiosk-number-new {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+
+    // Show next number
+    &.kiosk-show-next {
+      .kiosk-number-new {
+        @include animation(animMoveUpFromDown 0.4s both);
+      }
+      .kiosk-number-current {
+        @include animation(animMoveUp 0.4s both);
+      }
+    }
+
+    // Show previous number
+    &.kiosk-show-prev {
+      .kiosk-number-new {
+        @include animation(animMoveDownFromUp 0.4s both);
+      }
+      .kiosk-number-current {
+        @include animation(animMoveDown 0.4s both);
+      }
+    }
+  }
+}
+
+// ------------------
+// Message Animations
+// ------------------
+.kiosk-message-error {
+  opacity: 0;
+  -webkit-transform: translate3d(-50%,-5px,0);
+  transform: translate3d(-50%,-5px,0);
+
+  &.kiosk-show {
+    opacity: 1;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transform: translate3d(-50%,0,0);
+    transform: translate3d(-50%,0,0);
+  }
+}
+
+// ------------------
+// Field Animations
+// ------------------
+.kiosk-form {
+  li.kiosk-current {
+    visibility: visible;
+  }
+
+  .kiosk-hide,
+  .kiosk-show {
+    pointer-events: none;
+  }
+
+  .kiosk-display-next {
+
+    // Hide current li when navigating to next question
+    .kiosk-hide {
+      visibility: visible;
+
+      .kiosk-anim-lower,
+      .kiosk-anim-upper {
+        @include animation(animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+      }
+
+      .kiosk-anim-lower {
+        @include animation-delay(0.1s);
+      }
+    }
+    
+    // Show new li when navigating to next question
+    .kiosk-show {
+      .kiosk-anim-lower,
+      .kiosk-anim-upper {
+        @include animation(animShowNext 0.5s cubic-bezier(0.7, 0, 0.3, 1) both 0.15s);
+      }
+
+      .kiosk-anim-lower {
+        @include animation-delay(0.25s);
+      }
+    }
+  }
+
+  .kiosk-display-prev {
+
+    // Hide current li when navigating to previous question
+    .kiosk-hide {
+      visibility: visible;
+
+      .kiosk-anim-lower,
+      .kiosk-anim-upper {
+        @include animation(animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+      }
+
+      .kiosk-anim-upper {
+        @include animation-delay(0.1s);
+      }
+    }
+
+    // Show new li when navigating to previous question
+    .kiosk-show {
+      .kiosk-anim-lower,
+      .kiosk-anim-upper {
+        @include animation(animShowPrev 0.5s cubic-bezier(0.7, 0, 0.3, 1) both 0.15s);
+      }
+
+      .kiosk-anim-upper {
+        @include animation-delay(0.25s);
+      }
+    }
+  }
+}
+
+// =================================================
+// Compatibility
+// =================================================
+
+// Touch
+.touch {
+  
+}
+
+// Overview
+.overview {
+  .kiosk-form-wrap {
+    height: auto;
+  }
+}
+
+// JS
+.js {
+  .kiosk-form-wrap {
+    .kiosk-form-full {
+      .kiosk-fields {
+        & > li {
+          position: absolute;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// No JS
+.no-js {
+  .kiosk-form-wrap {
+    .kiosk-form {
+      padding: 0 0 6em 0;
+
+      &.kiosk-form-full .kiosk-fields > li {
+        visibility: visible;
+        margin: 1em 0 2em;
+        padding: 0 0 2em 0;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// Remove IE clear cross 
+input[type=text]::-ms-clear {
+  display: none;
+}
+
+// =================================================
+// Animation Keyframes
+// =================================================
+
+// Switch view animation (we hide the current view, switch the view class and show it again)
+@include keyframes(animFadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(animMove) {
+  from {
+    top: 100px; // we need to use top here because otherwise all our fixed elements will become absolute
+  }
+}
+
+@include keyframes(animHideNext) {
+  to {
+    opacity: 0;
+    @include transform(translate3d(0, -500px, 0));
+  }
+}
+
+@include keyframes(animShowNext) {
+  from {
+    opacity: 0;
+    @include transform(translate3d(0, 500px, 0));
+  }
+}
+
+@include keyframes(animHidePrev) {
+  to {
+    opacity: 0;
+    @include transform(translate3d(0, 500px, 0));
+  }
+}
+
+@include keyframes(animShowPrev) {
+  from {
+    opacity: 0;
+    @include transform(translate3d(0, -500px, 0));
+  }
+}
+
+// =================================================
+// Animations for Numbers
+// =================================================
+
+// Show next number
+@include keyframes(animMoveUpFromDown) {
+  from {
+    @include transform(translateY(100%));
+  }
+  to {
+    @include transform(translateY(0));
+  }
+}
+
+@include keyframes(animMoveUp) {
+  to {
+    @include transform(translateY(-100%));
+  }
+}
+
+@include keyframes(animMoveDownFromUp) {
+  from {
+    @include transform(translateY(-100%));
+  }
+  to {
+    @include transform(translateY(0));
+  }
+}
+
+@include keyframes(animMoveDown) {
+  to {
+    @include transform(translateY(100%));
+  }
+}
+
+
+// =================================================
+// Responsive
+// =================================================

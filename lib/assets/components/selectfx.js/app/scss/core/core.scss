@@ -1,0 +1,35 @@
+@if $hideAllSelect_selectfx {
+  select {
+    display: none;
+  }
+}
+
+
+#{$baseClass_selectfx} {
+  @if $hideFocus_selectfx {
+    &:focus {
+      #{$placeholderClass_selectfx} {
+        border-color: #3da3e2;
+      }
+    }
+  }
+  select {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  span {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

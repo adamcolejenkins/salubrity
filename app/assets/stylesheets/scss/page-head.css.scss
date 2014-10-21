@@ -1,0 +1,35 @@
+/*Page Title*/
+.page-head {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.page-head h2 {
+  color:#4F4F4F;
+    margin-bottom: 0;
+    margin-top: 6px;
+	font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+	letter-spacing:-1px;
+}
+.breadcrumb{
+  background: transparent;
+  margin-bottom: 0;
+  padding: 4px;
+  margin-top: 5px;
+}
+.page-head .breadcrumb {
+    background: transparent;
+    margin-bottom: 0;
+    padding: 4px;
+    margin-top: 5px;
+}
+.page-head h2 span {
+  font-weight:300;
+  font-size:16px;
+  float: right;
+}
+.page-head h2 span a {
+  color:#888;
+  margin-right: 15px;
+}

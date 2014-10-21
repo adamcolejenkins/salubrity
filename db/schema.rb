@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930161249) do
+ActiveRecord::Schema.define(version: 20141016220134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: true do |t|
+    t.integer  "response_id"
+    t.integer  "field_id"
+    t.text     "value"
+    t.time     "started_at"
+    t.time     "ended_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["field_id"], name: "index_answers_on_field_id", using: :btree
+  add_index "answers", ["response_id"], name: "index_answers_on_response_id", using: :btree
+
+  create_table "clinics", force: true do |t|
+    t.string   "title"
+    t.integer  "survey_id"
+    t.string   "guid"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state",      limit: 2
+    t.integer  "zip",        limit: 8
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
 
   create_table "field_choices", force: true do |t|
     t.integer  "field_id"
@@ -41,7 +70,7 @@ ActiveRecord::Schema.define(version: 20140930161249) do
   create_table "fields", force: true do |t|
     t.integer  "survey_id"
     t.text     "label"
-    t.string   "field_type",       limit: 30
+    t.string   "context",          limit: 30
     t.text     "opts"
     t.boolean  "required"
     t.string   "visibility",                  default: "public"
@@ -53,6 +82,35 @@ ActiveRecord::Schema.define(version: 20140930161249) do
   end
 
   add_index "fields", ["survey_id"], name: "index_fields_on_survey_id", using: :btree
+
+  create_table "providers", force: true do |t|
+    t.integer  "clinic_id"
+    t.string   "name"
+    t.string   "position"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "providers", ["clinic_id"], name: "index_providers_on_clinic_id", using: :btree
+
+  create_table "responses", force: true do |t|
+    t.integer  "survey_id"
+    t.integer  "clinic_id"
+    t.integer  "provider_id"
+    t.time     "started_at"
+    t.time     "ended_at"
+    t.text     "user_agent"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "responses", ["clinic_id"], name: "index_responses_on_clinic_id", using: :btree
+  add_index "responses", ["provider_id"], name: "index_responses_on_provider_id", using: :btree
+  add_index "responses", ["survey_id"], name: "index_responses_on_survey_id", using: :btree
 
   create_table "survey_options", force: true do |t|
     t.integer  "survey_id"

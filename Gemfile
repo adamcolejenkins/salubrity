@@ -7,8 +7,9 @@ gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
-gem 'foundation-rails'
+gem 'autoprefixer-rails'
 gem 'bourbon'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -34,18 +35,20 @@ gem 'spring',        group: :development
 gem 'devise', '~> 3.3.0'
 gem 'slim-rails'
 
-gem 'active_model_serializers', '~> 0.8.0'
+# gem 'active_model_serializers', '~> 0.8.0'
 gem 'jquery-ui-rails'
 gem 'acts_as_list'
 
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl'
+  # gem 'rspec-rails'
+  # gem 'factory_girl'
 end
 
 group :development do
   gem 'web-console', '2.0.0.beta3'
 end
+
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

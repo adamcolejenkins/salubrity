@@ -1,0 +1,248 @@
+/*Forms*/
+label{
+	font-weight:600;
+	margin-bottom:7px;
+}
+
+.form-group{margin-top:10px;}
+
+.form-horizontal.group-border .form-group{
+	margin:0;
+	padding:20px 0;
+	border-bottom: 1px solid #efefef;
+}
+
+.form-horizontal.group-border .form-group:last-child{border-bottom:0;}
+
+.form-horizontal.group-border-dashed .form-group{
+	margin:0;
+	padding:20px 0;
+	border-bottom: 1px dashed #efefef;
+}
+
+.form-horizontal.group-border-dashed .form-group:last-child{border-bottom:0;}
+
+.form-control {
+	padding:6px 8px;
+	font-size:12px;
+	border-radius: 1px;
+	-webkit-border-radius: 1px;
+    box-shadow: none;
+}
+
+.form-horizontal .control-label {
+  text-align: right;
+}
+
+.input-group .btn{
+	margin:0 !important;
+	margin-left:-1px !important;
+	padding-bottom:6px;
+	padding-top:6px;
+	box-shadow:none;
+	line-height: 20px;
+}
+
+.input-group-btn > .btn + .btn {
+    margin-left: -5px !important;
+}
+
+.input-group-lg > .input-group-addon{line-height:0.33;  border-radius: 3px 0 0 3px;-webkit-border-radius: 3px 0 0 3px;}
+.input-group-addon {
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	padding: 6px 11px;
+}
+.input-group-addon.primary {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+.form-control:focus {
+	border-color:#ccc;
+	box-shadow: none;
+  background-color: #F4F5F7;
+}
+
+select.form-control, textarea.form-control{
+	padding:6px 8px;
+}
+
+.input-group{
+	margin-bottom:15px;
+}
+
+/*Input Files*/
+
+.fileinput-preview.thumbnail{
+  border: 1px solid darken($primary-color, 5%);
+  background-color: lighten($primary-color, 3%);
+  padding: 0px;
+  position: relative;
+  
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: none;
+    margin-bottom: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: 5;
+  }
+
+  img {
+    z-index: 10;
+    position: relative;
+  }
+}
+
+/*Spinners*/
+.bootstrap-touchspin-postfix.btn.btn-default{
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+/*Crhome Voice Recognition*/
+.speechbutton{
+  /*display:none;*/
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  position:absolute;
+  border:0;
+  background:transparent;
+  opacity:0;
+  cursor:pointer;
+}
+
+.speech-button i:before{position:relative;z-index:2;}
+.speech-button i:after{
+  z-index:1;
+  font-family: 'FontAwesome';
+  content:"?";
+  font-size: 14px;
+  color:#fff;
+  position:absolute;
+  left: 0;
+  display:inline-block;
+  vertical-align:middle;
+  height:100%;
+  width:100%;
+  opacity:0;
+}
+
+@keyframes blur {from {font-size: 14px;opacity:1;margin-top:0;} to {font-size:25px;opacity:0;margin-top:-6px;}}
+@-webkit-keyframes blur { 0% {font-size: 14px;opacity:1;margin-top:0;} 90% {font-size:25px;opacity:0;margin-top:-6px;} 100%{font-size:14px;}}
+@-moz-keyframes blur {from {font-size: 14px;opacity:1;margin-top:0;} to {font-size:25px;opacity:0;margin-top:-6px;}}
+@-o-keyframes blur {from {font-size: 14px;opacity:1;margin-top:0;} to {font-size:25px;opacity:0;margin-top:-6px;}}
+
+
+.speech-button i.blur:after{animation: blur 900ms infinite;-webkit-animation: blur 900ms ease infinite;-moz-animation: blur 900ms infinite;-o-animation: blur 900ms infinite;}
+
+input::-webkit-input-speech-button {
+ -webkit-transform: scale(3,2.2) translate(-2px,-1px);
+  background-color: #fff;
+  display:block !important;
+}
+
+// Full Color inputs
+.full-color {
+  .form-control,
+  &.select2-drop,
+  &.select2-drop .select2-search input,
+  &.selec2-drop-active,
+  .select2-container .select2-choice,
+  .select2-container .select2-choice .select2-arrow {
+    background-color: lighten($primary-color, 2%);
+    border-color: darken($primary-color, 5%);
+    color: #fff;
+  }
+  .select2-results .select2-no-results,
+  .select2-results .select2-searching,
+  .select2-results .select2-ajax-error,
+  .select2-results .select2-selection-limit {
+    background-color: lighten($primary-color, 2%);
+  }
+
+  .btn {
+
+  }
+}
+
+.dark-box {
+  .form-control,
+  &.select2-drop,
+  &.select2-drop .select2-search input,
+  &.selec2-drop-active,
+  .select2-container .select2-choice,
+  .select2-container .select2-choice .select2-arrow {
+    background-color: lighten(#383A41, 2%);
+    border-color: darken(#383A41, 5%);
+    color: #fff;
+  }
+  .select2-results .select2-no-results,
+  .select2-results .select2-searching,
+  .select2-results .select2-ajax-error,
+  .select2-results .select2-selection-limit {
+    background-color: lighten(#383A41, 2%);
+  }
+
+  .btn {
+
+  }
+}
+
+// Angular Validation
+form[novalidate] {
+  .ng-valid.ng-dirty,
+  .ng-invalid.ng-dirty,
+  .ng-invalid.ng-invalid-required,
+  .ng-valid.ng-dirty .select2-choice,
+  .ng-invalid.ng-dirty .select2-choice,
+  .ng-invalid.ng-invalid-required .select2-choice {
+    background-image: url('/assets/formIcons@1x.png');
+    background-repeat: no-repeat;
+    background-size: 15px auto;
+    background-position-x: 99%;
+
+    &.select2 .select2-choice {
+      background-position-x: 90%;
+    }
+
+    @include retina {
+      background-image: url('/assets/formIcons@2x.png');
+    }
+  }
+
+  .col-sm-4 .ng-valid.ng-dirty,
+  .col-sm-4 .ng-invalid.ng-dirty,
+  .col-sm-4 .ng-invalid.ng-invalid-required {
+    &.select2 .select2-choice {
+      background-position-x: 75%;
+    }
+  }
+  .col-sm-5 .ng-valid.ng-dirty,
+  .col-sm-5 .ng-invalid.ng-dirty,
+  .col-sm-5 .ng-invalid.ng-invalid-required {
+    &.select2 .select2-choice {
+      background-position-x: 80%;
+    }
+  }
+  
+  .ng-invalid.ng-invalid-required .select2-choice,
+  .ng-invalid.ng-invalid-required {
+    background-position-y: center;
+  }
+  .ng-invalid.ng-dirty .select2-choice,
+  .ng-invalid.ng-dirty {
+    background-position-y: 9px;
+  }
+  .ng-valid.ng-dirty .select2-choice {
+    background-position-y: 125%;
+  }
+  .ng-valid.ng-dirty {
+    background-position-y: 119%;
+  }
+}
