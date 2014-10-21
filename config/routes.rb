@@ -54,6 +54,6 @@ Rails.application.routes.draw do
   get '/kiosk' => 'kiosk#index'
   
   # get '/kiosk/:clinic_guid/:survey_guid' => 'kiosk#show', constraints: { clinic_guid: /[a-z\-]+/, survey_guid: /[a-z\-]+/ }, as: 'kiosk_run' ## FOR MULTIPLE SURVEYS
-  get '/kiosk/:guid/' => 'kiosk#show', constraints: { guid: /[a-z\-]+/ }, as: 'kiosk_run'
+  get '/kiosk/:guid/' => 'kiosk#new', constraints: { guid: /[a-z\-]+/ }, as: 'kiosk_new'
   post '/kiosk/:guid/create' => 'kiosk#create', constraints: { guid: /[a-z\-]+/ }, as: 'responses'
 end

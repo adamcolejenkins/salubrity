@@ -3,10 +3,10 @@
   .kiosk-slider-before id=("kiosk-slider-display-#{field.id}") = field.predefined_value
   .kiosk-slider
     div id=("slider-link-#{field.id}")
-  = answer_form.hidden_field :value, id: "slider-value-#{field.id}", required: field.required
+  = answer_fields.hidden_field :value, id: "slider-value-#{field.id}", required: field.required
 
-= include_start_time(answer_form)
-= include_end_time(answer_form)
+= include_start_time(answer_fields)
+= include_end_time(answer_fields)
 
 javascript:
   $("#slider-link-#{field.id}").noUiSlider({
