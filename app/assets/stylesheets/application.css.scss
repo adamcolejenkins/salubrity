@@ -22,6 +22,8 @@
 //= require jasny.bootstrap/extend/css/jasny-bootstrap.min
 //= require bootstrap.switch/bootstrap-switch
 //= require bootstrap.slider/css/slider
+//= require nouislider
+
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -66,6 +68,7 @@
 @import "scss/page-search";
 @import "scss/sign-up";
 @import "scss/page-config";
+@import "scss/page-kiosk";
  
 /*ELEMENTS*/
 @import "scss/elements/accordions";
@@ -77,6 +80,7 @@
 @import "scss/elements/chat-widget";
 @import "scss/elements/circle";
 @import "scss/elements/ckeditor";
+@import "scss/elements/cs-select";
 @import "scss/elements/color-boxes";
 @import "scss/elements/date-picker";
 @import "scss/elements/gritter";

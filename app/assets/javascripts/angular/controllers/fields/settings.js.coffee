@@ -11,15 +11,14 @@
     $scope.field = @field
 
     # Build select options
-    $scope.types = []
-    angular.forEach CONFIG.fieldTypes, (obj) ->
-      $scope.types[obj.type] = obj.label
+    $scope.contexts = []
+    angular.forEach CONFIG.fieldContexts, (obj) ->
+      $scope.contexts[obj.context] = obj.label
 
     $scope.layouts = []
     angular.forEach
       oneColumn: "One Column"
       twoColumns: "Two Columns"
-      threeColumns: "Three Columns"
       sideBySide: "Side by Side"
     , (value, key) ->
       $scope.layouts[key] = value

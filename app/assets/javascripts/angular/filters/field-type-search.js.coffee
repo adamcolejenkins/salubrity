@@ -1,16 +1,16 @@
 @salubrity #app
 
-  # This filter allows retrieves the fieldtypes that
+  # This filter allows retrieves the fieldContexts that
   # is searched for.
-  .filter 'fieldTypeSearch', ['CONFIG', (CONFIG) ->
+  .filter 'fieldContextSearch', ['CONFIG', (CONFIG) ->
 
     (attribute, value) ->
-      types = CONFIG.fieldTypes
+      contexts = CONFIG.fieldContexts
       obj   = []
       i     = 0
 
-      while i < types.length
-        obj.push types[i] if types[i][attribute] is value
+      while i < contexts.length
+        obj.push contexts[i] if contexts[i][attribute] is value
         i++
 
       return obj[0] if obj.length is 1

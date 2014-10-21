@@ -1,8 +1,7 @@
 /*Buttons*/
 .btn{
   border-color: #CCCCCC;
-  border-radius:0;
-  -webkit-border-radius:0;
+  border-radius: 2px;
   outline:none;
   margin-bottom: 5px !important;
   margin-left: 3px;
@@ -242,14 +241,14 @@
 .btn-xs{padding:2px 6px;font-size: 11px;}
 .btn-xs i{font-size:12px;}
 
-.btn-shadow{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.12);}
-.btn-shadow.btn-success{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-primary{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-warning{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-danger{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-info{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-prusia{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
-.btn-shadow.btn-dark{box-shadow:1px 1px 2px rgba(0, 0, 0, 0.2);}
+.btn{box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.12);}
+.btn-success{box-shadow: 0 2px 0 0 darken($green, 5%);}
+.btn-primary{box-shadow: 0 2px 0 0 darken($primary-color, 5%);}
+.btn-warning{box-shadow: 0 2px 0 0 darken($orange, 5%);}
+.btn-danger{box-shadow: 0 2px 0 0 darken($red, 5%);}
+.btn-info{box-shadow: 0 2px 0 0 darken($blue, 5%);}
+.btn-prusia{box-shadow: 0 2px 0 0 darken($prusia, 5%);}
+.btn-dark{box-shadow: 0 2px 0 0 darken($dark, 5%);}
 
 .btn-flat, .btn-flat:focus{
 	box-shadow:none;

@@ -25,6 +25,14 @@ code{white-space: normal;}
 .clear{clear:both;}
 
 
+/*Colors*/
+.color-primary {color: $primary-color !important;}
+.color-success {color: $green !important;}
+.color-warning {color: $orange !important;}
+.color-info {color: $blue !important;}
+.color-danger {color: $red !important;}
+
+
 $tooltip-arrow-size: 10px;
 .tooltip {
     .tooltip-inner {

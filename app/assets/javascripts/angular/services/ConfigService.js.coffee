@@ -4,13 +4,13 @@
   
   .constant 'CONFIG',
 
-    fieldTypes: [
+    fieldContexts: [
       {
-        enabled: false,
+        enabled: true, # We need this for outro text, global text with a variable
         label: 'Welcome Screen',
-        type: 'intro',
+        context: 'intro',
         icon: 'sign-in',
-        noSort: true,
+        noSort: false,
         templates: {
           view: '/templates/fields/view/into.html'
         },
@@ -19,11 +19,11 @@
           button_label: 'Start'
         }
       },{
-        enabled: false,
+        enabled: true, # We need this for outro text, global text with a variable
         label: 'Thank You Screen',
-        type: 'outro',
+        context: 'outro',
         icon: 'sign-out',
-        noSort: true,
+        noSort: false,
         templates: {
           view: '/templates/fields/view/outro.html'
         },
@@ -32,11 +32,22 @@
           button_label: 'Again',
           button_mode: 'reload'
         }
-      },
-      {
+      },{
+        enabled: true, # We need this for provider options, such as label
+        label: 'Provider Dropdown'
+        context: 'provider_dropdown'
+        icon: 'user-md'
+        templates: {
+          view: '/templates/fields/view/provider_dropdown.html'
+        },
+        settings: @defaultSettings.concat('provider', 'options', 'required'),
+        defaults: {
+
+        }
+      },{
         enabled: true,
         label: 'Single Line Text',
-        type: 'single_line_text',
+        context: 'single_line_text',
         icon: 'font',
         templates: {
           preview: '/templates/fields/preview/single_line_text.html',
@@ -50,7 +61,7 @@
       },{
         enabled: true,
         label: 'Paragraph Text',
-        type: 'paragraph_text',
+        context: 'paragraph_text',
         icon: 'paragraph',
         templates: {
           preview: '/templates/fields/preview/paragraph_text.html',
@@ -64,7 +75,7 @@
       },{
           enabled: true,
           label: 'Multiple Choice',
-          type: 'multiple_choice',
+          context: 'multiple_choice',
           icon: 'dot-circle-o',
           templates: {
               preview: '/templates/fields/preview/multiple_choice.html',
@@ -80,7 +91,7 @@
       },{
           enabled: true,
           label: 'Number',
-          type: 'number',
+          context: 'number',
           icon: 'slack',
           templates: {
               preview: '/templates/fields/preview/number.html',
@@ -94,7 +105,7 @@
       },{
           enabled: false,
           label: 'Checkboxes',
-          type: 'checkboxes',
+          context: 'checkboxes',
           icon: 'check-square-o',
           templates: {
               preview: '/templates/fields/preview/checkboxes.html',
@@ -110,7 +121,7 @@
       },{
           enabled: true,
           label: 'Dropdown',
-          type: 'dropdown',
+          context: 'dropdown',
           icon: 'toggle-down',
           templates: {
               preview: '/templates/fields/preview/dropdown.html',
@@ -124,7 +135,7 @@
       },{
           enabled: true,
           label: 'Scale',
-          type: 'scale',
+          context: 'scale',
           icon: 'tasks',
           templates: {
               preview: '/templates/fields/preview/scale.html',
@@ -138,7 +149,7 @@
       },{
           enabled: false,
           label: 'Rating',
-          type: 'rating',
+          context: 'rating',
           icon: 'star-half-full',
           templates: {
               preview: '/templates/fields/preview/rating.html',
@@ -152,7 +163,7 @@
       },{
           enabled: false,
           label: 'Date',
-          type: 'date',
+          context: 'date',
           icon: 'calendar-o',
           templates: {
               preview: '/templates/fields/preview/date.html',
@@ -166,7 +177,7 @@
       },{
           enabled: false,
           label: 'Time',
-          type: 'time',
+          context: 'time',
           icon: 'clock-o',
           templates: {
               preview: '/templates/fields/preview/time.html',

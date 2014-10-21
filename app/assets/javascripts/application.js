@@ -10,15 +10,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require modernizr
+//= require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery-ui
 //= require turbolinks
+//= require classie
+//= require moment
 
 // Angular Directives
 //= require angular
+//= require angular-cookie
 //= require angular-resource
 //= require angular-sanitize
 //= require angular-ui-router
@@ -42,7 +45,9 @@
 //= require jasny.bootstrap/extend/js/jasny-bootstrap.min
 //= require bootstrap.switch/bootstrap-switch.min
 //= require bootstrap.slider/js/bootstrap-slider
+//= require selectfx.js/dist/js/selectfx
 //= require sweetalert
+//= require nouislider
 
 
 //= require behaviour/core

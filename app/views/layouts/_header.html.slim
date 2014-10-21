@@ -14,4 +14,6 @@
             li
               = link_to 'Sign Out', destroy_user_session_path, :method => :delete
       ul.nav.navbar-nav.not-nav
-        li
+        li.button
+          = link_to '/kiosk', target: "_self", tooltip: "Launch Kiosk", tooltip_placement: 'bottom'
+            i.fa.fa-rocket

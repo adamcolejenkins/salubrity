@@ -1,10 +1,23 @@
 / Multiple Choice field context
-.fs-anim-lower.fs-radio-group class=("fs-radio-#{field.display_as}")
-  .choice.clearfix
-    - field.field_choices.each do |choice|
-      - if choice.attribute_present? :background_color
-        span style=("background-color: #{choice.background_color}")
-      - else
-        span
+.kiosk-anim-lower.row class="#{field.layout} kiosk-radio-#{field.display_as}"
+
+  - cols = 12 / field.field_choices.count if field.layout == 'sideBySide'
+  - cols = 6 if field.layout == 'twoColumns'
+  
+  - field.field_choices.each do |choice|
+    div class="col-md-#{cols or 12}"
+      span
+        - if field.display_as == 'buttons'
           = answer_form.radio_button :value, choice.key, required: field.required
+          - if choice.attribute_present? :color
+            = answer_form.label :value, choice.label, {'style' => "background-color: #{choice.color};"}
+          - else
+            = answer_form.label :value, choice.label
+        - else
+          = answer_form.radio_button :value, choice.key, required: field.required, icheck: ''
           = answer_form.label :value, choice.label
+
+        
+
+= include_start_time(answer_form)
+= include_end_time(answer_form)

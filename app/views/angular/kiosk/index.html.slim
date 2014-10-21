@@ -1,0 +1,36 @@
+#cl-wrapper.sign-up-container
+  .middle-sign-up.ng-cloak ng-init="init()"
+    .block-flat
+      .header
+        h3.text-center
+          = image_tag 'logo.png'
+      
+      div ng-controller="KioskCtrl"
+        form.form-horizontal
+          .content
+            h5.title.text-center
+              strong Kiosk Mode
+
+            .row.spacer ng-if="cookie == true && (clinic && survey)"
+              .col-sm-12
+                button.btn.btn-block.btn-success.btn-lg
+                  | Continue to {{clinic.title}}
+                  br
+                  small 
+                    | {{survey.title}} Survey
+                p.text-center.spacer Or
+          
+            .form-group
+              .col-sm-12
+                select.select2 ng-model="set.clinic" ng-options="c as c.title for c in clinics track by c" title="Select a clinic"
+
+            .form-group
+              .col-sm-12
+                select.select2 ng-model="set.survey" ng-options="s as s.title for s in [set.clinic.survey] track by s" ng-disabled="!set.clinic.survey" title="Select a survey"
+            
+            p.spacer Which environment would you like to launch?
+            .row
+              .col-sm-6
+                button.btn.btn-block.btn-success ng-click="proceed('public')" ng-disabled="!set.clinic || !set.survey" Public
+              .col-sm-6
+                button.btn.btn-block.btn-success ng-click="proceed('admin')" ng-disabled="!set.clinic || !set.survey" Admin

@@ -5,7 +5,7 @@
 
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ui.router', 'ui.bootstrap', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ngAnimate'
+  'ngResource', 'ui.router', 'ui.bootstrap', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ngAnimate', 'ipCookie'
 ]
 
 

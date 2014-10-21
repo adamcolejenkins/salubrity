@@ -4,6 +4,6 @@
     span.caret
 
   ul.dropdown-menu role="menu"
-    li ng-repeat="field in fieldTypes" ng-if="field.enabled"
+    li ng-repeat="field in fieldContexts" ng-if="field.enabled"
       a href="#"  ng-click="addField(field)" type="button"
         | {{field.label}}

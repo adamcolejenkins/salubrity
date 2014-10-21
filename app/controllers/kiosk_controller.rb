@@ -1,8 +1,11 @@
 class KioskController < ApplicationController
   before_action :set_clinic, only: [:show, :create]
+  # before_filter :authenticate_user!, only: [:index]
+  layout 'kiosk'
   
   def index
-    @surveys = Survey.all
+    @clinic = JSON.parse(cookies[:_salubrity_kiosk_clinic])
+    @survey = JSON.parse(cookies[:_salubrity_kiosk_survey])
   end
 
   def show
@@ -21,6 +24,7 @@ class KioskController < ApplicationController
   private
 
   def set_clinic
+    # @clinic ||= Clinic.where(guid: params[:clinic_guid]).survey.where(guid: params[:survey_guid])
     @clinic ||= Clinic.where(guid: params[:guid]).limit(1).first
 
     if @clinic.blank?

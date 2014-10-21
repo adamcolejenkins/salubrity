@@ -8,3 +8,6 @@
         span
           / = answer_form.check_box(:value, choice.key, required: field.required)
           / = answer_form.label :value, choice.label
+
+= include_start_time(answer_form)
+= include_end_time(answer_form)

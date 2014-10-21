@@ -23,7 +23,7 @@
 
         # Set default field data
         fieldData = angular.extend(
-          field_type: field.type
+          context: field.context
           label: 'Untitled ' + field.label
         , field.defaults)
 

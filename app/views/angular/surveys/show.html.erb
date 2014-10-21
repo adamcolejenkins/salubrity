@@ -10,7 +10,7 @@
         <li ng-repeat="field in survey.fields" id="field-{{field.id}}" ng-if="field.visibility == 'public'">
           <label
             class="fs-field-label fs-anim-upper"
-            for="{{field.fieldType}}-{{field.id}}"
+            for="{{field.context}}-{{field.id}}"
             data-info="{{field.instructions}}">{{field.label}}</label>
           <div ng-include="field.properties.templates.view"></div>
         </li>

@@ -9,14 +9,14 @@
         @FieldService = new FieldService($rootScope.id, serverErrorHandler)
 
       # Set the scope for the templates
-      $scope.fieldTypes = CONFIG.fieldTypes
+      $scope.fieldContexts = CONFIG.fieldContexts
 
       # Button handler for adding a field
       $scope.add = (field) ->
 
         # Create a store object with defaults
         fieldData = angular.extend(
-          field_type: field.type
+          context: field.context
           label: "Untitled " + field.label
         , field.defaults)
 

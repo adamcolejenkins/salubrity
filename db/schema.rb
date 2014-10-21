@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013180347) do
+ActiveRecord::Schema.define(version: 20141016220134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20141013180347) do
   create_table "fields", force: true do |t|
     t.integer  "survey_id"
     t.text     "label"
-    t.string   "field_type",       limit: 30
+    t.string   "context",          limit: 30
     t.text     "opts"
     t.boolean  "required"
     t.string   "visibility",                  default: "public"

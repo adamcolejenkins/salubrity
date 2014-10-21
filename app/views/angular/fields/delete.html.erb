@@ -4,7 +4,7 @@
         <button class="close" ng-click="cancel()">×</button>
     </div>
     <div class="modal-body text-center">
-        <h4>This <strong>{{ field.field_type | stripSnake }}</strong> field will be deleted!</h4>
+        <h4>This <strong>{{ field.context | stripSnake }}</strong> field will be deleted!</h4>
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger btn-mono3 btn-flat" ng-click="cancel()">Cancel</button>

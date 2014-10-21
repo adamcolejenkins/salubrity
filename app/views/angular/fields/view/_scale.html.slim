@@ -1,10 +1,12 @@
 / Scale field context
-.fs-anim-lower.clearfix
-  .fs-slider-before id=("fs-slider-display-#{field.id}") = field.predefined_value
-  .fs-slider
+.kiosk-anim-lower.clearfix
+  .kiosk-slider-before id=("kiosk-slider-display-#{field.id}") = field.predefined_value
+  .kiosk-slider
     div id=("slider-link-#{field.id}")
   = answer_form.hidden_field :value, id: "slider-value-#{field.id}", required: field.required
 
+= include_start_time(answer_form)
+= include_end_time(answer_form)
 
 javascript:
   $("#slider-link-#{field.id}").noUiSlider({
@@ -19,4 +21,4 @@ javascript:
     })
   });
   $("#slider-link-#{field.id}").Link('lower').to( $("#slider-value-#{field.id}") );
-  $("#slider-link-#{field.id}").Link('lower').to( $("#fs-slider-display-#{field.id}") );
+  $("#slider-link-#{field.id}").Link('lower').to( $("#kiosk-slider-display-#{field.id}") );

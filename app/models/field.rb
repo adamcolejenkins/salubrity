@@ -5,12 +5,12 @@ class Field < ActiveRecord::Base
 
   acts_as_list scope: :survey, column: :priority
 
-  scope :type, -> (type) { where(type: type).first }
+  scope :context, -> (context) { where(context: type).first }
 
   after_create :create_field_choices
 
   validates :label, presence: true
-  validates :field_type, presence: true
+  validates :context, presence: true
   validates :survey, presence: true
 
   store :opts, :accessors => [:field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :button_label, :button_mode, :button_url, :attachment_type, :attachment_url], coder: JSON
@@ -22,8 +22,8 @@ class Field < ActiveRecord::Base
   private
 
   def create_field_choices
-    types = ["multiple_choice", "checkboxes", "dropdown"]
-    if types.include?(self.field_type)
+    contexts = ["multiple_choice", "checkboxes", "dropdown"]
+    if contexts.include?(self.context)
       self.field_choices.create!([
         {:key => "first_choice", :label => "First Choice"},
         {:key => "second_choice", :label => "Second Choice"},

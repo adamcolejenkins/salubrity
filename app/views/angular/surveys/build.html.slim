@@ -19,7 +19,7 @@
     
     .mails ui-sortable="sortableOptions" ng-model="survey.fields"
 
-      .item.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
+      .item.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.context}}"
         
         div
           i.fa class="fa-{{field.properties.icon}}"
@@ -27,7 +27,7 @@
         div
           div.tools.pull-right
             .btn-group
-              button.btn-sm.btn-link tooltip="Duplicate field" ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
+              button.btn-sm.btn-link tooltip="Duplicate field" ng-if="field.context != 'intro' && field.context != 'outro'"
                   i.fa.fa-copy
               button.btn-sm.btn-link ng-click="deleteField(field, $index)" tooltip="Delete field"
                   i.fa.fa-trash-o

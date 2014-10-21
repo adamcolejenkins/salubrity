@@ -51,8 +51,9 @@ Rails.application.routes.draw do
 
   get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
 
-  get '/kiosk' => 'angular#index'
+  get '/kiosk' => 'kiosk#index'
   
-  get '/kiosk/:guid' => 'kiosk#show', constraints: { guid: /[a-z\-]+/ }
+  # get '/kiosk/:clinic_guid/:survey_guid' => 'kiosk#show', constraints: { clinic_guid: /[a-z\-]+/, survey_guid: /[a-z\-]+/ }, as: 'kiosk_run' ## FOR MULTIPLE SURVEYS
+  get '/kiosk/:guid/' => 'kiosk#show', constraints: { guid: /[a-z\-]+/ }, as: 'kiosk_run'
   post '/kiosk/:guid/create' => 'kiosk#create', constraints: { guid: /[a-z\-]+/ }, as: 'responses'
 end

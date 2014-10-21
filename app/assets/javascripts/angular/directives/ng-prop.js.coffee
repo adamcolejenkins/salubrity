@@ -6,6 +6,6 @@
     return (
       restrict: "A"
       link: ($scope, $el, attrs) ->
-        $scope.field.properties = $filter('fieldTypeSearch')('type', $scope.field.field_type)
+        $scope.field.properties = $filter('fieldContextSearch')('context', $scope.field.context)
     )
 ]

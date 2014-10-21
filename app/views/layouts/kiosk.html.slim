@@ -10,7 +10,5 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body ng-app="salubrity" ng-controller="AppCtrl"
-    
-    div.container-fluid
-      = yield
+  body.texture ng-app="salubrity" ng-controller="AppCtrl" class="#{params[:controller]} #{params[:action]}"
+    = yield
