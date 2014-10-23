@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 
 
-  ROLES = %w[superuser owner contibutor spectator]
+  ROLES = %w[superuser owner contributor spectator]
 
   # validates_presence_of :name
   # validates_presence_of :surname
@@ -14,5 +14,9 @@ class User < ActiveRecord::Base
 
   def clear_authentication_token!
     update_attribute(:authentication_token, nil)
+  end
+
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 end

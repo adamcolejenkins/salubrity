@@ -43,7 +43,8 @@
               = f.password_field :current_password, autocomplete: "off", class: 'form-control'
               em We need your current password to confirm your changes
 
-            .form-group
+            .form-group.col-md-12
+              = f.submit "Update Profile", class: 'btn btn-success btn-lg', disabled: 'disabled'
                 
       
       .col-md-3
@@ -54,9 +55,6 @@
               p.small 
                 | Change your photo at 
                 = link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'
-          .row
-            .col-sm-12
-              = f.submit "Update Profile", class: 'btn btn-success btn-lg btn-block', disabled: 'disabled'
 
       .col-md-3
         .block-flat.danger-box
