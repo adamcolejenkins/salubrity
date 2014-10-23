@@ -7,12 +7,20 @@ en:
       no_invitations_remaining: "No invitations remaining"
       invitation_removed: 'Your invitation was removed.'
       new:
-        header: "Send invitation"
+        header: "Invite Users"
         describe: "All new accounts will be automatically assigned to the spectator group. You may upgrade / downgrate their account once invited."
-        submit_button: "Send an invitation"
+        submit_button: "Invite user"
       edit:
         header: "Getting Started"
         submit_button: "Create Account"
+    profiles:
+      role:
+        header: "Change User Group"
+        submit_button: "Update user"
+        cancel_button: "Cancel"
+      edit:
+        header: "Edit Profile"
+        submit_button: "Save profile"
     mailer:
       invitation_instructions:
         subject: 'Invitation instructions'

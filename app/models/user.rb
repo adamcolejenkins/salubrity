@@ -4,7 +4,13 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+
   ROLES = %w[superuser owner contibutor spectator]
+
+  # validates_presence_of :name
+  # validates_presence_of :surname
+  # validates :role, presence: true, inclusion: ROLES
 
   def clear_authentication_token!
     update_attribute(:authentication_token, nil)

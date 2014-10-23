@@ -1,5 +1,5 @@
 /*Alerts*/
-.alert {border-radius:0;-webkit-border-radius:0;box-shadow: 0;}					
+.alert {border-radius:0;-webkit-border-radius:0;box-shadow: 0; border: 0; border: 1px solid;}					
 .alert .sign{color: rgba(0,0,0,0.2);font-size:20px;/*vertical-align: w+;*/margin-right:5px;text-align:center;width:25px; display: inline-block;}					
 .alert .close{text-shadow: none;}					
 .alert-primary {
@@ -8,19 +8,19 @@
     color: #fff;
 }
 .alert-success {
-    background-color: $dark-green;
-    border-color: darken($dark-green, 10%);
-    color: #fff;
+    background-color: $light-green;
+    border-color: darken($light-green, 10%);
+    color: $dark-green;
 }
 .alert-info {
-    background-color: $blue;
-    border-color: darken($blue, 10%);
-    color: #fff;
+    background-color: $light-blue;
+    border-color: darken($light-blue, 10%);
+    color: $blue;
 }
 .alert-warning {
-    background-color: $orange;
-    border-color: darken($orange, 10%);
-    color: #fff;
+    background-color: $light-yellow;
+    border-color: darken($light-yellow, 10%);
+    color: $yellow;
 }
 .alert-danger {
     background-color: $red;

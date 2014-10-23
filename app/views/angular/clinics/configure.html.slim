@@ -17,19 +17,13 @@
     
     .row
       .col-md-12
-        ul.nav.nav-pills
+        ul.nav-tabs-lg
           li ui-sref-active="active"
-            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})"
-              i.fa.fa-cog
-              |  Settings
+            a href="#" ui-sref="clinics.configure.settings({id: clinic.id})" Settings
           li ui-sref-active="active"
-            a href="#" ui-sref="clinics.configure.design({id: clinic.id})"
-              i.fa.fa-paint-brush
-              |  Design
+            a href="#" ui-sref="clinics.configure.design({id: clinic.id})" Design
           li ui-sref-active="active"
-            a href="#" ui-sref="clinics.configure.providers({id: clinic.id})"
-              i.fa.fa-user-md
-              |  Providers
+            a href="#" ui-sref="clinics.configure.providers({id: clinic.id})" Providers
     
     .row
       .col-md-12 ui-view=""

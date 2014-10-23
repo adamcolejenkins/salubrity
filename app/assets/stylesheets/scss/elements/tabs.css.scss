@@ -221,3 +221,41 @@
 	border-right:1px solid #DADADA;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.13);
 }
+
+
+.nav-tabs-lg {
+	@extend .list-inline;
+	border-bottom: 1px solid lighten($concrete, 10%);
+	overflow: visible;
+	height: 60px;
+	margin-bottom: 50px;
+
+	> li {
+		border: 1px solid lighten($concrete, 10%);
+		border-bottom: 0;
+		margin-right: 10px;
+		position: relative;
+		padding: 0;
+
+		> a {
+			padding: 20px 50px;
+			display: block;
+			margin-bottom: -1px;
+			position: relative;
+			text-align: center;
+			color: #58666e;
+			font-weight: 300;
+			height: 60px;
+			i {
+				font-size: 20px;
+			}
+		}
+		&.active {
+			a {
+				font-weight: bold;
+				color: #6e768e;
+				background: #F0F3F4;
+			}
+		}
+	}
+}

@@ -1,62 +1,48 @@
 .cl-mcont
 
   .page-head
-    h2
-      i.fa.fa-users 
-      |  Team
+    h2 Team
+
+    ol.breadcrumb
+      li = link_to 'Team', users_path, target: '_self'
 
   .row
-    .col-md-12
+    .col-md-11
   
-      ul.nav.nav-tabs
+      ul.nav-tabs-lg
         li class="#{active_if_current(users_path)}" = link_to 'Users', users_path, target: '_self'
-        li = link_to 'Groups', users_path, target: '_self'
+        / li = link_to 'Groups', users_path, target: '_self'
         li class="#{active_if_current(new_user_invitation_path)}" = link_to 'Invite', new_user_invitation_path, target: '_self'
 
 
+  .row
+    .col-md-11.user-list
 
-      / .block-flat
-      /   .header
-      /     .tools.pull-right
-      /       = link_to 'Invite User', new_user_invitation_path, class: 'btn btn-success btn-sm', target: '_self'
+      - @users.group_by(&:role).each do |role, users|
+        h3.spacer3 = role.to_s.humanize.pluralize
+        
+        - users.each do |user|
+          .block-flat.user-block
 
-      /     h3 Users
+            .tools.pull-right
+              = link_to edit_user_path(user), class: 'btn btn-primary btn-flat', target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                i.fa.fa-wrench
+              = link_to user_path(user), class: 'btn btn-danger btn-flat', target: '_self', method: 'delete', tooltip: 'Delete user', tooltip_placement: 'right'
+                i.fa.fa-trash
 
-      /   .content
-      /     .table-responsive
-      /       table.table.no-border.hover
-      /         thead.no-border
-      /           tr
-      /             th style="width:2%"
-      /               input type="checkbox"
-      /             th 
-      /               strong User
-      /             th style="width:15%"
-      /               strong Email
-      /             th.text-center style="width:15%"
-      /               strong Last Signed In
-      /             th.text-center style="width:15%"
-      /               strong Action
+            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
+            h4 = identify(user)
 
-      /         tbody.no-border-y
-      /           - @users.each do |user|
-      /             tr
-      /               / Checkbox
-      /               td
-      /                 input type="checkbox"
+      - if @pending.length > 0
+        h3.spacer3 Pending Invitations
+        - @pending.each do |user|
+          .block-flat.user-block
 
-      /               / User
-      /               td
-      /                 strong = identify(user)
-      /                 = print_status(user)
-      /                 span.label.pull-right class="label-#{user.role}"
-      /                   = user.role.to_s.humanize
+            .tools.pull-right
+              = link_to edit_user_path(user), class: 'btn btn-primary btn-flat', target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                i.fa.fa-wrench
+              = link_to user_path(user), class: 'btn btn-danger btn-flat', target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
+                i.fa.fa-trash
 
-      /               / Email
-      /               td = user.email
-
-      /               / Last Signed in
-      /               td.text-center = time_ago_in_words(user.last_sign_in_at) if !user.last_sign_in_at.blank?
-
-      /               / Actions
-      /               td.text-center
+            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
+            h4 = identify(user)

@@ -6,8 +6,9 @@
 }
 .navbar {
 	border:0;
-  background-color: #fff;
-	color:#2c3e50;
+  background-color: $primary-color;
+	// color:#2c3e50;
+  color: #fff;
 	padding-left: 10px;
   padding-right: 25px;
   margin-bottom: 0;
@@ -20,7 +21,8 @@ padding: 22px;
 	padding-left: 35px;
 	text-align:left;
 	width: 206px;
-	color: #2c3e50;
+	// color: #2c3e50;
+  color: #fff;
 	background: url(../images/logo.png) no-repeat 0 11px;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
   font-weight: 300;
@@ -33,16 +35,21 @@ padding: 22px;
 }
 
 .navbar-default  .navbar-nav > .active > a, .navbar-default  .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
-    color: #3F4148;
+    // color: #3F4148;
+    color: #fff;
+    background-color: $blue;
 }
 
 .navbar-default  .navbar-nav > li > a {
-	color: #3F4148;
+	// color: #3F4148;
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
 }
 .navbar-default  .navbar-nav > li > a:hover {
-	color:darken(#2c3e50, 10%);
+	// color:darken(#2c3e50, 10%);
+  color: #fff;
+  background-color: $blue;
 }
 .navbar-default  .navbar-nav > li.button  {
 	padding: 17px 6px;
@@ -54,7 +61,7 @@ padding: 22px;
 	-webkit-border-radius: 2px;
 	padding:4px;
 	width:30px;
-	box-shadow:1px 1px 0 rgba(255, 255, 255, 0.2) inset;
+	// box-shadow:1px 1px 0 rgba(255, 255, 255, 0.2) inset;
 	text-align:center;
 }
 
@@ -207,7 +214,7 @@ padding: 22px;
     color: darken(#2c3e50, 10%);
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: $primary-color;
+    background-color: $blue;
     color: #fff;
 }
 

@@ -1,30 +1,34 @@
 /*General colors palette*/
-$primary-color: #23b7e5;
+$primary-color: #179AC3;
 $subp-color: darken($primary-color, 13%);
 $lightedp-color: lighten($primary-color, 10%);
 $text-color: #FFF;
 
 /*General elements*/
 $link-color: lighten($primary-color, 10%);
-$sidebar-color: #272930;
-$sidebar-text-color: #fff;
+$sidebar-color: #DDE6E9;
+$sidebar-text-color: #363f44;
 
 /*Flat palette*/
 $green: #27c24c;
+$light-green: #E0EFD9;
 $dark-green: #23ad44;
 $lemon: #40D47E; 
 $dark-lemon: #2CC36B;
 $blue: #23b7e5;
+$light-blue: #D9EDF7;
 $dark-blue: #19a9d5;
 $purple: #7761a7;
 $dark-purple: #9B50BA;
 $prusia: #3D566D;
 $dark-prusia: #354B60;
 $yellow: #FED16C;
+$light-yellow: #FCF7E4;
 $orange: #EEB211;
+
 $pumpkin: #E98B39;
 $dark-pumpkin: #EC5E00;
-$red: #f05050;
+$red: #EE4F52;
 $dark-red: #ee3939;
 $silver: #FBFCFC;
 $dark-silver: #C5CBCE;
