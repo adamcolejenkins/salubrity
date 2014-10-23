@@ -33,12 +33,14 @@ code{white-space: normal;}
 .color-danger {color: $red !important;}
 
 
+
 $tooltip-arrow-size: 10px;
 .tooltip {
     .tooltip-inner {
         background-color: rgba($prusia, 0.9) !important;
         border-radius: 3px;
         padding: 8px 10px;
+        white-space: nowrap;
     }
     &.left {
         .tooltip-arrow {

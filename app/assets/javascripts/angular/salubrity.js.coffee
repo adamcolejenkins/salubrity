@@ -22,7 +22,7 @@
   $locationProvider.html5Mode true;
 
   # If no route, redirect to /
-  $urlRouterProvider.otherwise '/'
+  # $urlRouterProvider.otherwise '/'
 
 
 # Set the AWS Upload theme

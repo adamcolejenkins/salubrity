@@ -2,6 +2,7 @@
 label{
 	font-weight:600;
 	margin-bottom:7px;
+  color: #6e768e;
 }
 
 .form-group{margin-top:10px;}
@@ -23,8 +24,9 @@ label{
 .form-horizontal.group-border-dashed .form-group:last-child{border-bottom:0;}
 
 .form-control {
-	padding:6px 8px;
-	font-size:12px;
+	padding:10px 12px;
+	font-size:14px;
+  height: auto;
 	border-radius: 1px;
 	-webkit-border-radius: 1px;
     box-shadow: none;

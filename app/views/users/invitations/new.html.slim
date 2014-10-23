@@ -1,0 +1,34 @@
+.cl-mcont
+
+  .page-head
+    h2 Team
+
+    ol.breadcrumb
+      li = link_to 'Team', users_path, target: '_self'
+      li.active = t "devise.invitations.new.header"
+
+  .row
+    .col-md-11
+  
+      ul.nav-tabs-lg
+        li = link_to 'Users', users_path, target: '_self'
+        / li = link_to 'Groups', users_path, target: '_self'
+        li.active = link_to 'Invite', new_user_invitation_path, target: '_self'
+
+  .row
+    .col-md-11
+
+      h3 = t "devise.invitations.new.header"
+    
+      = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :class => 'group-border-dashed', :method => :post} do |f|
+        = devise_error_messages!
+
+        p = t "devise.invitations.new.describe"
+        
+        - resource.class.invite_key_fields.each do |field|
+          .form-group
+            = f.label field, class: 'control-label'
+            = f.text_field field, class: 'form-control'
+
+        .form-group
+          = f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-success btn-lg'

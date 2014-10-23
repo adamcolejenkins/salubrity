@@ -1,97 +1,89 @@
-form.form-horizontal role="form" name="clinicForm" autocomplete="off" novalidate="novalidate"
+form role="form" name="clinicForm" autocomplete="off" novalidate="novalidate"
   
   .form-group
-    label.control-label.col-sm-2 for="title" Title
-    .col-sm-10
-      input.form-control#title type="text" name="title" ng-model="clinic.title" autocomplete="off" required="required" ng-minlength="5"
+    label.control-label for="title" Title
+    input.form-control#title type="text" name="title" ng-model="clinic.title" autocomplete="off" required="required" ng-minlength="5"
 
   .form-group
-    label.control-label.col-sm-2 for="address" Address
-    .col-sm-10
-      input.form-control#address type="text" name="address" ng-model="clinic.address" autocomplete="off" required="required" ng-minlength="5"
+    label.control-label for="address" Address
+    input.form-control#address type="text" name="address" ng-model="clinic.address" autocomplete="off" required="required" ng-minlength="5"
 
   .form-group
-    label.control-label.col-sm-2 for="address2" Ste/Bldg
-    .col-sm-10
-      input.form-control#address1 type="text" name="address2" ng-model="clinic.address2" autocomplete="off"
+    label.control-label for="address2" Ste/Bldg
+    input.form-control#address1 type="text" name="address2" ng-model="clinic.address2" autocomplete="off"
 
   .form-group
-    label.control-label.col-sm-2 for="city" City
-    .col-sm-6
-      input.form-control#city type="text" name="city" ng-model="clinic.city" autocomplete="off" required="required" ng-minlength="5"
+    label.control-label for="city" City
+    input.form-control#city type="text" name="city" ng-model="clinic.city" autocomplete="off" required="required" ng-minlength="5"
 
   .form-group
-    label.control-label.col-sm-2 for="state" State
-    .col-sm-5
-      select.select2.full-color#state name="state" ng-model="clinic.state" required="required"
-        option value="" Select a State
-        option value="AL" Alabama
-        option value="AK" Alaska
-        option value="AZ" Arizona
-        option value="AR" Arkansas
-        option value="CA" California
-        option value="CO" Colorado
-        option value="CT" Connecticut
-        option value="DE" Delaware
-        option value="FL" Florida
-        option value="GA" Georgia
-        option value="HI" Hawaii
-        option value="ID" Idaho
-        option value="IL" Illinois
-        option value="IN" Indiana
-        option value="IA" Iowa
-        option value="KS" Kansas
-        option value="KY" Kentucky
-        option value="LA" Louisiana
-        option value="ME" Maine
-        option value="MD" Maryland
-        option value="MA" Massachusetts
-        option value="MI" Michigan
-        option value="MN" Minnesota
-        option value="MS" Mississippi
-        option value="MO" Missouri
-        option value="MT" Montana
-        option value="NE" Nebraska
-        option value="NV" Nevada
-        option value="NH" New Hampshire
-        option value="NJ" New Jersey
-        option value="NM" New Mexico
-        option value="NY" New York
-        option value="NC" North Carolina
-        option value="ND" North Dakota
-        option value="OH" Ohio
-        option value="OK" Oklahoma
-        option value="OR" Oregon
-        option value="PA" Pennsylvania
-        option value="RI" Rhode Island
-        option value="SC" South Carolina
-        option value="SD" South Dakota
-        option value="TN" Tennessee
-        option value="TX" Texas
-        option value="UT" Utah
-        option value="VT" Vermont
-        option value="VA" Virginia
-        option value="WA" Washington
-        option value="WV" West Virginia
-        option value="WI" Wisconsin
-        option value="WY" Wyoming
+    label.control-label for="state" State
+    select.select2.full-color#state name="state" ng-model="clinic.state" required="required"
+      option value="" Select a State
+      option value="AL" Alabama
+      option value="AK" Alaska
+      option value="AZ" Arizona
+      option value="AR" Arkansas
+      option value="CA" California
+      option value="CO" Colorado
+      option value="CT" Connecticut
+      option value="DE" Delaware
+      option value="FL" Florida
+      option value="GA" Georgia
+      option value="HI" Hawaii
+      option value="ID" Idaho
+      option value="IL" Illinois
+      option value="IN" Indiana
+      option value="IA" Iowa
+      option value="KS" Kansas
+      option value="KY" Kentucky
+      option value="LA" Louisiana
+      option value="ME" Maine
+      option value="MD" Maryland
+      option value="MA" Massachusetts
+      option value="MI" Michigan
+      option value="MN" Minnesota
+      option value="MS" Mississippi
+      option value="MO" Missouri
+      option value="MT" Montana
+      option value="NE" Nebraska
+      option value="NV" Nevada
+      option value="NH" New Hampshire
+      option value="NJ" New Jersey
+      option value="NM" New Mexico
+      option value="NY" New York
+      option value="NC" North Carolina
+      option value="ND" North Dakota
+      option value="OH" Ohio
+      option value="OK" Oklahoma
+      option value="OR" Oregon
+      option value="PA" Pennsylvania
+      option value="RI" Rhode Island
+      option value="SC" South Carolina
+      option value="SD" South Dakota
+      option value="TN" Tennessee
+      option value="TX" Texas
+      option value="UT" Utah
+      option value="VT" Vermont
+      option value="VA" Virginia
+      option value="WA" Washington
+      option value="WV" West Virginia
+      option value="WI" Wisconsin
+      option value="WY" Wyoming
   
   .form-group
-    label.control-label.col-sm-2 for="zip" Zip Code
-    .col-sm-3
-      input.form-control#zip type="text" pattern="[0-9]*" name="zip" ng-model="clinic.zip" autocomplete="off" maxlength="5" required="required"
+    label.control-label for="zip" Zip Code
+    input.form-control#zip type="text" pattern="[0-9]*" name="zip" ng-model="clinic.zip" autocomplete="off" maxlength="5" required="required"
 
   .form-group
-    label.control-label.col-sm-2 for="phone" Phone
-    .col-sm-6
-      input.form-control#phone type="tel" name="phone" ng-model="clinic.phone" autocomplete="off" mask="phone"
+    label.control-label for="phone" Phone
+    input.form-control#phone type="tel" name="phone" ng-model="clinic.phone" autocomplete="off" mask="phone"
   
 
   / TODO: Fix select box
   .form-group
-    label.control-label.col-sm-2 for="survey" Survey
-    .col-sm-8
-      select.select2.full-color#survey name="survey" ng-model="clinic.survey_id" required="required"
-        option value="" readonly="readonly" Link a survey to this clinic
-        option ng-repeat="survey in surveys | orderBy:'title'" value="{{survey.id}}" ng-selected="clinic.survey.id == survey.id"
-          | {{survey.title}}
+    label.control-label for="survey" Survey
+    select.select2.full-color#survey name="survey" ng-model="clinic.survey_id" required="required"
+      option value="" readonly="readonly" Link a survey to this clinic
+      option ng-repeat="survey in surveys | orderBy:'title'" value="{{survey.id}}" ng-selected="clinic.survey.id == survey.id"
+        | {{survey.title}}

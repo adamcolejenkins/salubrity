@@ -1,19 +1,27 @@
 ul.cl-vnavigation
-  
+
   li ui-sref-active="active"
-    a href="#" ui-sref="dashboard"
+    a href="#" ui-sref="dashboard" target="_self"
       i.fa.fa-home
       span Dashboard
-
-  li ui-sref-active="active"
-    a href="#" ui-sref="surveys"
-      i.fa.fa-list
-      span Surveys
-
-  li ui-sref-active="active"
-    a href="#" ui-sref="clinics"
-      i.fa.fa-medkit
-      span Clinics
+  
+  - if can? :manage, Survey
+    li ui-sref-active="active"
+      a href="#" ui-sref="surveys" target="_self"
+        i.fa.fa-list
+        span Surveys
+  
+  - if can? :manage, Clinic
+    li ui-sref-active="active"
+      a href="#" ui-sref="clinics" target="_self"
+        i.fa.fa-medkit
+        span Clinics
+  
+  - if can? :manage, Users
+    li ui-sref-active="active"
+      a href="#" ui-sref="team" target="_self"
+        i.fa.fa-users
+        span Team
 
   / li ui-sref-active="active"
   /   a href="#" ui-sref="providers"

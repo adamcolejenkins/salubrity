@@ -4,13 +4,14 @@
       ul.nav.navbar-nav.navbar-right.user-nav
         li.dropdown.profile_menu
           = link_to '#', data_toggle: 'dropdown', class: 'dropdown-toggle'
-            = image_tag("avatars/male.252x252.png", width: '30px', height: '30px')
+            / = image_tag("avatars/male.252x252.png", width: '30px', height: '30px')
+            = gravatar_image_tag(current_user.email, alt: identify(current_user), :gravatar => { size: 30 })
             span
-              = current_user.name or current_user.email
+              = identify(current_user)
             b.caret
           ul.dropdown-menu
             li
-              = link_to 'Profile', '#'
+              = link_to 'Profile', profile_path, target: '_self'
             li
               = link_to 'Sign Out', destroy_user_session_path, :method => :delete
       ul.nav.navbar-nav.not-nav
