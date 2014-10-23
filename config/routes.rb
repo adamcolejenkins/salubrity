@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
   get 'frontend/index'
 
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'users/invitations' }
+
+  devise_scope :user do
+    get "login" => "devise/sessions#new"
+    get 'users' => "users#index"
+  end
 
   namespace :api, defaults: {format: :json} do
     devise_scope :user do

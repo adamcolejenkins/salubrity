@@ -1,0 +1,62 @@
+.cl-mcont
+
+  .page-head
+    h2
+      i.fa.fa-users 
+      |  Team
+
+  .row
+    .col-md-12
+  
+      ul.nav.nav-tabs
+        li class="#{active_if_current(users_path)}" = link_to 'Users', users_path, target: '_self'
+        li = link_to 'Groups', users_path, target: '_self'
+        li class="#{active_if_current(new_user_invitation_path)}" = link_to 'Invite', new_user_invitation_path, target: '_self'
+
+
+
+      / .block-flat
+      /   .header
+      /     .tools.pull-right
+      /       = link_to 'Invite User', new_user_invitation_path, class: 'btn btn-success btn-sm', target: '_self'
+
+      /     h3 Users
+
+      /   .content
+      /     .table-responsive
+      /       table.table.no-border.hover
+      /         thead.no-border
+      /           tr
+      /             th style="width:2%"
+      /               input type="checkbox"
+      /             th 
+      /               strong User
+      /             th style="width:15%"
+      /               strong Email
+      /             th.text-center style="width:15%"
+      /               strong Last Signed In
+      /             th.text-center style="width:15%"
+      /               strong Action
+
+      /         tbody.no-border-y
+      /           - @users.each do |user|
+      /             tr
+      /               / Checkbox
+      /               td
+      /                 input type="checkbox"
+
+      /               / User
+      /               td
+      /                 strong = identify(user)
+      /                 = print_status(user)
+      /                 span.label.pull-right class="label-#{user.role}"
+      /                   = user.role.to_s.humanize
+
+      /               / Email
+      /               td = user.email
+
+      /               / Last Signed in
+      /               td.text-center = time_ago_in_words(user.last_sign_in_at) if !user.last_sign_in_at.blank?
+
+      /               / Actions
+      /               td.text-center

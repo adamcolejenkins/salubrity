@@ -1,0 +1,7 @@
+<h2><%= I18n.t("devise.mailer.invitation_instructions.invited_by", name: @resource.invited_by.name) %></h2>
+
+<p><em><%= I18n.t("devise.mailer.invitation_instructions.someone_invited_you") %></em></p>
+
+<p><%= I18n.t("devise.mailer.invitation_instructions.to_accept") %><%= link_to I18n.t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
+
+<p><%= I18n.t("devise.mailer.invitation_instructions.ignore").html_safe %></p>

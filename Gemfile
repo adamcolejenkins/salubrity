@@ -32,7 +32,11 @@ end
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'devise', '~> 3.3.0'
+gem 'devise'
+gem 'devise_invitable', '~> 1.3.4'
+gem "cancan"
+gem 'gravatar_image_tag'
+
 gem 'slim-rails'
 
 # gem 'active_model_serializers', '~> 0.8.0'
