@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
   get 'frontend/index'
 
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }
+
+  devise_scope :user do
+    get "login" => "devise/sessions#new"
+    get "profile" => "users/registrations#edit"
+    # get 'users' => "users#index"
+    # get 'users/:id/edit' => "users#edit", as: 'edit_user'
+    # post 'users/:id/edit' => ''
+    resources :users, except: [:new, :create, :show]
+  end
 
   namespace :api, defaults: {format: :json} do
     devise_scope :user do

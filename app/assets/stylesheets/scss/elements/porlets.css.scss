@@ -10,13 +10,13 @@
 .block-flat, .block-wizard{
 	margin-bottom:40px;
 	padding:20px 20px;
-	background:#FFF;
+	background:#fff;
 	border-radius:3px;
   position: relative;
 	-webkit-border-radius:3px;
-	border-left:1px solid #efefef;
-	border-right:1px solid #efefef;
-	border-bottom:1px solid #e2e2e2;
+	border-left:1px solid #dde6e9;
+	border-right:1px solid #dde6e9;
+	border-bottom:1px solid #dde6e9;
 	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
   transition: padding 500ms;
   -moz-transition: padding 500ms;
@@ -167,6 +167,16 @@
   left: 50%;
   margin-left: -13px;
   font-size: 26px;
+}
+
+.block-flat.user-block {
+  margin-bottom: 10px;
+}
+.block-flat.user-block img.avatar {
+  margin: -20px 20px -20px -20px;
+  @extend .pull-left;
+  background-color: #57646C;
+  border-radius:3px;
 }
 
 .surveys {
