@@ -25,4 +25,7 @@ class Users::InvitationsController < Devise::InvitationsController
     devise_parameter_sanitizer.for(:accept_invitation).concat [:name, :surname]
   end
 
+  def resource_class
+    @resource_class = @current_team.users
+  end
 end

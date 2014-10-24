@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022204843) do
+ActiveRecord::Schema.define(version: 20141024034805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,15 @@ ActiveRecord::Schema.define(version: 20141022204843) do
     t.text     "opts"
   end
 
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.string   "website"
+    t.text     "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",          null: false
     t.string   "encrypted_password",     default: ""
@@ -161,6 +170,14 @@ ActiveRecord::Schema.define(version: 20141022204843) do
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "surname"
+    t.integer  "team_id"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts"
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -168,5 +185,6 @@ ActiveRecord::Schema.define(version: 20141022204843) do
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
 end

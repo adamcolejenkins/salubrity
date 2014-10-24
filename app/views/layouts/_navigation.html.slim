@@ -1,9 +1,10 @@
 ul.cl-vnavigation
 
-  li ui-sref-active="active"
-    a href="#" ui-sref="dashboard" target="_self"
-      i.fa.fa-home
-      span Dashboard
+  / li class="#{active_if_current(nil)}"
+  /   a href="#" ui-sref="dashboard" target="_self"
+  /   = link_to
+  /     i.fa.fa-home
+  /     span Dashboard
   
   - if can? :manage, Survey
     li ui-sref-active="active"
@@ -18,10 +19,10 @@ ul.cl-vnavigation
         span Clinics
   
   - if can? :manage, Users
-    li ui-sref-active="active"
-      a href="#" ui-sref="team" target="_self"
+    li class="#{active_if_current(users_path)}"
+      = link_to users_path, target: "_self"
         i.fa.fa-users
-        span Team
+        span Users
 
   / li ui-sref-active="active"
   /   a href="#" ui-sref="providers"

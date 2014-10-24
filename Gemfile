@@ -32,6 +32,7 @@ end
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+gem 'devise-basecamper'
 gem 'devise'
 gem 'devise_invitable', '~> 1.3.4'
 gem "cancan"

@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   layout 'angular'
 
   def index
-    @users = User.where("role != 'superuser'").invitation_accepted
-    @pending = User.invitation_not_accepted
+    @users = @current_team.users.invitation_accepted
+    @pending = @current_team.users.invitation_not_accepted
   end
 
   def edit
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = @current_team.users.find(params[:id])
   end
 
   def user_params

@@ -1,2 +1,3 @@
 module Users::InvitationsControllerHelper
+  
 end

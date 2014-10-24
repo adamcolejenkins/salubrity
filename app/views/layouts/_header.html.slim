@@ -11,9 +11,18 @@
             b.caret
           ul.dropdown-menu
             li
-              = link_to 'Profile', profile_path, target: '_self'
+              = link_to profile_path, target: '_self'
+                i.fa.fa-user
+                |  Profile
+            - if can? :update, Team
+              li
+                = link_to teams_path, target: '_self'
+                  i.fa.fa-users 
+                  |  Edit Team
             li
-              = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+              = link_to destroy_user_session_path, :method => :delete
+                i.fa.fa-key
+                |  Logout
       ul.nav.navbar-nav.not-nav
         li.button
           = link_to '/kiosk', target: "_self", tooltip: "Launch Kiosk", tooltip_placement: 'bottom'
