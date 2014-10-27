@@ -4,7 +4,7 @@ class Api::ClinicsController < Api::BaseController
   # GET /clinics
   # GET /clinics.json
   def index
-    @clinics = Clinic.all
+    @clinics = survey.clinics.all
   end
 
   # GET /clinics/1
@@ -15,7 +15,7 @@ class Api::ClinicsController < Api::BaseController
   # POST /clinics
   # POST /clinics.json
   def create
-    @clinic = Clinic.new(clinic_params)
+    @clinic = survey.clinics.new(clinic_params)
     
     respond_to do |format|
       if @clinic.save
@@ -46,9 +46,14 @@ class Api::ClinicsController < Api::BaseController
   end
 
   private
+
+    def survey
+      @survey ||= current_team.surveys.find(params[:survey_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic
-      @clinic ||= Clinic.find(params[:id])
+      @clinic ||= survey.clinics.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

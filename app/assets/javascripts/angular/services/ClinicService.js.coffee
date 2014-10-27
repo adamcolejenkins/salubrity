@@ -3,9 +3,9 @@
   .factory 'ClinicService', ($resource, $http) ->
 
     class ClinicService
-      constructor: (errorHandler) ->
-        @service = $resource('/api/clinics/:id',
-          {id: '@id'},
+      constructor: (surveyId, errorHandler) ->
+        @service = $resource('/api/surveys/:survey_id/clinics/:id',
+          {survey_id: surveyId, id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler
 

@@ -4,7 +4,7 @@ class Api::ProvidersController < Api::BaseController
   # GET /providers
   # GET /providers.json
   def index
-    @providers = Provider.all
+    @providers = clinic.providers.all
   end
 
   # GET /providers/1
@@ -47,8 +47,12 @@ class Api::ProvidersController < Api::BaseController
 
   private
 
+    def survey
+      @survey ||= current_team.surveys.find(params[:survey_id])
+    end
+
     def clinic
-      @clinic ||= Clinic.find(params[:clinic_id])
+      @clinic ||= survey.clinics.find(params[:clinic_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.

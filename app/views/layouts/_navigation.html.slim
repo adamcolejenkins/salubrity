@@ -17,23 +17,24 @@ ul.cl-vnavigation
       a href="#" ui-sref="clinics" target="_self"
         i.fa.fa-medkit
         span Clinics
-  
-  - if can? :manage, Users
-    li class="#{active_if_current(users_path)}"
-      = link_to users_path, target: "_self"
-        i.fa.fa-users
-        span Users
 
-  / li ui-sref-active="active"
-  /   a href="#" ui-sref="providers"
-  /     i.fa.fa-user-md
-  /     span Providers
+  / - if can? :manage, Provider
+  /   li class="#{active_if_current(providers_path)}"
+  /     = link_to providers_path, target: "_self"
+  /       i.fa.fa-user-md
+  /       span Providers
 
   / li ui-sref-active="active"
   /   a href="#" ui-sref="analytics"
   /     i.fa.fa-bar-chart-o
   /     span Analytics
   
+  / - if can? :manage, Users
+  /   li class="#{active_if_current(users_path)}"
+  /     = link_to users_path, target: "_self"
+  /       i.fa.fa-users
+  /       span Users
+
   / Super User only
   / li ui-sref-active="active"
   /   a href="#" ui-sref="config"

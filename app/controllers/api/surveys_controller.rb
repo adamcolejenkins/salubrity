@@ -4,7 +4,7 @@ class Api::SurveysController < Api::BaseController
 
   # GET /api/surveys
   def index
-    @surveys = Survey.filter(params.slice(:guid))
+    @surveys = current_team.surveys.filter(params.slice(:guid))
   end
 
   # GET /api/surveys/1
@@ -13,7 +13,7 @@ class Api::SurveysController < Api::BaseController
 
   # POST /api/surveys
   def create
-    @survey = Survey.new(survey_params)
+    @survey = current_team.surveys.new(survey_params)
     respond_to do |format|
       if @survey.save
         format.json { render :show, status: :created }
@@ -44,7 +44,7 @@ class Api::SurveysController < Api::BaseController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_survey
-    @survey ||= Survey.find(params[:id] || params[:guid])
+    @survey ||= current_team.surveys.find(params[:id] || params[:guid])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

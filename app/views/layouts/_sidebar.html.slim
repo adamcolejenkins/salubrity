@@ -17,7 +17,7 @@
         .avatar = image_tag("avatars/muhealth.252x252.png", width: '50px', height: '50px')
         .info
           p 
-            | MU Healthcare
+            = current_team.name
             span
               = link_to '#', tooltip: 'Manage Account', tooltip_placement: 'right'
                 i.fa.fa-hospital-o

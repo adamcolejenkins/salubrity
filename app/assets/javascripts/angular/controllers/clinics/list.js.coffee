@@ -14,6 +14,8 @@
   .controller 'ClinicListCtrl',
     ($scope, Clinics, ClinicService, $modal) ->
 
+      console.log $scope
+
       # Initialize Scope
       $scope.init = ->
         $scope.clinics = Clinics

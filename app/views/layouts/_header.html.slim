@@ -14,16 +14,34 @@
               = link_to profile_path, target: '_self'
                 i.fa.fa-user
                 |  Profile
+            
+            li.divider
+
             - if can? :update, Team
               li
                 = link_to teams_path, target: '_self'
                   i.fa.fa-users 
                   |  Edit Team
+            
+            - if can? :manage, Users
+              li
+                = link_to users_path, target: '_self'
+                  i.fa.fa-user
+                  |  Manage Users
+            
+            li.divider
+
             li
               = link_to destroy_user_session_path, :method => :delete
                 i.fa.fa-key
                 |  Logout
-      ul.nav.navbar-nav.not-nav
+      ul.nav.navbar-nav.not-nav.navbar-right
         li.button
           = link_to '/kiosk', target: "_self", tooltip: "Launch Kiosk", tooltip_placement: 'bottom'
             i.fa.fa-rocket
+
+      / ul.nav.navbar-nav.navbar-left
+      /   li
+      /     = link_to "Dashboard", "", target: "_self"
+      /   li
+      /     = link_to "My Surveys", surveys_path, target: "_self"
