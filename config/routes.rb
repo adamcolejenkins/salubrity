@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # get 'get-started' => 'teams#new'
+  get 'get-started' => 'teams#new'
   resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
 
   devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }

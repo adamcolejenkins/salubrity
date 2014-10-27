@@ -26,6 +26,6 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def resource_class
-    @resource_class = @current_team.users
+    @resource_class = current_team.users
   end
 end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :subdomain, :current_team
-  before_filter :validate_subdomain, :authenticate_user!, unless: :devise_controller?
+  before_filter :validate_subdomain, :authenticate_user!
 
 
   # def permission_denied

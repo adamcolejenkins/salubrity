@@ -5,7 +5,7 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = 'ac39bfd848d59f7d65fdf4d1f1919d21b7f90e29ac0ac822bd57097ca885e75c6eee4d5789f56430759a7207d9a0ad5c45094fd82ed1e1d5850bb9fa315ed7a2'
-
+  
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -13,7 +13,9 @@ Devise.setup do |config|
   config.mailer_sender = 'hello@salubrity.io'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer.class_eval do 
+    helper :subdomain 
+  end
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
