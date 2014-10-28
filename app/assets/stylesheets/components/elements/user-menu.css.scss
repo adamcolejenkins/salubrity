@@ -1,0 +1,82 @@
+div.user-menu {
+  width: 100%;
+  position: relative;
+  z-index: 500;
+
+  & div.user {
+    position: absolute;
+    right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: -20px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin: 20px;
+      margin-right: 0;
+      margin-top: 15px;
+      border-radius: $global-radius;
+    }
+    div.arrow {
+      float: right;
+      margin-right: 10px;
+      i {
+        margin-top: 40px;
+        display: inline-block;
+      }
+    }
+    div.details {
+      float: right;
+      padding-right: 40px;
+      font-size: 20px;
+      font-weight: 300;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      .name {
+
+      }
+      .team {
+        font-weight: 700;
+        font-size: rem-calc(12);
+      }
+    }
+    div.image {
+      float: right;
+    }
+    &:hover {
+      background: $smoke;
+      color: $titanium;
+      ul {
+        display: block;
+      }
+    }
+    ul {
+      display: none;
+      clear:both;
+      margin: 0;
+      padding-bottom: 10px;
+      list-style: none;
+      li {
+        line-height: $topbar-height;
+        border-top: 1px solid #D9D9D9;
+        &:first-child {
+            border-top: 0;
+        }
+        a {
+            display: block;
+            font-size: 13px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        i {
+            display: inline-block;
+            margin-right: 15px;
+            position: relative;
+            top: 2px;
+        }
+      }
+    }
+  }
+}

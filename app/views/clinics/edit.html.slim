@@ -1,0 +1,6 @@
+section.content
+  dl.nav-tabs
+    = tab_for "Providers", survey_clinic_providers_path(@clinic.survey, @clinic)
+    = tab_for "Settings", edit_survey_clinic_path(@clinic.survey, @clinic)
+
+  = render 'form'

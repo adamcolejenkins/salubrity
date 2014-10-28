@@ -1,11 +1,15 @@
 class KioskController < ApplicationController
+  skip_before_filter :authenticate_user!
   before_action :set_clinic, only: [:new, :create]
-  # before_filter :authenticate_user!, only: [:index]
   layout 'kiosk'
   
   def index
-    @clinic = JSON.parse(cookies[:_salubrity_kiosk_clinic])
-    @survey = JSON.parse(cookies[:_salubrity_kiosk_survey])
+    unless cookies[:_salubrity_kiosk_clinic].nil?
+      @clinic = JSON.parse(cookies[:_salubrity_kiosk_clinic])
+    end
+    unless cookies[:_salubrity_kiosk_survey].nil?
+      @survey = JSON.parse(cookies[:_salubrity_kiosk_survey])
+    end
   end
 
   def show
@@ -36,7 +40,7 @@ class KioskController < ApplicationController
     @response.survey = @clinic.survey
 
     if @response.save
-      redirect_to kiosk_new_path(params[:guid])
+      redirect_to new_response_path
     else
 
     end
@@ -45,9 +49,12 @@ class KioskController < ApplicationController
 
   private
 
+  def survey
+    @survey ||= current_team.surveys.where(guid: params[:survey_guid]).limit(1).first
+  end
+
   def set_clinic
-    # @clinic ||= Clinic.where(guid: params[:clinic_guid]).survey.where(guid: params[:survey_guid])
-    @clinic ||= Clinic.where(guid: params[:guid]).limit(1).first
+    @clinic ||= survey.clinics.where(guid: params[:clinic_guid]).limit(1).first
 
     if @clinic.blank?
       redirect_to kiosk_path, alert: "That clinic was not found."

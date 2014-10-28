@@ -1,45 +1,53 @@
-h1 Getting Started
+hgroup
+  .title
+    h2 Getting Started
 
-/ = render "layouts/flash"
+section.layout
+  section.content
 
-= form_for @team do |f|
+    = form_for @team do |f|
 
-  - if @team.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@team.errors.count, "error")} prohibited you from getting started:"
-      ul
-        - @team.errors.full_messages.each do |message|
-          li = message
+      - if @team.errors.any?
+        .alert-box.alert
+          h2 = "#{pluralize(@team.errors.count, "error")} prohibited you from getting started:"
+          ul
+            - @team.errors.full_messages.each do |message|
+              li = message
 
-  .form-group
-    = f.label :name, "Team or Organization", class: 'control-label'
-    = f.text_field :name, class: 'form-control'
+      .form-group
+        .full
+          = f.label :name
+          = f.text_field :name
 
-  = f.fields_for :users do |u|
-    .form-group.row
-      .col-md-6
-        = u.label :name, 'First Name', class: 'control-label'
-        = u.text_field :name, class: 'form-control'
-      .col-md-6
-        = u.label :surname, 'Last Name', class: 'control-label'
-        = u.text_field :surname, class: 'form-control'
+      = f.fields_for :users do |u|
+        .form-group
+          .half
+            = u.label :name
+            = u.text_field :name
+          .half
+            = u.label :surname
+            = u.text_field :surname
 
-    .form-group
-      = u.label :email, class: 'control-label'
-      = u.email_field :email, class: 'form-control'
+        .form-group
+          .full
+            = u.label :email
+            = u.email_field :email
 
-    .form-group
-      = u.label :password, class: 'control-label'
-      - if @validatable
-        i
-          | (#{@minimum_password_length} characters minimum)
-      = u.password_field :password, autocomplete: "off", class: 'form-control'
-    
-    .form-group
-      = u.label :password_confirmation, class: 'control-label'
-      = u.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+        .form-group
+          .full
+            = u.label :password
+            - if @validatable
+              i
+                | (#{@minimum_password_length} characters minimum)
+            = u.password_field :password, autocomplete: "off"
+        
+        .form-group
+          .full
+            = u.label :password_confirmation
+            = u.password_field :password_confirmation, autocomplete: "off"
 
-    = u.hidden_field :role, value: 'owner'
+        = u.hidden_field :role, value: 'owner'
 
-  .form-group
-    = f.submit "Create Account", class: 'btn btn-success btn-lg'
+      .form-group
+        .full
+          = f.submit "Create Account", class: 'radius success button'

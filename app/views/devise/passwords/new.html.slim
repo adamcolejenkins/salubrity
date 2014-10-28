@@ -1,0 +1,22 @@
+hgroup
+  .title
+    h2 Forgot your password?
+
+section.layout
+  section.content
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+
+      = devise_error_messages!
+      = hidden_field_tag 'users[subdomain]', subdomain
+      
+      .form-group
+        .full
+          = f.label :email
+          = f.email_field :email
+
+      .form-group
+        .full
+          = f.submit "Reset Password", class: 'radius success button'
+
+    = render "devise/shared/links"

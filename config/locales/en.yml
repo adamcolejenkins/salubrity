@@ -21,28 +21,97 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      team:
+        name: "Team name"
+      users:
+        name: "First name"
+        surname: "Last name"
+  titles:
+    application: "Salubrity"
+    dashboard:
+      index:
+        title: "Dashboard"
+    surveys:
+      index:
+        title: "My Surveys"
+        describe: "Your available surveys. Build, edit or delete them here"
+      new:
+        title: "New Survey"
+        describe: "If you build it, they will come."
+      edit:
+        title: "%{survey}"
+        describe: "Edit the settings for this survey."
+    fields:
+      index:
+        title: "%{survey} Builder"
+        describe: "Double click to edit fields, drag to reorder."
+    clinics:
+      index:
+        title: "My Clinics"
+        describe: "Clinics for %{survey}"
+      new:
+        title: "New Clinic"
+        describe: "New clinic for %{survey}"
+      edit:
+        title: "%{clinic}"
+        describe: "Edit the settings for this clinic."
+    providers:
+      index:
+        title: "%{clinic}"
+        describe: "Manage your providers for this clinic."
+      new:
+        title: "%{clinic}"
+        describe: "Add a new provider to this clinic."
+      edit:
+        title: "%{provider}"
+        describe: "Edit this provider's information."
+    users:
+      index:
+        title: "Users"
+        describe: "Invite users to your team"
+      edit:
+        title: "Users"
+        describe: "Upgrade or downgrade this user's privileges."
+    registrations:
+      edit:
+        title: "%{user}"
+        describe: "Edit your profile."
+    invitations:
+      new:
+        title: "Users"
+        describe: "Invite users to your team"
+    teams:
+      edit:
+        title: "%{team}"
+        describe: "Manage your team settings."
   surveys:
     form:
       details:
         title: "Survey Details"
         permalink_example: "Example: this-is-a-proper-permalink"
         permalink_unique_warning: "Oops! That url is already taken"
-      scheduling:
-        title: "Scheduling Details"
-        activate_label: "Activate survey scheduling"
-        start_describe: "When would you like this survey to start being shown to the public?"
-        stop_describe: "When would you like this survey to stop being shown to the public?"
     list:
-      title: "My Surveys"
-      describe: "Your available surveys. Build, edit or delete them here"
       create_button_label: "New Survey"
       no_surveys: "You haven't created any surveys yet"
-    create:
-      title: "New Survey"
-      describe: "If you build it, they will come. So let's open a clinic for this survey!"
-    edit:
-      title: "Edit Survey"
-      describe: "Tinker with it all you want!"
     build:
       no_fields_text: "This survey has no fields, create one above!"
       create_field_button_label: "Add Field"
+  clinics:
+    form:
+      details:
+        title: "Clinic Details"
+      contact:
+        title: "Contact Details"
+    list:
+      create_button_label: "New Clinic"
+    edit:
+      title: "Edit Clinic"
+      describe: "Editing %{title}'"
+  providers:
+    form:
+      details:
+        title: "Provider Details"
+    list:
+      create_button_label: "New Provider"

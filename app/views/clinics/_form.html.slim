@@ -1,0 +1,46 @@
+= form_for @clinic, url: survey_clinics_path, html: {class: "indent-fields"} do |f|
+  - if @clinic.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved:"
+      ul
+        - @clinic.errors.full_messages.each do |message|
+          li = message
+
+  .form-header
+    .tag
+      | 1
+    h3 = t 'clinics.form.details.title'
+
+  .form-group
+    = f.label :title
+    = f.text_field :title
+  / .form-group
+  /   = f.label :guid, 'Permalink'
+  /   = f.text_field :guid
+  .form-group
+    = f.label :address
+    = f.text_field :address
+  .form-group
+    = f.label :address2
+    = f.text_field :address2
+  .form-group.nested
+    .medium-6.columns
+      = f.label :city
+      = f.text_field :city
+    .medium-4.columns
+      = f.label :state
+      = f.text_field :state
+    .medium-2.columns
+      = f.label :zip
+      = f.text_field :zip
+
+  .form-header
+    .tag
+      | 1
+    h3 = t 'clinics.form.contact.title'
+
+  .form-group
+    = f.label :phone
+    = f.text_field :phone
+
+  .form-group = f.submit 'Save Clinic', class: 'radius success button'

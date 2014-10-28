@@ -1,10 +1,10 @@
 @salubrity
   
-  .config ($stateProvider) ->
+  # .config ($stateProvider) ->
 
-    $stateProvider.state 'kiosk.create',
-      url: '/:guid/create'
-      controller: 'KioskCreateCtrl'
+  #   $stateProvider.state 'kiosk.create',
+  #     url: '/:guid/create'
+  #     controller: 'KioskCreateCtrl'
 
   .controller 'KioskCreateCtrl', ($scope) ->
 

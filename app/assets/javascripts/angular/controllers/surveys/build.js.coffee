@@ -1,23 +1,15 @@
 @salubrity
-  
-  .config ($stateProvider) ->
-  
-    $stateProvider.state 'surveys.build',
-      url: '/:id/build'
-      templateUrl: '/templates/surveys/build.html'
-      controller: 'SurveyBuildCtrl'
-
 
   .controller 'SurveyBuildCtrl', 
-    ($scope, $rootScope, $stateParams, $timeout, $modal, $pageslide, SurveyService, FieldService, FieldChoice, $location) ->
+    ($scope, $rootScope, $timeout, $modal, $pageslide, SurveyService, FieldService, FieldChoice, $location) ->
 
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
 
-      $scope.init = ->
-        @FieldService = new FieldService($stateParams.id, serverErrorHandler)
+      $scope.init = (survey_id) ->
+        @FieldService = new FieldService(survey_id, serverErrorHandler)
         @SurveyService = new SurveyService(serverErrorHandler)
-        $scope.survey = @SurveyService.find $stateParams.id
+        $scope.survey = @SurveyService.find survey_id
 
       $scope.addField = (field) ->
 
@@ -36,7 +28,7 @@
 
       $scope.editField = (field, $event) ->
         FieldService = @FieldService
-
+        console.log field
         @pageslide = $pageslide.open
           templateUrl: '/templates/fields/settings.html'
           controller: 'FieldSettingsCtrl'
@@ -64,53 +56,53 @@
             $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
         )
 
-      $scope.editSurvey = (survey) ->
+      # $scope.editSurvey = (survey) ->
 
-        @modal = $modal.open
-          templateUrl: '/templates/surveys/edit.html'
-          windowTemplateUrl: '/templates/partials/modalFormWindow.html'
-          controller: 'SurveyEditCtrl'
-          resolve:
-            survey: -> survey
+      #   @modal = $modal.open
+      #     templateUrl: '/templates/surveys/edit.html'
+      #     windowTemplateUrl: '/templates/partials/modalFormWindow.html'
+      #     controller: 'SurveyEditCtrl'
+      #     resolve:
+      #       survey: -> survey
             
 
-      $scope.deleteSurvey = (survey) ->
-        SurveyService = @SurveyService
+      # $scope.deleteSurvey = (survey) ->
+      #   SurveyService = @SurveyService
 
-        swal(
-          title: 'Are you sure?'
-          text: 'Deleting this survey will delete all results, including results tied to clinics and providers.'
-          type: 'warning'
-          showCancelButton: true
-          confirmButtonColor: '#DD6B55'
-          confirmButtonText: 'Yes, delete it!'
-          , ->
-            $timeout(->
-              swal(
-                title: 'Are you absolutely sure?'
-                text: 'This cannot be undone, what\'s done is done. There is absolutely no return.'
-                type: 'warning'
-                showCancelButton: true
-                cancelButtonText: 'I\'m having second thoughts!'
-                confirmButtonColor: '#DD6B55'
-                confirmButtonText: 'Yes, I\'m absolutely sure, delete it!'
-                , ->
-                  SurveyService.delete($scope.survey).then ->
-                    $timeout(->
-                      swal(
-                        title: 'Successfully deleted survey!'
-                        text: 'I hope you didn\'t need that.'
-                        confirmButtonColor: '#A5DC86'
-                        type: 'success'
-                      )
-                      # Remove clinic from the list
-                      $scope.$parent.surveys.splice $scope.$parent.surveys.indexOf(survey), 1
-                      # Redirect to clinic list
-                      $location.path('/surveys')
-                    , 300)
-              )
-            , 300)
-        )
+      #   swal(
+      #     title: 'Are you sure?'
+      #     text: 'Deleting this survey will delete all results, including results tied to clinics and providers.'
+      #     type: 'warning'
+      #     showCancelButton: true
+      #     confirmButtonColor: '#DD6B55'
+      #     confirmButtonText: 'Yes, delete it!'
+      #     , ->
+      #       $timeout(->
+      #         swal(
+      #           title: 'Are you absolutely sure?'
+      #           text: 'This cannot be undone, what\'s done is done. There is absolutely no return.'
+      #           type: 'warning'
+      #           showCancelButton: true
+      #           cancelButtonText: 'I\'m having second thoughts!'
+      #           confirmButtonColor: '#DD6B55'
+      #           confirmButtonText: 'Yes, I\'m absolutely sure, delete it!'
+      #           , ->
+      #             SurveyService.delete($scope.survey).then ->
+      #               $timeout(->
+      #                 swal(
+      #                   title: 'Successfully deleted survey!'
+      #                   text: 'I hope you didn\'t need that.'
+      #                   confirmButtonColor: '#A5DC86'
+      #                   type: 'success'
+      #                 )
+      #                 # Remove clinic from the list
+      #                 $scope.$parent.surveys.splice $scope.$parent.surveys.indexOf(survey), 1
+      #                 # Redirect to clinic list
+      #                 $location.path('/surveys')
+      #               , 300)
+      #         )
+      #       , 300)
+      #   )
 
 
       $scope.priorityChanged = (field) ->

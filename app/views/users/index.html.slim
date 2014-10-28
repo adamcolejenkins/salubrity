@@ -1,48 +1,50 @@
-.cl-mcont
+section.content
 
-  .page-head
-    h2 Team
-
-    ol.breadcrumb
-      li = link_to 'Team', users_path, target: '_self'
-
-  .row
-    .col-md-11
-  
-      ul.nav-tabs-lg
-        li class="#{active_if_current(users_path)}" = link_to 'Users', users_path, target: '_self'
-        / li = link_to 'Groups', users_path, target: '_self'
-        li class="#{active_if_current(new_user_invitation_path)}" = link_to 'Invite', new_user_invitation_path, target: '_self'
+  dl.nav-tabs
+    = tab_for "Users", users_path
+    / = tab_for "Groups", nil
+    = tab_for "Invite", new_user_invitation_path
 
 
-  .row
-    .col-md-11.user-list
+  - @users.group_by(&:role).each do |role, users|
+    h3.spacer3 = role.to_s.humanize.pluralize
+    
+    .block
+      - users.each do |user|
+        .block-item.user-block
 
-      - @users.group_by(&:role).each do |role, users|
-        h3.spacer3 = role.to_s.humanize.pluralize
-        
-        - users.each do |user|
-          .block-flat.user-block
-
-            .tools.pull-right
-              = link_to edit_user_path(user), class: 'btn btn-primary btn-flat', target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
-                i.fa.fa-wrench
-              = link_to user_path(user), class: 'btn btn-danger btn-flat', target: '_self', method: 'delete', tooltip: 'Delete user', tooltip_placement: 'right'
-                i.fa.fa-trash
-
+          .details
             = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
-            h4 = identify(user)
+            .name
+              h4 = identify(user)
 
-      - if @pending.length > 0
-        h3.spacer3 Pending Invitations
-        - @pending.each do |user|
-          .block-flat.user-block
+          .options
+            ul.actions
+              li
+                = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                  i.fa.fa-wrench
+              li
+                = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
+                  i.fa.fa-trash
 
-            .tools.pull-right
-              = link_to edit_user_path(user), class: 'btn btn-primary btn-flat', target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
-                i.fa.fa-wrench
-              = link_to user_path(user), class: 'btn btn-danger btn-flat', target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
-                i.fa.fa-trash
+  - if @pending.length > 0
+    h3.spacer3 Pending Invitations
 
-            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
-            h4 = identify(user)
+    .block
+      - @pending.each do |user|
+        .block-item.user-block
+
+          .details
+            .avatar
+              = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 83 })
+            .name
+              h4 = identify(user)
+
+          .options
+            ul.actions
+              li
+                = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                  i.fa.fa-wrench
+              li
+                = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
+                  i.fa.fa-trash
