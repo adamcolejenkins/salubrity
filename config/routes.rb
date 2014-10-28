@@ -40,7 +40,9 @@ Rails.application.routes.draw do
   end
 
   get 'get-started' => 'teams#new', constraints: {subdomain: /(www)?/x}
-  root :to => 'home#index', constraints: {subdomain: ''}
+  post 'get-started' => 'teams#create', constraints: {subdomain: /(www)?/x}, as: 'teams'
+  
+  root :to => 'home#index', constraints: {subdomain: /(www)?/x}
 
   # get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
 end
