@@ -1,0 +1,166 @@
+.builder {
+  
+
+  .button-grid {
+    @include block-grid($per-row: 2);
+    li {
+      padding-bottom: 5px;
+    }
+    button {
+      @include button-base;
+      @include button-size($button-tny, true);
+      @include button-style($secondary-color, true);
+      margin-bottom: 0;
+      
+      &.field-intro,
+      &.field-outro {
+        margin-bottom: 10px;
+      }
+      &.field-intro {
+        @include button-style($success-color, true);
+      }
+      &.field-outro {
+        @include button-style($info-color, true);
+      }
+    }
+  }
+
+  .timeline {
+    & > li {
+      cursor: pointer;
+
+      &.sort-item:not(.field-intro):not(.field-outro) .content {
+        border: 1px dashed transparent;
+        &:before {
+          border-left: 1px dashed transparent;
+          border-bottom: 1px dashed transparent;
+        }
+      }
+
+      &.field-intro { 
+        & > .fa,
+        & > .content,
+        & > .content:before {
+          background-color: $success-color;
+        }
+        .content {
+          color: $white;
+          &, &:before {
+            border-color: lighten($success-color, 15%);
+          }
+        }
+      }
+      &.field-outro { 
+        & > .fa,
+        & > .content,
+        & > .content:before {
+          background-color: $info-color;
+        }
+        .content {
+          color: $white;
+          &, &:before {
+            border-color: lighten($info-color, 15%);
+          }
+        }
+      }
+
+      .details {
+        @include grid-column($columns: 8, $collapse: true);
+        min-height: 40px;
+      }
+      .options {
+        @include grid-column($columns: 4, $collapse: true);
+      }
+
+      &.field-intro ul.actions li a,
+      &.field-outro ul.actions li a {
+        color: $white;
+      }
+      &.field-intro ul.actions li a {
+        background-color: lighten($success-color, 15%);
+      }
+      &.field-outro ul.actions li a {
+        background-color: lighten($info-color, 15%);
+      }
+    }
+    
+    &:hover {
+      .sort-item:not(.field-intro):not(.field-outro) .content {
+        border-color: $iron;
+        &:before {
+          border-color: $iron;
+        }
+        &:hover {
+          border-color: $base;
+          &:before {
+            border-color: $base;
+          }
+        }
+      }
+    }
+  }
+
+  .block.empty {
+    .block-item {
+      background-color: $ghost;
+      border: 1px dashed $gainsboro;
+      cursor: default;
+      .details {
+        @include grid-column($columns: 12);
+        text-align: center;
+      }
+    }
+    &.intro .block-item {
+      background-color: lighten($success-color, 40%);
+      border-color: lighten($success-color, 25%);
+    }
+    &.outro .block-item {
+      background-color: lighten($info-color, 40%);
+      border-color: lighten($info-color, 25%);
+    }
+  }
+
+
+}
+
+
+.sort {
+    position: relative;
+    display: block;
+    list-style: none;
+}
+.sort-list {
+    display: block;
+    position: relative;
+    list-style: none;
+    // margin: 0px;
+    // padding: 0px;
+}
+.sort-item,
+.sort-empty,
+.sort-placeholder {
+    display: block;
+    position: relative;
+    min-height: 20px;
+    // margin: 0;
+    // padding: 0;
+}
+.sort-placeholder,
+.sort-empty {
+    margin: 5px 0;
+    padding: 0;
+    min-height: 30px;
+    background: #FFF !important;
+    border: 1px dashed #b6bcbf !important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.sort-item {
+    z-index: 10;
+}
+.sort-dragel {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}

@@ -1,11 +1,11 @@
 @salubrity
   
-  .config ($stateProvider) ->
+  # .config ($stateProvider) ->
   
-    $stateProvider.state 'surveys.analyze',
-      url: '/survey/:id/analyze'
-      templateUrl: '/templates/surveys/analyze.html'
-      controller: 'SurveyAnalyzeCtrl'
+  #   $stateProvider.state 'surveys.analyze',
+  #     url: '/survey/:id/analyze'
+  #     templateUrl: '/templates/surveys/analyze.html'
+  #     controller: 'SurveyAnalyzeCtrl'
 
 
   .controller 'SurveyAnalyzeCtrl', 

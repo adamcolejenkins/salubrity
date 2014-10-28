@@ -44,7 +44,12 @@ class TeamsController < ApplicationController
 
   def update
     @team.update(team_params)
-    respond_with(@team)
+
+    if @team.save
+      redirect_to edit_team_path(@team)
+    else
+      respond_with(@team)
+    end
   end
 
   def destroy

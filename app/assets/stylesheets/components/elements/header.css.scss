@@ -1,0 +1,25 @@
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 90px;
+
+  section.branding {
+    h1 {
+      margin: 0;
+    }
+    .logo {
+      background: url('/assets/logo@3x.png') no-repeat left center;
+      background-size: 100%;
+      width: 200px;
+      height: 70px;
+      text-indent: -9999px;
+
+      @include retina {
+        background-image: url('/assets/logo@3x.png');
+      }
+      @include retina(hd) {
+        background-image: url('/assets/logo@3x.png');
+      }
+    }
+  }
+}

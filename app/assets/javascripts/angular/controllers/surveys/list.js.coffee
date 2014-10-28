@@ -1,11 +1,11 @@
 @salubrity
 
-  .config ($stateProvider) ->
+  # .config ($stateProvider) ->
 
-    $stateProvider.state 'surveys',
-      url: '/surveys'
-      controller: 'SurveyListCtrl'
-      templateUrl: '/templates/surveys/list.html'
+  #   $stateProvider.state 'surveys',
+  #     url: '/surveys'
+  #     controller: 'SurveyListCtrl'
+  #     templateUrl: '/templates/surveys/list.html'
   
 
   .controller "SurveyListCtrl", ($scope, $rootScope, SurveyService, $modal) ->

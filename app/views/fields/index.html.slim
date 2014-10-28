@@ -1,0 +1,30 @@
+section.content
+  dl.nav-tabs
+    = tab_for "Build", survey_fields_path(@survey)
+    = tab_for "Clinics", survey_clinics_path(@survey)
+    = tab_for "Settings", edit_survey_path(@survey)
+    
+.builder ng-controller="SurveyBuildCtrl" ng-init="init(#{@survey.id})"
+
+  section.sidebar
+    div(ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl")
+
+  section.content
+    ul.timeline ui-sortable="sortableOptions" ng-model="survey.fields" tooltip="Double click to edit, drag to reorder." ng-hide="survey.fields == 0"
+          
+      li.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.field_type}}"
+
+        i.fa class="fa-{{field.properties.icon}}"
+        span.date
+          | {{field.priority}}
+        div.content
+          div.details
+            | {{field.label}}
+          div.options
+            ul.actions
+              li ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
+                a.add tooltip="Duplicate field" tooltip_placement="left"
+                  i.fa.fa-copy
+              li
+                a.delete ng-click="deleteField(field, $index)" tooltip="Delete field" tooltip_placement="right"
+                  i.fa.fa-trash-o

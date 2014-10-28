@@ -1,0 +1,29 @@
+section.content
+
+  .block
+    
+    - if can? :create, Survey
+      .block-item.new
+        = link_to '', new_survey_path, class: 'trigger', target: "_self"
+        .details
+          .name = t 'surveys.list.create_button_label'
+
+    - @surveys.each do |survey|
+      .block-item
+        .details
+          .status class="#{survey.status}"
+            span
+              i.fa.fa-dot-circle-o
+          .name = link_to survey.title, survey_fields_path(survey), target: "_self", tooltip: "Build", tooltip_placement: "right"
+
+        .options
+          ul.actions
+            - if can? :manage, Clinic
+              li = link_to survey_clinics_path(survey), target: "_self", tooltip: "Clinics"
+                i.fa.fa-medkit
+            - if can? :update, Survey
+              li = link_to edit_survey_path(survey), target: "_self", tooltip: "Edit"
+                i.fa.fa-pencil
+            - if can? :destroy, Survey
+              li = link_to survey, data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
+                i.fa.fa-trash-o

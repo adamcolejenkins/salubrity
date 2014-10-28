@@ -1,66 +1,76 @@
-.cl-mcont
-  
-  .page-head
-    h2 = t "devise.profiles.edit.header"
+section.content
 
-  .row
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "indent-fields", method: :put }) do |f|
+    = devise_error_messages!
 
-      .col-md-9
-        .block-flat
-          .header
-            h3 Profile Details
-          .content.row
-            .form-group.col-md-6
-              = f.label :name, 'First Name', class: 'control-label'
-              = f.text_field :name, class: 'form-control'
+    .form-header
+      .tag
+        i.fa.fa-user
+      h3 Profile Details
 
-            .form-group.col-md-6
-              = f.label :surname, 'Last Name', class: 'control-label'
-              = f.text_field :surname, class: 'form-control'
+    .form-group
+      = f.label :name, 'First Name'
+      = f.text_field :name, class: 'radius'
 
-            .form-group.col-md-12
-              = f.label :email, class: 'control-label'
-              = f.email_field :email, class: 'form-control'
+    .form-group
+      = f.label :surname, 'Last Name'
+      = f.text_field :surname, class: 'radius'
 
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-              p
-                | Currently waiting confirmation for:
-                = resource.unconfirmed_email
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'radius'
 
-            .form-group.col-md-12
-              = f.label :password, class: 'control-label'
-              = f.password_field :password, autocomplete: "off", class: 'form-control'
-              em Leave blank if you don't want to change it
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        p.subheader 
+          em
+            | Currently waiting confirmation for:
+            = resource.unconfirmed_email
 
-            .form-group.col-md-12
-              = f.label :password_confirmation, class: 'control-label'
-              = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+    .form-group
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: 'radius'
+      p.subheader 
+        em Leave blank if you don't want to change it
 
-            .form-group.col-md-12
-              = f.label :current_password, class: 'control-label'
-              = f.password_field :current_password, autocomplete: "off", class: 'form-control'
-              em We need your current password to confirm your changes
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "off", class: 'radius'
 
-            .form-group.col-md-12
-              = f.submit "Update Profile", class: 'btn btn-success btn-lg', disabled: 'disabled'
-                
-      
-      .col-md-3
-        .block-flat.dark-box
-          .row
-            .col-sm-12.text-center
-              = gravatar_image_tag(resource.email, class: 'avatar th', alt: identify(resource), :gravatar => { size: 180 })
-              p.small 
-                | Change your photo at 
-                = link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'
+    .form-group
+      = f.label :current_password
+      = f.password_field :current_password, autocomplete: "off", class: 'radius'
+      p.subheader 
+        em We need your current password to confirm your changes
 
-      .col-md-3
-        .block-flat.danger-box
-          .header
-            h3 Cancel my account
-          .content
-            p 
-              | Unhappy? 
-              = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-mono2 btn-block'
+    .form-group
+      = gravatar_image_tag(resource.email, class: 'avatar th', alt: identify(resource), :gravatar => { size: 180 })
+      p.subheader
+        em
+          | Change your photo at 
+          = link_to 'Gravatar.com', 'http://gravatar.com', target: '_blank'
+
+    .form-header
+      .tag
+        i.fa.fa-camera
+      h3 Teams
+
+    .form-group.block
+      .block-item
+        .details
+          .name = resource.team.name
+        .options.hide
+          ul.actions
+            li
+              = link_to nil, disabled: 'disabled', tooltip: "Switch teams", tooltip_placement: 'left'
+                i.fa.fa-exchange
+
+    .form-group
+      = f.submit "Update Profile", class: 'radius success button', disabled: 'disabled'
+
+    
+    - if current_user.role == 'owner'
+      .form-group
+        h3 Cancel my account
+        p 
+          | Unhappy? 
+          = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'radius alert button'

@@ -13,7 +13,7 @@
 //= require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require foundation
 //= require jquery-ui
 //= require turbolinks
 //= require classie
@@ -28,7 +28,7 @@
 //= require angular-touch
 //= require angular-animate
 //= require ng-underscore/build/ng-underscore.js
-//= require angular-bootstrap/ui-bootstrap-tpls
+//= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
 //= require datatables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
@@ -50,7 +50,7 @@
 //= require nouislider
 
 
-//= require behaviour/core
+// require behaviour/core
 
 // Our Angular app files
 //= require angular/salubrity

@@ -5,7 +5,7 @@
   - cols = 6 if field.layout == 'twoColumns'
   
   - field.field_choices.each do |choice|
-    div class="col-md-#{cols or 12}"
+    div class="medium-#{cols or 12} columns"
       span
         - if field.display_as == 'buttons'
           = answer_fields.radio_button :value, choice.key, required: field.required

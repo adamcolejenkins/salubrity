@@ -1,6 +1,7 @@
 .container
   h1 Home#index
   p Find me in app/views/home/index.html.slim
+  = request.subdomain
 
-  = link_to 'Login', login_path, class: 'btn btn-success btn-lg'
-  = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success btn-lg'
+  = link_to 'Login', login_path, class: 'radius success button'
+  = link_to 'Sign Up', get_started_path, class: 'radius success button'
