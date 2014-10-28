@@ -1,33 +1,17 @@
-.cl-mcont
+section.content
 
-  .page-head
-    h2 Team
-
-    ol.breadcrumb
-      li = link_to 'Team', users_path, target: '_self'
-      li.active 
-        | Edit - 
-        = identify(@user)
-
-  .row
-    .col-md-11
+  dl.nav-tabs
+    dd.active = link_to 'Users', users_path, target: '_self'
+    / dd = link_to 'Groups', users_path, target: '_self'
+    dd = link_to 'Invite', new_user_invitation_path, target: '_self'
   
-      ul.nav-tabs-lg
-        li.active = link_to 'Users', users_path, target: '_self'
-        / li = link_to 'Groups', users_path, target: '_self'
-        li = link_to 'Invite', new_user_invitation_path, target: '_self'
+  = form_for @user, url: user_path(@user), html: { method: :put} do |f|
+    
+    .form-group
+      .full
+        = f.label :role, 'Group'
+        = f.collection_select :role, User::ROLES, :to_s, :humanize
 
-  .row
-    .col-md-11
-
-      h3 = t "devise.profiles.role.header"
-      
-      = form_for @user, url: user_path(@user), html: { class: 'group-border-dashed', method: :put} do |f|
-        
-        .form-group
-          = f.label :role, 'Group'
-          = f.collection_select :role, User::ROLES, :to_s, :humanize, {}, class: 'select2'
-
-        .form-group
-          = f.submit t("devise.profiles.role.submit_button"), class: "btn btn-success"
-          = link_to t("devise.profiles.role.cancel_button"), users_path, class: "btn btn-default"
+    
+    = f.submit t("devise.profiles.role.submit_button"), class: "small radius success button" 
+    = link_to t("devise.profiles.role.cancel_button"), users_path, class: "small radius button"

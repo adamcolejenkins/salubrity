@@ -6,6 +6,7 @@ html(lang="en")
     title Salubrity
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:100,400,300,600,400italic,700,800'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
     javascript:
@@ -17,5 +18,12 @@ html(lang="en")
         })(document, 'script');
 
   body
-   main
-    = yield
+    .wrap
+      header
+        = render :partial => "layouts/header"
+      flash
+        = render :partial => "layouts/flash"
+      main
+        = yield
+      footer
+        = render :partial => "layouts/footer"

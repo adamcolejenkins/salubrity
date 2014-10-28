@@ -2,6 +2,7 @@
 
 <p><em><%= I18n.t("devise.mailer.invitation_instructions.someone_invited_you") %></em></p>
 
-<p><%= I18n.t("devise.mailer.invitation_instructions.to_accept") %><%= link_to I18n.t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
+<p><%= I18n.t("devise.mailer.invitation_instructions.to_accept") %>
+  <%= link_to I18n.t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token, subdomain: @resource.team.subdomain) %></p>
 
 <p><%= I18n.t("devise.mailer.invitation_instructions.ignore").html_safe %></p>

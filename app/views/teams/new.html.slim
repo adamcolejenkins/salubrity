@@ -1,0 +1,53 @@
+hgroup
+  .title
+    h2 Getting Started
+
+section.layout
+  section.content
+
+    = form_for @team do |f|
+
+      - if @team.errors.any?
+        .alert-box.alert
+          h2 = "#{pluralize(@team.errors.count, "error")} prohibited you from getting started:"
+          ul
+            - @team.errors.full_messages.each do |message|
+              li = message
+
+      .form-group
+        .full
+          = f.label :name
+          = f.text_field :name
+
+      = f.fields_for :users do |u|
+        .form-group
+          .half
+            = u.label :name
+            = u.text_field :name
+          .half
+            = u.label :surname
+            = u.text_field :surname
+
+        .form-group
+          .full
+            = u.label :email
+            = u.email_field :email
+
+        .form-group
+          .full
+            = u.label :password
+            - if @validatable
+              i
+                | (#{@minimum_password_length} characters minimum)
+            = u.password_field :password, autocomplete: "off"
+        
+        .form-group
+          .full
+            = u.label :password_confirmation
+            = u.password_field :password_confirmation, autocomplete: "off"
+
+        = u.hidden_field :role, value: 'owner'
+
+      .form-group
+        .full
+          = f.submit "Create Account", class: 'radius success button'

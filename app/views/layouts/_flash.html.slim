@@ -1,10 +1,11 @@
 - if notice.present?
-  div.alert.alert-success
-    button type="button" class="close" data-dismiss="alert" aria-hidden="true" ×
-    i.fa.fa-check.sign
-    = notice
+  div.alert-box.success.text-center data-alert=""
+    i.fa.fa-check.sign  
+    = notice 
+    a.close href="#" &times;
+
 - if alert.present?
-  div.alert.alert-danger
-    button type="button" class="close" data-dismiss="alert" aria-hidden="true" ×
-    i.fa.fa-warning.sign
+  div.alert-box.alert.text-center data-alert=""
+    i.fa.fa-warning.sign  
     = alert
+    a.close href="#" &times;

@@ -1,0 +1,93 @@
+section.analytics {
+  .metrics {
+    @include grid-row();
+    margin-bottom: $column-gutter;
+
+    .metrics-panel {
+      @include grid-column($columns: 3, $collapse: true);
+      text-align: center;
+
+      hgroup {
+        border-right: 1px solid $gainsboro;
+        h4 {
+          font-size: rem-calc(13px);
+        }
+        h5 {
+          font-size: 3rem;
+          font-weight: bold;
+        }
+      }
+      &:last-child hgroup {
+        border-right: none;
+      }
+    }
+  }
+
+  .results {
+    @include grid-column($columns: 12);
+
+    .results-table {
+      overflow: auto;
+      width: 100%;
+    }
+
+    table {
+      thead {
+        td {
+          min-width: 170px;
+          div {
+            width: 100%;
+            position: relative;
+            padding: $table-head-padding;
+            top: 0px;
+
+            span {
+              width: 90%;
+              min-width: 75px;
+              // text-align: center;
+              position: absolute;
+              left: 2%;
+              top: 2px;
+              // padding: $table-head-padding;
+            }
+          }
+        }
+      }
+      tbody {
+        td {
+          text-align: center;
+        }
+      }
+    }
+    .dataTables_scrollHead {
+      overflow-y: auto !important;
+    }
+    .dataTables_sizing {
+      display: none;
+    }
+    .dataTables_filter,
+    .dataTables_length {
+      label {
+        font-size: rem-calc(14px);
+      }
+      input {
+        @include radius($global-radius);
+        display: inline-block;
+        margin-left: 10px;
+      }
+      select {
+        
+      }
+    }
+  }
+
+}
+
+span.ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+}

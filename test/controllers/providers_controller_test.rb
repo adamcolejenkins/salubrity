@@ -18,7 +18,7 @@ class ProvidersControllerTest < ActionController::TestCase
 
   test "should create provider" do
     assert_difference('Provider.count') do
-      post :create, provider: { clinic: @provider.clinic, email: @provider.email, name: @provider.name, phone: @provider.phone, photo: @provider.photo, position: @provider.position }
+      post :create, provider: { email: @provider.email, name: @provider.name, phone: @provider.phone, photo: @provider.photo, position: @provider.position }
     end
 
     assert_redirected_to provider_path(assigns(:provider))
@@ -35,7 +35,7 @@ class ProvidersControllerTest < ActionController::TestCase
   end
 
   test "should update provider" do
-    patch :update, id: @provider, provider: { clinic: @provider.clinic, email: @provider.email, name: @provider.name, phone: @provider.phone, photo: @provider.photo, position: @provider.position }
+    patch :update, id: @provider, provider: { email: @provider.email, name: @provider.name, phone: @provider.phone, photo: @provider.photo, position: @provider.position }
     assert_redirected_to provider_path(assigns(:provider))
   end
 

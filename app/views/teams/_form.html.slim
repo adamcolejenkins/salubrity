@@ -1,0 +1,36 @@
+= form_for @team, html:{ class: 'indent-fields' } do |f|
+  - if @team.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@team.errors.count, "error")} prohibited this team from being saved:"
+      ul
+        - @team.errors.full_messages.each do |message|
+          li = message
+  
+  .form-header
+    .tag
+      | 1
+    h3 Team Details
+
+  .form-group
+    = f.label :name
+    = f.text_field :name
+  .form-group
+    = f.label :subdomain
+    = f.text_field :subdomain
+  .form-group
+    = f.label :website
+    = f.text_field :website
+
+  .form-header
+    .tag
+      | 2
+    h3 Branding
+
+  .form-group
+    p Upload your company's logo. Images are resized to fit 400 x 140px but are displayed to fit 200 x 70px.
+    = f.label :logo, 'Team Logo'
+    .panel.text-center
+      = image_tag @team.logo.url(:medium)
+    = f.file_field :logo
+
+  .form-group = f.submit 'Save Team', class: 'radius success button'

@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Team:
+  = @survey.team
+p
+  strong Title:
+  = @survey.title
+p
+  strong Description:
+  = @survey.description
+p
+  strong Guid:
+  = @survey.guid
+p
+  strong Status:
+  = @survey.status
+
+= link_to 'Edit', edit_survey_path(@survey)
+'|
+= link_to 'Back', surveys_path

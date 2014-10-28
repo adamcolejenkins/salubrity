@@ -62,7 +62,7 @@ angular.module( 'salubrity' )
     });
 
     function removePageslideWindow(pageslideInstance) {
-        var builder = $document.find('.cl-mcont.aside').eq(0);
+        var body = $document.find('body').eq(0);
         var pageslideWindow = openedWindows.get(pageslideInstance).value;
 
         // clean up the stack
@@ -71,11 +71,11 @@ angular.module( 'salubrity' )
         // remove window DOM element
         removeAfterAnimate(pageslideWindow.pageslideDomEl, pageslideWindow.pageslideScope, 300, function () {
             pageslideWindow.pageslideScope.$destroy();
-            builder.toggleClass(OPENED_PAGESLIDE_CLASS, openedWindows.length() > 0);
+            body.toggleClass(OPENED_PAGESLIDE_CLASS, openedWindows.length() > 0);
             checkRemoveBackdrop();
         });
     }
-
+    
     function checkRemoveBackdrop() {
         // remove backdrop if no longer needed
         if (backdropDomEl && backdropIndex() == -1) {
@@ -143,14 +143,14 @@ angular.module( 'salubrity' )
             keyboard: pageslide.keyboard
         });
 
-        var builder = $document.find('.cl-mcont.aside').eq(0),
+        var body = $document.find('body').eq(0),
             currBackdropIndex = backdropIndex();
 
-        if (currBackdropIndex >= 0 && !backdropDomEl || false) {
+        if (currBackdropIndex >= 0 && !backdropDomEl) {
             backdropScope = $rootScope.$new(true);
             backdropScope.index = currBackdropIndex;
             backdropDomEl = $compile('<div modal-backdrop></div>')(backdropScope);
-            builder.append(backdropDomEl);
+            body.append(backdropDomEl);
         }
 
         var angularDomEl = angular.element('<div pageslide-window></div>');
@@ -164,8 +164,8 @@ angular.module( 'salubrity' )
 
         var pageslideDomEl = $compile(angularDomEl)(pageslide.scope);
         openedWindows.top().value.pageslideDomEl = pageslideDomEl;
-        builder.append(pageslideDomEl);
-        builder.addClass(OPENED_PAGESLIDE_CLASS);
+        body.append(pageslideDomEl);
+        body.addClass(OPENED_PAGESLIDE_CLASS);
 
     };
 

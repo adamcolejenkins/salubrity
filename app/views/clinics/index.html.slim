@@ -1,0 +1,31 @@
+section.content
+  
+  dl.nav-tabs
+    = tab_for "Build", survey_fields_path(@survey)
+    = tab_for "Clinics", survey_clinics_path(@survey)
+    = tab_for "Settings", edit_survey_path(@survey)
+  
+  .block
+    
+    - if can? :create, Clinic
+      .block-item.new
+        = link_to '', new_survey_clinic_path, class: 'trigger', target: "_self"
+        .details
+          .name = t 'clinics.list.create_button_label'
+
+    - @clinics.each do |clinic|
+      .block-item
+        .details
+          .name = clinic.title
+
+        .options
+          ul.actions
+            - if can? :manage, Provider
+              li = link_to survey_clinic_providers_path(@survey, clinic), target: "_self", tooltip: "Providers"
+                i.fa.fa-user-md
+            - if can? :update, Clinic
+              li = link_to edit_survey_clinic_path(@survey, clinic), target: "_self", tooltip: "Edit"
+                i.fa.fa-pencil
+            - if can? :destroy, Clinic
+              li = link_to survey_clinic_path(@survey, clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
+                i.fa.fa-trash-o

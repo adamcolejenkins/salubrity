@@ -1,0 +1,30 @@
+= form_for @survey, html: {class: 'indent-fields'} do |f|
+  - if @survey.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved:"
+      ul
+        - @survey.errors.full_messages.each do |message|
+          li = message
+  
+  .form-header
+    .tag
+      | 1
+    h3 = t 'surveys.form.details.title'
+
+  .form-group
+    = f.label :title
+    = f.text_field :title
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-group
+    = f.label :guid
+    = f.text_field :guid
+  .form-group
+    = f.label :status
+    = f.text_field :status
+
+  .form-group 
+    = f.submit 'Save survey', class: 'radius success button' 
+    = link_to 'Cancel', surveys_path, class: 'radius button'
+  

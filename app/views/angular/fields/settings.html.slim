@@ -1,27 +1,30 @@
 div(ng-controller="SurveyBuildCtrl")
   form name="form" ng-submit="saveFieldSettings(field)" class="inverse"
 
-    .content
-      h2.page-title
+    .pagestack-header
+      a.close ng-click="close()" 
+        i.fa.fa-times
+      h2.pagestack-title
         | {{field.properties.label}}
-      p.description Field settings.
 
-    .app-nav
-      .content
+    .pagestack-body
 
-        .form-group
+      .form-group
+        .full
           label.control-label for="label" Text
           textarea.form-control#label name="label" ng-model="field.label" rows="4" required="required"
 
-        .form-group ng-if="property('layout')" 
+      .form-group 
+        .half ng-if="property('layout')" 
           label.control-label for="layout"  Layout
           select.select2#layout name="layout" ng-model="field.layout" ng-options="k as v for (k,v) in layouts"
 
-        .form-group ng-if="property('display')" 
+        .half ng-if="property('display')" 
           label.control-label for="display" Display
           select.select2#display name="display" ng-model="field.display_as" ng-options="k as v for (k,v) in displays"
 
-        .form-group ng-if="property('choices')" 
+      .form-group ng-if="property('choices')" 
+        .full
           label.control-label Choices
           ul.list-unstyled.choices(ui-sortable="" ng-model="field.field_choices")
             li ng-repeat="choice in field.field_choices | orderBy:priority" 
@@ -33,14 +36,15 @@ div(ng-controller="SurveyBuildCtrl")
               i.fa.fa-plus-circle.color-success ng-click="addChoice($index)" ng-show="!$first" 
               i.fa.fa-minus-circle.color-danger ng-click="deleteChoice(choice, $index)" 
 
-        .form-group ng-if="property('options')"
+      .form-group 
+        .half ng-if="property('options')"
           label.control-label for="required" Options
           .radio ng-if="property('required')"
             label
               input.icheck#required name="required" ng-model="field.required" type="checkbox" 
               | Required
 
-        .form-group ng-if="property('visibility')"
+        .half ng-if="property('visibility')"
           label.control-label Visibility
           .radio
             label
@@ -51,47 +55,55 @@ div(ng-controller="SurveyBuildCtrl")
               input.icheck name="visibility" ng-model="field.visibility" type="radio" value="private" 
               | Admin Only
 
-        .form-group ng-if="property('range')" 
+      .form-group ng-if="property('range')" 
+        .full
           label.control-label Range
-          input name="range_min" ng-model="field.range_min" prefix="Min" type="text" ui-touchspin="" 
-          input name="range_max" ng-model="field.range_max" prefix="Max" type="text" ui-touchspin="" 
+          .half
+            input name="range_min" ng-model="field.range_min" prefix="Min" type="text" ui-touchspin="" 
+          .half
+            input name="range_max" ng-model="field.range_max" prefix="Max" type="text" ui-touchspin="" 
 
-        .form-group ng-if="property('increment')" 
+      .form-group ng-if="property('increment')" 
+        .full
           label.control-label for="increment" Increment
-          input.form-control#increment name="increment" ng-model="field.increment" step="1" type="text" ui-touchspin="" 
+          .half
+            input.form-control#increment name="increment" ng-model="field.increment" step="1" type="text" ui-touchspin="" 
 
-        .form-group ng-if="property('value')" 
+      .form-group ng-if="property('value')" 
+        .full
           label.control-label for="predefined_value" Predefined Value
           input.form-control#predefined_value name="predefined_value" ng-model="field.predefined_value" type="text" 
 
-        .form-group
+      .form-group
+        .full
           label.control-label for="instructions" Description / Instructions for User
           textarea.form-control#instructions name="instructions" ng-model="field.instructions" rows="6" 
 
-        .form-group ng-if="property('intro')"
+      .form-group ng-if="property('intro')"
+        .full
           label.control-label for="button" Button Label
           input.form-control#button type="text" name="button_label" ng-model="field.button_label"
-        
-        .form-group ng-if="property('outro')"
-          label.control-label Reload / Redirect Button
-          label for="button" Label
-          input.form-control#button type="text" name="button_label" ng-model="field.button_label"
-          .radio
-            label
-              input.icheck type="radio" name="button_mode" value="reload" ng-model="field.button_mode"
-              | onClick reloads the form
-          .radio
-            label for="redirect"
-              input.icheck type="radio" name="button_mode" value="redirect" ng-model="field.button_mode"
-              | onClick reloads the form
-          input.form-control#redirect type="text" name="button_redirect" placeholder="URL" ng-model="field.button_redirect"
+      
+      .form-group ng-if="property('outro')"
+        label.control-label Reload / Redirect Button
+        label for="button" Label
+        input.form-control#button type="text" name="button_label" ng-model="field.button_label"
+        .radio
+          label
+            input.icheck type="radio" name="button_mode" value="reload" ng-model="field.button_mode"
+            | onClick reloads the form
+        .radio
+          label for="redirect"
+            input.icheck type="radio" name="button_mode" value="redirect" ng-model="field.button_mode"
+            | onClick reloads the form
+        input.form-control#redirect type="text" name="button_redirect" placeholder="URL" ng-model="field.button_redirect"
 
 
 
-      /! Buttons
-      .compose
-        button.btn.btn-flat ng-click="close()" Cancel
-        button.btn.btn-success.btn-flat type="submit" Save Field
+    /! Buttons
+    .pagestack-footer
+      button.button.alert ng-click="deleteField(field.id, field.type);close()" Delete Field
+      button.button.success type="submit" Save Field
 
 
 javascript:

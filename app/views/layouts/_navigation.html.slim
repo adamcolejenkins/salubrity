@@ -1,40 +1,18 @@
-ul.cl-vnavigation
+nav
+  section
+    ul.left
 
-  li ui-sref-active="active"
-    a href="#" ui-sref="dashboard" target="_self"
-      i.fa.fa-home
-      span Dashboard
+      li class="#{active_if(controller_name == 'dashboard')}"
+        = link_to "Dashboard", dashboard_path, target: "_self"
   
-  - if can? :manage, Survey
-    li ui-sref-active="active"
-      a href="#" ui-sref="surveys" target="_self"
-        i.fa.fa-list
-        span Surveys
-  
-  - if can? :manage, Clinic
-    li ui-sref-active="active"
-      a href="#" ui-sref="clinics" target="_self"
-        i.fa.fa-medkit
-        span Clinics
-  
-  - if can? :manage, Users
-    li ui-sref-active="active"
-      a href="#" ui-sref="team" target="_self"
-        i.fa.fa-users
-        span Team
+      - if can? :manage, Survey
+        li class="#{active_if(controller_name == 'surveys')}"
+          = link_to "Surveys", surveys_path, target: "_self"
 
-  / li ui-sref-active="active"
-  /   a href="#" ui-sref="providers"
-  /     i.fa.fa-user-md
-  /     span Providers
+      - if can? :manage, Clinic
+        li class="#{active_if(controller_name == 'clinics')}"
+          = link_to "Clinics", surveys_path, target: "_self"
 
-  / li ui-sref-active="active"
-  /   a href="#" ui-sref="analytics"
-  /     i.fa.fa-bar-chart-o
-  /     span Analytics
-  
-  / Super User only
-  / li ui-sref-active="active"
-  /   a href="#" ui-sref="config"
-  /     i.fa.fa-cog
-  /     span Configuration
+      - if can? :manage, Provider
+        li class="#{active_if(controller_name == 'providers')}"
+          = link_to "Providers", surveys_path, target: "_self"
