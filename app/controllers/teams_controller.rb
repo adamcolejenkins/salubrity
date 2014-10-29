@@ -26,17 +26,10 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    
-    # Fake invite and accept invitation
-    # user = @team.users.first
-    # user.invite! do |u|
-    #   u.skip_invitation = true
-    # end
-    # user.accept_invitation!
 
-    # Save team and user
     if @team.save
-      redirect_to root_path
+      flash[:notice] = "You have successfully signed up, please verify your email before signing in."
+      redirect_to subdomain: @team.subdomain, controller: 'devise/sessions', action: "new"
     else
       render :new
     end

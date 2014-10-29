@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   get 'get-started' => 'teams#new', constraints: {subdomain: /(www)?/x}
-  post 'get-started' => 'teams#create', constraints: {subdomain: /(www)?/x}, as: 'teams'
+  post 'get-started' => 'teams#create', constraints: {subdomain: /(www)?/x}
   
   root :to => 'home#index', constraints: {subdomain: /(www)?/x}
 
