@@ -5,7 +5,7 @@ hgroup
 section.layout
   section.content
 
-    = form_for @team do |f|
+    = form_for @team, url: get_started_path do |f|
 
       - if @team.errors.any?
         .alert-box.alert
