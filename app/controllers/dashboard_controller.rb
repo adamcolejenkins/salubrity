@@ -3,5 +3,8 @@ class DashboardController < ApplicationController
   layout 'angular'
 
   def index
+    @surveys = current_team.surveys.all
+
+
   end
 end

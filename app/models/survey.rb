@@ -4,6 +4,7 @@ class Survey < ActiveRecord::Base
 
   has_many :fields, -> { order("priority ASC").includes(:field_choices) }, inverse_of: :survey, dependent: :destroy
   has_many :clinics, inverse_of: :survey, dependent: :destroy
+  has_many :responses, inverse_of: :survey
 
   scope :guid, -> (guid) { where(guid: guid).first }
   store :opts, :accessors => [:intro_id, :outro_id, :logo_path], coder: JSON

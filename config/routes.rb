@@ -44,5 +44,5 @@ Rails.application.routes.draw do
   
   root :to => 'home#index', constraints: {subdomain: /(www)?/x}
 
-  # get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
+  get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
 end

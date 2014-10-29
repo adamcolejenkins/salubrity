@@ -11,6 +11,7 @@
         context: 'intro',
         icon: 'sign-in',
         noSort: false,
+        hasChoices: false,
         templates: {
           view: '/templates/fields/view/into.html'
         },
@@ -24,6 +25,7 @@
         context: 'outro',
         icon: 'sign-out',
         noSort: false,
+        hasChoices: false,
         templates: {
           view: '/templates/fields/view/outro.html'
         },
@@ -49,6 +51,7 @@
         label: 'Single Line Text',
         context: 'single_line_text',
         icon: 'font',
+        hasChoices: false,
         templates: {
           preview: '/templates/fields/preview/single_line_text.html',
           view: '/templates/fields/view/single_line_text.html'
@@ -63,6 +66,7 @@
         label: 'Paragraph Text',
         context: 'paragraph_text',
         icon: 'paragraph',
+        hasChoices: false,
         templates: {
           preview: '/templates/fields/preview/paragraph_text.html',
           view: '/templates/fields/view/paragraph_text.html'
@@ -77,6 +81,7 @@
           label: 'Multiple Choice',
           context: 'multiple_choice',
           icon: 'dot-circle-o',
+          hasChoices: true,
           templates: {
               preview: '/templates/fields/preview/multiple_choice.html',
               view: '/templates/fields/view/multiple_choice.html'
@@ -93,6 +98,7 @@
           label: 'Number',
           context: 'number',
           icon: 'slack',
+          hasChoices: false,
           templates: {
               preview: '/templates/fields/preview/number.html',
               view: '/templates/fields/view/number.html'
@@ -107,6 +113,7 @@
           label: 'Checkboxes',
           context: 'checkboxes',
           icon: 'check-square-o',
+          hasChoices: true,
           templates: {
               preview: '/templates/fields/preview/checkboxes.html',
               view: '/templates/fields/view/checkboxes.html'
@@ -123,6 +130,7 @@
           label: 'Dropdown',
           context: 'dropdown',
           icon: 'toggle-down',
+          hasChoices: true,
           templates: {
               preview: '/templates/fields/preview/dropdown.html',
               view: '/templates/fields/view/dropdown.html'
@@ -137,6 +145,7 @@
           label: 'Scale',
           context: 'scale',
           icon: 'tasks',
+          hasChoices: false,
           templates: {
               preview: '/templates/fields/preview/scale.html',
               view: '/templates/fields/view/scale.html'
@@ -151,6 +160,7 @@
           label: 'Rating',
           context: 'rating',
           icon: 'star-half-full',
+          hasChoices: false,
           templates: {
               preview: '/templates/fields/preview/rating.html',
               view: '/templates/fields/view/rating.html'
@@ -165,6 +175,7 @@
           label: 'Date',
           context: 'date',
           icon: 'calendar-o',
+          hasChoices: false,
           templates: {
               preview: '/templates/fields/preview/date.html',
               view: '/templates/fields/view/date.html'
@@ -179,6 +190,7 @@
           label: 'Time',
           context: 'time',
           icon: 'clock-o',
+          hasChoices: false,
           templates: {
               preview: '/templates/fields/preview/time.html',
               view: '/templates/fields/view/time.html'

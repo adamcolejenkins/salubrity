@@ -1,4 +1,4 @@
-div(ng-controller="SurveyBuildCtrl")
+div(ng-controller="SurveyBuildCtrl" ng-init="init()")
   form name="form" ng-submit="saveFieldSettings(field)" class="inverse"
 
     .pagestack-header
@@ -25,16 +25,16 @@ div(ng-controller="SurveyBuildCtrl")
 
       .form-group ng-if="property('choices')" 
         .full
-          label.control-label Choices
+          label.control-label Choicess
           ul.list-unstyled.choices(ui-sortable="" ng-model="field.field_choices")
-            li ng-repeat="choice in field.field_choices | orderBy:priority" 
+            li ng-repeat="choice in field.field_choices | orderBy:priority"
               span.handle
                 i.fa.fa-bars
 
               input.form-control.input-sm autocomplete="false" ng-model="choice.label" type="text" ng-blur="updateChoice(choice, $index)"
               
-              i.fa.fa-plus-circle.color-success ng-click="addChoice($index)" ng-show="!$first" 
-              i.fa.fa-minus-circle.color-danger ng-click="deleteChoice(choice, $index)" 
+              i.fa.fa-plus-circle.color-success ng-click="addChoice($index)"
+              i.fa.fa-minus-circle.color-danger ng-click="deleteChoice(choice, $index)" ng-show="!$first" 
 
       .form-group 
         .half ng-if="property('options')"
