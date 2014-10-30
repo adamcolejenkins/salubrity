@@ -5,6 +5,10 @@ class Team < ActiveRecord::Base
   has_many :providers, inverse_of: :team, dependent: :destroy
   has_many :responses, inverse_of: :team, dependent: :destroy
 
+  RESERVED_SUBDOMAINS = %w(
+    admin api assets blog calendar demo developer developers docs files ftp git imap lab mail manage mx pages pop sites smtp ssl staging status support www help news account log
+  )
+
   # Accept user attrs on create
   accepts_nested_attributes_for :users
   
@@ -33,8 +37,8 @@ class Team < ActiveRecord::Base
   validates :name, presence: true
 
   # Validate the subdomain is unique and not reserved on create
-  validates :subdomain, uniqueness: true, exclusion: { in: %w(www api account),
-    message: "'%{value}' is reserved." }, on: :create
+  validates :subdomain, uniqueness: true, exclusion: { in: RESERVED_SUBDOMAINS,
+    message: "'%{value}' is reserved, please try another one." }, on: :create
 
   private
 
