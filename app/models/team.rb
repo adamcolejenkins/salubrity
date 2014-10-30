@@ -27,7 +27,7 @@ class Team < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
   # Validate the attached image is at least 400x140
-  validates :background, :dimensions => { :width => 400, :height => 140 }
+  validates :logo, :dimensions => { :width => 400, :height => 140 }
 
   # Validate the name is present
   validates :name, presence: true
