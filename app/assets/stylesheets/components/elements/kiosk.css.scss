@@ -336,35 +336,35 @@ body.kiosk.show {
           }
         }
 
-        .kiosk-start,
-        .kiosk-button {
-          background: $kiosk-form-button-bg-color;
-          border: $kiosk-form-button-border-size solid $kiosk-form-button-border-color;
-          color: rgba(0,0,0,0.5);
-          border-radius: $kiosk-border-radius;
-          text-align: center;
-          font-size: .5em;
-          padding: 0.6em 1.5em;
-          margin-bottom: 1em;
-          -webkit-transition: all 0.2s;
-          transition: all 0.2s;
-          cursor: pointer;
+        // .kiosk-start,
+        // .kiosk-button {
+        //   background: $kiosk-form-button-bg-color;
+        //   border: $kiosk-form-button-border-size solid $kiosk-form-button-border-color;
+        //   color: rgba(0,0,0,0.5);
+        //   border-radius: $kiosk-border-radius;
+        //   text-align: center;
+        //   font-size: .5em;
+        //   padding: 0.6em 1.5em;
+        //   margin-bottom: 1em;
+        //   -webkit-transition: all 0.2s;
+        //   transition: all 0.2s;
+        //   cursor: pointer;
 
-          &:hover,
-          &:focus {
-            background: $kiosk-form-button-bg-color-hover;
-            border-color: $kiosk-form-button-border-color-hover;
-            color: $kiosk-form-button-text-color-hover;
-          }
+        //   &:hover,
+        //   &:focus {
+        //     background: $kiosk-form-button-bg-color-hover;
+        //     border-color: $kiosk-form-button-border-color-hover;
+        //     color: $kiosk-form-button-text-color-hover;
+        //   }
 
-          &:active,
-          &.active, 
-          &.checked {
-            background: $kiosk-form-button-bg-color-active;
-            border-color: $kiosk-form-button-border-color-active;
-            color: $kiosk-form-button-text-color-active;
-          }
-        }
+        //   &:active,
+        //   &.active, 
+        //   &.checked {
+        //     background: $kiosk-form-button-bg-color-active;
+        //     border-color: $kiosk-form-button-border-color-active;
+        //     color: $kiosk-form-button-text-color-active;
+        //   }
+        // }
 
         .kiosk-start {
           background-color: $kiosk-success-color;
@@ -432,8 +432,9 @@ body.kiosk.show {
           width: 20%;
           float: left;
           font-weight: 700;
-          font-size: 2em;
+          font-size: 2.5em;
           line-height: normal;
+          color: #6e768e;
         }
 
         .kiosk-slider {
@@ -493,6 +494,10 @@ body.kiosk.show {
         & > li {
           &:hover {
             z-index: 999;
+          }
+
+          label {
+            font-size: 2.5em;
           }
 
           label[data-info] {

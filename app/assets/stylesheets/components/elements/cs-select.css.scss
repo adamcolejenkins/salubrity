@@ -44,6 +44,10 @@ div.cs-select:focus {
   padding-right: 3em;
 }
 
+.cs-select .cs-placeholder {
+  color: #6e768e;
+}
+
 .cs-select > span::after,
 .cs-select .cs-selected span::after {
   speak: none;
@@ -135,8 +139,7 @@ div.cs-skin-border {
 }
 
 .cs-skin-border > span {
-  border: 5px solid #000;
-  border-color: inherit;
+  border: 5px solid #6e768e;
   -webkit-transition: background 0.2s, border-color 0.2s;
   transition: background 0.2s, border-color 0.2s;
 }
