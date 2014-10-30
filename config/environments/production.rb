@@ -76,6 +76,7 @@ Rails.application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
+  config.action_mailer.default_options = { from: 'Salubrity <hello@salubrity.io>' }
   config.action_mailer.default_url_options = { :host => 'salubrity.io' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
