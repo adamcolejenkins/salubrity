@@ -13,8 +13,8 @@ javascript:
     start: [#{field.predefined_value}],
     step: #{field.increment},
     range: {
-      'min': #{field.range_min},
-      'max': #{field.range_max}
+      'min': #{field.range_min || 0},
+      'max': #{field.range_max || 10}
     },
     format: wNumb({
       decimals: 0
