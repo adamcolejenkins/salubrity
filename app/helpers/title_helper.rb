@@ -1,5 +1,6 @@
 module TitleHelper
   def page_title
+
     title = t page_title_translation_key, 
               page_title_context.merge(:default => :"titles.application")
     description = t page_description_translation_key, 

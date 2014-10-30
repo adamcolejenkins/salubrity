@@ -17,6 +17,17 @@ textarea {
   // @include radius($global-radius);
 }
 
+input[type="file"] {
+  padding: 10px;
+  border: 1px solid #e4e4e4;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 // Select2 overrides
 .select2-container {
   margin-bottom: 1rem;

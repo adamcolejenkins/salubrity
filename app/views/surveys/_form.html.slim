@@ -1,6 +1,6 @@
 = form_for @survey, html: {class: 'indent-fields'} do |f|
   - if @survey.errors.any?
-    #error_explanation
+    .alert-box.alert
       h2 = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved:"
       ul
         - @survey.errors.full_messages.each do |message|
@@ -17,14 +17,22 @@
   .form-group
     = f.label :description
     = f.text_area :description
-  .form-group
-    = f.label :guid
-    = f.text_field :guid
-  .form-group
-    = f.label :status
-    = f.text_field :status
+  
+  - if action_name == 'edit'
+    .form-group
+      = f.label :status
+      = f.select :status, options_for_select(status, "draft")
+
+    .form-header
+      .tag
+        | 1
+      h3 Permalink
+
+    .form-group
+      = f.label :guid
+      = f.text_field :guid
 
   .form-group 
-    = f.submit 'Save survey', class: 'radius success button' 
+    = f.submit 'Save Survey', class: 'radius success button' 
     = link_to 'Cancel', surveys_path, class: 'radius button'
   

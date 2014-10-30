@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029175254) do
+ActiveRecord::Schema.define(version: 20141030011447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,15 @@ ActiveRecord::Schema.define(version: 20141029175254) do
     t.string   "address"
     t.string   "address2"
     t.string   "city"
-    t.string   "state",      limit: 2
-    t.integer  "zip",        limit: 8
+    t.string   "state",                   limit: 2
+    t.integer  "zip",                     limit: 8
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
   end
 
   add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
@@ -92,9 +96,15 @@ ActiveRecord::Schema.define(version: 20141029175254) do
     t.string   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "team_id"
   end
 
   add_index "providers", ["clinic_id"], name: "index_providers_on_clinic_id", using: :btree
+  add_index "providers", ["team_id"], name: "index_providers_on_team_id", using: :btree
 
   create_table "responses", force: true do |t|
     t.integer  "survey_id"

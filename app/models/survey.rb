@@ -8,10 +8,11 @@ class Survey < ActiveRecord::Base
 
   scope :guid, -> (guid) { where(guid: guid).first }
   store :opts, :accessors => [:intro_id, :outro_id, :logo_path], coder: JSON
-  before_save :translate_slug
+  
+  before_validation :translate_slug, on: :create
 
   validates :title, presence: true
-  validates :guid, uniqueness: true
+  validates :guid, presence: true, uniqueness: { scope: :team, message: " exists for this team." }
 
   def translate_slug
     self.guid = self.title.parameterize('-')

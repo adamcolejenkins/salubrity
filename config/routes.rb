@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
     resources :surveys do
       resources :fields, only: [:index]
-      resources :clinics do
-        resources :providers
+      resources :clinics, except: [:show] do
+        resources :providers, except: [:show]
       end
     end
 

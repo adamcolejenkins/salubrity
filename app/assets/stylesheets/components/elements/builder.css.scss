@@ -1,26 +1,18 @@
 .builder {
   
-
-  .button-grid {
-    @include block-grid($per-row: 2);
-    li {
-      padding-bottom: 5px;
+  .button-group.text-center {
+    > li {
+      float: none;
     }
+  }
+
+  .button-group {
     button {
-      @include button-base;
-      @include button-size($button-tny, true);
-      @include button-style($secondary-color, true);
-      margin-bottom: 0;
-      
-      &.field-intro,
-      &.field-outro {
-        margin-bottom: 10px;
-      }
       &.field-intro {
-        @include button-style($success-color, true);
+        color: $success-color;
       }
       &.field-outro {
-        @include button-style($info-color, true);
+        color: $info-color;
       }
     }
   }

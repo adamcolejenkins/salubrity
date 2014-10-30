@@ -1,9 +1,7 @@
-.btn-group
-  button.btn.btn-sm.btn-flat.btn-success.btn-rad.dropdown-toggle type="button" data-toggle="dropdown" 
-    | Add Field 
-    span.caret
-
-  ul.dropdown-menu role="menu"
-    li ng-repeat="field in fieldContexts" ng-if="field.enabled"
-      a href="#"  ng-click="addField(field)" type="button"
-        | {{field.label}}
+.row
+  .small-12.columns.text-center
+    | Add a field
+    ul.button-group.radius.text-center
+      li ng-repeat="field in fieldContexts" ng-if="field.enabled" tooltip="{{field.label}}" tooltip-animation="false"
+        button.button.tiny class="field-{{field.context}}" ng-click="addField(field)"
+          i.fa class="fa-{{field.icon}}"

@@ -56,3 +56,6 @@
 //= require angular/salubrity
 
 //= require_tree ./angular
+
+
+$(document).foundation();

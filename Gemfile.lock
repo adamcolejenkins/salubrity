@@ -40,6 +40,11 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.1.2.20141016)
       execjs
+    aws-sdk (1.57.0)
+      aws-sdk-v1 (= 1.57.0)
+    aws-sdk-v1 (1.57.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
@@ -100,9 +105,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.4.2)
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
     paperclip (4.2.0)
       activemodel (>= 3.0.0)
@@ -199,6 +207,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   autoprefixer-rails
+  aws-sdk
   bourbon
   breadcrumbs_on_rails
   cancan

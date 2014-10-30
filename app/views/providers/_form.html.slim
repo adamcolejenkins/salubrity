@@ -1,6 +1,6 @@
-= form_for @provider, url: survey_clinic_providers_path, html: {class: "indent-fields"} do |f|
+= form_for [@provider.clinic.survey, @provider.clinic, @provider], html: {class: "indent-fields"} do |f|
   - if @provider.errors.any?
-    #error_explanation
+    .alert-box.alert
       h2 = "#{pluralize(@provider.errors.count, "error")} prohibited this provider from being saved:"
       ul
         - @provider.errors.full_messages.each do |message|
@@ -8,7 +8,7 @@
   
   .form-header
     .tag
-      | 1
+      i.fa.fa-user-md
     h3 = t 'providers.form.details.title'
 
   .form-group
@@ -19,11 +19,26 @@
     = f.text_field :position
   .form-group
     = f.label :email
-    = f.text_field :email
+    = f.email_field :email
   .form-group
     = f.label :phone
-    = f.text_field :phone
+    = f.phone_field :phone
+
+  .form-header
+    .tag
+      i.fa.fa-file-image-o
+    h3 = t 'providers.form.photo.title'
+
   .form-group
     = f.label :photo
-    = f.text_field :photo
-  .form-group = f.submit 'Save', class: 'radius success button'
+    p.thin = t 'providers.form.photo.describe'
+    
+    - if @provider.photo.present?
+      .panel.text-center
+        = image_tag @clinic.photo.url(:thumb)
+
+    = f.file_field :photo
+
+  .form-group 
+    = f.submit 'Save Provider', class: 'radius success button'
+    = link_to 'Cancel', survey_clinic_providers_path, class: 'radius button', target: "_self"
