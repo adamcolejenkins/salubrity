@@ -1,6 +1,6 @@
-= form_for @clinic, url: survey_clinics_path, html: {class: "indent-fields"} do |f|
+= form_for [@clinic.survey, @clinic], html: {class: "indent-fields"} do |f|
   - if @clinic.errors.any?
-    #error_explanation
+    .alert-box.alert
       h2 = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved:"
       ul
         - @clinic.errors.full_messages.each do |message|
@@ -8,15 +8,12 @@
 
   .form-header
     .tag
-      | 1
+      i.fa.fa-list
     h3 = t 'clinics.form.details.title'
 
   .form-group
     = f.label :title
     = f.text_field :title
-  / .form-group
-  /   = f.label :guid, 'Permalink'
-  /   = f.text_field :guid
   .form-group
     = f.label :address
     = f.text_field :address
@@ -29,18 +26,40 @@
       = f.text_field :city
     .medium-4.columns
       = f.label :state
-      = f.text_field :state
+      = f.select :state, options_for_select(us_states, "MO")
     .medium-2.columns
       = f.label :zip
-      = f.text_field :zip
-
-  .form-header
-    .tag
-      | 1
-    h3 = t 'clinics.form.contact.title'
-
+      = f.number_field :zip, maxlength: 6
   .form-group
     = f.label :phone
-    = f.text_field :phone
+    = f.phone_field :phone
+  
+  .form-header
+    .tag
+      i.fa.fa-file-image-o
+    h3 = t 'clinics.form.background.title'
 
-  .form-group = f.submit 'Save Clinic', class: 'radius success button'
+  .form-group
+    = f.label :background
+    p.thin = t 'clinics.form.background.describe'
+    
+    - if @clinic.background.present?
+      .panel.text-center
+        = image_tag @clinic.background.url(:thumb)
+
+    = f.file_field :background
+
+  - if action_name == 'edit'
+    .form-header
+      .tag
+        i.fa.fa-link
+      h3 = t 'clinics.form.guid.title'
+  
+    .form-group
+      p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
+      = f.label :guid
+      = f.text_field :guid
+
+  .form-group 
+    = f.submit 'Save Clinic', class: 'radius success button'
+    = link_to 'Cancel', survey_clinics_path, class: 'radius button', target: "_self"

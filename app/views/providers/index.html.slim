@@ -23,5 +23,5 @@ section.content
               li = link_to edit_survey_clinic_provider_path(@clinic.survey, @clinic, provider), target: "_self", tooltip: "Edit"
                 i.fa.fa-pencil
             - if can? :destroy, Provider
-              li = link_to survey_clinic_path(@clinic.survey, @clinic, provider), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
+              li = link_to survey_clinic_provider_path(@clinic.survey, @clinic, provider), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
                 i.fa.fa-trash-o

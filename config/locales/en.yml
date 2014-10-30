@@ -28,6 +28,12 @@ en:
       users:
         name: "First name"
         surname: "Last name"
+      survey:
+        guid: "Permalink"
+      clinic:
+        guid: "Permalink"
+        address2: "Building / Suite"
+        zip: "Zip Code"
   titles:
     application: "Salubrity"
     dashboard:
@@ -40,7 +46,13 @@ en:
       new:
         title: "New Survey"
         describe: "If you build it, they will come."
+      create:
+        title: "New Survey"
+        describe: "If you build it, they will come."
       edit:
+        title: "%{survey}"
+        describe: "Edit the settings for this survey."
+      update:
         title: "%{survey}"
         describe: "Edit the settings for this survey."
     fields:
@@ -54,7 +66,13 @@ en:
       new:
         title: "New Clinic"
         describe: "New clinic for %{survey}"
+      create:
+        title: "New Clinic"
+        describe: "New clinic for %{survey}"
       edit:
+        title: "%{clinic}"
+        describe: "Edit the settings for this clinic."
+      update:
         title: "%{clinic}"
         describe: "Edit the settings for this clinic."
     providers:
@@ -64,7 +82,13 @@ en:
       new:
         title: "%{clinic}"
         describe: "Add a new provider to this clinic."
+      create:
+        title: "%{clinic}"
+        describe: "Add a new provider to this clinic."
       edit:
+        title: "%{provider}"
+        describe: "Edit this provider's information."
+      update:
         title: "%{provider}"
         describe: "Edit this provider's information."
     users:
@@ -102,8 +126,12 @@ en:
     form:
       details:
         title: "Clinic Details"
-      contact:
-        title: "Contact Details"
+      background:
+        title: "Background Photo"
+        describe: "Upload your clinic's background. Images should be at least 1920px x 1200px."
+      guid:
+        title: "Permalink"
+        describe: "This is the URL that will point to this clinic's survey.<br>The permalink will be appended to <code>%{url}</code>."
     list:
       create_button_label: "New Clinic"
     edit:
@@ -113,5 +141,8 @@ en:
     form:
       details:
         title: "Provider Details"
+      photo:
+        title: "Mugshot"
+        describe: "Upload your provider's photo. Images should be at least 800px x 640px."
     list:
       create_button_label: "New Provider"

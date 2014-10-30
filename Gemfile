@@ -41,6 +41,7 @@ gem 'gravatar_image_tag'
 gem "paperclip", "~> 4.2"
 gem "title"
 gem "breadcrumbs_on_rails"
+gem 'aws-sdk'
 
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 

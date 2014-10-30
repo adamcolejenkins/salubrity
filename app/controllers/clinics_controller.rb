@@ -13,18 +13,18 @@ class ClinicsController < ApplicationController
   # GET /clinics/1
   # GET /clinics/1.json
   def show
-    add_breadcrumb "← Back to Clinics", survey_clinics_path(@clinic.survey)
+    add_breadcrumb "← Back to Clinics", survey_clinics_url
   end
 
   # GET /clinics/new
   def new
-    add_breadcrumb "← Back to Clinics", survey_clinics_path(survey)
+    add_breadcrumb "← Back to Clinics", survey_clinics_url
     @clinic = survey.clinics.new
   end
 
   # GET /clinics/1/edit
   def edit
-    add_breadcrumb "← Back to Clinics", survey_clinics_path(@clinic.survey)
+    add_breadcrumb "← Back to Clinics", survey_clinics_url
   end
 
   # POST /clinics
@@ -34,7 +34,7 @@ class ClinicsController < ApplicationController
 
     respond_to do |format|
       if @clinic.save
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully created.' }
+        format.html { redirect_to survey_clinics_url, notice: 'Clinic was successfully created.' }
         format.json { render :show, status: :created, location: @clinic }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class ClinicsController < ApplicationController
   def update
     respond_to do |format|
       if @clinic.update(clinic_params)
-        format.html { redirect_to @clinic, notice: 'Clinic was successfully updated.' }
+        format.html { redirect_to survey_clinics_url, notice: 'Clinic was successfully updated.' }
         format.json { render :show, status: :ok, location: @clinic }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class ClinicsController < ApplicationController
   def destroy
     @clinic.destroy
     respond_to do |format|
-      format.html { redirect_to clinics_url, notice: 'Clinic was successfully destroyed.' }
+      format.html { redirect_to survey_clinics_url, notice: 'Clinic was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,11 +74,11 @@ class ClinicsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic
-      @clinic = Clinic.find(params[:id])
+      @clinic = survey.clinics.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_params
-      params.require(:clinic).permit(:title, :guid, :address, :address2, :city, :state, :zip, :phone)
+      params.require(:clinic).permit(:title, :guid, :address, :address2, :city, :state, :zip, :phone, :background)
     end
 end

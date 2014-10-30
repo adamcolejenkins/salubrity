@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
     resources :surveys do
       resources :fields, only: [:index]
-      resources :clinics do
-        resources :providers
+      resources :clinics, except: [:show] do
+        resources :providers, except: [:show]
       end
     end
 
@@ -44,5 +44,5 @@ Rails.application.routes.draw do
   
   root :to => 'home#index', constraints: {subdomain: /(www)?/x}
 
-  # get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
+  get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
 end

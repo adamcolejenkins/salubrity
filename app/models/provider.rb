@@ -1,14 +1,28 @@
 class Provider < ActiveRecord::Base
   belongs_to :clinic, inverse_of: :providers
+  belongs_to :team, inverse_of: :providers
+  has_many :responses, inverse_of: :providers
 
-  has_attached_file :logo, :styles => { :medium => "400x140>", :thumb => "200x70>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
+  # This method associates the attribute ":logo" with a file attachment
+  has_attached_file :photo, 
+    styles: {
+      large: "800x640>",
+      medium: "400x320>",
+      thumb: "200x160>"
+    },
+    convert_options: {
+      large: "-strip",
+      medium: "-strip"
+    }
+
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
+  # Validate the attached image is at least 800x640
+  validates :photo, :dimensions => { :width => 800, :height => 640 }
 
   validates :name, presence: true
-  validates :position, presence: true
-  validates :email, presence: true
-  validates :phone, presence: true
-  validates :clinic, presence: true
+  validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
 
   def to_s
     name

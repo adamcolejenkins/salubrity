@@ -28,7 +28,7 @@
 
       $scope.editField = (field, $event) ->
         FieldService = @FieldService
-        console.log field
+        
         @pageslide = $pageslide.open
           templateUrl: '/templates/fields/settings.html'
           controller: 'FieldSettingsCtrl'

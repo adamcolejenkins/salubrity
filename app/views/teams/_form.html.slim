@@ -27,8 +27,8 @@
     h3 Branding
 
   .form-group
-    p Upload your company's logo. Images are resized to fit 400 x 140px but are displayed to fit 200 x 70px.
     = f.label :logo, 'Team Logo'
+    p Upload your company's logo. Images are resized to fit 400 x 140px but are displayed to fit 200 x 70px.
     .panel.text-center
       = image_tag @team.logo.url(:medium)
     = f.file_field :logo

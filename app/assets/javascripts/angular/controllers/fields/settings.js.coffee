@@ -46,9 +46,10 @@
 
     # Add a choice to choices
     $scope.addChoice = (index) ->
-      $scope.fieldChoice.create(label: 'Another Choice', key: 'another_choice').then (choice) ->
+      $scope.fieldChoice.create(label: 'My Choice', key: 'my_choice').then (choice) ->
         $scope.field.field_choices.push choice
 
+    $scope.addChoice() if $scope.field.properties.hasChoices and $scope.field.field_choices.length is 0
 
     $scope.updateChoice = (choice, index) ->
       $scope.fieldChoice.update(choice, choice)

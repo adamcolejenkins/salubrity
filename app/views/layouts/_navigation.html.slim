@@ -6,13 +6,13 @@ nav
         = link_to "Dashboard", dashboard_path, target: "_self"
   
       - if can? :manage, Survey
-        li class="#{active_if(controller_name == 'surveys')}"
-          = link_to "Surveys", surveys_path, target: "_self"
+        li class="#{active_if(/(surveys|clinics|providers|fields)/.match(controller_name))}"
+          = link_to "My Surveys", surveys_path, target: "_self"
 
-      - if can? :manage, Clinic
-        li class="#{active_if(controller_name == 'clinics')}"
-          = link_to "Clinics", surveys_path, target: "_self"
+      / - if can? :manage, Clinic
+      /   li class="#{active_if(controller_name == 'clinics')}"
+      /     = link_to "Clinics", surveys_path, target: "_self"
 
-      - if can? :manage, Provider
-        li class="#{active_if(controller_name == 'providers')}"
-          = link_to "Providers", surveys_path, target: "_self"
+      / - if can? :manage, Provider
+      /   li class="#{active_if(controller_name == 'providers')}"
+      /     = link_to "Providers", surveys_path, target: "_self"
