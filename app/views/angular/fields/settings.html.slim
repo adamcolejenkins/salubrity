@@ -59,15 +59,15 @@ div(ng-controller="SurveyBuildCtrl" ng-init="init()")
         .full
           label.control-label Range
           .half
-            input name="range_min" ng-model="field.range_min" prefix="Min" type="text" ui-touchspin="" 
+            input name="range_min" ng-model="field.range_min" prefix="Min" type="text" ui-touchspin="" value="1"
           .half
-            input name="range_max" ng-model="field.range_max" prefix="Max" type="text" ui-touchspin="" 
+            input name="range_max" ng-model="field.range_max" prefix="Max" type="text" ui-touchspin="" value="10"
 
       .form-group ng-if="property('increment')" 
         .full
           label.control-label for="increment" Increment
           .half
-            input.form-control#increment name="increment" ng-model="field.increment" step="1" type="text" ui-touchspin="" 
+            input.form-control#increment name="increment" ng-model="field.increment" step="1" type="text" ui-touchspin=""  value="1"
 
       .form-group ng-if="property('value')" 
         .full
