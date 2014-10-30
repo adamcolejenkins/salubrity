@@ -7,7 +7,7 @@
 /   required="<%= field.required %>" />
 
 / Single Line Text form context
-= answer_form.text_field :value, class: 'kiosk-anim-lower', required: field.required, placeholder: field.predefined_value
+= answer_fields.text_field :value, class: 'kiosk-anim-lower', required: field.required, placeholder: field.predefined_value
 
 = include_start_time(answer_form)
 = include_end_time(answer_form)
