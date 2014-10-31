@@ -211,6 +211,7 @@ body.kiosk {
 
     h1 {
       margin: 0;
+      font-size: 2em;
     }
   }
   
@@ -316,38 +317,10 @@ body.kiosk {
           }
         }
 
-        // .kiosk-start,
-        // .kiosk-button {
-        //   background: $kiosk-form-button-bg-color;
-        //   border: $kiosk-form-button-border-size solid $kiosk-form-button-border-color;
-        //   color: rgba(0,0,0,0.5);
-        //   border-radius: $kiosk-border-radius;
-        //   text-align: center;
-        //   font-size: .5em;
-        //   padding: 0.6em 1.5em;
-        //   margin-bottom: 1em;
-        //   -webkit-transition: all 0.2s;
-        //   transition: all 0.2s;
-        //   cursor: pointer;
-
-        //   &:hover,
-        //   &:focus {
-        //     background: $kiosk-form-button-bg-color-hover;
-        //     border-color: $kiosk-form-button-border-color-hover;
-        //     color: $kiosk-form-button-text-color-hover;
-        //   }
-
-        //   &:active,
-        //   &.active, 
-        //   &.checked {
-        //     background: $kiosk-form-button-bg-color-active;
-        //     border-color: $kiosk-form-button-border-color-active;
-        //     color: $kiosk-form-button-text-color-active;
-        //   }
-        // }
-
         .kiosk-start {
           background-color: $kiosk-success-color;
+          font-weight: 700;
+          font-size: 1.25;
           &:hover {
             background-color: darken($kiosk-success-color, 5%);
           }
@@ -386,18 +359,18 @@ body.kiosk {
               padding: 0.6em 0px;
               margin: 0;
               background-color: $kiosk-form-button-bg-color;
+              border: 4px solid transparent;
               color: $kiosk-form-button-text-color;
               -webkit-transition: opacity 0.3s;
               transition: opacity 0.3s;
               z-index: 0;
-              opacity: .7;
             }
 
             input[type="radio"]:hover + label,
             input[type="radio"]:focus + label,
             input[type="radio"]:checked + label {
-              opacity: 1;
               color: $kiosk-form-button-text-color-hover;
+              // border-color: $kiosk-form-input-border-color;
             }
           }
 
@@ -426,7 +399,7 @@ body.kiosk {
 
         .noUi-background {
           box-shadow: none;
-          background: rgba(#6e768e, .3);
+          background: lighten(#6e768e, 15%);
           border: none;
         }
         .noUi-horizontal .noUi-handle {
@@ -455,11 +428,13 @@ body.kiosk {
         }
 
         .cs-select.cs-skin-border {
-          .cs-placeholder dl {
-            margin: 0;
+          span.cs-placeholder {
+            dl, dl dt {
+              font-size: 1.5rem !important;
+              margin-bottom: 0px !important;
+            }
           }
         }
-
       }
     }
     
@@ -550,6 +525,10 @@ body.kiosk {
           content: attr(data-overview-title) !important;
         }
 
+        label {
+          color: $kiosk-overview-text-color;
+        }
+
         & > li {
           margin: 1em 0 2em;
           padding: 0 0 2em 0;
@@ -563,6 +542,15 @@ body.kiosk {
 
           &:focus {
             background-color: $kiosk-overview-bg-color;
+          }
+        }
+
+        .kiosk-radio-buttons {
+          input[type="radio"]:hover + label,
+          input[type="radio"]:focus + label,
+          input[type="radio"]:checked + label {
+            color: $kiosk-form-button-text-color-hover;
+            // border-color: $kiosk-overview-text-color;
           }
         }
 
@@ -593,6 +581,13 @@ body.kiosk {
         .noUi-handle {
           background: #3b3f45;
           border-color: none;
+        }
+
+        .cs-select.cs-skin-border:not(.cs-active) {
+          span.cs-placeholder  {
+            border: none;
+            color: $kiosk-overview-text-color;
+          }
         }
       }
 
