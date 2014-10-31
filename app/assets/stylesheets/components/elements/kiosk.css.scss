@@ -16,8 +16,8 @@ $kiosk-border-radius: 3px;
 $kiosk-border-rounded: 50%;
 
 $kiosk-form-max-width: 960px !default;
-$kiosk-form-input-text-color: #fffed8 !default;
-$kiosk-form-input-border-color: rgba(0,0,0,0.2) !default;
+$kiosk-form-input-text-color: #6e768e !default;
+$kiosk-form-input-border-color: #6e768e !default;
 
 $kiosk-form-button-border-radius: 40px !default;
 $kiosk-form-button-border-size: 2px !default;
@@ -311,11 +311,11 @@ body.kiosk.show {
         textarea {
           padding: 0.25em;
           @include size(100% 200px);
-          border: 2px solid $kiosk-form-input-border-color;
+          border: 5px solid $kiosk-form-input-border-color;
           background-color: transparent;
           color: $kiosk-form-input-text-color;
           font-weight: 700;
-          font-size: 0.85em;
+          font-size: 1em;
           resize: none;
           outline: none;
         }
@@ -329,6 +329,7 @@ body.kiosk.show {
           @include placeholder {
             color: rgba($kiosk-text-color, 0.1);
           }
+          height: 100px;
           &:focus {
             @include placeholder {
               color: transparent;
@@ -403,7 +404,8 @@ body.kiosk.show {
               display: block;
               position: relative;
               @include size(100%);
-              padding: 0.6em 0;
+              padding: 0.6em 0px;
+              margin: 0;
               background-color: $kiosk-form-button-bg-color;
               color: $kiosk-form-button-text-color;
               -webkit-transition: opacity 0.3s;
@@ -551,7 +553,7 @@ body.kiosk.show {
       font-size: 1.2em;
 
       .kiosk-fields {
-        max-width: $kiosk-form-max-width;
+        max-width: $kiosk-form-max-width + 200;
 
         .intro {
           display:none;
@@ -622,6 +624,10 @@ body.kiosk.show {
         border-color: $kiosk-overview-control-button-border-color;
         color: $kiosk-overview-control-button-text-color;
         border-radius: $kiosk-control-button-border-radius;
+      }
+
+      .kiosk-continue {
+        display: none;
       }
     }
   }
