@@ -64,7 +64,7 @@ $kiosk-overview-control-button-border-color-hover: #2a3237 !default;
 // =================================================
 // Kiosk Styles
 // =================================================
-body.kiosk.show {
+body.kiosk {
   background: $kiosk-bg-color;
 }
 .kiosk-form-wrap {
@@ -74,6 +74,8 @@ body.kiosk.show {
   font-size: 16px;
   color: $kiosk-text-color; // TODO: Clinic options with fallback
   background-color: $kiosk-bg-color; // TODO: Clinic optiosn with fallback
+  background-size: cover;
+  background-repeat: no-repeat;
   
   // ------------------
   // Controls
@@ -174,29 +176,6 @@ body.kiosk.show {
       .kiosk-number-new {
         position: absolute;
         left: 0;
-      }
-    }
-
-    button.kiosk-submit,
-    button.kiosk-continue {
-      padding: 0.6em 1.5em;
-      font-weight: 700;
-      border: 3px solid $kiosk-control-button-border-color;
-      background: $kiosk-control-button-bg-color;
-      color: $kiosk-control-button-text-color;
-      border-radius: $kiosk-control-button-border-radius;
-
-      &:hover,
-      &:focus {
-        border-color: $kiosk-control-button-border-color-hover;
-        background: $kiosk-control-button-bg-color-hover;
-        color: $kiosk-control-button-text-color-hover;
-      }
-      &:active,
-      &.active {
-        border-color: $kiosk-control-button-border-color-active;
-        background: $kiosk-control-button-bg-color-active;
-        color: $kiosk-control-button-text-color-active;
       }
     }
 
@@ -547,13 +526,13 @@ body.kiosk.show {
     // ------------------
     &.kiosk-form-overview {
       @include size(100%);
-      padding: 2.5em 30% 6em;
+      padding: 2.5em 20% 6em;
       background: $kiosk-overview-bg-color; // TODO: Clinic options with fallback
       color: $kiosk-overview-text-color; // TODO: Clinic options with fallback
       font-size: 1.2em;
 
       .kiosk-fields {
-        max-width: $kiosk-form-max-width + 200;
+        max-width: $kiosk-form-max-width;
 
         .intro {
           display:none;
@@ -564,7 +543,7 @@ body.kiosk.show {
           margin-bottom: 2.5em;
           color: $kiosk-overview-text-color; // TOO: Clinic options with fallback
           font-weight: 700;
-          font-size: 1.85em;
+          font-size: 1.75em;
           content: $kiosk-overview-title; // TOO: Clinic options with fallback
         }
         &[data-overview-title]::before {
@@ -622,11 +601,7 @@ body.kiosk.show {
         float: right;
         padding: 1em 1.5em;
         font-weight: 700;
-        font-size: 1.25em;
-        background: $kiosk-overview-control-button-bg-color;
-        border-color: $kiosk-overview-control-button-border-color;
-        color: $kiosk-overview-control-button-text-color;
-        border-radius: $kiosk-control-button-border-radius;
+        font-size: 1em;
       }
 
       
@@ -648,6 +623,30 @@ body.kiosk.show {
     max-width: $kiosk-form-max-width;
   }
 }
+
+input.kiosk-submit,
+button.kiosk-continue {
+  padding: 0.6em 1.5em;
+  font-weight: 700;
+  border: 3px solid $kiosk-control-button-border-color;
+  background: $kiosk-control-button-bg-color;
+  color: $kiosk-control-button-text-color;
+  border-radius: $kiosk-control-button-border-radius !important;
+
+  &:hover,
+  &:focus {
+    border-color: $kiosk-control-button-border-color-hover;
+    background: $kiosk-control-button-bg-color-hover;
+    color: $kiosk-control-button-text-color-hover;
+  }
+  &:active,
+  &.active {
+    border-color: $kiosk-control-button-border-color-active;
+    background: $kiosk-control-button-bg-color-active;
+    color: $kiosk-control-button-text-color-active;
+  }
+}
+
 
 .overview .kiosk-continue {
   display: none;
@@ -671,14 +670,20 @@ body.kiosk.show {
   }
 }
 
+.kiosk-controls {
+  .kiosk-show {
+    @include animation(animFadeIn 0.5s);
+  }
+}
+
 // ------------------
 // Form Visibility
 // ------------------
 .kiosk-form-full .kiosk-fields > li,
 .kiosk-nav-dots,
 .kiosk-progress,
-.kiosk-numbers
-button.kiosk-continue,
+.kiosk-numbers,
+.kiosk-continue,
 .kiosk-message-error,
 .kiosk-message-final {
   visibility: hidden;
@@ -844,7 +849,12 @@ button.kiosk-continue,
 
 // Touch
 .touch {
-  
+  .kiosk-continue {
+    margin-bottom: 40px !important;
+    &::after {
+      visibility: hidden;
+    }
+  }
 }
 
 // Overview

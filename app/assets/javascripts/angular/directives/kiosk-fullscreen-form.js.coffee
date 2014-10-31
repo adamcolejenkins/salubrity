@@ -114,17 +114,17 @@
 						cName: "kiosk-controls"
 						appendTo: @el
 					)
-					
+
+					# start button
+					@ctrlStart = @el.querySelector( '.kiosk-start' )
+
 					# continue button (jump to next field)
 					@ctrlContinue = createElement("button",
 						cName: "kiosk-continue"
 						inner: "Continue"
 						appendTo: @ctrls
 					)
-					@_showCtrl @ctrlContinue
-
-					# start button
-					@ctrlStart = @el.querySelector( '.kiosk-start' )
+					@_showCtrl @ctrlContinue if @ctrlStart is undefined
 					
 					# navigation dots
 					if @options.ctrlNavDots
@@ -199,6 +199,7 @@
 						# add a timestamp to form kiosk-started-at and start form
 						self._setFieldTime self.formEl, 'started-at'
 						self._nextField()
+						self._showCtrl self.ctrlContinue
 
 
 					# show next field

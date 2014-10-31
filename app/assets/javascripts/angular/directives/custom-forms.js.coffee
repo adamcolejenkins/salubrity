@@ -2,25 +2,18 @@
 
 .directive("icheck", ["$timeout", ($timeout) ->
   return (
-    restrict: "AC"
-    # require: "ngModel"
+    restrict: "C"
+    require: "ngModel"
     link: ($scope, $el, attrs, ngModel) ->
 
       $timeout ->
-        style = attrs.icheck || 'flat-green'
         value = attrs.value
-
-        if style is 'line'
-          label = $el.next().text()
-          $el.next().remove()
-
         $scope.$watch attrs.ngModel, (newValue) ->
           $el.iCheck "update"
 
         $el.iCheck(
-          checkboxClass: "icheckbox_#{style}"
-          radioClass: "iradio_#{style}"
-          insert: label if style is 'line'
+          checkboxClass: "icheckbox_flat-green"
+          radioClass: "iradio_flat-green"
         ).on "ifChanged", (event) ->
 
           if $el.attr("type") is "checkbox" and attrs.ngModel
