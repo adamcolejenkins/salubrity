@@ -56,14 +56,14 @@
             $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
         )
 
-      # $scope.editSurvey = (survey) ->
+      $scope.editSurvey = (survey) ->
 
-      #   @modal = $modal.open
-      #     templateUrl: '/templates/surveys/edit.html'
-      #     windowTemplateUrl: '/templates/partials/modalFormWindow.html'
-      #     controller: 'SurveyEditCtrl'
-      #     resolve:
-      #       survey: -> survey
+        @modal = $modal.open
+          templateUrl: '/templates/surveys/edit.html'
+          windowTemplateUrl: '/templates/partials/modalFormWindow.html'
+          controller: 'SurveyEditCtrl'
+          resolve:
+            survey: -> survey
             
 
       # $scope.deleteSurvey = (survey) ->
