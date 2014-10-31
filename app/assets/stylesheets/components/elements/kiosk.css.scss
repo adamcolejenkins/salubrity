@@ -620,15 +620,16 @@ body.kiosk.show {
       .kiosk-submit {
         display: block;
         float: right;
+        padding: 1em 1.5em;
+        font-weight: 700;
+        font-size: 1.25em;
         background: $kiosk-overview-control-button-bg-color;
         border-color: $kiosk-overview-control-button-border-color;
         color: $kiosk-overview-control-button-text-color;
         border-radius: $kiosk-control-button-border-radius;
       }
 
-      .kiosk-continue {
-        display: none;
-      }
+      
     }
   }
   
@@ -646,6 +647,10 @@ body.kiosk.show {
   .kiosk-message-error {
     max-width: $kiosk-form-max-width;
   }
+}
+
+.overview .kiosk-continue {
+  display: none;
 }
 
 // =================================================

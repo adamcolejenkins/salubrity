@@ -13,11 +13,12 @@
 //= require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
-//= require foundation
-//= require jquery-ui
+//= require jquery-ui/sortable
 //= require turbolinks
 //= require classie
 //= require moment
+//= require fastclick
+//= require foundation
 
 // Angular Directives
 //= require angular
@@ -36,20 +37,21 @@
 //= require ng-s3upload
 
 // Vendor assets
-//= require jquery.cookie/jquery.cookie
 //= require jquery-icheck/icheck
 //= require jquery.niftymodals/js/jquery.modalEffects
 //= require select2/select2
-//= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 //= require jquery.maskedinput/jquery.maskedinput
-//= require jasny.bootstrap/extend/js/jasny-bootstrap.min
-//= require bootstrap.switch/bootstrap-switch.min
-//= require bootstrap.slider/js/bootstrap-slider
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
 
 
+// DEPRECATED
+// require jquery.cookie/jquery.cookie
+// require jasny.bootstrap/extend/js/jasny-bootstrap.min
+// require bootstrap.switch/bootstrap-switch.min
+// require bootstrap.slider/js/bootstrap-slider
+//= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 // require behaviour/core
 
 // Our Angular app files
@@ -57,5 +59,21 @@
 
 //= require_tree ./angular
 
+// $.rails.confirm = function (message) {
+//   var element = $(this);
+//   console.log(element);
+//   return swal({
+//     title: message,
+//     // text: message,
+//     type: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#DD6B55",
+//     confirmButtonText: "Yes"
+//   }, function () {
+//     $.rails.handleMethod(element);
+//   }, function () {
+//     $.rails.fire(element, 'confirm:complete', [false]);
+//   });
+// }
 
 $(document).foundation();
