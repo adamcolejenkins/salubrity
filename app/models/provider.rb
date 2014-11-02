@@ -1,7 +1,8 @@
 class Provider < ActiveRecord::Base
-  belongs_to :clinic, inverse_of: :providers
   belongs_to :team, inverse_of: :providers
-  has_many :responses, inverse_of: :providers
+  belongs_to :clinic, inverse_of: :providers
+  
+  has_many :responses, inverse_of: :provider
 
   # This method associates the attribute ":logo" with a file attachment
   has_attached_file :photo, 
@@ -23,8 +24,7 @@ class Provider < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
+  validates_presence_of :clinic
 
-  def to_s
-    name
-  end
+  
 end

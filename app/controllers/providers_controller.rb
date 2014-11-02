@@ -6,8 +6,7 @@ class ProvidersController < ApplicationController
   # GET /providers
   # GET /providers.json
   def index
-    add_breadcrumb "← Back to Clinics", survey_clinics_url
-    @providers = clinic.providers.all
+    @providers = current_team.providers.all
   end
 
   # GET /providers/1
@@ -17,23 +16,21 @@ class ProvidersController < ApplicationController
 
   # GET /providers/new
   def new
-    add_breadcrumb "← Back to Providers", survey_clinic_providers_url
-    @provider = clinic.providers.new
+    @provider = current_team.providers.new
   end
 
   # GET /providers/1/edit
   def edit
-    add_breadcrumb "← Back to Providers", survey_clinic_providers_url
   end
 
   # POST /providers
   # POST /providers.json
   def create
-    @provider = clinic.providers.new(provider_params)
+    @provider = current_team.providers.new(provider_params)
 
     respond_to do |format|
       if @provider.save
-        format.html { redirect_to survey_clinic_providers_url, notice: 'Provider was successfully created.' }
+        format.html { redirect_to providers_url, notice: 'Provider was successfully created.' }
         format.json { render :show, status: :created, location: @provider }
       else
         format.html { render :new }
@@ -47,7 +44,7 @@ class ProvidersController < ApplicationController
   def update
     respond_to do |format|
       if @provider.update(provider_params)
-        format.html { redirect_to survey_clinic_providers_url, notice: 'Provider was successfully updated.' }
+        format.html { redirect_to providers_url, notice: 'Provider was successfully updated.' }
         format.json { render :show, status: :ok, location: @provider }
       else
         format.html { render :edit }
@@ -61,28 +58,20 @@ class ProvidersController < ApplicationController
   def destroy
     @provider.destroy
     respond_to do |format|
-      format.html { redirect_to survey_clinic_providers_url, notice: 'Provider was successfully destroyed.' }
+      format.html { redirect_to providers_url, notice: 'Provider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def survey
-      @survey ||= current_team.surveys.find(params[:survey_id])
-    end
-
-    # Use callbacks to share common setup or constraints between actions.
-    def clinic
-      @clinic = survey.clinics.find(params[:clinic_id])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_provider
-      @provider = clinic.providers.find(params[:id])
+      @provider = current_team.providers.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def provider_params
-      params.require(:provider).permit(:name, :position, :email, :phone, :photo)
+      params.require(:provider).permit(:name, :clinic_id, :team_id, :position, :email, :phone, :photo)
     end
 end

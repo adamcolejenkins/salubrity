@@ -1,27 +1,30 @@
-section.content
+hgroup
+  .title
+    h2 My Providers
+    h3.subheader Manage your team's Providers
 
-  dl.nav-tabs
-    = tab_for "Providers", survey_clinic_providers_path(@clinic.survey, @clinic)
-    = tab_for "Settings", edit_survey_clinic_path(@clinic.survey, @clinic)
-
-  .block
+section.content.block
     
-    - if can? :create, Provider
-      .block-item.new
-        = link_to '', new_survey_clinic_provider_path, class: 'trigger', target: "_self"
-        .details
-          .name = t 'providers.list.create_button_label'
+  - if can? :create, Provider
+    .block-item.new
+      = link_to '', new_provider_path, class: 'trigger', target: "_self"
+      .details
+        .name = t 'providers.list.create_button_label'
+  
+  - @providers.group_by(&:clinic).each do |clinic, providers|
+    h3 = "#{clinic.title} Providers"
 
-    - @providers.each do |provider|
+    - providers.each do |provider|
       .block-item
+        / = link_to '', provider_path(provider), class: 'trigger', target: "_self"
         .details
           .name = provider.name
 
         .options
           ul.actions
             - if can? :update, Provider
-              li = link_to edit_survey_clinic_provider_path(@clinic.survey, @clinic, provider), target: "_self", tooltip: "Edit"
+              li = link_to edit_provider_path(provider), target: "_self", tooltip: "Edit"
                 i.fa.fa-pencil
             - if can? :destroy, Provider
-              li = link_to survey_clinic_provider_path(@clinic.survey, @clinic, provider), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
+              li = link_to provider_path(provider), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
                 i.fa.fa-trash-o

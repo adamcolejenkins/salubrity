@@ -28,10 +28,10 @@ class Team < ActiveRecord::Base
     }
 
   # Validate the attached image is image/jpg, image/png, etc
-  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
   # Validate the attached image is at least 400x140
-  validates :logo, :dimensions => { :width => 400, :height => 140 }
+  validates :logo, dimensions: { width: 400, height: 140 }
 
   # Validate the name is present
   validates :name, presence: true

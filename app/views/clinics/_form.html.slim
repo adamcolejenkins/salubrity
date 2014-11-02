@@ -1,4 +1,4 @@
-= form_for [@clinic.survey, @clinic], html: {class: "indent-fields"} do |f|
+= form_for @clinic, html: {class: "indent-fields"} do |f|
   - if @clinic.errors.any?
     .alert-box.alert
       h2 = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved:"
@@ -33,6 +33,16 @@
   .form-group
     = f.label :phone
     = f.phone_field :phone
+
+  .form-header
+    .tag
+      i.fa.fa-file-image-o
+    h3 Survey
+
+  .form-group
+    p.thin This clinic needs a survey, which one would you like to use?
+    = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
+    
   
   .form-header
     .tag
@@ -62,4 +72,4 @@
 
   .form-group 
     = f.submit 'Save Clinic', class: 'radius success button'
-    = link_to 'Cancel', survey_clinics_path, class: 'radius button', target: "_self"
+    = link_to 'Cancel', clinics_path, class: 'radius button', target: "_self"

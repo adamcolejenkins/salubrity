@@ -1,7 +1,11 @@
+hgroup
+  .title
+    h2 Edit Survey
+    h3.subheader = "Editing #{@survey.title}"
+
 section.content
   dl.nav-tabs
     = tab_for "Build", survey_fields_path(@survey)
-    = tab_for "Clinics", survey_clinics_path(@survey)
     = tab_for "Settings", edit_survey_path(@survey)
     
   = render 'form'

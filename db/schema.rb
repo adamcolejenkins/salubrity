@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030011447) do
+ActiveRecord::Schema.define(version: 20141101153744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +45,11 @@ ActiveRecord::Schema.define(version: 20141030011447) do
     t.string   "background_content_type"
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
+    t.integer  "team_id"
   end
 
   add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
+  add_index "clinics", ["team_id"], name: "index_clinics_on_team_id", using: :btree
 
   create_table "field_choices", force: true do |t|
     t.integer  "field_id"

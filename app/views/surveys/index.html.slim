@@ -1,3 +1,8 @@
+hgroup
+  .title
+    h2 My Surveys
+    h3.subheader Manage your team's Surveys
+
 section.content
 
   .block
@@ -18,9 +23,6 @@ section.content
 
         .options
           ul.actions
-            - if can? :manage, Clinic
-              li = link_to survey_clinics_path(survey), target: "_self", tooltip: "Clinics"
-                i.fa.fa-medkit
             - if can? :update, Survey
               li = link_to edit_survey_path(survey), target: "_self", tooltip: "Edit"
                 i.fa.fa-pencil

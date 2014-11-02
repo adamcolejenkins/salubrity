@@ -1,6 +1,7 @@
-section.content
-  dl.nav-tabs
-    = tab_for "Providers", survey_clinic_providers_path(@clinic.survey, @clinic)
-    = tab_for "Settings", edit_survey_clinic_path(@clinic.survey, @clinic)
+hgroup
+  .title
+    h2 Edit Clinic
+    h3.subheader = "Editing #{@clinic.title}"
 
+section.content
   = render 'form'
