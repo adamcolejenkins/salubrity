@@ -1,11 +1,12 @@
-section.branding
-  h1
-    = link_to root_path
-      - if current_team && current_team.logo
-        .logo style="background-image: url(#{current_team.logo.url(:medium)})"
-      - else
-        .logo Salubrity
+section.layout
+  section.branding
+    h1
+      = link_to root_path
+        - if current_team && current_team.logo
+          .logo style="background-image: url(#{current_team.logo.url(:medium)})"
+        - else
+          .logo Salubrity
 
-section.actions
-  - if user_signed_in?
-    = render "layouts/user"
+  section.actions
+    - if user_signed_in?
+      = render "layouts/user"

@@ -2,9 +2,9 @@ class Survey < ActiveRecord::Base
   include Filterable
   belongs_to :team, :inverse_of => :surveys
 
-  has_many :fields, -> { order("priority ASC").includes(:field_choices) }, inverse_of: :survey, dependent: :destroy
   has_many :clinics, inverse_of: :survey, dependent: :destroy
-  has_many :responses, inverse_of: :survey
+  has_many :responses, inverse_of: :survey, dependent: :destroy
+  has_many :fields, -> { order("priority ASC").includes(:field_choices) }, inverse_of: :survey, dependent: :destroy
 
   scope :guid, -> (guid) { where(guid: guid).first }
   store :opts, :accessors => [:intro_id, :outro_id, :logo_path], coder: JSON
@@ -18,7 +18,12 @@ class Survey < ActiveRecord::Base
     self.guid = self.title.parameterize('-')
   end
 
-  def to_s
-    title
+  def average_time
+    sum = 0
+    self.responses.each do |response|
+      sum += response.time.to_i
+    end
+
+    sum / self.responses.count unless self.responses.count == 0
   end
 end

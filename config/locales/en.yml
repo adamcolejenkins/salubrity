@@ -34,11 +34,14 @@ en:
         guid: "Permalink"
         address2: "Building / Suite"
         zip: "Zip Code"
+      provider:
+        position: "Job Position"
   titles:
     application: "Salubrity"
     dashboard:
       index:
         title: "Dashboard"
+        describe: "View reports by survey, clinic and/or provider."
     surveys:
       index:
         title: "My Surveys"
@@ -62,7 +65,7 @@ en:
     clinics:
       index:
         title: "My Clinics"
-        describe: "Clinics for %{survey}"
+        describe: "Clinics for %{clinic.survey}"
       new:
         title: "New Clinic"
         describe: "New clinic for %{survey}"

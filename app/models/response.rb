@@ -5,4 +5,8 @@ class Response < ActiveRecord::Base
   belongs_to :provider, inverse_of: :responses
   has_many :answers, -> { includes :field }, autosave: true
   accepts_nested_attributes_for :answers, reject_if: proc { |attributes| attributes['value'].blank? }
+
+  def time
+    (self.ended_at.to_f - self.started_at.to_f).to_i
+  end
 end

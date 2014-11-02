@@ -1,20 +1,45 @@
 .wrap > header,
 .wrap > main,
 .wrap > footer {
-  @include grid-row();
+  position: relative;
+  section.layout {
+    @include grid-row();
+
+    & > section.content {
+      @include grid-column($columns: 12, $last-column: true);
+    }
+    & > section.sidebar {
+      @include grid-column($columns: 4);
+
+      & + section.content {
+        @include grid-column($columns: 8, $last-column: true);
+      }
+    }
+  }
+}
+
+.dashboard .wrap > main {
+  & > section.layout {
+    max-width: 100%;
+  }
 }
 
 .wrap > header {
-  & > section.branding {
+  background: $white;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
+  z-index: 3;
+  section.branding {
     @include grid-column($columns: 6);
   }
-  & > section.actions {
+  section.actions {
     @include grid-column($columns: 6, $last-column: true);
   }
 }
 
 .wrap > nav {
   @extend .contain-to-grid;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
+  z-index: 2;
   & > nav {
     @extend .top-bar;
     & > section {
@@ -24,10 +49,11 @@
 }
 
 .wrap > main {
+  z-index: 1;
   hgroup {
     @include grid-row();
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     & > div.title {
       @include grid-column($columns: 8);
       & > div.crumb {
@@ -42,36 +68,24 @@
       @include grid-column($columns: 4, $last-column: true);
       text-align: right;
     }
-    & + .layout {
-      @include grid-row();
-
-      & section.content {
-        @include grid-column($columns: 12, $last-column: true);
-      }
-      & section.sidebar {
-        @include grid-column($columns: 4);
-
-        & + section.content {
-          @include grid-column($columns: 8, $last-column: true);
-        }
-      }
-    }
   }
 }
 
 .wrap > footer {
   margin-top: 30px;
-  & > section {
-    border-top: 1px solid $secondary-color;
-    padding-top: 15px;
-    p { font-size: 13px; }
-    a { font-weight: bold; }
-  }
-  & > section.copyright {
-    @include grid-column($columns: 8);
-  }
-  & > section.support {
-    @include grid-column($columns: 4, $last-column: true);
-    text-align: right;
+  section.layout {
+    & > section {
+      border-top: 1px solid $secondary-color;
+      padding-top: 15px;
+      p { font-size: 13px; }
+      a { font-weight: bold; }
+    }
+    & > section.copyright {
+      @include grid-column($columns: 8);
+    }
+    & > section.support {
+      @include grid-column($columns: 4, $last-column: true);
+      text-align: right;
+    }
   }
 }

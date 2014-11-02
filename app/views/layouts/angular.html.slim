@@ -20,7 +20,7 @@ html(lang="en")
         s.parentNode.insertBefore(bh, s);
         })(document, 'script');
         
-  body ng-app="salubrity" ng-controller="AppCtrl"
+  body ng-app="salubrity" ng-controller="AppCtrl" class="#{controller_name} #{action_name}"
     .wrap
       header
         = render :partial => "layouts/header"
@@ -29,7 +29,7 @@ html(lang="en")
       flash
         = render :partial => "layouts/flash"
       main
-        hgroup = page_title
+        / hgroup = page_title
         section.layout
           = yield
       footer

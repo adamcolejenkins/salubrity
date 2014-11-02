@@ -1,13 +1,15 @@
 class Clinic < ActiveRecord::Base
-  belongs_to :survey, inverse_of: :clinics
   belongs_to :team, inverse_of: :clinics
+  belongs_to :survey, inverse_of: :clinics
+
   has_many :providers, -> { order(:name) }, inverse_of: :clinic, dependent: :destroy
   has_many :responses, inverse_of: :clinic
 
   before_validation :translate_slug, on: :create
 
   validates :title, presence: true
-  validates :guid, presence: true, uniqueness: { scope: :survey, message: " exists for this survey." }
+  validates :guid, presence: true, uniqueness: { scope: :survey, message: " exists for this survey." }, on: :update
+  validates_presence_of :survey_id
 
   # This method associates the attribute ":background" with a file attachment
   has_attached_file :background, 
@@ -31,7 +33,4 @@ class Clinic < ActiveRecord::Base
     self.guid = self.title.parameterize('-')
   end
 
-  def to_s
-    title
-  end
 end

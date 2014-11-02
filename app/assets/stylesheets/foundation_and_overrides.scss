@@ -226,7 +226,7 @@ $retina: "#{$retina-webkit}, #{$retina-moz}, #{$retina-o}, #{$retina-std}";
 // $header-font-family: $body-font-family;
 $header-font-weight: 300;
 // $header-font-style: normal;
-$header-font-color: $titanium;
+$header-font-color: $jet;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -250,7 +250,7 @@ $header-font-color: $titanium;
 
 // These control how subheaders are styled.
 $subheader-line-height: normal;
-// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
+$subheader-font-color: scale-color($titanium, $lightness: 35%);
 $subheader-font-weight: $font-weight-thin;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
@@ -1393,7 +1393,7 @@ $tooltip-max-width: 300px;
 
 // Background color for the top bar
 $topbar-bg-color: $primary-color;
-$topbar-bg: $topbar-bg-color;
+$topbar-bg: $primary-color;
 
 // Height and margin
 $topbar-height: 50px;
@@ -1414,19 +1414,19 @@ $topbar-margin-bottom: 0;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $body-font-color;
-$topbar-link-color-hover: $white;
-$topbar-link-color-active: $white;
-$topbar-link-color-active-hover: $white;
-// $topbar-link-weight: $font-weight-normal;
+$topbar-link-color-hover: $success-color;
+$topbar-link-color-active: $success-color;
+$topbar-link-color-active-hover: $success-color;
+$topbar-link-weight: $font-weight-bold;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg: $topbar-bg;
 $topbar-link-bg-color-hover: $topbar-bg;
 $topbar-link-bg-hover: $topbar-bg;
-$topbar-link-bg-active: $primary-color;
+$topbar-link-bg-active: $topbar-bg;
 $topbar-link-bg-active-hover: $topbar-bg;
 // $topbar-link-font-family: $body-font-family;
-// $topbar-link-text-transform: none;
+$topbar-link-text-transform: uppercase;
 // $topbar-link-padding: $topbar-height / 3;
 // $topbar-back-link-size: $h5-font-size;
 // $topbar-link-dropdown-padding: 20px;

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
     resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
 
     resources :surveys do
-      resources :fields, only: [:index]
-      resources :clinics, except: [:show] do
-        resources :providers, except: [:show]
-      end
+      resources :fields
     end
+
+    resources :clinics
+    resources :providers
 
     devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }
     devise_scope :user do
