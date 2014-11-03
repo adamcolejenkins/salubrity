@@ -21,6 +21,10 @@
 
 				animEndEventName = animEndEventNames[ Modernizr.prefixed('animation') ]
 
+				preventDefault = (e) ->
+					return if e.currentTarget.allowedDefault
+					e.preventDefault()
+
 
 				###*
 				 * extend obj function
@@ -76,6 +80,9 @@
 				 * @return {void} Initialize and cache vars
 				###
 				Kiosk::_init = ->
+					# html, body for touch events
+					@body = document.querySelector("body")
+
 					# the form element
 					@formEl = @el.querySelector("form")
 					
@@ -192,6 +199,11 @@
 
 				Kiosk::_initEvents = ->
 					self = this
+
+					# Disable touchstart and touchmove
+					@body.addEventListener 'touchstart', preventDefault
+					@body.addEventListener 'touchmove', preventDefault
+
 
 					# start form fields
 					@ctrlStart.addEventListener 'click', ->
@@ -518,7 +530,11 @@
 				###
 				new Kiosk($elem[0],
 					onReview: ->
-						angular.element('body').addClass('overview')
+						@body = document.body
+						# Add 'overview' class
+						classie.add @body, 'overview'
+						# Enable touchstart & touchmove
+						@body.allowedDefault = true
 				)
 
 		) # end directive return
