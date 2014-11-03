@@ -201,7 +201,7 @@
 					self = this
 
 					# Disable touchstart and touchmove
-					@body.addEventListener 'touchstart', preventDefault
+					# @body.addEventListener 'touchstart', preventDefault
 					@body.addEventListener 'touchmove', preventDefault
 
 
