@@ -45,6 +45,13 @@
 //= require sweetalert
 //= require nouislider
 
+// Charts
+//= require jquery.easypiechart/jquery.easy-pie-chart
+//= require jquery.flot/jquery.flot
+//= require jquery.flot/jquery.flot.pie
+//= require jquery.flot/jquery.flot.resize
+//= require jquery.flot/jquery.flot.labels
+
 
 // DEPRECATED
 // require jquery.cookie/jquery.cookie

@@ -1,4 +1,8 @@
 class Provider < ActiveRecord::Base
+
+  # Exclude these field contexts in the dashboard
+  DASHBOARD_CONTEXT_EXCLUDE = %w(intro outro provider_dropdown)
+
   belongs_to :team, inverse_of: :providers
   belongs_to :clinic, inverse_of: :providers
   
@@ -25,6 +29,5 @@ class Provider < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
   validates_presence_of :clinic
-
   
 end

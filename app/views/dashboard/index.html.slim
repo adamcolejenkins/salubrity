@@ -1,10 +1,54 @@
-section.content ng-controller="ReportsCtrl"
-  
-  h4 Filters
+hgroup
+  .title
+    h2 Dashboard
+    h3.subheader View reports by survey, clinic and/or provider.
+
+div ng-controller="ReportsCtrl" ng-init="init()"
   
   .row
-    .medium-4.columns
+    .medium-12.columns
+      dl.sub-nav
+        dd Filter:
+        dd ng-class="{'survey': 'active' }[currentResourceName]"
+          a href="#" ng-click="setResource('survey')" Survey
+        dd ng-class="{'clinic': 'active' }[currentResourceName]"
+          a href="#" ng-click="setResource('clinic')" Clinic
+        dd ng-class="{'provider': 'active' }[currentResourceName]"
+          a href="#" ng-click="setResource('provider')" Provider
 
-    .medium-4.columns
 
-    .medium-4.columns
+  section ng-repeat="resource in resources"
+    section.layout
+
+      .row
+        .medium-6.columns
+          .panel.callout
+            h4 
+              | {{ resource.title || resource.name }}
+            h5.subheader 
+              | {{ resource.description || '' }}
+      
+        .medium-3.columns
+          .panel.callout
+            .stat
+              .title
+                big 
+                  | {{ resource.responses.length }}
+                small  responses
+              .chart
+                .bar-chart id="bar-chart"
+
+        .medium-3.columns
+          .panel.callout
+            .stat
+              .title
+                big 0:00
+                small  avg time to complete
+              .chart
+                .bar-chart id="bar-chart"
+      
+        .small-12.columns
+          .medium-block-grid-4
+            li ng-repeat="field in resource.fields" ng-if="field.context != 'intro' || field.context != 'outro'"
+              .panel.callout
+                .pie-chartxx ng-model="field.data"

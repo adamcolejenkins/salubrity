@@ -4,7 +4,7 @@
 
     class SurveyService
       constructor: (errorHandler) ->
-        @service = $resource('/api/surveys/:id',
+        @service = $resource('/surveys/:id.json',
           {id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler

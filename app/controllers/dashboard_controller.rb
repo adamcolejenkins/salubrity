@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
 
   def index
     @surveys = current_team.surveys.all
-
-
+    
   end
 end

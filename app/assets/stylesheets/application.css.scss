@@ -18,6 +18,7 @@
 //= require responsive-tables/responsive-tables
 //= require sweetalert
 //= require nouislider
+//= require jquery.easypiechart/jquery.easy-pie-chart
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -39,6 +40,7 @@
 // Components
 @import "components/elements/cs-select";
 @import "components/elements/buttons";
+@import "components/elements/charts";
 @import "components/elements/header";
 @import "components/elements/kiosk";
 @import "components/elements/user-menu";

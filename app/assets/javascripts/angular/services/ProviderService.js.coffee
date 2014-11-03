@@ -1,10 +1,10 @@
 @salubrity
   
-  .factory 'Provider', ($resource, $http, $filter) ->
+  .factory 'ProviderService', ($resource, $http, $filter) ->
 
     class Provider
       constructor: (surveyId, clinicId, errorHandler) ->
-        @service = $resource('/api/surveys/:survey_id/clinics/:clinic_id/providers/:id',
+        @service = $resource('/providers/:id.json',
           {survey_id: surveyId, clinic_id: clinicId, id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler

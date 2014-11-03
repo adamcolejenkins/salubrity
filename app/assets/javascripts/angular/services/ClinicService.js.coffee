@@ -4,8 +4,8 @@
 
     class ClinicService
       constructor: (surveyId, errorHandler) ->
-        @service = $resource('/api/surveys/:survey_id/clinics/:id',
-          {survey_id: surveyId, id: '@id'},
+        @service = $resource('/clinics/:id.json',
+          {id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler
 
