@@ -21,6 +21,10 @@
 
 				animEndEventName = animEndEventNames[ Modernizr.prefixed('animation') ]
 
+				preventDefault = (e) ->
+					return if e.currentTarget.allowedDefault
+					e.preventDefault()
+
 
 				###*
 				 * extend obj function
@@ -518,7 +522,8 @@
 				###
 				new Kiosk($elem[0],
 					onReview: ->
-						angular.element('body').addClass('overview')
+						# Add 'overview' class
+						classie.add document.body, 'overview'
 				)
 
 		) # end directive return
