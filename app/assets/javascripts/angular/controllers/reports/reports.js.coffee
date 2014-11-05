@@ -1,12 +1,12 @@
 @salubrity
   
-  .controller 'ReportsCtrl', ($scope, SurveyService, ClinicService, ProviderService, $interval) ->
+  .controller 'ReportsCtrl', ($scope, SurveyService, ClinicService, ProviderService, $interval, $document) ->
 
     $scope.cache = []
     $scope.refreshRate = 10000
 
     $scope.init = ->
-      $scope.setResource 'provider'
+      $scope.setResource 'survey'
       # $interval(tick, $scope.refreshRate) # Future addtion
 
     
@@ -18,8 +18,6 @@
         $scope.cache[resourceName] =
           resource: ResourceService
           data: ResourceService.all()
-
-      console.log $scope.cache[resourceName]
 
       $scope.resources = $scope.cache[resourceName].data
 

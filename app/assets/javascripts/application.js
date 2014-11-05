@@ -66,21 +66,9 @@
 
 //= require_tree ./angular
 
-// $.rails.confirm = function (message) {
-//   var element = $(this);
-//   console.log(element);
-//   return swal({
-//     title: message,
-//     // text: message,
-//     type: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#DD6B55",
-//     confirmButtonText: "Yes"
-//   }, function () {
-//     $.rails.handleMethod(element);
-//   }, function () {
-//     $.rails.fire(element, 'confirm:complete', [false]);
-//   });
-// }
-
-$(document).foundation();
+window.Foundation = $(document).foundation({
+  equalizer : {
+    // Specify if Equalizer should make elements equal height once they become stacked.
+    equalize_on_stack: false
+  }
+});

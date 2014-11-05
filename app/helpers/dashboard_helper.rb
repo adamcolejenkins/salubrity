@@ -1,16 +1,13 @@
 module DashboardHelper
-  def time_diff(started, ended)
-    TimeDifference.between(started, ended).in_minutes
-  end
 
-  def avg_time_diff()
-    
+  def to_time_string(t)
+    Time.at(t).utc.strftime("%M:%S")
   end
 
   def percent(count, total, formatted=false, precision=2)
     return 0 unless total > 0
 
-    percent = (count.to_f / total.to_f).to_f
+    percent = number_with_precision((count.to_f / total.to_f).to_f, precision: 2).to_f
     percent = number_to_percentage((percent * 100), precision: precision) if formatted
     percent
   end

@@ -3,7 +3,6 @@
 .directive("icheck", ["$timeout", ($timeout) ->
   return (
     restrict: "C"
-    require: "ngModel"
     link: ($scope, $el, attrs, ngModel) ->
 
       $timeout ->

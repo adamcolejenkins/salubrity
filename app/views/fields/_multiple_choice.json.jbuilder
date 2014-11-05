@@ -3,13 +3,13 @@ json.answers field.field_choices do |choice|
 
   # Number of responses with selected choice
   total = total_answers resource: responses, where: { field: choice.field, value: choice.key }
-  json.total total
+  json.data total
 
   # Percentage of responses with selected choice
   json.percent percent(total, responses.count)
 
   # TODO: Color options
-  json.color "TODO: COLOR OPTIONS"
+  json.color
 end
 
 # Total choices for this field

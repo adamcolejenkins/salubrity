@@ -1,0 +1,33 @@
+.splash {
+  text-align: center;
+  h2 {
+    font-size: 1.2rem;
+    color: $body-font-color;
+    font-weight: bold;
+  }
+
+  .wrap {
+    padding: 15px;
+  }
+
+  .alert-box {
+    background: transparent;
+
+    .close {
+      display: none;
+    }
+
+    &.alert {
+      color: $alert-color;
+    }
+    &.info {
+      color: $info-color;
+    }
+    &.success {
+      color: $success-color;
+    }
+    &.warning {
+      color: $warning-color;
+    }
+  }
+}

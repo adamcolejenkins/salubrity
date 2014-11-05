@@ -20,35 +20,43 @@ div ng-controller="ReportsCtrl" ng-init="init()"
   section ng-repeat="resource in resources"
     section.layout
 
-      .row
+      .row data-equalizer=""
         .medium-6.columns
-          .panel.callout
-            h4 
-              | {{ resource.title || resource.name }}
-            h5.subheader 
-              | {{ resource.description || '' }}
-      
+          .block-panel data-equalizer-watch=""
+            .content
+              h4 
+                | {{ resource.title || resource.name }}
+              h5.subheader 
+                | {{ resource.description || '' }}
+        
         .medium-3.columns
-          .panel.callout
-            .stat
-              .title
-                big 
-                  | {{ resource.responses.length }}
-                small  responses
-              .chart
-                .bar-chart id="bar-chart"
+          .block-panel data-equalizer-watch=""
+            .content
+              .stat
+                .title
+                  big 
+                    | {{ resource.total_responses }}
+                  small  responses
+                .chart
+                  .bar-chart id="bar-chart"
 
         .medium-3.columns
-          .panel.callout
-            .stat
-              .title
-                big 0:00
-                small  avg time to complete
-              .chart
-                .bar-chart id="bar-chart"
-      
-        .small-12.columns
-          .medium-block-grid-4
-            li ng-repeat="field in resource.fields" ng-if="field.context != 'intro' || field.context != 'outro'"
-              .panel.callout
-                .pie-chartxx ng-model="field.data"
+          .block-panel data-equalizer-watch=""
+            .content
+              .stat
+                .title
+                  big
+                    | {{ resource.average_time || "00:00" }}
+                  small  avg time to complete
+                .chart
+                  .bar-chart id="bar-chart"
+
+      .row data-equalizer=""
+        div ng-include="field.template" ng-init="" ng-repeat="field in resource.fields"
+      / .small-12.columns
+      /   .medium-block-grid-4
+      /     li 
+      /       .panel.callout
+      /         p
+      /           | {{field.label}}
+      /         .pie-chart ng-model="field.answers" ng-if="field.context == 'multiple_choice'"

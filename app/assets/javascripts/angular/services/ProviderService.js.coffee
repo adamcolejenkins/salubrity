@@ -3,9 +3,9 @@
   .factory 'ProviderService', ($resource, $http, $filter) ->
 
     class Provider
-      constructor: (surveyId, clinicId, errorHandler) ->
+      constructor: (errorHandler) ->
         @service = $resource('/providers/:id.json',
-          {survey_id: surveyId, clinic_id: clinicId, id: '@id'},
+          {id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler
 

@@ -1,0 +1,18 @@
+#unlock-container
+  
+  .wrap
+    h2 Resend unlock instructions
+
+  = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+
+    = devise_error_messages!
+
+    .list-group
+      .list-group-item
+        = f.email_field :email, autofocus: true, placeholder: "Email"
+
+    .form-group
+      .full
+        = f.submit "Resend unlock instructions", class: "small radius success button expand"
+
+  = render "devise/shared/links"

@@ -1,0 +1,16 @@
+.block-panel {
+  @include panel(
+    $bg: $white,
+    $padding: 0px,
+    $adjust: false
+  );
+  border-radius: $global-radius;
+  border: 1px solid #e5e6ea;
+  border-bottom-width: 2px;
+  border-bottom-color: darken(#e5e6ea, 1%);
+
+  .header,
+  .content {
+    padding: rem-calc(20);
+  }
+}
