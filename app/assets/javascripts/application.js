@@ -38,19 +38,16 @@
 
 // Vendor assets
 //= require jquery-icheck/icheck
-//= require jquery.niftymodals/js/jquery.modalEffects
 //= require select2/select2
-//= require jquery.maskedinput/jquery.maskedinput
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
 
 // Charts
-//= require jquery.easypiechart/jquery.easy-pie-chart
-//= require jquery.flot/jquery.flot
-//= require jquery.flot/jquery.flot.pie
-//= require jquery.flot/jquery.flot.resize
-//= require jquery.flot/jquery.flot.labels
+//= require flot
+//= require flot/jquery.flot.pie
+//= require flot/jquery.flot.resize
+//  require flot/jquery.flot.labels
 
 
 // DEPRECATED
@@ -60,6 +57,9 @@
 // require bootstrap.slider/js/bootstrap-slider
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 // require behaviour/core
+// require jquery.niftymodals/js/jquery.modalEffects
+//  require jquery.maskedinput/jquery.maskedinput
+//  require jquery.easypiechart/jquery.easy-pie-chart
 
 // Our Angular app files
 //= require angular/salubrity
