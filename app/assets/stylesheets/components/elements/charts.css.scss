@@ -1,13 +1,53 @@
+
+.dashboard {
+  [class*="column"] + [class*="column"]:last-child {
+    float: left;
+  }
+
+  & > .wrap > main {
+    section.layout {
+      max-width: 100%;
+
+      section.resource {
+        padding: rem-calc(60 0 40);
+        
+        &:nth-child(even) {
+          background: darken($body-bg, 2%);
+        }
+      }
+    }
+  }
+}
+
+
+
 /*Flot Charts*/
 .pie-chart {
-  height: 250px;
+  height: 200px;
   padding: 0px;
   position: relative;
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -12px;
+  }
 }
 .stat .bar-chart {
-  // height: 50px;
+  height: 75px;
   padding: 0;
   position: relative;
+  bottom: 0px !important;
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -12px;
+  }
 }
 .blue-chart .flot-text, .red-chart .flot-text{color:#FFF !important;}
 

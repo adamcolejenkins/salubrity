@@ -44,7 +44,9 @@
     "angular-cookie": "~4.0.2",
     "moment": "~2.8.3",
     "fastclick": "~1.0.3",
-    "flot": "~0.8.3"
+    "flot": "~0.8.3",
+    "flot.tooltip": "~0.8.4",
+    "flot-animator": "*"
   },
   "dependencies": {}
 }

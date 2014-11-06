@@ -4,13 +4,25 @@
 
     $scope.cache = []
     $scope.refreshRate = 10000
+    $scope.field = []
 
-    $scope.init = ->
-      $scope.setResource 'survey'
+    $scope.init = (resourceName) ->
+      console.log resourceName
+      setResource resourceName
       # $interval(tick, $scope.refreshRate) # Future addtion
 
-    
-    $scope.setResource = (resourceName) ->
+
+    $scope.setField = (resourceId, fieldId) ->
+      console.log resourceId, fieldId
+      console.log $scope.resources
+      angular.forEach $scope.resources, (resource, id) ->
+        console.log resource
+        if resource.id is resourceId
+          angular.forEach resource.fields, (field, id) ->
+            return field.answers if field.id is fieldId
+
+
+    setResource = (resourceName) ->
       $scope.currentResourceName = resourceName
 
       unless $scope.cache[resourceName]?
@@ -34,7 +46,6 @@
           @ClinicService
         when "provider"
           @ProviderService
-
 
     tick = ->
       console.log "Updating..."

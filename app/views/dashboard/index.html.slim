@@ -3,60 +3,19 @@ hgroup
     h2 Dashboard
     h3.subheader View reports by survey, clinic and/or provider.
 
-div ng-controller="ReportsCtrl" ng-init="init()"
-  
-  .row
-    .medium-12.columns
-      dl.sub-nav
-        dd Filter:
-        dd ng-class="{'survey': 'active' }[currentResourceName]"
-          a href="#" ng-click="setResource('survey')" Survey
-        dd ng-class="{'clinic': 'active' }[currentResourceName]"
-          a href="#" ng-click="setResource('clinic')" Clinic
-        dd ng-class="{'provider': 'active' }[currentResourceName]"
-          a href="#" ng-click="setResource('provider')" Provider
+.row ng-controller="ReportsCtrl" ng-init="init('#{params[:resource]}')"
+
+  .medium-12.columns
+    dl.sub-nav
+      dd Filter:
+      dd class="#{active_if_current(dashboard_path('survey'))}"
+        = link_to 'Survey', dashboard_path('survey'), target: "_self"
+      dd class="#{active_if_current(dashboard_path('clinic'))}"
+        = link_to 'Clinic', dashboard_path('clinic'), target: "_self"
+      dd class="#{active_if_current(dashboard_path('provider'))}"
+        = link_to 'Provider', dashboard_path('provider'), target: "_self"
 
 
-  section ng-repeat="resource in resources"
-    section.layout
-
-      .row data-equalizer=""
-        .medium-6.columns
-          .block-panel data-equalizer-watch=""
-            .content
-              h4 
-                | {{ resource.title || resource.name }}
-              h5.subheader 
-                | {{ resource.description || '' }}
-        
-        .medium-3.columns
-          .block-panel data-equalizer-watch=""
-            .content
-              .stat
-                .title
-                  big 
-                    | {{ resource.total_responses }}
-                  small  responses
-                .chart
-                  .bar-chart id="bar-chart"
-
-        .medium-3.columns
-          .block-panel data-equalizer-watch=""
-            .content
-              .stat
-                .title
-                  big
-                    | {{ resource.average_time || "00:00" }}
-                  small  avg time to complete
-                .chart
-                  .bar-chart id="bar-chart"
-
-      .row data-equalizer=""
-        div ng-include="field.template" ng-init="" ng-repeat="field in resource.fields"
-      / .small-12.columns
-      /   .medium-block-grid-4
-      /     li 
-      /       .panel.callout
-      /         p
-      /           | {{field.label}}
-      /         .pie-chart ng-model="field.answers" ng-if="field.context == 'multiple_choice'"
+- @resources.each do |resource|
+  section.resource id="#{resource.id}"
+    = render "dashboard/#{params[:resource]}", resource: resource

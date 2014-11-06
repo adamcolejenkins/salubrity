@@ -12,7 +12,6 @@ html(lang="en")
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
         
   body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{controller_name} #{action_name}"
@@ -24,8 +23,9 @@ html(lang="en")
       flash
         = render :partial => "layouts/flash"
       main
-        / hgroup = page_title
         section.layout
           = yield
       footer
         = render :partial => "layouts/footer"
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

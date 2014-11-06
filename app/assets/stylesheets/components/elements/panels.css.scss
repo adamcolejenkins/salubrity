@@ -13,4 +13,12 @@
   .content {
     padding: rem-calc(20);
   }
+
+  .header {
+    background: #f5f6f8;
+    border-bottom: 1px solid #e5e6ea;
+    line-height: normal;
+    font-size: rem-calc(12);
+    max-height: rem-calc(75);
+  }
 }

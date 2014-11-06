@@ -20,6 +20,10 @@ class Field < ActiveRecord::Base
     insert_at(value.to_i)
   end
 
+  def data
+    
+  end
+
   private
 
   def create_field_choices

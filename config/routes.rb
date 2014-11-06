@@ -20,7 +20,9 @@ Rails.application.routes.draw do
       resources :users, except: [:show]
     end
 
-    get '/' => 'dashboard#index', as: 'dashboard'
+    get '/dashboard(/:resource)' => 'dashboard#index', as: 'dashboard', resource: 'survey'
+
+    get '/', to: redirect('/dashboard/survey')
     
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"
