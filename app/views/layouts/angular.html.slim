@@ -10,20 +10,11 @@ html(lang="en")
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800'
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:300,200,100'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
-
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
-
-    javascript:
-      (function (d, t) {
-        var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        bh.type = 'text/javascript';
-        bh.src = '//www.bugherd.com/sidebarv2.js?apikey=m39pamzlfuoirxhugjrxug';
-        s.parentNode.insertBefore(bh, s);
-        })(document, 'script');
         
-  body ng-app="salubrity" ng-controller="AppCtrl" class="#{controller_name} #{action_name}"
+  body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{controller_name} #{action_name}"
     .wrap
       header
         = render :partial => "layouts/header"
@@ -32,8 +23,9 @@ html(lang="en")
       flash
         = render :partial => "layouts/flash"
       main
-        / hgroup = page_title
         section.layout
           = yield
       footer
         = render :partial => "layouts/footer"
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

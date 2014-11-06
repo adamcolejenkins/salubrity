@@ -1,4 +1,8 @@
 class Provider < ActiveRecord::Base
+
+  # Exclude these field contexts in the dashboard
+  DASHBOARD_CONTEXT_EXCLUDE = %w(intro outro provider_dropdown)
+
   belongs_to :team, inverse_of: :providers
   belongs_to :clinic, inverse_of: :providers
   
@@ -26,5 +30,13 @@ class Provider < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
   validates_presence_of :clinic
 
+  def average_time
+    avg = 0.0
+    self.responses.each_with_index do |response, index|
+      avg = ((response.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
+    end
+
+    Time.at(avg).utc.strftime("%M:%S")
+  end
   
 end

@@ -1,0 +1,32 @@
+.row(data-equalizer)
+  .medium-6.columns
+    .block-panel(data-equalizer-watch)
+      .content
+        h4 = resource.title
+        h5.subheader = resource.description
+  
+  .medium-3.columns
+    .block-panel(data-equalizer-watch)
+      .content
+        .stat
+          .title
+            big = resource.responses.count
+            |  responses
+          .chart
+            .bar-chart id="bar-chart"
+              = image_tag 'loader.light.svg', class: 'loader'
+
+  .medium-3.columns
+    .block-panel(data-equalizer-watch)
+      .content
+        .stat
+          .title
+            big = resource.average_time || "00:00"
+            |  avg time to complete
+          .chart
+            .bar-chart id="bar-chart"
+              = image_tag 'loader.light.svg', class: 'loader'
+
+.row(data-equalizer)
+  - resource.fields.where.not(context: %w(intro outro provider_dropdown)).each_with_index do |field, index|
+    = render "angular/fields/charts/#{field.context}", resource: resource, field: field

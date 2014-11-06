@@ -7,6 +7,6 @@ class Response < ActiveRecord::Base
   accepts_nested_attributes_for :answers, reject_if: proc { |attributes| attributes['value'].blank? }
 
   def time
-    (self.ended_at.to_f - self.started_at.to_f).to_i
+    (self.ended_at.to_f - self.started_at.to_f).to_f
   end
 end

@@ -10,23 +10,18 @@ html(lang="en")
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:100,400,300,600,400italic,700,800'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-    javascript:
-      (function (d, t) {
-        var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        bh.type = 'text/javascript';
-        bh.src = '//www.bugherd.com/sidebarv2.js?apikey=m39pamzlfuoirxhugjrxug';
-        s.parentNode.insertBefore(bh, s);
-        })(document, 'script');
-
-  body
+  body class="splash #{controller_name} #{action_name}" ng-app="salubrity"
     .wrap
       header
         = render :partial => "layouts/header"
       flash
         = render :partial => "layouts/flash"
       main
-        = yield
+        section.layout
+          section.content
+            = yield
       footer
         = render :partial => "layouts/footer"

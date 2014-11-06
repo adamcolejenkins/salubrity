@@ -51,9 +51,6 @@
 // a. Base
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// This is the default html and body font-size for the base rem value.
-// $rem-base: 16px;
-
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
 
@@ -63,7 +60,10 @@
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
-// $base-font-size: 100%;
+$base-font-size: 13px;
+
+// This is the default html and body font-size for the base rem value.
+$rem-base: $base-font-size;
 
 // The $base-font-size is 100% while $base-line-height is 150%
 // $base-line-height: 150%;
@@ -144,7 +144,7 @@ $warning-color: #FED16C;
 $info-color: #47b8e5;
 
 // We use these to control various global styles
-$body-bg: $white;
+$body-bg: #f0f3f4;
 $body-font-color: $titanium;
 $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-normal;
@@ -211,11 +211,12 @@ $retina: "#{$retina-webkit}, #{$retina-moz}, #{$retina-o}, #{$retina-std}";
 // $large: $large-up;
 
 // We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
-// $cursor-crosshair-value: crosshair;
-// $cursor-default-value: default;
-// $cursor-pointer-value: pointer;
-// $cursor-help-value: help;
-// $cursor-text-value: text;
+$cursor-crosshair-value: crosshair;
+$cursor-default-value: default;
+$cursor-pointer-value: pointer;
+$cursor-help-value: help;
+$cursor-text-value: text;
+$cursor-disabled-value: not-allowed;
 
 // e. Typography
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -654,7 +655,7 @@ $input-font-family: inherit;
 $input-font-color: rgba(0,0,0,0.75);
 $input-font-size: rem-calc(14);
 $input-bg-color: $white;
-$input-focus-bg-color: scale-color($white, $lightness: -2%);
+$input-focus-bg-color: $white;
 $input-border-color: scale-color($white, $lightness: -20%);
 $input-focus-border-color: scale-color($white, $lightness: -40%);
 $input-border-style: solid;
