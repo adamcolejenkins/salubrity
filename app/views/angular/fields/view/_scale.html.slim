@@ -8,17 +8,18 @@
 = include_start_time(answer_fields)
 = include_end_time(answer_fields)
 
-javascript:
-  $("#slider-link-#{field.id}").noUiSlider({
-    start: [#{field.predefined_value}],
-    step: #{field.increment},
-    range: {
-      'min': #{field.range_min || 0},
-      'max': #{field.range_max || 10}
-    },
-    format: wNumb({
-      decimals: 0
-    })
-  });
-  $("#slider-link-#{field.id}").Link('lower').to( $("#slider-value-#{field.id}") );
-  $("#slider-link-#{field.id}").Link('lower').to( $("#kiosk-slider-display-#{field.id}") );
+= content_for :javascript do
+  javascript:
+    $("#slider-link-#{field.id}").noUiSlider({
+      start: [#{field.predefined_value}],
+      step: #{field.increment},
+      range: {
+        'min': #{field.range_min || 0},
+        'max': #{field.range_max || 10}
+      },
+      format: wNumb({
+        decimals: 0
+      })
+    });
+    $("#slider-link-#{field.id}").Link('lower').to( $("#slider-value-#{field.id}") );
+    $("#slider-link-#{field.id}").Link('lower').to( $("#kiosk-slider-display-#{field.id}") );

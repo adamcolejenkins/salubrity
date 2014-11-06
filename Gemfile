@@ -63,6 +63,7 @@ group :test do
   # gem 'factory_girl'
 end
 
+gem 'bump', '~> 0.5.1'
 gem 'figaro'
 
 # Use ActiveModel has_secure_password
