@@ -45,15 +45,10 @@ gem "cancan"
 gem "paperclip", "~> 4.2"
 # Use AWS SDK to store uploaded files to S3
 gem 'aws-sdk'
-<<<<<<< HEAD
 # Gravatar Images
 gem 'gravatar_image_tag'
 # Use Sentry Raven on production for
-=======
 
-gem 'time_difference'
-
->>>>>>> feature/dashboard
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 # Development only Gems
 group :development do
