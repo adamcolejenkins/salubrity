@@ -7,19 +7,37 @@ html
     title Salubrity
     = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:100,400,300,600,400italic,700,800'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
-    = stylesheet_link_tag 'response', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'response', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
 
-    javascript:
-      (function (d, t) {
-        var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        bh.type = 'text/javascript';
-        bh.src = '//www.bugherd.com/sidebarv2.js?apikey=m39pamzlfuoirxhugjrxug';
-        s.parentNode.insertBefore(bh, s);
-        })(document, 'script');
-
   body
+    .wrap
+      header
+        section.layout
+          section.branding
+            h1
+              = link_to root_path
+                .logo Salubrity
+          section.actions.text-right
+            = link_to 'Sign In', '#', class: 'radius success small button', data: { reveal_id: 'login-help' }
+            = link_to 'Sign Up', '#', class: 'radius small button disabled', data: { reveal_id: 'registration' }
+      main
+        = yield
+
+    #login-help.reveal-modal.small(data-reveal)
+      h2 How to Sign In to Salubrity
+      p When you signed up for Salubrity, we sent you an email with your Web Address. You can sign in from your Web Address, which looks like this:
+      p
+        strong http://TEAMNAME.salubrity.io
+      a.close-reveal-modal &#215;
     
-    div.container
-      = yield
+    #registration.reveal-modal.small(data-reveal)
+      h2 Registrations Are Currently Closed
+      p Check back often to find out when you can register for a Salubrity account.
+
+      h3 Contact Us
+      p = link_to 'hello@salubrity.io', 'mailto:hello@salubrity.io'
+      a.close-reveal-modal &#215;
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
