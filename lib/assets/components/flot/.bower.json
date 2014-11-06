@@ -14,10 +14,7 @@
   },
   "_source": "git://github.com/flot/flot.git",
   "_target": "~0.8.3",
-<<<<<<< HEAD
   "_originalSource": "flot",
-  "_direct": true
-=======
+  "_direct": true,
   "_originalSource": "flot"
->>>>>>> develop
 }
