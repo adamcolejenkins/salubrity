@@ -1,0 +1,7 @@
+.small-12.medium-6.large-3.columns
+  .block-panel(data-equalizer-watch)
+    .header = truncate field.label, length: 70, separator: ' '
+
+    .content
+      .pie-chart ng-model="data" ng-init="data = setField(#{resource.id},#{field.id})"
+        = image_tag 'loader.light.svg', class: 'loader'

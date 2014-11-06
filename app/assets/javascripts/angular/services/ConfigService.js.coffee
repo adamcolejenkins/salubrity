@@ -150,7 +150,7 @@
               preview: '/templates/fields/preview/scale.html',
               view: '/templates/fields/view/scale.html'
           },
-          settings: @defaultSettings.concat('range', 'value', 'increment', 'options', 'visibility', 'required'),
+          settings: @defaultSettings.concat('range', 'value', 'increment', 'options', 'visibility', 'required', 'median'),
           defaults: {
               required: true,
               visibility: 'public'

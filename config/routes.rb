@@ -11,14 +11,18 @@ Rails.application.routes.draw do
     resources :clinics
     resources :providers
 
-    devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }
-    devise_scope :user do
-      get "login" => "devise/sessions#new"
+    devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }, :skip => [:sessions]
+    as :user do
+      get 'login' => 'devise/sessions#new', :as => :new_user_session
+      post 'login' => 'devise/sessions#create', :as => :user_session
+      delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
       get "profile" => "users/registrations#edit"
       resources :users, except: [:show]
     end
 
-    get '/' => 'dashboard#index', as: 'dashboard'
+    get '/dashboard(/:resource)' => 'dashboard#index', as: 'dashboard', resource: 'survey'
+
+    get '/', to: redirect('/dashboard/survey')
     
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"

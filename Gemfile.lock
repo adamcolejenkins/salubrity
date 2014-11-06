@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
-  revision: b268176102426005d24885c9e074d914b430bb7f
+  revision: e7c0d733aa73c474f4efdb576d65b3d623e1a001
   specs:
-    sentry-raven (0.10.1)
+    sentry-raven (0.11.1)
       faraday (>= 0.7.6)
       uuidtools
 
@@ -35,7 +35,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    acts_as_list (0.4.0)
+    acts_as_list (0.5.0)
       activerecord (>= 3.0)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.1.2.20141016)
@@ -180,6 +180,14 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+<<<<<<< HEAD
+=======
+    time_difference (0.3.2)
+      activesupport
+    title (0.0.5)
+      i18n
+      rails (>= 3.1)
+>>>>>>> feature/dashboard
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -232,6 +240,11 @@ DEPENDENCIES
   sentry-raven!
   slim-rails
   spring
+<<<<<<< HEAD
+=======
+  time_difference
+  title
+>>>>>>> feature/dashboard
   turbolinks
   uglifier (>= 1.3.0)
   unicorn

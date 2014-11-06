@@ -14,10 +14,14 @@ class Field < ActiveRecord::Base
   validates :context, presence: true
   validates :survey, presence: true
 
-  store :opts, :accessors => [:field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :button_label, :button_mode, :button_url, :attachment_type, :attachment_url], coder: JSON
+  store :opts, :accessors => [:field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :median, :button_label, :button_mode, :button_url, :attachment_type, :attachment_url], coder: JSON
 
   def target_priority=(value)
     insert_at(value.to_i)
+  end
+
+  def data
+    
   end
 
   private
@@ -32,4 +36,5 @@ class Field < ActiveRecord::Base
       ])
     end
   end
+
 end

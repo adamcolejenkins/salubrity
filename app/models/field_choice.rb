@@ -15,4 +15,5 @@ class FieldChoice < ActiveRecord::Base
   def translate_key
     self.key = self.label.parameterize('_')
   end
+  
 end

@@ -1,10 +1,21 @@
-section.content ng-controller="ReportsCtrl"
-  
-  h4 Filters
-  
-  .row
-    .medium-4.columns
+hgroup
+  .title
+    h2 Dashboard
+    h3.subheader View reports by survey, clinic and/or provider.
 
-    .medium-4.columns
+.row ng-controller="ReportsCtrl" ng-init="init('#{params[:resource]}')"
 
-    .medium-4.columns
+  .medium-12.columns
+    dl.sub-nav
+      dd Filter:
+      dd class="#{active_if_current(dashboard_path('survey'))}"
+        = link_to 'Survey', dashboard_path('survey'), target: "_self"
+      dd class="#{active_if_current(dashboard_path('clinic'))}"
+        = link_to 'Clinic', dashboard_path('clinic'), target: "_self"
+      dd class="#{active_if_current(dashboard_path('provider'))}"
+        = link_to 'Provider', dashboard_path('provider'), target: "_self"
+
+
+- @resources.each do |resource|
+  section.resource id="#{resource.id}"
+    = render "dashboard/#{params[:resource]}", resource: resource

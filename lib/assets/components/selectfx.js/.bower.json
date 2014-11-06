@@ -1,0 +1,29 @@
+{
+  "name": "selectfx.js",
+  "authors": [
+    "Mibuz <contato@mibuz.com.br>"
+  ],
+  "main": [
+    "dist/selectfx.css",
+    "dist/selectfx.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
+  "homepage": "https://github.com/3runoDesign/SelectFX.js",
+  "_release": "1ae0eda1de",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1ae0eda1de117f9f0cf2f50c01515217fba0c069"
+  },
+  "_source": "git://github.com/3runoDesign/SelectFX.js.git",
+  "_target": "*",
+  "_originalSource": "selectfx.js"
+}

@@ -19,11 +19,11 @@ class Survey < ActiveRecord::Base
   end
 
   def average_time
-    sum = 0
-    self.responses.each do |response|
-      sum += response.time.to_i
+    avg = 0.0
+    self.responses.each_with_index do |response, index|
+      avg = ((response.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
     end
 
-    sum / self.responses.count unless self.responses.count == 0
+    Time.at(avg).utc.strftime("%M:%S")
   end
 end

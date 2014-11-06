@@ -9,6 +9,10 @@
   },
   "_source": "git://github.com/Codicode/flotanimator.git",
   "_target": "*",
+<<<<<<< HEAD
   "_originalSource": "flot-animator",
   "_direct": true
+=======
+  "_originalSource": "flot-animator"
+>>>>>>> develop
 }

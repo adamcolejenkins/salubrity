@@ -27,6 +27,15 @@ class Clinic < ActiveRecord::Base
   validates_attachment_content_type :background, :content_type => /\Aimage\/.*\Z/
   validates :background, :dimensions => { :width => 1920, :height => 1200 }
   
+  def average_time
+    avg = 0.0
+    self.responses.each_with_index do |response, index|
+      avg = ((response.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
+    end
+
+    Time.at(avg).utc.strftime("%M:%S")
+  end
+
   private
 
   def translate_slug

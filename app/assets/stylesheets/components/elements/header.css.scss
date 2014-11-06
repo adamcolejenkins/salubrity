@@ -2,6 +2,9 @@ header {
   padding-top: 20px;
   padding-bottom: 20px;
   height: 90px;
+  background: $white;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
+  z-index: 3;
 
   section.branding {
     h1 {
@@ -20,6 +23,18 @@ header {
       @include retina(hd) {
         background-image: url('/assets/logo@3x.png');
       }
+    }
+  }
+}
+
+.splash header {
+  background: transparent;
+  box-shadow: none;
+
+  section.branding {
+    @include grid-column($columns: 12);
+    .logo {
+      margin: 0 auto;
     }
   }
 }

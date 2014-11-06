@@ -48,6 +48,7 @@ gem 'aws-sdk'
 # Gravatar Images
 gem 'gravatar_image_tag'
 # Use Sentry Raven on production for
+
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 # Development only Gems
 group :development do

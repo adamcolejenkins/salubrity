@@ -19,6 +19,10 @@
   },
   "_source": "git://github.com/krzysu/flot.tooltip.git",
   "_target": "~0.8.4",
+<<<<<<< HEAD
   "_originalSource": "flot.tooltip",
   "_direct": true
+=======
+  "_originalSource": "flot.tooltip"
+>>>>>>> develop
 }

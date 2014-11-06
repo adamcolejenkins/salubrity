@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require modernizr/modernizr
+//  require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/sortable
@@ -38,12 +38,16 @@
 
 // Vendor assets
 //= require jquery-icheck/icheck
-//= require jquery.niftymodals/js/jquery.modalEffects
 //= require select2/select2
-//= require jquery.maskedinput/jquery.maskedinput
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
+
+// Charts
+//= require flot
+//= require flot/jquery.flot.pie
+//= require flot/jquery.flot.resize
+//  require flot/jquery.flot.labels
 
 
 // DEPRECATED
@@ -53,27 +57,18 @@
 // require bootstrap.slider/js/bootstrap-slider
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 // require behaviour/core
+// require jquery.niftymodals/js/jquery.modalEffects
+//  require jquery.maskedinput/jquery.maskedinput
+//  require jquery.easypiechart/jquery.easy-pie-chart
 
 // Our Angular app files
 //= require angular/salubrity
 
 //= require_tree ./angular
 
-// $.rails.confirm = function (message) {
-//   var element = $(this);
-//   console.log(element);
-//   return swal({
-//     title: message,
-//     // text: message,
-//     type: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#DD6B55",
-//     confirmButtonText: "Yes"
-//   }, function () {
-//     $.rails.handleMethod(element);
-//   }, function () {
-//     $.rails.fire(element, 'confirm:complete', [false]);
-//   });
-// }
-
-$(document).foundation();
+$(document).foundation({
+  equalizer : {
+    // Specify if Equalizer should make elements equal height once they become stacked.
+    equalize_on_stack: false
+  }
+});

@@ -53,7 +53,7 @@ class Api::FieldsController < Api::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def field_params
-    params.require(:field).permit(:survey_id, :label, :context, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :required, :visibility, :predefined_value, :priority, :target_priority, :attachment_type, :attachment_url, :button_label, :button_mode, :button_url)
+    params.require(:field).permit(:survey_id, :label, :context, :field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :median, :required, :visibility, :predefined_value, :priority, :target_priority, :attachment_type, :attachment_url, :button_label, :button_mode, :button_url)
   end
 end
 
