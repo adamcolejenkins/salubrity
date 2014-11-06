@@ -1,0 +1,29 @@
+// build:js scripts/vendor.js
+// bower:js
+// endbower
+// endbuild
+
+// build:js(.tmp) selectfx.js
+script(src="selectfx.js")
+// endbuild
+script.
+  (function() {
+    sectionOrange = document.querySelectorAll('section.orange select');
+    sectionBlue = document.querySelectorAll('section.blue select');
+
+
+    sectionBlueOpt = {
+      classes: {
+        styleClass: "sfx-underline"
+      }
+    };
+
+    [].slice.call( sectionOrange ).forEach( function(el) {
+      new SelectFx(el);
+    } );
+
+    [].slice.call( sectionBlue ).forEach( function(el) {
+      new SelectFx(el, sectionBlueOpt);
+    } );
+
+  })();
