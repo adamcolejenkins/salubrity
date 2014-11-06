@@ -20,8 +20,8 @@ html
               = link_to root_path
                 .logo Salubrity
           section.actions.text-right
-            = link_to 'Sign In', '#', class: 'radius small button', data: { reveal_id: 'login-help' }
-            = link_to 'Sign Up', get_started_path, class: 'radius success small button'
+            = link_to 'Sign In', '#', class: 'radius success small button', data: { reveal_id: 'login-help' }
+            = link_to 'Sign Up', '#', class: 'radius small button disabled', data: { reveal_id: 'registration' }
       main
         = yield
 
@@ -31,5 +31,13 @@ html
       p
         strong http://TEAMNAME.salubrity.io
       a.close-reveal-modal &#215;
-      
+    
+    #registration.reveal-modal.small(data-reveal)
+      h2 Registrations Are Currently Closed
+      p Check back often to find out when you can register for a Salubrity account.
+
+      h3 Contact Us
+      p = link_to 'hello@salubrity.io', 'mailto:hello@salubrity.io'
+      a.close-reveal-modal &#215;
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
