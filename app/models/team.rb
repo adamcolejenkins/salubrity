@@ -6,7 +6,7 @@ class Team < ActiveRecord::Base
   has_many :responses, inverse_of: :team, dependent: :destroy
 
   RESERVED_SUBDOMAINS = %w(
-    admin api assets blog calendar demo developer developers docs files ftp git imap lab mail manage mx pages pop sites smtp ssl staging status support www help news account log
+    account admin api assets blog calendar cdn demo developer developers docs files ftp git imap lab mail manage mx pages pop sites smtp ssl staging status support www help news log
   )
 
   # Accept user attrs on create
