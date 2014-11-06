@@ -6,25 +6,21 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    add_breadcrumb "← Back to Dashboard", :dashboard_path
     @surveys = current_team.surveys.all
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    add_breadcrumb "← Back to Surveys", :surveys_path
   end
 
   # GET /surveys/new
   def new
-    add_breadcrumb "← Back to Surveys", :surveys_path
     @survey = current_team.surveys.new
   end
 
   # GET /surveys/1/edit
   def edit
-    add_breadcrumb "← Back to Surveys", :surveys_path
   end
 
   # POST /surveys
