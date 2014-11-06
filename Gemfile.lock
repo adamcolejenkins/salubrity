@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
-  revision: e7c0d733aa73c474f4efdb576d65b3d623e1a001
+  revision: 93bc2a2f0d981a742aa8007e2a8062eab6e9a342
   specs:
     sentry-raven (0.11.1)
       faraday (>= 0.7.6)
@@ -105,12 +105,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_portile (0.6.0)
+    mini_portile (0.6.1)
     minitest (5.4.2)
     multi_json (1.10.1)
     multipart-post (2.0.0)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.6.4)
+      mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     paperclip (4.2.0)
       activemodel (>= 3.0.0)
@@ -180,14 +180,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-<<<<<<< HEAD
-=======
-    time_difference (0.3.2)
-      activesupport
-    title (0.0.5)
-      i18n
-      rails (>= 3.1)
->>>>>>> feature/dashboard
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -240,11 +232,6 @@ DEPENDENCIES
   sentry-raven!
   slim-rails
   spring
-<<<<<<< HEAD
-=======
-  time_difference
-  title
->>>>>>> feature/dashboard
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
