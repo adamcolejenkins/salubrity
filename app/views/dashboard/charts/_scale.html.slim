@@ -1,0 +1,21 @@
+.block-panel(data-equalizer-watch)
+  .header = truncate field.label, length: 70, separator: ' '
+
+  .content
+    .stat
+      .above-median
+        div = percent(field.above_median.count, resource.responses.count, true, 0)
+
+      .below-median
+        div = percent(field.below_median.count, resource.responses.count, true, 0)
+
+    .extras
+      .average-time
+        big 00:00
+        span avg time
+
+      .median
+        | Median #{field.median}
+
+    .chart bar-chart="#{field.total_by_index.to_json}"
+      = image_tag 'loader.light.svg', class: 'loader'

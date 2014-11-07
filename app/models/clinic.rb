@@ -36,6 +36,10 @@ class Clinic < ActiveRecord::Base
     Time.at(avg).utc.strftime("%M:%S")
   end
 
+  def fields
+    self.survey.fields
+  end
+
   private
 
   def translate_slug

@@ -1,131 +1,58 @@
+/*Flot Charts*/
+.chart {
+  &[pie-chart],
+  &[bar-chart] {
+    position: relative;
+    padding: 0px;
 
-.dashboard {
-  [class*="column"] + [class*="column"]:last-child {
-    float: left;
-  }
-
-  & > .wrap > main {
-    section.layout {
-      max-width: 100%;
-
-      section.resource {
-        padding: rem-calc(60 0 40);
-        
-        &:nth-child(even) {
-          background: darken($body-bg, 2%);
-        }
-      }
+    .loader {
+      @include position(absolute, 50% null null 50%);
+      margin-top: -15px;
+      margin-left: -12px;
     }
   }
-}
 
-
-
-/*Flot Charts*/
-.pie-chart {
-  height: 200px;
-  padding: 0px;
-  position: relative;
-
-  .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -15px;
-    margin-left: -12px;
+  &[pie-chart] {
+    height: 200px;
+    
+    div.pie-label {
+      font-size:11px;
+      font-weight:bold;
+      text-align:center;
+      color:#fff;
+      background: transparent;
+    }
+  }
+  &[bar-chart] {
+    height: 75px;
   }
 }
-.stat .bar-chart {
-  height: 75px;
-  padding: 0;
-  position: relative;
-  bottom: 0px !important;
 
-  .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -15px;
-    margin-left: -12px;
+.response-time {
+  @include position(absolute, 50% null null 50%);
+  @include size(44 36);
+  text-align: center;
+  margin-left: -22px;
+  margin-top: -18px;
+  display: none;
+  color: $body-font-color;
+
+  small {
+    color: lighten($body-font-color, 10%);
+  }
+
+  big, small {
+    display: block;
   }
 }
-.blue-chart .flot-text, .red-chart .flot-text{color:#FFF !important;}
 
-#site_statistics .flot-text .tickLabel{
-  font-size: 10px !important;
-  color: #c1c1c1 !important;
+#chart-tooltip {
+  background-color: rgba($primary-color, 0.8) !important;
+  border-radius: $global-radius !important;
+  border: none;
+  color: $white;
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1040;
 }
-
-.legend table td{
-	font-size:11px !important;
-}
-.counter-detail .counter{ 
-  display: inline-block;
-  padding: 20px;
-  width: 49%;
-}
-.counter-detail .counter p{ 
-  font-size: 14px;
-  font-weight: 400;
-  margin:0;
-}
-.counter-detail .counter h5{ 
-  margin:0;
-}
-.counter-detail .counter .spk1{ 
-  float: right;
-  padding-top: 7px;
-}
-.counter-detail .counter .spk2{ 
-  float: right;
-  padding-top: 7px;
-}
-
-.no-border {
-    border-top: 0;
-}
-
-
-.blue-chart{
-	border-left:1px solid #258fec;
-	border-right:1px solid #258fec;
-	border-bottom:1px solid #1e73bd;
-	border-top:1px solid #499de5;
-	background-image:-moz-linear-gradient(center top , #52AEFF 45%, #2180D3 102%);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#52AEFF), to(#2180D3)); /* Chrome, Safari 4+ */
-	background-image: -webkit-linear-gradient(top, #52AEFF, #2180D3); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
-	background-image:      -o-linear-gradient(top, #52AEFF, #2180D3); /* Opera 11.10-12.00 */
-	background-image:         linear-gradient(to bottom, #52AEFF, #2180D3);
-	background-color:#3290E2;
-}
-
-.block-flat .blue-chart{	padding:20px !important;}
-
-.blue-chart h2{
-	text-shadow: 0 -1px 0 #357FC0;
-}
-
-.easyPieChart{display:inline-block;}
-
-.visitors{
-  padding-left: 25px;
-}
-.visitors .counters{
-  margin-top: 25px;
-}
-.visitors .counters h1{
-  margin: 0;
-}
-.visitors .counters h1:first-child{
-  color: $success-color;
-}
-.visitors .footer{
-  padding: 5px 10px 0;
-}
-.visitors .footer i {
-  margin-right: 5px;
-}
-.visitors .footer .return {
-  color: $success-color;
-}
-

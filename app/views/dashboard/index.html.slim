@@ -15,7 +15,32 @@ hgroup
       dd class="#{active_if_current(dashboard_path('provider'))}"
         = link_to 'Provider', dashboard_path('provider'), target: "_self"
 
-
 - @resources.each do |resource|
-  section.resource id="#{resource.id}"
-    = render "dashboard/#{params[:resource]}", resource: resource
+  section.resource id="#{params[:resource]}-#{resource.id}"
+    .row(data-equalizer)
+      article.header
+        .block-panel.faded(data-equalizer-watch)
+          .content = render "dashboard/headers/#{params[:resource]}", resource: resource
+
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = resource.responses.count
+              span  responses
+            .chart bar-chart=""
+              = image_tag 'loader.light.svg', class: 'loader'
+
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = resource.average_time || "00:00"
+              span  avg time to complete
+            .chart bar-chart=""
+              = image_tag 'loader.light.svg', class: 'loader'
+    
+    .row(data-equalizer)
+      - resource.fields.where.not(context: %w(intro outro provider_dropdown)).each_with_index do |field, index|
+        article class="#{field.context.gsub('_', '-')}"
+          = render "dashboard/charts/#{field.context}", resource: resource, field: field

@@ -20,11 +20,33 @@ class Field < ActiveRecord::Base
     insert_at(value.to_i)
   end
 
-  def data
-    
+  def above_median
+    self.answers.where(value: above_median_range)
+  end
+
+  def below_median
+    self.answers.where(value: below_median_range)
+  end
+
+  def total_by_index
+    a = []
+    i = self.range_min.to_i
+    until i > self.range_max.to_i
+      a[i] = self.answers.where(value: i.to_s).count
+      i += self.increment.to_i
+    end
+    a
   end
 
   private
+
+  def above_median_range
+    (self.median.to_i..self.range_max.to_i).to_a.map(&:to_s)
+  end
+
+  def below_median_range
+    (self.range_min.to_i..(self.median.to_i - 1)).to_a.map(&:to_s)
+  end
 
   def create_field_choices
     contexts = ["multiple_choice", "checkboxes", "dropdown"]

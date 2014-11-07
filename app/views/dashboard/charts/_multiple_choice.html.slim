@@ -1,0 +1,15 @@
+.block-panel(data-equalizer-watch)
+  .header = truncate field.label, length: 70, separator: ' '
+
+  .content
+    .response-time
+      - if resource.responses.count > 0
+        big 00:00
+        small avg time
+      - else
+        big No
+        small Responses
+
+    - data = render(template: 'fields/_multiple_choice.json.jbuilder', locals: {field: field, responses: resource.responses })
+    .chart pie-chart="" data="#{data}"
+      = image_tag 'loader.light.svg', class: 'loader'

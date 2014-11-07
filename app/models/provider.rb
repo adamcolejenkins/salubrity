@@ -38,5 +38,9 @@ class Provider < ActiveRecord::Base
 
     Time.at(avg).utc.strftime("%M:%S")
   end
+
+  def fields
+    self.clinic.survey.fields
+  end
   
 end

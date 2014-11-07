@@ -47,7 +47,7 @@
 //= require flot
 //= require flot/jquery.flot.pie
 //= require flot/jquery.flot.resize
-//  require flot/jquery.flot.labels
+//= require flot.tooltip
 
 
 // DEPRECATED

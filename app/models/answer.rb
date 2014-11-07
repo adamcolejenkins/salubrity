@@ -5,4 +5,5 @@ class Answer < ActiveRecord::Base
   def time
     (self.ended_at.to_f - self.started_at.to_f).to_f
   end
+  
 end

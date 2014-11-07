@@ -1,0 +1,47 @@
+.dashboard {
+  // Float the last column left
+  [class*="column"] + [class*="column"]:last-child {
+    float: left;
+  }
+
+  & > .wrap > main {
+    section.layout {
+      max-width: 100%;
+
+      section.resource {
+        padding: rem-calc(60 0 40);
+        
+        &:nth-child(even) {
+          background: darken($body-bg, 2%);
+        }
+
+        article .block-panel .content {
+          position: relative;
+        }
+
+        // 3 Column Blocks
+        article.multiple-choice,
+        article.response-chart,
+        article.timing-chart,
+        article.checkboxes,
+        article.dropdown,
+        article.number,
+        article.scale {
+          @include grid-column($columns: 3)
+        }
+        
+        // 6 Column Blocks
+        article.single-line-text,
+        article.paragraph-text,
+        article.header {
+          @include grid-column($columns: 6);
+        }
+        
+        // 12 Column Blocks
+        article.responses-table {
+          @include grid-column($columns: 12);
+        }
+      }
+    }
+  }
+}
