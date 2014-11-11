@@ -62,7 +62,7 @@ group :test do
   # gem 'rspec-rails'
   # gem 'factory_girl'
 end
-
+gem 'newrelic_rpm'
 gem 'bump', '~> 0.5.1'
 gem 'figaro'
 
