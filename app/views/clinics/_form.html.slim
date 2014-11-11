@@ -5,71 +5,103 @@
       ul
         - @clinic.errors.full_messages.each do |message|
           li = message
-
-  .form-header
-    .tag
-      i.fa.fa-list
-    h3 = t 'clinics.form.details.title'
-
-  .form-group
-    = f.label :title
-    = f.text_field :title
-  .form-group
-    = f.label :address
-    = f.text_field :address
-  .form-group
-    = f.label :address2
-    = f.text_field :address2
-  .form-group.nested
-    .medium-6.columns
-      = f.label :city
-      = f.text_field :city
-    .medium-4.columns
-      = f.label :state
-      = f.select :state, options_for_select(us_states, "MO")
-    .medium-2.columns
-      = f.label :zip
-      = f.number_field :zip, maxlength: 6
-  .form-group
-    = f.label :phone
-    = f.phone_field :phone
-
-  .form-header
-    .tag
-      i.fa.fa-file-image-o
-    h3 Survey
-
-  .form-group
-    p.thin This clinic needs a survey, which one would you like to use?
-    = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
-    
   
-  .form-header
-    .tag
-      i.fa.fa-file-image-o
-    h3 = t 'clinics.form.background.title'
+  .block-panel
+    .content
 
-  .form-group
-    = f.label :background
-    p.thin = t 'clinics.form.background.describe'
-    
-    - if @clinic.background.present?
-      .panel.text-center
-        = image_tag @clinic.background.url(:thumb)
+      .form-header
+        .tag
+          i.fa.fa-medkit.fa-4x
+        .header
+          h3 = t 'clinics.form.details.title'
 
-    = f.file_field :background
+      .form-group
+        .full
+          = f.label :title
+          = f.text_field :title
+      .form-group
+        .full
+          = f.label :address
+          = f.text_field :address
+      .form-group
+        .full
+          = f.label :address2
+          = f.text_field :address2
+      .form-group
+        .medium-6.columns.medium-offset-1
+          = f.label :city
+          = f.text_field :city
+        .medium-3.columns
+          = f.label :state
+          = f.select :state, options_for_select(us_states, "MO")
+        .medium-2.columns
+          = f.label :zip
+          = f.number_field :zip, maxlength: 6
+      .form-group
+        .full
+          = f.label :phone
+          = f.phone_field :phone, placeholder: "e.g. (555) 555-1234"
 
+  .block-panel
+    .content
+
+      .form-header
+        .tag
+          i.fa.fa-file-image-o.fa-4x
+        .header
+          h3 Survey
+
+      .form-group
+        .full
+          - if action_name == 'new' || action_name == 'create'
+            p.thin This clinic needs a survey, which one would you like to use?
+            = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
+          - else
+            p 
+              | This clinic is linked to the #{link_to @clinic.survey.title, @clinic.survey} survey. 
+              i.fa.fa-question-circle.muted.tip-top data-tooltip="" title="Surveys cannot be changed at this time."
+  
   - if action_name == 'edit'
-    .form-header
-      .tag
-        i.fa.fa-link
-      h3 = t 'clinics.form.guid.title'
-  
-    .form-group
-      p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
-      = f.label :guid
-      = f.text_field :guid
+    .block-panel
+      .content
 
-  .form-group 
-    = f.submit 'Save Clinic', class: 'radius success button'
-    = link_to 'Cancel', clinics_path, class: 'radius button', target: "_self"
+        .form-header
+          .tag
+            i.fa.fa-link.fa-4x
+          .header
+            h3 = t 'clinics.form.guid.title'
+  
+        .form-group
+          .full
+            p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
+
+            = f.text_field :guid, placeholder: "e.g. my-super-awesome-clinic"
+            - if action_name != 'new'
+              .alert-box.warning
+                | Changing the slug is not recommended. Consider yourself warned!
+
+  .block-panel
+    .content
+
+      .form-header
+        .tag
+          i.fa.fa-file-image-o.fa-4x
+        .header
+          h3 = t 'clinics.form.background.title'
+
+      .form-group
+        .full
+          = f.label :background
+          p.thin = t 'clinics.form.background.describe'
+          
+          - if @clinic.background.present?
+            .panel.text-center
+              = image_tag @clinic.background.url(:thumb)
+
+          = f.file_field :background
+
+      .form-buttons
+        .full
+          = f.submit 'Save Clinic', class: 'radius success button'
+          = link_to 'Cancel', clinics_path, class: 'radius button', target: "_self"
+          = link_to 'Archive', clinic_path(@clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'

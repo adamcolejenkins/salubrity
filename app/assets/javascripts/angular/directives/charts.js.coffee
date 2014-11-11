@@ -6,9 +6,6 @@
         # require: "ngModel"
         link: ($scope, elem, attrs) ->
 
-          console.log $scope
-          console.log attrs
-
           $timeout (->
             chart = null
 
@@ -88,7 +85,6 @@
 
               unless chart
                 chart = $.plot(elem, data.answers, options)
-                console.log chart.getData()[0].percent
                 drawBlank() if isNaN(chart.getData()[0].percent)
                 elem.show()
                 elem.siblings('.response-time').show()
@@ -101,4 +97,32 @@
 
       )
 
-  # .directive 'barGraph'
+  # .directive 'barGraph', ($timeout) ->
+  #   return (
+  #     restrict: "AC",
+  #     # require: "ngModel"
+  #     link: ($scope, elem, attrs) ->
+
+  #       console.log "=========================="
+  #       console.log $scope, elem, attrs
+
+  #       $timeout (->
+  #         chart = null
+
+  #         data = 
+  #           labels: JSON.parse attrs.labels
+  #           datasets: [
+              
+  #           ]
+
+  #         console.log data
+
+          
+  #         # Build the chart
+  #         $scope.$watch data, (data) ->
+
+  #           unless chart
+  #             chart = new Chart(elem.get(0).getContext("2d")).Bar(data, options)
+
+  #       ), 1000
+  #   )

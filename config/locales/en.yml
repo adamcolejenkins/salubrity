@@ -21,6 +21,10 @@
 
 en:
   hello: "Hello world"
+  devices:
+    new:
+      display_name: "Salubrity Registration"
+      description: "Salubrity uses this profile to establish the identify of this device."
   activerecord:
     attributes:
       team:
@@ -29,96 +33,25 @@ en:
         name: "First name"
         surname: "Last name"
       survey:
-        guid: "Permalink"
+        guid: "Slug"
       clinic:
-        guid: "Permalink"
+        title: "Name"
+        guid: "Slug"
         address2: "Building / Suite"
         zip: "Zip Code"
       provider:
         position: "Job Position"
-  titles:
-    application: "Salubrity"
-    dashboard:
-      index:
-        title: "Dashboard"
-        describe: "View reports by survey, clinic and/or provider."
-    surveys:
-      index:
-        title: "My Surveys"
-        describe: "Your available surveys. Build, edit or delete them here"
-      new:
-        title: "New Survey"
-        describe: "If you build it, they will come."
-      create:
-        title: "New Survey"
-        describe: "If you build it, they will come."
-      edit:
-        title: "%{survey}"
-        describe: "Edit the settings for this survey."
-      update:
-        title: "%{survey}"
-        describe: "Edit the settings for this survey."
-    fields:
-      index:
-        title: "%{survey} Builder"
-        describe: "Double click to edit fields, drag to reorder."
-    clinics:
-      index:
-        title: "My Clinics"
-        describe: "Clinics for %{clinic.survey}"
-      new:
-        title: "New Clinic"
-        describe: "New clinic for %{survey}"
-      create:
-        title: "New Clinic"
-        describe: "New clinic for %{survey}"
-      edit:
-        title: "%{clinic}"
-        describe: "Edit the settings for this clinic."
-      update:
-        title: "%{clinic}"
-        describe: "Edit the settings for this clinic."
-    providers:
-      index:
-        title: "%{clinic}"
-        describe: "Manage your providers for this clinic."
-      new:
-        title: "%{clinic}"
-        describe: "Add a new provider to this clinic."
-      create:
-        title: "%{clinic}"
-        describe: "Add a new provider to this clinic."
-      edit:
-        title: "%{provider}"
-        describe: "Edit this provider's information."
-      update:
-        title: "%{provider}"
-        describe: "Edit this provider's information."
-    users:
-      index:
-        title: "Users"
-        describe: "Invite users to your team"
-      edit:
-        title: "Users"
-        describe: "Upgrade or downgrade this user's privileges."
-    registrations:
-      edit:
-        title: "%{user}"
-        describe: "Edit your profile."
-    invitations:
-      new:
-        title: "Users"
-        describe: "Invite users to your team"
-    teams:
-      edit:
-        title: "%{team}"
-        describe: "Manage your team settings."
+        name: "First Name"
+        surname: "Last Name"
+        credential: "Credentials"
   surveys:
     form:
       details:
         title: "Survey Details"
-        permalink_example: "Example: this-is-a-proper-permalink"
-        permalink_unique_warning: "Oops! That url is already taken"
+      guid:
+        title: "Slug"
+        describe: "This is the URL that will point to this survey.<br>The slug will be appended to <code>%{url}</code>."
+        example: "e.g. my-super-inquisitive-survey"
     list:
       create_button_label: "New Survey"
       no_surveys: "You haven't created any surveys yet"
@@ -133,8 +66,8 @@ en:
         title: "Background Photo"
         describe: "Upload your clinic's background. Images should be at least 1920px x 1200px."
       guid:
-        title: "Permalink"
-        describe: "This is the URL that will point to this clinic's survey.<br>The permalink will be appended to <code>%{url}</code>."
+        title: "Slug"
+        describe: "This is the URL that will point to this clinic.<br>The slug will be appended to <code>%{url}</code>."
     list:
       create_button_label: "New Clinic"
     edit:

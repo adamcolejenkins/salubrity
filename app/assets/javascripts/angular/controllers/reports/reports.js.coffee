@@ -2,55 +2,94 @@
   
   .controller 'ReportsCtrl', ($scope, SurveyService, ClinicService, ProviderService, $interval, $document) ->
 
+    # Cache variable for storing data
     $scope.cache = []
-    $scope.refreshRate = 10000
-    $scope.field = []
+    # How often we want to refresh
+    $scope.refreshRate = 60000 # 60 seconds
+    # Container for data
+    $scope.fieldData = []
 
+
+    # Set our resource on init
     $scope.init = (resourceName) ->
-      console.log resourceName
-      setResource resourceName
-      # $interval(tick, $scope.refreshRate) # Future addtion
 
-
-    $scope.setField = (resourceId, fieldId) ->
-      console.log resourceId, fieldId
-      console.log $scope.resources
-      angular.forEach $scope.resources, (resource, id) ->
-        console.log resource
-        if resource.id is resourceId
-          angular.forEach resource.fields, (field, id) ->
-            return field.answers if field.id is fieldId
-
-
-    setResource = (resourceName) ->
+      # Set our scope's resource name
       $scope.currentResourceName = resourceName
 
-      unless $scope.cache[resourceName]?
-        ResourceService = getResourceService(resourceName)
-        $scope.cache[resourceName] =
-          resource: ResourceService
-          data: ResourceService.all()
+      # Start the action!
+      queryResource()
+      
+      # TODO: Set an interval to update data
+      $interval(tick, $scope.refreshRate)
 
-      $scope.resources = $scope.cache[resourceName].data
 
+    $scope.setRefreshRate = (rate) ->
+      $scope.refreshRate = rate * 1000
+
+
+    $scope.initField = (resourceID, fieldID) ->
+      console.log "initField #{resourceID} #{fieldID}"
+      return $scope.fieldData[resourceID][fieldID]
+
+
+    ###*
+     * queryResource function
+     * Set our current resource scope, pull data and set the fields
+     * 
+     * @param {string} resourceName The type of resource
+    ###
+    queryResource = ->
+      
+      # Instantiate our resource
+      ResourceService = getResourceService $scope.currentResourceName
+      
+      # Query the resource and set fieldData
+      ResourceService.all(setFieldData)
+      
+        
+    ###*
+     * Formats the field data for our charts
+     * @param {object} resources list of resource data
+    ###
+    setFieldData = (resources) ->
+
+      # Blank container
+      obj = {}
     
-    getResourceService = (resourceName) ->
-      @SurveyService = new SurveyService(serverErrorHandler)
-      @ClinicService = new ClinicService(serverErrorHandler)
-      @ProviderService = new ProviderService(serverErrorHandler)
+      # Loop through our resources data
+      angular.forEach resources, (resource, key) ->
+    
+        # Set a new array with resource ID as key
+        $scope.fieldData[resource.id] = []
+    
+        # Loop through our resource fields
+        angular.forEach resource.fields, (field, id) ->
+          $scope.fieldData[resource.id][field.id] = field.answers
 
+          $scope.$apply (->
+            $scope.fieldData[resource.id][field.id] = field.answers
+          )
+      
+
+    ###*
+     * Dynamically instantiate scoped resource and return it
+     * @param  {string} resourceName The name of the resource (survey|clinic|provider)
+     * @return {resource}            The resource object
+    ###
+    getResourceService = (resourceName) ->
       switch resourceName
         when "survey"
-          @SurveyService
+          new SurveyService(serverErrorHandler)
         when "clinic"
-          @ClinicService
+          new ClinicService(serverErrorHandler)
         when "provider"
-          @ProviderService
+          new ProviderService(serverErrorHandler)
+
 
     tick = ->
-      console.log "Updating..."
-      $scope.resources = $scope.cache[$scope.currentResourceName].data[$scope.cache[$scope.currentResourceName].resource.all()]
-
+      console.log "Updating #{$scope.currentResourceName}..."
+      queryResource()
+      
 
     serverErrorHandler = ->
       alert("There was a server error, please reload the page and try again.")

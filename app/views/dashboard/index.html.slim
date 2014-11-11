@@ -15,7 +15,7 @@ hgroup
       dd class="#{active_if_current(dashboard_path('provider'))}"
         = link_to 'Provider', dashboard_path('provider'), target: "_self"
 
-- @resources.each do |resource|
+- @resources.sort.each do |resource|
   section.resource id="#{params[:resource]}-#{resource.id}"
     .row(data-equalizer)
       article.header

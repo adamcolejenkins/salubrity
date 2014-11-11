@@ -5,7 +5,7 @@
 
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ui.router', 'mm.foundation', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ngAnimate', 'ipCookie'
+  'ngResource', 'ui.router', 'mm.foundation', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ngAnimate', 'ipCookie', 'chartjs-directive'
 ]
 
 
@@ -48,7 +48,7 @@
 
 # Main App controller
 @salubrity.controller 'AppCtrl', ($scope, $rootScope) ->
-  
+
   # Helper functions for determining current page, ctrl & action
   # $scope.current = 
 

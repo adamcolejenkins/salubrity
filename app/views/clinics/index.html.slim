@@ -24,6 +24,3 @@ section.content.block
             - if can? :update, Clinic
               li = link_to edit_clinic_path(clinic), target: "_self", tooltip: "Edit"
                 i.fa.fa-pencil
-            - if can? :destroy, Clinic
-              li = link_to clinic_path(clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
-                i.fa.fa-trash-o

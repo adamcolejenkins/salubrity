@@ -11,11 +11,11 @@
 
     .extras
       .average-time
-        big 00:00
+        big = field.average_time 
         span avg time
 
       .median
         | Median #{field.median}
-
-    .chart bar-chart="#{field.total_by_index.to_json}"
+    
+    chart value="fieldData[#{resource.id}][#{field.id}]" width="225" height="75"
       = image_tag 'loader.light.svg', class: 'loader'

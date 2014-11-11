@@ -23,8 +23,8 @@
       update: (provider, attrs) ->
         new @service(provider: attrs).$update {id: provider.id}, (-> null), @errorHandler
 
-      all: ->
-        @service.query((-> null), @errorHandler)
+      all: (callback) ->
+        @service.query(callback || (-> null), @errorHandler)
 
       find: (id, successHandler) ->
         @service.get(id: id, ((provider)->

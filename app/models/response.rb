@@ -1,4 +1,5 @@
 class Response < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :team, inverse_of: :responses
   belongs_to :survey, inverse_of: :responses
   belongs_to :clinic, inverse_of: :responses

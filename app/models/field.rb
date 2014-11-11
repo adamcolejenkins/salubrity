@@ -1,5 +1,6 @@
 class Field < ActiveRecord::Base
   include Filterable
+  acts_as_paranoid
   belongs_to :survey, inverse_of: :fields
   has_many :field_choices, -> { order "priority ASC" }, dependent: :destroy
   has_many :answers, inverse_of: :field, dependent: :destroy
@@ -32,10 +33,19 @@ class Field < ActiveRecord::Base
     a = []
     i = self.range_min.to_i
     until i > self.range_max.to_i
-      a[i] = self.answers.where(value: i.to_s).count
+      a[i] = [i] + [(self.answers.where(value: i.to_s).count)]
       i += self.increment.to_i
     end
     a
+  end
+
+  def average_time
+    avg = 0.0
+    self.answers.each_with_index do |answer, index|
+      avg = ((answer.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
+    end
+
+    Time.at(avg).utc.strftime("%H:%S")
   end
 
   private

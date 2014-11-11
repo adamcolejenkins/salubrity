@@ -14,17 +14,14 @@ section.content.block
   - @providers.group_by(&:clinic).each do |clinic, providers|
     h3 = "#{clinic.title} Providers"
 
-    - providers.each do |provider|
+    - providers.sort.each do |provider|
       .block-item
         / = link_to '', provider_path(provider), class: 'trigger', target: "_self"
         .details
-          .name = provider.name
+          .name = provider.full_name
 
         .options
           ul.actions
             - if can? :update, Provider
               li = link_to edit_provider_path(provider), target: "_self", tooltip: "Edit"
-                i.fa.fa-pencil
-            - if can? :destroy, Provider
-              li = link_to provider_path(provider), data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
-                i.fa.fa-trash-o
+                i.fa.fa-wrench

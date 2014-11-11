@@ -4,7 +4,7 @@
   .content
     .response-time
       - if resource.responses.count > 0
-        big 00:00
+        big = field.average_time
         small avg time
       - else
         big No

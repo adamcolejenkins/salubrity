@@ -1,9 +1,11 @@
 class Team < ActiveRecord::Base
+  acts_as_paranoid
   has_many :users, inverse_of: :team, dependent: :destroy
   has_many :surveys, inverse_of: :team, dependent: :destroy
   has_many :clinics, inverse_of: :team, dependent: :destroy
   has_many :providers, inverse_of: :team, dependent: :destroy
   has_many :responses, inverse_of: :team, dependent: :destroy
+  has_many :devices, inverse_of: :team, dependent: :destroy
 
   RESERVED_SUBDOMAINS = %w(
     account admin api assets blog calendar cdn demo developer developers docs files ftp git imap lab mail manage mx pages pop sites smtp ssl staging status support www help news log

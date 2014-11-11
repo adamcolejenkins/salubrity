@@ -13,12 +13,12 @@
     background-color: #f5f6f8;
   }
 
-  .header,
-  .content {
+  & > .header,
+  & > .content {
     padding: rem-calc(20);
   }
 
-  .header {
+  & > .header {
     background: #f5f6f8;
     border-bottom: 1px solid #e5e6ea;
     line-height: normal;
@@ -27,7 +27,7 @@
     color: $body-font-color;
   }
 
-  .content {
+  & > .content {
 
     &.scroll {
       height: 200px;

@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :response
   belongs_to :field, inverse_of: :answers
 

@@ -1,5 +1,6 @@
 class Survey < ActiveRecord::Base
   include Filterable
+  acts_as_paranoid
   belongs_to :team, :inverse_of => :surveys
 
   has_many :clinics, inverse_of: :survey, dependent: :destroy

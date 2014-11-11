@@ -1,0 +1,36 @@
+p#notice = notice
+
+p
+  strong Team:
+  = @device.team
+p
+  strong Clinic:
+  = @device.clinic
+p
+  strong Udid:
+  = @device.udid
+p
+  strong Imei:
+  = @device.imei
+p
+  strong Os:
+  = @device.os
+p
+  strong Os verion:
+  = @device.os_verion
+p
+  strong Version:
+  = @device.version
+p
+  strong Product:
+  = @device.product
+p
+  strong Color:
+  = @device.color
+p
+  strong Active:
+  = @device.active
+
+= link_to 'Edit', edit_device_path(@device)
+'|
+= link_to 'Back', devices_path

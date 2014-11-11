@@ -1,5 +1,8 @@
 .splash {
   text-align: center;
+  header .user-menu {
+    display:none;
+  }
   h2 {
     font-size: 1.2rem;
     color: $body-font-color;

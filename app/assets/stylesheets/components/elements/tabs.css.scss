@@ -1,11 +1,11 @@
 .nav-tabs {
-  border-bottom: 1px solid $smoke;
+  border-bottom: 1px solid darken(#e5e6ea, 10%);
   overflow: visible;
   height: 60px;
   margin-bottom: 50px;
 
   > dd {
-    border: 1px solid $smoke;
+    border: 1px solid darken(#e5e6ea, 10%);
     border-bottom: 0;
     margin-right: 10px;
     margin-left: 0;
@@ -30,7 +30,7 @@
       a {
         font-weight: bold;
         color: #6e768e;
-        background: #fff;
+        background: $body-bg;
       }
     }
   }
