@@ -9,7 +9,8 @@
       - else
         big No
         small Responses
-
-    - data = render(template: 'fields/_multiple_choice.json.jbuilder', locals: {field: field, responses: resource.responses })
-    .chart pie-chart="" data="#{data}"
-      = image_tag 'loader.light.svg', class: 'loader'
+  
+    .chart(pie-chart)
+      / - data = render(template: 'fields/_multiple_choice.json.jbuilder', locals: {field: field, responses: resource.responses })
+      chart type="Pie" data="#{resource.data_for :multiple_choice_field, field: field}"
+        = image_tag 'loader.light.svg', class: 'loader'

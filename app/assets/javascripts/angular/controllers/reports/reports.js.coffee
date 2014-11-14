@@ -6,13 +6,16 @@
     $scope.cache = []
     # How often we want to refresh
     $scope.refreshRate = 60000 # 60 seconds
-    # Container for data
-    $scope.fieldData = []
 
+    $scope.emptyData = 
+      labels: []
+      datasets: [
+        {}
+      ]
 
     # Set our resource on init
     $scope.init = (resourceName) ->
-
+      return
       # Set our scope's resource name
       $scope.currentResourceName = resourceName
 
@@ -25,11 +28,6 @@
 
     $scope.setRefreshRate = (rate) ->
       $scope.refreshRate = rate * 1000
-
-
-    $scope.initField = (resourceID, fieldID) ->
-      console.log "initField #{resourceID} #{fieldID}"
-      return $scope.fieldData[resourceID][fieldID]
 
 
     ###*
@@ -59,17 +57,14 @@
       # Loop through our resources data
       angular.forEach resources, (resource, key) ->
     
-        # Set a new array with resource ID as key
-        $scope.fieldData[resource.id] = []
-    
         # Loop through our resource fields
         angular.forEach resource.fields, (field, id) ->
-          $scope.fieldData[resource.id][field.id] = field.answers
 
-          $scope.$apply (->
-            $scope.fieldData[resource.id][field.id] = field.answers
-          )
+          # Set our fieldData to scope as fieldData_[resource.id]_[field.id]
+          $scope["fieldData_#{resource.id}_#{field.id}"] =
+            data: field.data
       
+      console.log $scope
 
     ###*
      * Dynamically instantiate scoped resource and return it
@@ -87,7 +82,7 @@
 
 
     tick = ->
-      console.log "Updating #{$scope.currentResourceName}..."
+      console.log "Updating #{$scope.currentResourceName}s..."
       queryResource()
       
 

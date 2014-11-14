@@ -1,4 +1,5 @@
 class Provider < ActiveRecord::Base
+  include Filterable, ChartData
   acts_as_paranoid
 
   # Exclude these field contexts in the dashboard

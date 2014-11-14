@@ -1,7 +1,7 @@
 /*Flot Charts*/
 .chart {
   &[pie-chart],
-  &[bar-chart] {
+  &[bar-graph] {
     position: relative;
     padding: 0px;
 
@@ -34,7 +34,6 @@
   text-align: center;
   margin-left: -22px;
   margin-top: -18px;
-  display: none;
   color: $body-font-color;
 
   small {

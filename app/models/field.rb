@@ -33,10 +33,14 @@ class Field < ActiveRecord::Base
     a = []
     i = self.range_min.to_i
     until i > self.range_max.to_i
-      a[i] = [i] + [(self.answers.where(value: i.to_s).count)]
+      a[i] = (self.answers.where(value: i.to_s).count)
       i += self.increment.to_i
     end
     a
+  end
+
+  def times
+    
   end
 
   def average_time
@@ -48,8 +52,6 @@ class Field < ActiveRecord::Base
     Time.at(avg).utc.strftime("%H:%S")
   end
 
-  private
-
   def above_median_range
     (self.median.to_i..self.range_max.to_i).to_a.map(&:to_s)
   end
@@ -57,6 +59,8 @@ class Field < ActiveRecord::Base
   def below_median_range
     (self.range_min.to_i..(self.median.to_i - 1)).to_a.map(&:to_s)
   end
+
+  private
 
   def create_field_choices
     contexts = ["multiple_choice", "checkboxes", "dropdown"]

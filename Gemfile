@@ -73,6 +73,10 @@ gem 'CFPropertyList', '~> 2.2.8'
 gem 'multi_json'
 gem 'bump', '~> 0.5.1'
 
+gem 'groupdate'
+gem 'hightop'
+gem 'chartkick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

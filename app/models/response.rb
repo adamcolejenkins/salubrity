@@ -10,4 +10,26 @@ class Response < ActiveRecord::Base
   def time
     (self.ended_at.to_f - self.started_at.to_f).to_f
   end
+
+  def self.daily_avg_time
+    [
+      {
+        name: "Seconds",
+        data: self.select("date_trunc('day', created_at) AS day, EXTRACT(EPOCH FROM AVG(ended_at - started_at)) AS avg")
+          .group('day').order("day DESC")
+          .inject({}){|memo,(k,v)| memo[k.day.to_datetime.strftime("%A, %B %e")] = k.avg.to_i; memo}
+      }
+    ]
+  end
+
+  def self.field_total(field)
+    a = []
+    i = field.range_min.to_i
+    until i > field.range_max.to_i
+      a[i] = self.all.map { |r| r.answers.where(field: field).where("value::int = #{i}").count }
+      i += field.increment.to_i
+    end
+    a.to_json
+  end
+
 end
