@@ -27,4 +27,4 @@
         = field.median
     
     .chart(bar-graph)
-      = column_chart JSON.parse(render template: 'fields/_scale.json.jbuilder', locals: { field: field, resource: resource }), height: "100%"
+      / = column_chart JSON.parse(render template: 'fields/_scale.json.jbuilder', locals: { field: field, resource: resource }), height: "100%"
