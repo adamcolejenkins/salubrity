@@ -20,7 +20,7 @@ json.data field.field_choices do |choice|
   # Return the label
   json.extract! choice, :label
   # Return the value
-  json.value total_answers(resource: responses, where: { field: choice.field, value: choice.key })
+  json.value total_answers(resource: responses, where: { field: choice.field, value: choice.id })
   # Return the color
   json.color choice.color if choice.attribute_present?(:color)
   # Return the highlight color
