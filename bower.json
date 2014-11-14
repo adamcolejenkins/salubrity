@@ -46,7 +46,8 @@
     "flot": "~0.8.3",
     "flot.tooltip": "~0.8.4",
     "flot-animator": "*",
-    "datatables-plugins": "*"
+    "datatables-plugins": "*",
+    "angular-chartjs-directive": "~0.0.2"
   },
   "dependencies": {},
   "resolutions": {

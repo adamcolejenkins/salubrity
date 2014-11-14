@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//  require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/sortable
@@ -35,6 +34,7 @@
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require ng-s3upload
+//= require angular-chartjs-directive
 
 // Vendor assets
 //= require jquery-icheck/icheck
@@ -47,28 +47,23 @@
 //= require flot
 //= require flot/jquery.flot.pie
 //= require flot/jquery.flot.resize
-//  require flot/jquery.flot.labels
+//= require flot.tooltip
+//= require Chart
 
 
 // DEPRECATED
-// require jquery.cookie/jquery.cookie
-// require jasny.bootstrap/extend/js/jasny-bootstrap.min
-// require bootstrap.switch/bootstrap-switch.min
-// require bootstrap.slider/js/bootstrap-slider
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
-// require behaviour/core
-// require jquery.niftymodals/js/jquery.modalEffects
-//  require jquery.maskedinput/jquery.maskedinput
-//  require jquery.easypiechart/jquery.easy-pie-chart
 
 // Our Angular app files
 //= require angular/salubrity
 
 //= require_tree ./angular
 
-$(document).foundation({
-  equalizer : {
-    // Specify if Equalizer should make elements equal height once they become stacked.
-    equalize_on_stack: false
-  }
-});
+$(function() {
+  $(document).foundation({
+    equalizer : {
+      // Specify if Equalizer should make elements equal height once they become stacked.
+      equalize_on_stack: false
+    }
+  });
+})

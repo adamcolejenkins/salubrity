@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103151901) do
+ActiveRecord::Schema.define(version: 20141112171232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.time     "ended_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "answers", ["field_id"], name: "index_answers_on_field_id", using: :btree
@@ -46,10 +47,38 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
     t.integer  "team_id"
+    t.datetime "deleted_at"
   end
 
   add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
   add_index "clinics", ["team_id"], name: "index_clinics_on_team_id", using: :btree
+
+  create_table "devices", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "survey_id"
+    t.integer  "clinic_id"
+    t.string   "udid"
+    t.string   "imei"
+    t.string   "os"
+    t.string   "os_version"
+    t.string   "version"
+    t.string   "product"
+    t.string   "color"
+    t.boolean  "active",                 default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "access_passcode"
+    t.integer  "restriction_passcode"
+    t.integer  "guided_access_passcode"
+    t.string   "internal_identifier"
+    t.string   "serial"
+  end
+
+  add_index "devices", ["clinic_id"], name: "index_devices_on_clinic_id", using: :btree
+  add_index "devices", ["internal_identifier"], name: "index_devices_on_internal_identifier", unique: true, using: :btree
+  add_index "devices", ["survey_id"], name: "index_devices_on_survey_id", using: :btree
+  add_index "devices", ["team_id"], name: "index_devices_on_team_id", using: :btree
+  add_index "devices", ["udid"], name: "index_devices_on_udid", unique: true, using: :btree
 
   create_table "field_choices", force: true do |t|
     t.integer  "field_id"
@@ -59,6 +88,7 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "priority"
+    t.string   "color"
   end
 
   add_index "field_choices", ["field_id"], name: "index_field_choices_on_field_id", using: :btree
@@ -103,6 +133,9 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "team_id"
+    t.datetime "deleted_at"
+    t.string   "surname"
+    t.string   "credential"
   end
 
   add_index "providers", ["clinic_id"], name: "index_providers_on_clinic_id", using: :btree
@@ -119,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "team_id"
+    t.datetime "deleted_at"
   end
 
   add_index "responses", ["clinic_id"], name: "index_responses_on_clinic_id", using: :btree
@@ -163,6 +197,7 @@ ActiveRecord::Schema.define(version: 20141103151901) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "users", force: true do |t|

@@ -8,17 +8,30 @@
   border: 1px solid #e5e6ea;
   border-bottom-width: 2px;
   border-bottom-color: darken(#e5e6ea, 1%);
+  
+  &.faded {
+    background-color: #f5f6f8;
+  }
 
-  .header,
-  .content {
+  & > .header,
+  & > .content {
     padding: rem-calc(20);
   }
 
-  .header {
+  & > .header {
     background: #f5f6f8;
     border-bottom: 1px solid #e5e6ea;
     line-height: normal;
     font-size: rem-calc(12);
-    max-height: rem-calc(75);
+    height: rem-calc(75);
+    color: $body-font-color;
+  }
+
+  & > .content {
+
+    &.scroll {
+      height: 200px;
+      overflow-y: scroll;
+    }
   }
 }

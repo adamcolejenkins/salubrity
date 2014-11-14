@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :devices
+
   constraints(Subdomain) do
     
     resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
@@ -10,6 +12,9 @@ Rails.application.routes.draw do
 
     resources :clinics
     resources :providers
+
+    get '/install', to: redirect('/install/new')
+    resource :install, only: [:new, :create, :edit, :update], as: 'installs'
 
     devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }, :skip => [:sessions]
     as :user do

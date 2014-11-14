@@ -5,6 +5,7 @@
 .color-alert { color: $alert-color !important; }
 .color-warning { color: $warning-color !important; }
 .color-info { color: $info-color !important; }
+.muted { color: lighten($body-font-color, 15%); }
 
 .top-bar-section {
   ul {

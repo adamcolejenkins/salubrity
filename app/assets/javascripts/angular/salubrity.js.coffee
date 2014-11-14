@@ -48,7 +48,7 @@
 
 # Main App controller
 @salubrity.controller 'AppCtrl', ($scope, $rootScope) ->
-  
+
   # Helper functions for determining current page, ctrl & action
   # $scope.current = 
 

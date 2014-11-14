@@ -28,12 +28,23 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+.field_with_errors {
+  label {
+    color: $alert-color;
+  }
+  input {
+    border-color: $alert-color;
+  }
+}
+
 // Select2 overrides
 .select2-container {
   margin-bottom: 1rem;
 }
 
-.form-group {
+div.form-header,
+div.form-group,
+div.form-buttons {
   @include grid-row($behavior: nest);
   &.nested {
     .columns {
@@ -177,36 +188,42 @@ label {
 }
 
 div.form-header {
-  overflow: hidden;
-  margin-bottom: 20px;
-  h3 {
-    display: inline-block;
-    margin-top: 25px;
-  }
+  margin-bottom: rem-calc(20px);
+
   div.tag {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    border: 2px solid #6E768E;
-    border-radius: 50%;
-    line-height: 35px;
-    font-weight: bold;
-    text-align: center;
-    margin-right: 40px;
-    position: relative;
-    color: #6E768E;
+    @include grid-column($columns: 1);
     i {
-      position: relative;
-      font-size: 16px;
       top: 2px;
+      color: $silver;
+    }
+
+    @media #{$small-only} {
+      display: none;
+    }
+  }
+  div.header {
+    @include grid-column($columns: 11);
+    @media #{$small-only} {
+      @include grid-column($columns: 12);
+      h3 {
+        border-bottom: 1px solid $silver;
+      }
+    }
+    h3 {
+      margin-top: 0;
     }
   }
 }
 form.indent-fields {
-  & > .form-group,
-  & > .form-buttons {
-    margin-left: 85px;
-    margin-bottom: 20px;
+  .form-group,
+  .form-buttons {
+    .full {
+      @include grid-column($columns: 11, $offset: 1);
+
+      @media #{$small-only} {
+        @include grid-column($columns: 12, $offset: 0);
+      }
+    }
     .description {
       margin-bottom: 20px;
     }

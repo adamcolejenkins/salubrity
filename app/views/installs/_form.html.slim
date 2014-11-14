@@ -1,0 +1,37 @@
+= form_for @device, url: installs_path do |f|
+  - if @device.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@device.errors.count, "error")} prohibited installation:"
+      ul
+        - @device.errors.full_messages.each do |message|
+          li = message
+  
+  h3 Survey & Clinic
+  .list-group
+    .list-group-item
+      = f.collection_select :survey_id, @surveys, :id, :title, { prompt: 'Select your survey' }
+    
+    .list-group-item
+      = f.collection_select :clinic_id, @clinics, :id, :title, { prompt: 'Select your clinic' }
+  
+  h3 Device Passcodes
+  .list-group
+
+    .list-group-item
+      = f.password_field :access_passcode, placeholder: "Access Passcode", maxlength: 4
+
+    .list-group-item
+      = f.password_field :restriction_passcode, placeholder: "Restriction Passcode", maxlength: 4
+
+    .list-group-item
+      = f.password_field :guided_access_passcode, placeholder: "Guided Access Passcode", maxlength: 4
+
+  h4 Internal
+  .list-group
+
+    .list-group-item
+      = f.text_field :internal_identifier, placeholder: "Internal Identifier"
+  
+
+  .form-group
+    .full = f.submit 'Install', class: 'small radius success button expand'

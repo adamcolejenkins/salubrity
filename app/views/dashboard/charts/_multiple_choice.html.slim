@@ -1,0 +1,14 @@
+.block-panel(data-equalizer-watch)
+  .header = truncate field.label, length: 70, separator: ' '
+
+  .content
+    .response-time
+      - if resource.responses.count > 0
+        big = field.average_time
+        small avg time
+      - else
+        big No
+        small Responses
+  
+    .chart(pie-chart)
+      = pie_chart resource.data_for(:multiple_choice_field, field: field), height: "100%", width: "100%", colors: resource.data_for(:multiple_choice_field_colors, field: field)

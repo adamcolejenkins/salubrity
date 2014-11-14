@@ -9,6 +9,7 @@ html
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   body
@@ -39,5 +40,3 @@ html
       h3 Contact Us
       p = link_to 'hello@salubrity.io', 'mailto:hello@salubrity.io'
       a.close-reveal-modal &#215;
-
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true

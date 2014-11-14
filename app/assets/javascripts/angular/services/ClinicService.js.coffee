@@ -23,8 +23,8 @@
       update: (clinic, attrs) ->
         new @service(clinic: attrs).$update {id: clinic.id}, (-> null), @errorHandler
 
-      all: ->
-        @service.query((-> null), @errorHandler)
+      all: (callback) ->
+        @service.query(callback || (-> null), @errorHandler)
 
       find: (id, successHandler) ->
         @service.get(id: id, ((clinic)->

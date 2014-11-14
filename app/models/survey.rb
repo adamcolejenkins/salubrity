@@ -1,5 +1,7 @@
 class Survey < ActiveRecord::Base
-  include Filterable
+  include Filterable, ChartData
+  acts_as_paranoid
+
   belongs_to :team, :inverse_of => :surveys
 
   has_many :clinics, inverse_of: :survey, dependent: :destroy
@@ -19,11 +21,12 @@ class Survey < ActiveRecord::Base
   end
 
   def average_time
-    avg = 0.0
+    @avg = 0.0
     self.responses.each_with_index do |response, index|
-      avg = ((response.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
+      @avg = ((response.time + (@avg * index.to_f)) / (index.to_f + 1)).to_f
     end
 
-    Time.at(avg).utc.strftime("%M:%S")
+    Time.at(@avg).utc.strftime("%M:%S")
   end
+
 end

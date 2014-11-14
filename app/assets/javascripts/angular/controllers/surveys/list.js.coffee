@@ -12,18 +12,15 @@
 
     $scope.init = ->
       @SurveyService = new SurveyService(serverErrorHandler)
-      $scope.surveys = @SurveyService.all()
 
+    $scope.publish = (id, evt, published) ->
+      return if published?
 
-    $scope.createSurvey = ->
-      SurveyService = @SurveyService
+      @SurveyService.update id: id,
+        status: 'published'
 
-      # Display a modal form
-      @modal = $modal.open
-        templateUrl: '/templates/surveys/new.html'
-        windowTemplateUrl: '/templates/partials/modalFormWindow.html'
-        controller: 'SurveyCreateCtrl'
-
+      angular.element(evt.currentTarget).addClass("published").removeClass("draft")
+      swal "Published!", "This survey is now live.", "success"
 
     serverErrorHandler = ->
       swal(

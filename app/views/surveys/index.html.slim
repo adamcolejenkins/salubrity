@@ -5,7 +5,7 @@ hgroup
 
 section.content
 
-  .block
+  .block ng-controller="SurveyListCtrl" ng-init="init()"
     
     - if can? :create, Survey
       .block-item.new
@@ -16,16 +16,17 @@ section.content
     - @surveys.each do |survey|
       .block-item
         .details
-          .status class="#{survey.status}"
+          .status class="#{survey.status}" ng-click="publish(#{survey.id}, $event #{', true' if survey.status == 'published'})"
             span
               i.fa.fa-dot-circle-o
-          .name = link_to survey.title, survey_fields_path(survey), target: "_self", tooltip: "Build", tooltip_placement: "right"
+          .name = link_to survey.title, survey_fields_path(survey), target: "_self"
 
         .options
           ul.actions
+            - if can? :manage, Field
+              li = link_to survey_fields_path(survey), target: "_self", tooltip: "Fields"
+                i.fa.fa-tasks
+
             - if can? :update, Survey
               li = link_to edit_survey_path(survey), target: "_self", tooltip: "Edit"
-                i.fa.fa-pencil
-            - if can? :destroy, Survey
-              li = link_to survey, data: {:confirm => 'Are you sure?'}, :method => :delete, tooltip: 'Delete'
-                i.fa.fa-trash-o
+                i.fa.fa-wrench

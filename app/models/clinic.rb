@@ -1,9 +1,12 @@
 class Clinic < ActiveRecord::Base
+  include Filterable, ChartData
+  acts_as_paranoid
   belongs_to :team, inverse_of: :clinics
   belongs_to :survey, inverse_of: :clinics
 
-  has_many :providers, -> { order(:name) }, inverse_of: :clinic, dependent: :destroy
+  has_many :providers, -> { order(:surname) }, inverse_of: :clinic, dependent: :destroy
   has_many :responses, inverse_of: :clinic
+  has_many :devices, inverse_of: :clinic, dependent: :destroy
 
   before_validation :translate_slug, on: :create
 
@@ -34,6 +37,10 @@ class Clinic < ActiveRecord::Base
     end
 
     Time.at(avg).utc.strftime("%M:%S")
+  end
+
+  def fields
+    self.survey.fields
   end
 
   private

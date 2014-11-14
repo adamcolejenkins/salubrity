@@ -11,11 +11,11 @@ html
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "vendor/modernizr"
-    
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     
   body.texture ng-app="salubrity" ng-controller="AppCtrl"  class="#{controller_name} #{action_name}"
     = yield
 
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
     = yield :javascript

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -62,9 +62,25 @@ group :test do
   # gem 'rspec-rails'
   # gem 'factory_girl'
 end
+<<<<<<< HEAD
 gem 'newrelic_rpm'
 gem 'bump', '~> 0.5.1'
+=======
+# Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+>>>>>>> develop
 gem 'figaro'
+# A Rails plugin to add soft delete.
+gem 'paranoia', '~> 2.0.2'
+# Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes.
+gem "auto_strip_attributes", "~> 2.0"
+gem 'chart-js-rails'
+gem 'CFPropertyList', '~> 2.2.8'
+gem 'multi_json'
+gem 'bump', '~> 0.5.1'
+
+gem 'groupdate'
+gem 'hightop'
+gem 'chartkick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

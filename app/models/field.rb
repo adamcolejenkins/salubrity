@@ -1,5 +1,6 @@
 class Field < ActiveRecord::Base
   include Filterable
+  acts_as_paranoid
   belongs_to :survey, inverse_of: :fields
   has_many :field_choices, -> { order "priority ASC" }, dependent: :destroy
   has_many :answers, inverse_of: :field, dependent: :destroy
@@ -20,8 +21,39 @@ class Field < ActiveRecord::Base
     insert_at(value.to_i)
   end
 
-  def data
-    
+  def above_median
+    self.answers.where(value: above_median_range)
+  end
+
+  def below_median
+    self.answers.where(value: below_median_range)
+  end
+
+  def total_by_index
+    a = []
+    i = self.range_min.to_i
+    until i > self.range_max.to_i
+      a[i] = (self.answers.where(value: i.to_s).count)
+      i += self.increment.to_i
+    end
+    a
+  end
+
+  def average_time
+    avg = 0.0
+    self.answers.each_with_index do |answer, index|
+      avg = ((answer.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
+    end
+
+    Time.at(avg).utc.strftime("%H:%S")
+  end
+
+  def above_median_range
+    (self.median.to_i..self.range_max.to_i).to_a.map(&:to_s)
+  end
+
+  def below_median_range
+    (self.range_min.to_i..(self.median.to_i - 1)).to_a.map(&:to_s)
   end
 
   private
