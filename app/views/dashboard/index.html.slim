@@ -30,7 +30,7 @@ hgroup
                 big = resource.responses.count
                 span.muted  responses
               .chart bar-graph=""
-                = column_chart resource.responses.group_by_day(:created_at, format: "%A, %B %e").count, height: "100%"
+                / = column_chart resource.responses.group_by_day(:created_at, format: "%A, %B %e").count, height: "100%"
 
         article.timing-chart
           .block-panel(data-equalizer-watch)
@@ -39,7 +39,7 @@ hgroup
                 big = resource.average_time || "00:00"
                 span.muted  avg time to complete
               .chart bar-graph=""
-                = column_chart resource.responses.daily_avg_time, height: "100%"
+                / = column_chart resource.responses.daily_avg_time, height: "100%"
       
       
       .row.equal-height(data-equalizer)
