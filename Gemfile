@@ -62,6 +62,8 @@ group :test do
   # gem 'rspec-rails'
   # gem 'factory_girl'
 end
+gem 'newrelic_rpm'
+gem 'bump', '~> 0.5.1'
 # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
 gem 'figaro'
 # A Rails plugin to add soft delete.
@@ -71,7 +73,6 @@ gem "auto_strip_attributes", "~> 2.0"
 gem 'chart-js-rails'
 gem 'CFPropertyList', '~> 2.2.8'
 gem 'multi_json'
-gem 'bump', '~> 0.5.1'
 
 gem 'groupdate'
 gem 'hightop'

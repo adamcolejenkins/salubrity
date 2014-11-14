@@ -11,13 +11,13 @@
         div class="medium-#{cols or 12} columns"
           span
             - if field.display_as == 'buttons'
-              = answer_fields.radio_button :value, choice.key, required: field.required
+              = answer_fields.radio_button :value, choice.id, required: field.required
               - if choice.attribute_present? :color
                 = answer_fields.label :value, choice.label, {'style' => "background-color: #{choice.color};"}
               - else
                 = answer_fields.label :value, choice.label
             - else
-              = answer_fields.radio_button :value, choice.key, required: field.required, icheck: ''
+              = answer_fields.radio_button :value, choice.id, required: field.required, icheck: ''
               = answer_fields.label :value, choice.label
 
         

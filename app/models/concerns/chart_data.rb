@@ -31,7 +31,7 @@ module ChartData
   def multiple_choice_field_data(args)
     a = {}
     args[:field].field_choices.map { |choice|
-      a[choice.label] = total(field: args[:field], value: choice.key)
+      a[choice.label] = total(field: args[:field], value: choice.id.to_s) #TODO: choice.id
     }
     a
   end
