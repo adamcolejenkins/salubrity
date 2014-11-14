@@ -1,4 +1,5 @@
 class Response < ActiveRecord::Base
+  include DashboardHelper
   acts_as_paranoid
   belongs_to :team, inverse_of: :responses
   belongs_to :survey, inverse_of: :responses
@@ -26,7 +27,7 @@ class Response < ActiveRecord::Base
     a = []
     i = field.range_min.to_i
     until i > field.range_max.to_i
-      a[i] = self.all.map { |r| r.answers.where(field: field).where("value::int = #{i}").count }
+      a[i] = total_answers resource: self, where: { field: field, value: i.to_s }
       i += field.increment.to_i
     end
     a.to_json

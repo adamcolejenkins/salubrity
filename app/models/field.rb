@@ -39,10 +39,6 @@ class Field < ActiveRecord::Base
     a
   end
 
-  def times
-    
-  end
-
   def average_time
     avg = 0.0
     self.answers.each_with_index do |answer, index|

@@ -11,6 +11,4 @@
         small Responses
   
     .chart(pie-chart)
-      / - data = render(template: 'fields/_multiple_choice.json.jbuilder', locals: {field: field, responses: resource.responses })
-      chart type="Pie" data="#{resource.data_for :multiple_choice_field, field: field}"
-        = image_tag 'loader.light.svg', class: 'loader'
+      = pie_chart resource.data_for(:multiple_choice_field, field: field), height: "100%", width: "100%", colors: resource.data_for(:multiple_choice_field_colors, field: field)

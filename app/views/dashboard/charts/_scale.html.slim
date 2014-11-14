@@ -4,21 +4,27 @@
   .content
     .stat
       .above-median
-        div = percent(total_answers(resource: resource.responses, where: { field: field, value: field.above_median_range }), resource.responses.count, true, 0)
+        big
+          = percent(total_answers(resource: resource.responses, where: { field: field, value: field.above_median_range }), resource.responses.count, false, 0) * 100
+          small %
+        i.fa.fa-arrow-up
+
 
       .below-median
-        div = percent(total_answers(resource: resource.responses, where: { field: field, value: field.below_median_range }), resource.responses.count, true, 0)
+        big
+          = percent(total_answers(resource: resource.responses, where: { field: field, value: field.below_median_range }), resource.responses.count, false, 0) * 100
+          small %
+        sup
+          i.fa.fa-arrow-down
 
     .extras
       .average-time
-        big = field.average_time
-        span avg time
+        div = field.average_time
+        div avg time
 
       .median
-        | Median #{field.median}
+        span.muted Median 
+        = field.median
     
     .chart(bar-graph)
-      = column_chart resource.responses.field_total field
-      / - data = render(template: 'fields/_scale.json.jbuilder', locals: { field: field, resource: resource })
-      / chart type="Bar" data="#{data}"
-      /   = image_tag 'loader.light.svg', class: 'loader'
+      = column_chart JSON.parse(render template: 'fields/_scale.json.jbuilder', locals: { field: field, resource: resource }), height: "100%"

@@ -5,7 +5,7 @@ module ChartData
   DEFAULT_FILL_COLOR = "#dfe2e7"
 
   def data_for(attribute, *args)
-    self.send("#{attribute}_data", *args).to_json
+    self.send("#{attribute}_data", *args)
   end
 
   private
@@ -29,12 +29,19 @@ module ChartData
   end
 
   def multiple_choice_field_data(args)
+    a = {}
     args[:field].field_choices.map { |choice|
-      self.send :pie_chart_json,
-                label: choice.label,
-                color: choice.color,
-                value: total(field: args[:field], value: choice.key) # TODO: choice.key to choice.id
+      a[choice.label] = total(field: args[:field], value: choice.key)
     }
+    a
+  end
+
+  def multiple_choice_field_colors_data(args)
+    a = []
+    args[:field].field_choices.map { |choice|
+      a << choice.color
+    }
+    a
   end
 
   def scale_field_data(args)

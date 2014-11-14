@@ -3,10 +3,10 @@ Chartkick.options = {
   library: {
     axisTitlesPosition: "none",
     chartArea: {
-      left: 0,
-      top: 0,
-      height: "100%",
-      width: "100%"
+      # left: 0,
+      top: 10,
+      height: "90%",
+      width: "90%"
     },
     vAxis: {
       gridlines: {
@@ -19,7 +19,9 @@ Chartkick.options = {
           color: 'transparent'
       },
       textPosition: "none"
-    }
+    },
+    pieHole: 0.37,
+    legend: "none"
   }
 }
 

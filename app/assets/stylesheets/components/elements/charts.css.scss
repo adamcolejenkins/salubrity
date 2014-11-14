@@ -35,6 +35,7 @@
   margin-left: -22px;
   margin-top: -18px;
   color: $body-font-color;
+  z-index: 2;
 
   small {
     color: lighten($body-font-color, 10%);
