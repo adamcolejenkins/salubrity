@@ -11,4 +11,4 @@
         small Responses
   
     .chart(pie-chart)
-      / = pie_chart resource.data_for(:multiple_choice_field, field: field), height: "100%", width: "100%", colors: resource.data_for(:multiple_choice_field_colors, field: field)
+      = pie_chart dashboard_survey_chart_path(resource, :multiple_choice, field), height: "100%", width: "100%", colors: resource.data_for(:multiple_choice_field_colors, field: field)

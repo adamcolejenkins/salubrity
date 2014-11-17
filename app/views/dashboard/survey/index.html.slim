@@ -33,14 +33,14 @@
               .chart bar-graph=""
                 = column_chart dashboard_survey_chart_path(survey, :timing), height: "100%"
 
-        .row.equal-height(data-equalizer)
-          - survey.fields.where.not(context: %w(intro outro provider_dropdown)).each_with_index do |field, index|
-            article class="#{field.context.gsub('_', '-')}"
-              = render "dashboard/charts/#{field.context}", resource: survey, field: field
+      .row.equal-height(data-equalizer)
+        - survey.fields.where.not(context: %w(intro outro provider_dropdown)).each_with_index do |field, index|
+          article class="#{field.context.gsub('_', '-')}"
+            = render "dashboard/charts/#{field.context}", resource: survey, field: field
 
-          div.more
-            = link_to survey, target: "_self"
-              i.fa.fa-chevron-circle-right
+        div.more
+          = link_to survey, target: "_self"
+            i.fa.fa-chevron-circle-right
 
     - else
       .row
