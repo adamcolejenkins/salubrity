@@ -25,9 +25,22 @@ Rails.application.routes.draw do
       resources :users, except: [:show]
     end
 
-    get '/dashboard(/:resource)' => 'dashboard#index', as: 'dashboard', resource: 'survey'
+    namespace :dashboard do
+      get 'surveys' => 'survey#index'
+      get 'surveys/:id/chart/:chart(/:field_id)' => 'survey#chart', as: :survey_chart
 
-    get '/', to: redirect('/dashboard/survey')
+      get 'clinics' => 'clinic#index'
+      get 'clinics/:id/chart/:chart(/:field_id)' => 'clinic#chart', as: :clinic_chart
+      
+      get 'providers' => 'provider#index'
+      get 'providers/:id/chart/:chart(/:field_id)' => 'provider#chart', as: :provider_chart
+
+      root to: redirect('/dashboard/surveys')
+    end
+
+    # get '/dashboard(/:resource)' => 'dashboard#index', as: 'dashboard', resource: 'survey'
+
+    get '/', to: redirect('/dashboard/surveys')
     
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"

@@ -26,7 +26,8 @@
         article.checkboxes,
         article.dropdown,
         article.number,
-        article.scale {
+        article.scale,
+        div.more {
           @include grid-column($columns: 3)
         }
         

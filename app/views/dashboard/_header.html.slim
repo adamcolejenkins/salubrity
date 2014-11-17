@@ -1,0 +1,15 @@
+hgroup
+  .title
+    h2 Dashboard
+    h3.subheader View reports by survey, clinic and/or provider.
+
+.row
+  .medium-12.columns
+    dl.sub-nav
+      dd Filter:
+      dd class="#{active_if_current(dashboard_surveys_path)}"
+        = link_to 'Surveys', dashboard_surveys_path, target: "_self"
+      dd class="#{active_if_current(dashboard_clinics_path)}"
+        = link_to 'Clinics', dashboard_clinics_path, target: "_self"
+      dd class="#{active_if_current(dashboard_providers_path)}"
+        = link_to 'Providers', dashboard_providers_path, target: "_self"

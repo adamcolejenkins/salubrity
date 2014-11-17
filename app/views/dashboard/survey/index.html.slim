@@ -1,0 +1,48 @@
+= render 'dashboard/header'
+
+- @surveys.sort.each do |survey|
+  section.resource id="survey-#{survey.id}"
+
+    - if survey.responses.count > 0
+      .row(data-equalizer)
+
+        / Survey Info Block
+        article.header
+          .block-panel.faded(data-equalizer-watch)
+            .content
+              h4 = survey.title
+              h5.subheader = survey.description
+
+        / Responses Block
+        article.response-chart
+          .block-panel(data-equalizer-watch)
+            .content
+              .stat
+                big = survey.responses.count
+                span.muted  responses
+              .chart bar-graph=""
+                = column_chart dashboard_survey_chart_path(survey, :responses), height: "100%"
+
+        / Timing Chart
+        article.timing-chart
+          .block-panel(data-equalizer-watch)
+            .content
+              .stat
+                big = survey.average_time || "00:00"
+                span.muted  avg time to complete
+              .chart bar-graph=""
+                = column_chart dashboard_survey_chart_path(survey, :timing), height: "100%"
+
+        .row.equal-height(data-equalizer)
+          - survey.fields.where.not(context: %w(intro outro provider_dropdown)).each_with_index do |field, index|
+            article class="#{field.context.gsub('_', '-')}"
+              = render "dashboard/charts/#{field.context}", resource: survey, field: field
+
+          div.more
+            = link_to survey, target: "_self"
+              i.fa.fa-chevron-circle-right
+
+    - else
+      .row
+        .small-12.columns
+          .alert-box.warning.radius = "#{survey.title} has no responses at this time."

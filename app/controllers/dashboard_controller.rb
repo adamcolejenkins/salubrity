@@ -4,7 +4,10 @@ class DashboardController < ApplicationController
   layout 'angular'
 
   def index
-    
+  end
+
+  def total_responses
+    render json: @resource.responses.group_by_day(:created_at, format: "%A, %B %e").count
   end
 
   private
