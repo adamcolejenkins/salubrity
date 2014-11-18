@@ -1,27 +1,35 @@
-hgroup
-  .title
-    h2 My Providers
-    h3.subheader Manage your team's Providers
+= render 'header'
 
-section.content.block
-    
-  - if can? :create, Provider
-    .block-item.new
-      = link_to '', new_provider_path, class: 'trigger', target: "_self"
-      .details
-        .name = t 'providers.list.create_button_label'
-  
-  - @providers.group_by(&:clinic).each do |clinic, providers|
-    h3 = "#{clinic.title} Providers"
+- @providers.sort.each do |provider|
+  section.resource id="provider-#{provider.id}"
 
-    - providers.sort.each do |provider|
-      .block-item
-        / = link_to '', provider_path(provider), class: 'trigger', target: "_self"
-        .details
-          .name = provider.full_name
+    .row(data-equalizer)
 
-        .options
-          ul.actions
-            - if can? :update, Provider
-              li = link_to edit_provider_path(provider), target: "_self", tooltip: "Edit"
-                i.fa.fa-wrench
+      / Provider Info Block
+      article.header.small
+        = render 'info_block', provider: provider
+
+      / Responses Block
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = provider.responses.count
+              span.muted  responses
+            .chart bar-graph=""
+              = column_chart chart_provider_path(provider, :responses), height: "100%"
+
+      / Timing Chart
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = provider.average_time || "00:00"
+              span.muted  avg time to complete
+            .chart bar-graph=""
+              = column_chart chart_provider_path(provider, :timing), height: "100%"
+      
+      article.more.small
+        div.block-panel.block-button(data-equalizer-watch)
+          = link_to provider, target: "_self", class: 'block-panel-button'
+            i.fa.fa-chevron-right

@@ -2,7 +2,9 @@
 / TODO: Change select class to kiosk-select along with directive, make it global, or just make the directive get select
 .kiosk-anim-lower
   - unless @response.clinic.providers.count == 0
-    = collection_select(:response, :provider_id, @response.clinic.providers, :id, :full_name_surname_first, {}, { class: 'cs-select cs-skin-border', required: field.required, placeholder: 'Select a provider'})
+    .row
+      .medium-8.columns
+        = collection_select(:response, :provider_id, @response.clinic.providers, :id, :full_name_surname_first, prompt: true, html_options: {class: 'cs-select cs-skin-border', required: field.required, placeholder: 'Select a provider'})
   - else
     .alert-box.alert
       strong No providers are available, please continue.

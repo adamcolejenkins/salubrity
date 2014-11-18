@@ -1,17 +1,28 @@
 Rails.application.routes.draw do
 
-  resources :devices
-
   constraints(Subdomain) do
     
     resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
+    resources :devices
 
     resources :surveys do
+      member do 
+        get 'chart/:type(/field/:field_id)' => 'surveys#chart', as: :chart
+      end
       resources :fields
     end
 
-    resources :clinics
-    resources :providers
+    resources :clinics do
+      member do 
+        get 'chart/:type(/field/:field_id)' => 'clinics#chart', as: :chart
+      end
+    end
+
+    resources :providers do
+      member do 
+        get 'chart/:type(/field/:field_id)' => 'providers#chart', as: :chart
+      end
+    end
 
     get '/install', to: redirect('/install/new')
     resource :install, only: [:new, :create, :edit, :update], as: 'installs'
@@ -25,9 +36,7 @@ Rails.application.routes.draw do
       resources :users, except: [:show]
     end
 
-    get '/dashboard(/:resource)' => 'dashboard#index', as: 'dashboard', resource: 'survey'
-
-    get '/', to: redirect('/dashboard/survey')
+    get '/', to: redirect('/surveys')
     
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"

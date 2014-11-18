@@ -75,7 +75,6 @@
       border-top: 1px solid $secondary-color;
       padding-top: 15px;
       p { font-size: 13px; }
-      a { font-weight: bold; }
     }
     & > section.copyright {
       @include grid-column($columns: 8);

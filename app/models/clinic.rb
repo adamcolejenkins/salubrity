@@ -5,7 +5,7 @@ class Clinic < ActiveRecord::Base
   belongs_to :survey, inverse_of: :clinics
 
   has_many :providers, -> { order(:surname) }, inverse_of: :clinic, dependent: :destroy
-  has_many :responses, inverse_of: :clinic
+  has_many :responses, inverse_of: :clinic, dependent: :destroy
   has_many :devices, inverse_of: :clinic, dependent: :destroy
 
   before_validation :translate_slug, on: :create

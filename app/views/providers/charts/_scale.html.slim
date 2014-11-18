@@ -1,0 +1,30 @@
+.block-panel(data-equalizer-watch)
+  .header = truncate field.label, length: 70, separator: ' '
+
+  .content
+    .stat
+      .above-median
+        big
+          = percent(total_answers(resource: @provider.responses, where: { field: field, value: field.above_median_range }), @provider.responses.count, false, 0) * 100
+          small %
+        i.fa.fa-arrow-up
+
+
+      .below-median
+        big
+          = percent(total_answers(resource: @provider.responses, where: { field: field, value: field.below_median_range }), @provider.responses.count, false, 0) * 100
+          small %
+        sup
+          i.fa.fa-arrow-down
+
+    .extras
+      .average-time
+        div = field.average_time
+        div avg time
+
+      .median
+        span.muted Median 
+        = field.median
+    
+    .chart(bar-graph)
+      = column_chart chart_provider_path(@provider, :scale, field), height: "100%"

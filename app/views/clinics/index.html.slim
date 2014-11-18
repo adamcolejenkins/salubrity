@@ -1,26 +1,35 @@
-hgroup
-  .title
-    h2 My Clinics
-    h3.subheader Manage your team's Clinics
-
-section.content.block
+= render 'header'
+  
+- @clinics.sort.each do |clinic|
+  section.resource id="clinic-#{clinic.id}"
     
-  - if can? :create, Clinic
-    .block-item.new
-      = link_to '', new_clinic_path, class: 'trigger', target: "_self"
-      .details
-        .name = t 'clinics.list.create_button_label'
+    .row(data-equalizer)
 
-  - @clinics.group_by(&:survey).each do |survey, clinics|
-    h3 = "#{survey.title} Clinics"
+      / Clinic Info Block
+      article.header.small
+        = render 'info_block', clinic: clinic
 
-    - clinics.each do |clinic|
-      .block-item
-        .details
-          .name = clinic.title
+      / Responses Block
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = clinic.responses.count
+              span.muted  responses
+            .chart bar-graph=""
+              = column_chart chart_clinic_path(clinic, :responses), height: "100%"
 
-        .options
-          ul.actions
-            - if can? :update, Clinic
-              li = link_to edit_clinic_path(clinic), target: "_self", tooltip: "Edit"
-                i.fa.fa-pencil
+      / Timing Chart
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = clinic.average_time || "00:00"
+              span.muted  avg time to complete
+            .chart bar-graph=""
+              = column_chart chart_clinic_path(clinic, :timing), height: "100%"
+      
+      article.more.small
+        div.block-panel.block-button(data-equalizer-watch)
+          = link_to clinic, target: "_self", class: 'block-panel-button'
+            i.fa.fa-chevron-right

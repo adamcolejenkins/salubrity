@@ -435,6 +435,16 @@ body.kiosk {
             }
           }
         }
+
+        select {
+          border: 2px solid #6e768e;
+          padding: 10px 15px;
+          background-color: transparent;
+
+          &:focus {
+            outline: none;
+          }
+        }
       }
     }
     

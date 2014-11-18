@@ -1,32 +1,56 @@
-hgroup
-  .title
-    h2 My Surveys
-    h3.subheader Manage your team's Surveys
+= render 'header'
+  
+- @surveys.sort.each do |survey|
+  section.resource id="survey-#{survey.id}"
 
-section.content
+    .row(data-equalizer)
 
-  .block ng-controller="SurveyListCtrl" ng-init="init()"
-    
-    - if can? :create, Survey
-      .block-item.new
-        = link_to '', new_survey_path, class: 'trigger', target: "_self"
-        .details
-          .name = t 'surveys.list.create_button_label'
+      / Survey Info Block
+      article.header.small
+        .block-panel.faded(data-equalizer-watch)
+          .content
+            h4 = survey.title
+            h5.subheader = survey.description
 
-    - @surveys.each do |survey|
-      .block-item
-        .details
-          .status class="#{survey.status}" ng-click="publish(#{survey.id}, $event #{', true' if survey.status == 'published'})"
-            span
-              i.fa.fa-dot-circle-o
-          .name = link_to survey.title, survey_fields_path(survey), target: "_self"
+            .tools
+              ul.inline-list.left
+                li
+                  span
+                    = survey.clinics_count
+                    span.muted  clinics
+                li.divider
+                li
+                  span 
+                    = survey.providers_count
+                    span.muted  providers
+        
+              ul.inline-list.right
+                - if can? :update, Survey
+                  li
+                    = link_to edit_survey_path(survey), target: "_self"
+                      i.fa.fa-wrench
 
-        .options
-          ul.actions
-            - if can? :manage, Field
-              li = link_to survey_fields_path(survey), target: "_self", tooltip: "Fields"
-                i.fa.fa-tasks
+      / Responses Block
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = survey.responses.count
+              span.muted  responses
+            .chart bar-graph=""
+              = column_chart chart_survey_path(survey, :responses), height: "100%"
 
-            - if can? :update, Survey
-              li = link_to edit_survey_path(survey), target: "_self", tooltip: "Edit"
-                i.fa.fa-wrench
+      / Timing Chart
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = survey.average_time || "00:00"
+              span.muted  avg time to complete
+            .chart bar-graph=""
+              = column_chart chart_survey_path(survey, :timing), height: "100%"
+      
+      article.more.small
+        div.block-panel.block-button(data-equalizer-watch)
+          = link_to survey, target: "_self", class: 'block-panel-button'
+            i.fa.fa-chevron-right

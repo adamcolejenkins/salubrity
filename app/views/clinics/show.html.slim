@@ -1,33 +1,40 @@
-p#notice = notice
+= render 'header'
+  
+section.resource id="clinic-#{@clinic.id}"
 
-p
-  strong Title:
-  = @clinic.title
-p
-  strong Survey:
-  = @clinic.survey
-p
-  strong Guid:
-  = @clinic.guid
-p
-  strong Address:
-  = @clinic.address
-p
-  strong Address2:
-  = @clinic.address2
-p
-  strong City:
-  = @clinic.city
-p
-  strong State:
-  = @clinic.state
-p
-  strong Zip:
-  = @clinic.zip
-p
-  strong Phone:
-  = @clinic.phone
+  .row(data-equalizer)
 
-= link_to 'Edit', edit_clinic_path(@clinic)
-'|
-= link_to 'Back', clinics_path
+    / Clinic Info Block
+    article.header
+      = render 'info_block', clinic: @clinic
+    
+    / Responses Block
+    article.response-chart
+      .block-panel(data-equalizer-watch)
+        .content
+          .stat
+            big = @clinic.responses.count
+            span.muted  responses
+          .chart bar-graph=""
+            = column_chart chart_clinic_path(@clinic, :responses), height: "100%"
+
+    / Timing Chart
+    article.timing-chart
+      .block-panel(data-equalizer-watch)
+        .content
+          .stat
+            big = @clinic.average_time || "00:00"
+            span.muted  avg time to complete
+          .chart bar-graph=""
+            = column_chart chart_clinic_path(@clinic, :timing), height: "100%"
+
+  .row(data-equalizer)
+      - @clinic.fields.where.not(context: %w(intro outro provider_dropdown)).each do |field|
+        article class="#{field.context.gsub('_', '-')}"
+          = render "clinics/charts/#{field.context}", field: field
+
+  .row.hide
+    article.responses-table
+      .block-panel.collapse
+        .header Responses
+        .content

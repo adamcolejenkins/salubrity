@@ -1,18 +1,15 @@
 nav
   section
     ul.left
-
-      li class="#{active_if(controller_name == 'dashboard')}"
-        = link_to "Dashboard", dashboard_path, target: "_self"
   
-      - if can? :manage, Survey
-        li class="#{active_if(controller_name == 'surveys')}"
+      - if can? :read, Survey
+        li class="#{active_if(controller_name == 'surveys' || controller_name == 'fields')}"
           = link_to "Surveys", surveys_path, target: "_self"
 
-      - if can? :manage, Clinic
+      - if can? :read, Clinic
         li class="#{active_if(controller_name == 'clinics')}"
           = link_to "Clinics", clinics_path, target: "_self"
 
-      - if can? :manage, Provider
+      - if can? :read, Provider
         li class="#{active_if(controller_name == 'providers')}"
           = link_to "Providers", providers_path, target: "_self"

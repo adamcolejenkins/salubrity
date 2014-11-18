@@ -1,21 +1,40 @@
-p#notice = notice
+= render 'header'
 
-p
-  strong Name:
-  = @provider.name
-p
-  strong Position:
-  = @provider.position
-p
-  strong Email:
-  = @provider.email
-p
-  strong Phone:
-  = @provider.phone
-p
-  strong Photo:
-  = @provider.photo
+section.resource id="provider-#{@provider.id}"
 
-= link_to 'Edit', edit_provider_path(@provider)
-'|
-= link_to 'Back', providers_path
+  .row(data-equalizer)
+
+    / Provider Info Block
+    article.header
+      = render 'info_block', provider: @provider
+
+    / Responses Block
+    article.response-chart
+      .block-panel(data-equalizer-watch)
+        .content
+          .stat
+            big = @provider.responses.count
+            span.muted  responses
+          .chart bar-graph=""
+            = column_chart chart_provider_path(@provider, :responses), height: "100%"
+
+    / Timing Chart
+    article.timing-chart
+      .block-panel(data-equalizer-watch)
+        .content
+          .stat
+            big = @provider.average_time || "00:00"
+            span.muted  avg time to complete
+          .chart bar-graph=""
+            = column_chart chart_provider_path(@provider, :timing), height: "100%"
+
+  .row(data-equalizer)
+    - @provider.fields.where.not(context: %w(intro outro provider_dropdown)).each do |field|
+      article class="#{field.context.gsub('_', '-')}"
+        = render "providers/charts/#{field.context}", field: field
+
+  .row.hide
+    article.responses-table
+      .block-panel.collapse
+        .header Responses
+        .content

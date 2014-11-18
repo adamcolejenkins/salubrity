@@ -16,7 +16,7 @@ html(lang="en")
     = javascript_include_tag "//www.google.com/jsapi", "chartkick"
     = csrf_meta_tags
         
-  body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{controller_name} #{action_name}"
+  body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{params[:controller].split("/").first} #{controller_name} #{action_name}"
     .wrap
       header
         = render :partial => "layouts/header"
