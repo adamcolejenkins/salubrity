@@ -2,6 +2,6 @@
   .header = field.label
 
   .content.scroll
-    - resource.responses.each do |response|
+    - @provider.responses.each do |response|
       - response.answers.where({ field: field }).each do |answer|
         p = answer.value

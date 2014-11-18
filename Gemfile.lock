@@ -1,10 +1,9 @@
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
-  revision: 24d6f387efe3662d55f4a4c1a7dc3cd84550ccd3
+  revision: 647d6a60c0ced08b711a3f1d2269696f733e0c19
   specs:
-    sentry-raven (0.11.1)
+    sentry-raven (0.12.0)
       faraday (>= 0.7.6)
-      uuidtools
 
 GEM
   remote: https://rubygems.org/
@@ -41,11 +40,11 @@ GEM
     arel (5.0.1.20140414130214)
     auto_strip_attributes (2.0.6)
       activerecord (>= 3.0)
-    autoprefixer-rails (3.1.2.20141016)
+    autoprefixer-rails (4.0.0.1)
       execjs
-    aws-sdk (1.57.0)
-      aws-sdk-v1 (= 1.57.0)
-    aws-sdk-v1 (1.57.0)
+    aws-sdk (1.59.0)
+      aws-sdk-v1 (= 1.59.0)
+    aws-sdk-v1 (1.59.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
@@ -102,7 +101,7 @@ GEM
       activerecord
     hike (1.2.3)
     i18n (0.6.11)
-    jbuilder (2.2.4)
+    jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
@@ -116,11 +115,11 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.2)
+    minitest (5.4.3)
     multi_json (1.10.1)
     multipart-post (2.0.0)
-    newrelic_rpm (3.9.6.257)
-    nokogiri (1.6.4)
+    newrelic_rpm (3.9.7.266)
+    nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     paperclip (4.2.0)
@@ -159,7 +158,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
-    responders (1.1.1)
+    responders (1.1.2)
       railties (>= 3.2, < 4.2)
     sass (3.2.19)
     sass-rails (4.0.4)
@@ -192,7 +191,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    turbolinks (2.5.1)
+    turbolinks (2.5.2)
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -203,7 +202,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.0.0.beta3)

@@ -45,6 +45,9 @@ en:
         surname: "Last Name"
         credential: "Credentials"
   surveys:
+    title: "My Surveys"
+    describe: "Global response data based on your surveys."
+    create_button_label: "New Survey"
     form:
       details:
         title: "Survey Details"
@@ -52,13 +55,13 @@ en:
         title: "Slug"
         describe: "This is the URL that will point to this survey.<br>The slug will be appended to <code>%{url}</code>."
         example: "e.g. my-super-inquisitive-survey"
-    list:
-      create_button_label: "New Survey"
-      no_surveys: "You haven't created any surveys yet"
     build:
       no_fields_text: "This survey has no fields, create one above!"
       create_field_button_label: "Add Field"
   clinics:
+    title: "My Clinics"
+    describe: "Clinical response data based on your surveys."
+    create_button_label: "New Clinic"
     form:
       details:
         title: "Clinic Details"
@@ -68,17 +71,16 @@ en:
       guid:
         title: "Slug"
         describe: "This is the URL that will point to this clinic.<br>The slug will be appended to <code>%{url}</code>."
-    list:
-      create_button_label: "New Clinic"
     edit:
       title: "Edit Clinic"
       describe: "Editing %{title}'"
   providers:
+    title: "My Providers"
+    describe: "Provider response data based on your surveys."
+    create_button_label: "New Provider"
     form:
       details:
         title: "Provider Details"
       photo:
         title: "Mugshot"
         describe: "Upload your provider's photo. Images should be at least 800px x 640px."
-    list:
-      create_button_label: "New Provider"

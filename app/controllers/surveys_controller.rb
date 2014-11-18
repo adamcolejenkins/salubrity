@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :chart]
   layout 'angular'
 
   # GET /surveys
@@ -63,7 +63,12 @@ class SurveysController < ApplicationController
     end
   end
 
+  def chart
+    self.send("#{params[:type]}_chart")
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = current_team.surveys.find(params[:id])
@@ -72,5 +77,24 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       params.require(:survey).permit(:team_id, :title, :description, :guid, :status)
+    end
+
+    # CHARTS
+    def responses_chart
+      render json: @survey.responses.group_by_day(:created_at, format: "%A, %B %e").count
+    end
+
+    def timing_chart
+      render json: @survey.responses.daily_avg_time
+    end
+
+    def multiple_choice_chart
+      @field = Field.find(params[:field_id])
+      render json: @survey.data_for(:multiple_choice_field, field: @field)
+    end
+
+    def scale_chart
+      @field = Field.find(params[:field_id])
+      render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @survey }
     end
 end

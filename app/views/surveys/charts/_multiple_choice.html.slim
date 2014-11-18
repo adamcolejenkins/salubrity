@@ -1,0 +1,14 @@
+.block-panel(data-equalizer-watch)
+  .header = truncate field.label, length: 70, separator: ' '
+
+  .content
+    .response-time
+      - if @survey.responses.count > 0
+        big = field.average_time
+        small avg time
+      - else
+        big No
+        small Responses
+  
+    .chart(pie-chart)
+      = pie_chart chart_survey_path(@survey, :multiple_choice, field), height: "100%", width: "100%", colors: @survey.data_for(:multiple_choice_field_colors, field: field)

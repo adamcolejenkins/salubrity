@@ -49,9 +49,4 @@ class Team < ActiveRecord::Base
   def translate_subdomain
     self.subdomain = self.name.parameterize('-')
   end
-
-  # Model to String converstion, displays name
-  def to_s
-    name
-  end
 end

@@ -9,8 +9,33 @@
   border-bottom-width: 2px;
   border-bottom-color: darken(#e5e6ea, 1%);
   
+  &.transparent,
+  &.block-button {
+    background-color: transparent;
+    border-color: transparent;
+  }
   &.faded {
     background-color: #f5f6f8;
+  }
+
+  &.block-button {
+    &:hover {
+      background-color: darken($body-bg, 2%);
+    }
+
+    .block-panel-button {
+      @include size(100%);
+      font-size: rem-calc(36px);
+      text-align: center;
+      position: relative;
+      display: block;
+      i {
+        @include position(absolute, 50% null null 50%);
+        @include size(36px);
+        margin-top: -18px;
+        margin-left: -18px;
+      }
+    }
   }
 
   & > .header,

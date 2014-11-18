@@ -1,6 +1,6 @@
 class ClinicsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
+  before_action :set_clinic, only: [:show, :edit, :update, :destroy, :chart]
   layout 'angular'
 
   # GET /clinics
@@ -63,6 +63,10 @@ class ClinicsController < ApplicationController
     end
   end
 
+  def chart
+    self.send("#{params[:type]}_chart")
+  end
+
   private
     
     # Use callbacks to share common setup or constraints between actions.
@@ -73,5 +77,24 @@ class ClinicsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_params
       params.require(:clinic).permit(:title, :guid, :team, :survey, :address, :address2, :city, :state, :zip, :phone, :background)
+    end
+
+    # CHARTS
+    def responses_chart
+      render json: @clinic.responses.group_by_day(:created_at, format: "%A, %B %e").count
+    end
+
+    def timing_chart
+      render json: @clinic.responses.daily_avg_time
+    end
+
+    def multiple_choice_chart
+      @field = Field.find(params[:field_id])
+      render json: @clinic.data_for(:multiple_choice_field, field: @field)
+    end
+
+    def scale_chart
+      @field = Field.find(params[:field_id])
+      render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @clinic }
     end
 end

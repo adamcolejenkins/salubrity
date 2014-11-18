@@ -1,0 +1,17 @@
+.block-panel.faded(data-equalizer-watch)
+  .content
+    h4 = clinic.title
+    h5.subheader
+
+    .tools.clearfix
+      ul.inline-list.left
+        li
+          span 
+            = clinic.providers.count
+            span.muted  providers
+
+      ul.inline-list.right
+        - if can? :update, Clinic
+          li
+            = link_to edit_clinic_path(clinic), target: "_self"
+              i.fa.fa-wrench

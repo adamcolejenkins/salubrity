@@ -29,4 +29,12 @@ class Survey < ActiveRecord::Base
     Time.at(@avg).utc.strftime("%M:%S")
   end
 
+  def clinics_count
+    self.clinics.size
+  end
+
+  def providers_count
+    self.clinics.includes(:providers).map { |c| c.providers.size }.inject(0) { |sum,item| sum + item }
+  end
+
 end

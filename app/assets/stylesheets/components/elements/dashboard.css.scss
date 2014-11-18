@@ -1,4 +1,9 @@
-.dashboard {
+.surveys.index,
+.surveys.show,
+.clinics.index,
+.clinics.show,
+.providers.index,
+.providers.show {
   // Float the last column left
   [class*="column"] + [class*="column"]:last-child {
     float: left;
@@ -7,119 +12,159 @@
   & > .wrap > main {
     section.layout {
       max-width: 100%;
+    }
+  }
 
-      section.resource {
-        padding: rem-calc(60 0 40);
-        
-        &:nth-child(even) {
-          background: darken($body-bg, 2%);
-        }
+  section.resource {
+    padding: rem-calc(60 0 40);
+    
+    &:nth-child(odd) {
+      background: darken($body-bg, 2%);
 
-        article .block-panel .content {
-          position: relative;
-        }
-
-        // 3 Column Blocks
-        article.multiple-choice,
-        article.response-chart,
-        article.timing-chart,
-        article.checkboxes,
-        article.dropdown,
-        article.number,
-        article.scale,
-        div.more {
-          @include grid-column($columns: 3)
-        }
-        
-        // 6 Column Blocks
-        article.single-line-text,
-        article.paragraph-text,
-        article.header {
-          @include grid-column($columns: 6);
-        }
-        
-        // 12 Column Blocks
-        article.responses-table {
-          @include grid-column($columns: 12);
-        }
-
-        .equal-height article .block-panel > .content {
-          height: 240px;
-          .chart {
-            bottom: 0;
-          }
+      .block-button {
+        &:hover {
+          background-color: $body-bg;
         }
       }
+    }
 
-      article.response-chart,
-      article.timing-chart {
-        .stat {
-          color: $body-font-color;
-          display: table;
-          big, span {
-            display: table-cell;
-            vertical-align: middle;
-          }
+    article .block-panel .content {
+      position: relative;
+      height: 100%;
+    }
+
+    // 3 Column Blocks
+    article.multiple-choice,
+    article.checkboxes,
+    article.dropdown,
+    article.number,
+    article.scale,
+    article.more {
+      @include grid-column($columns: 12);
+      @media #{$medium-up} {
+        @include grid-column($columns: 4);
+      }
+      @media #{$large-up} {
+        @include grid-column($columns: 3);
+      }
+    }
+    
+    // 6 Column Blocks
+    article.single-line-text,
+    article.paragraph-text,
+    article.header {
+      @include grid-column($columns: 12);
+      @media #{$medium-up} {
+        @include grid-column($columns: 8);
+      }
+      @media #{$large-up} {
+        @include grid-column($columns: 6);
+      }
+    }
+
+    article.response-chart,
+    article.timing-chart {
+      @media #{$medium-up} {
+        @include grid-column($columns: 3);
+      }
+    }
+
+    article.header {
+      @media #{$medium-up} {
+        @include grid-column($columns: 6);
+      }
+
+      .tools {
+        @include position(absolute, null 0px 0px 0px);
+        border-top: 1px solid #e5e6ea;
+        margin: rem-calc(10px 20px 0);
+        padding: rem-calc(5px 0 0);
+      }
+    }
+
+    article.header.small {
+      @media #{$medium-up} {
+        @include grid-column($columns: 5);
+      }
+    }
+    
+    article.more.small {
+      @include grid-column($columns: 1);
+    }
+
+    // 12 Column Blocks
+    article.responses-table {
+      @include grid-column($columns: 12);
+    }
+  }
+
+  article.response-chart,
+  article.timing-chart {
+    .stat {
+      color: $body-font-color;
+      display: table;
+      big, span {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      big {
+        font-size: rem-calc(30);
+        font-weight: 600;
+        padding: 0 5px;
+      }
+      span {
+        font-weight: 300;
+      }
+    }
+  }
+
+  article.scale {
+    div.content {
+      @include grid-row();
+      color: $body-font-color;
+
+      div.stat,
+      div.extras {
+        @include grid-column($columns: 6);
+      }
+      div.chart {
+        @include grid-column($columns: 12, $collapse: true)
+      }
+
+      div.stat {
+        text-align: right;
+
+        & > div {
+          line-height: rem-calc(32);
+          
           big {
             font-size: rem-calc(30);
             font-weight: 600;
-            padding: 0 5px;
           }
-          span {
-            font-weight: 300;
+
+          i { font-size: rem-calc(16); }
+
+          &.above-median i {
+            color: $success-color;
+          }
+          &.below-median i {
+            color: $warning-color;
           }
         }
       }
 
-      article.scale {
-        div.content {
-          @include grid-row();
-          color: $body-font-color;
+      div.extras {
+        font-size: rem-calc(18);
 
-          div.stat,
-          div.extras {
-            @include grid-column($columns: 6);
+        .average-time {
+          & > div {
+            @include grid-column($columns: 6, $collapse: true)
           }
-          div.chart {
-            @include grid-column($columns: 12, $collapse: true)
-          }
-
-          div.stat {
-            text-align: right;
-
-            & > div {
-              line-height: rem-calc(32);
-              
-              big {
-                font-size: rem-calc(30);
-                font-weight: 600;
-              }
-
-              i { font-size: rem-calc(16); }
-
-              &.above-median i {
-                color: $success-color;
-              }
-              &.below-median i {
-                color: $warning-color;
-              }
-            }
-          }
-
-          div.extras {
-            font-size: rem-calc(18);
-
-            .average-time {
-              & > div {
-                @include grid-column($columns: 6, $collapse: true)
-              }
-              & > div:last-child {
-                font-size: rem-calc(10);
-                line-height: rem-calc(11);
-                padding-left: 5px;
-                padding-top: 2px;
-              }
-            }
+          & > div:last-child {
+            font-size: rem-calc(10);
+            line-height: rem-calc(11);
+            padding-left: 5px;
+            padding-top: 2px;
           }
         }
       }
