@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   constraints(Subdomain) do
     
     resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
-    resources :devices
 
     resources :surveys do
       member do 
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
       member do 
         get 'chart/:type(/field/:field_id)' => 'clinics#chart', as: :chart
       end
+      resources :devices
     end
 
     resources :providers do
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     end
 
     get '/install', to: redirect('/install/new')
-    resource :install, only: [:new, :create, :edit, :update], as: 'installs'
+    resource :install, only: [:new, :create, :edit], as: 'installs'
+    post 'install/:id' => 'installs#update', as: 'device'
 
     devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }, :skip => [:sessions]
     as :user do

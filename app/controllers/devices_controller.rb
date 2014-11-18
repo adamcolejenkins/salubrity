@@ -1,5 +1,8 @@
 class DevicesController < ApplicationController
+  respond_to :html, :xml, :json
+  load_and_authorize_resource
   before_action :set_device, only: [:show, :edit, :update, :destroy]
+  layout 'angular'
 
   def index
     @devices = Device.all
@@ -40,6 +43,6 @@ class DevicesController < ApplicationController
     end
 
     def device_params
-      params.require(:device).permit(:team_id, :clinic_id, :udid, :imei, :os, :os_verion, :version, :product, :color, :active)
+      params.require(:device).permit(:team_id, :clinic_id, :udid, :imei, :os, :os_version, :version, :product, :color, :active)
     end
 end

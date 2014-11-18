@@ -25,15 +25,15 @@ table
         td = device.udid
         td = device.imei
         td = device.os
-        td = device.os_verion
+        td = device.os_version
         td = device.version
         td = device.product
         td = device.color
         td = device.active
-        td = link_to 'Show', device
-        td = link_to 'Edit', edit_device_path(device)
-        td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Show', clinic_device_path(device.clinic, device)
+        td = link_to 'Edit', edit_clinic_device_path(device.clinic, device)
+        td = link_to 'Destroy', clinic_device_path(device.clinic, device), data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Device', new_device_path
+= link_to 'New Device', new_clinic_device_path

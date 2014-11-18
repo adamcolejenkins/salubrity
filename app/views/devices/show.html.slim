@@ -16,8 +16,8 @@ p
   strong Os:
   = @device.os
 p
-  strong Os verion:
-  = @device.os_verion
+  strong Os version:
+  = @device.os_version
 p
   strong Version:
   = @device.version
@@ -31,6 +31,6 @@ p
   strong Active:
   = @device.active
 
-= link_to 'Edit', edit_device_path(@device)
+= link_to 'Edit', edit_clinic_device_path(@device.clinic, @device)
 '|
-= link_to 'Back', devices_path
+= link_to 'Back', clinic_devices_path

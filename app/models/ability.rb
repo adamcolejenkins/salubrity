@@ -3,20 +3,25 @@ class Ability
 
   def initialize(user)
 
+    user ||= User.new
+
     if user.role? :superuser
       can :manage, :all
-    end
 
-    if user.role? :owner
+    elsif user.role? :owner
       can :manage, :all
-    end
 
-    if user.role? :contributor
-      cannot :manage, Users
-    end
+    elsif user.role? :contributor
+      cannot :manage, Team
+      cannot :manage, User
+      cannot :manage, Device
 
-    if user.role? :spectator
+    elsif user.role? :spectator
       can :read, :all
+      cannot :manage, Device
+
+    else
+      can :create, Team
     end
 
 

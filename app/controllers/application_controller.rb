@@ -4,11 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :subdomain, :current_team
   before_filter :validate_subdomain, :authenticate_user!
+  before_filter :authenticate_user!
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
-  # def permission_denied
-  #   render file: 'public/401.html', layout: false, status: :unauthorized
-  # end
+  def permission_denied
+    render file: 'public/401.html', layout: false, status: :unauthorized
+  end
 
   private
 

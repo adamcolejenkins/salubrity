@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   respond_to :html, :xml, :json
+  load_and_authorize_resource
   # before_filter :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
   skip_before_filter :authenticate_user!, only: [:new, :create]
   skip_before_filter :validate_subdomain, only: [:new, :create]

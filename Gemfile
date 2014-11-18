@@ -40,7 +40,7 @@ gem 'devise_invitable', '~> 1.3.4'
 # Subdomain account access
 gem 'devise-basecamper'
 # Use CanCan for user permissions
-gem "cancan"
+gem 'cancancan', '~> 1.9'
 # Use Paperclip for uploading files
 gem "paperclip", "~> 4.2"
 # Use AWS SDK to store uploaded files to S3

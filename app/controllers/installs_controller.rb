@@ -29,7 +29,7 @@ class InstallsController < ApplicationController
     @device.os_version = get_os_version
     @device.save
 
-    send_data signed_payload(:profile_service).to_str, content_type: :mobileconfig
+    render text: signed_payload(:profile_service), content_type: "application/x-apple-aspen-config"
   end
 
   # PATCH/PUT /installs/1
@@ -69,28 +69,56 @@ class InstallsController < ApplicationController
     end
 
     def signed_payload(payload)
-      # CFPropertyList.xml_parser_interface.new.to_str(:root => CFPropertyList.guess(self.send("#{payload}_payload")))
-      OpenSSL::PKCS7::sign ServerCert,
-                           ServerKey,
-                           CFPropertyList.xml_parser_interface.new.to_str(:root => CFPropertyList.guess(self.send("#{payload}_payload"))),
-                           ServerChain,
-                           OpenSSL::PKCS7::BINARY
+      CFPropertyList.xml_parser_interface.new.to_str(:root => CFPropertyList.guess(self.send("#{payload}_payload")))
     end
 
     def profile_service_payload
       {
         PayloadContent: {
           URL: device_url(@device),
-          DeviceAttributes: %w(UDID VERSION PRODUCT SERIAL),
-          Challenge: @device.access_passcode
+          DeviceAttributes: %w(UDID VERSION PRODUCT ICCID)
         },
         PayloadOrganization: current_team.name,
         PayloadDisplayName: t('devices.new.display_name'),
         PayloadVersion: 1,
         PayloadUUID: SecureRandom.uuid,
-        PayloadIdentifier: 'com.salubrity.profile-service',
+        PayloadIdentifier: 'com.salubrity.registration',
         PayloadDescription: t('devices.new.description'),
         PayloadType: 'Profile Service'
+      }
+    end
+
+    def profile_service_response_payload
+      key = OpenSSL::PKey::RSA.new 1024
+
+      cert = OpenSSL::X509::Certificate.new
+      cert.version = 2
+      cert.serial = Random.rand(2**(159))
+      cert.not_before = Time.now
+      cert.not_after = Time.now + 10.minutes
+      cert.public_key = key.public_key
+      cert.subject = OpenSSL::X509::Name.parse "CN=Device Registration Phase 2"
+      cert.issuer = ProfileServiceCert.subject
+      cert.sign ProfileServiceKey, OpenSSL::Digest::SHA1.new
+
+      password = SecureRandom.hex 32
+      uuid = SecureRandom.uuid
+      p12 = OpenSSL::PKCS12.create password, uuid, key, cert
+
+      {
+        PayloadContent: [{
+          Password: password,
+          PayloadContent: StringIO.new(p12.to_der),
+          PayloadIdentifier: 'com.testhub.registration.phase-2.credentials',
+          PayloadType: 'com.apple.security.pkcs12',
+          PayloadUUID: uuid,
+          PayloadVersion: 1
+        }],
+        PayloadDisplayName: t('devices.new.display_name'),
+        PayloadVersion: 1,
+        PayloadUUID: SecureRandom.uuid,
+        PayloadIdentifier: 'com.testhub.registration.phase-2',
+        PayloadType: 'Configuration'
       }
     end
 end

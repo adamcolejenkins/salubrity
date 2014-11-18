@@ -3,7 +3,8 @@
 # ServerCA     = OpenSSL::X509::Certificate.new  File.read(File.join(Rails.root, 'lib/ssl/ca.crt'))
 # ServerChain  = [ServerCA]
 
-# ProfileServiceKey   = OpenSSL::PKey::RSA.new          File.read(File.join(Rails.root, 'lib/ssl/profile_service.key')), ENV['PROFILE_SERVICE_PHRASE']
-# ProfileServiceCert  = OpenSSL::X509::Certificate.new  File.read(File.join(Rails.root, 'lib/ssl/profile_service.crt'))
-# ProfileServiceStore = OpenSSL::X509::Store.new
-# ProfileServiceStore.add_cert ProfileServiceCert
+ProfileServiceKey   = OpenSSL::PKey::RSA.new          File.read(File.join(Rails.root, 'lib/ssl/profile_service.key')), ENV['PROFILE_SERVICE_PHRASE']
+ProfileServiceCert  = OpenSSL::X509::Certificate.new  File.read(File.join(Rails.root, 'lib/ssl/profile_service.crt'))
+ProfileServiceStore = OpenSSL::X509::Store.new
+ProfileServiceStore.add_cert ProfileServiceCert
+ProfileServiceChain = [ProfileServiceCert]
