@@ -2,7 +2,8 @@ class Device < ActiveRecord::Base
   belongs_to :team
   belongs_to :clinic
 
-  # validates :udid, presence: true, uniqueness: true
+  validates :udid, uniqueness: true, on: :update
+  validates :internal_identifier, uniqueness: true
 
   def update_profile_service_attributes!(response_attributes)
     self.product = response_attributes.value['PRODUCT'].value
