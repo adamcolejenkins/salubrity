@@ -39,21 +39,21 @@ class InstallsController < ApplicationController
   # PATCH/PUT /installs/1
   # PATCH/PUT /installs/1.json
   def update
-    profile_service_response = OpenSSL::PKCS7.new request.raw_post
-    profile_service_response.verify profile_service_response.certificates, ProfileServiceStore, nil, OpenSSL::PKCS7::NOINTERN | OpenSSL::PKCS7::NOCHAIN
-    profile_service_attributes = CFPropertyList::List.new(:data => profile_service_response.data).value
+    # profile_service_response = OpenSSL::PKCS7.new request.raw_post
+    # profile_service_response.verify profile_service_response.certificates, ProfileServiceStore, nil, OpenSSL::PKCS7::NOINTERN | OpenSSL::PKCS7::NOCHAIN
+    # profile_service_attributes = CFPropertyList::List.new(:data => profile_service_response.data).value
 
 
 
-    render text: "OK"
-    @device = Device.find(params[:id])
-    existing_device = Device.where(:udid => profile_service_attributes.value['UDID'].value).first
-    if existing_device && existing_device != @device
-      @device.try :destroy
-      @device = existing_device
-    end
+    # render text: "OK"
+    # @device = Device.find(params[:id])
+    # existing_device = Device.where(:udid => profile_service_attributes.value['UDID'].value).first
+    # if existing_device && existing_device != @device
+    #   @device.try :destroy
+    #   @device = existing_device
+    # end
 
-    render plist: profile_service_payload, content_type: :mobileconfig
+    # render plist: profile_service_payload, content_type: :mobileconfig
   end
 
   # DELETE /installs/1

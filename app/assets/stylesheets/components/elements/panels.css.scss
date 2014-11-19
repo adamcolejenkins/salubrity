@@ -52,14 +52,10 @@
     color: $body-font-color;
   }
 
-  &.table > .header {
-    
-  }
-
   & > .content {
 
     &.scroll {
-      height: 200px;
+      height: 200px !important;
       overflow-y: scroll;
     }
   }
