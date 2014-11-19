@@ -55,8 +55,20 @@
   & > .content {
 
     &.scroll {
-      height: 200px;
+      height: 200px !important;
       overflow-y: scroll;
+    }
+  }
+
+  &.table {
+    & > .header {
+      height: auto;
+      font-weight: bold;
+    }
+    
+    & > .content {
+      @include grid-row();
+      padding: 0px;
     }
   }
 }

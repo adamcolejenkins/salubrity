@@ -17,6 +17,9 @@ class Field < ActiveRecord::Base
 
   store :opts, :accessors => [:field_size, :layout, :display_as, :instructions, :range_min, :range_max, :increment, :median, :button_label, :button_mode, :button_url, :attachment_type, :attachment_url], coder: JSON
 
+  DATA_EXCLUDE = %w(intro outro provider_dropdown)
+  DATA_INCLUDE_PROVIDER = %w(intro outro)
+
   def target_priority=(value)
     insert_at(value.to_i)
   end

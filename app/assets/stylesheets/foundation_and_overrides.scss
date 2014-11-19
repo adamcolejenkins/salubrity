@@ -1308,16 +1308,16 @@ $table-border-size: 1px;
 $table-border-color: $gainsboro;
 
 // These control the table head styles
-$table-head-bg: $titanium;
+$table-head-bg: $white-smoke;
 $table-head-font-size: rem-calc(12);
-$table-head-font-color: $white;
-$table-head-font-weight: $font-weight-normal;
+$table-head-font-color: $titanium;
+$table-head-font-weight: $font-weight-bold;
 $table-head-padding: rem-calc(8 10 10);
 
 // These control the row padding and font styles
 $table-row-padding: rem-calc(9 10);
 $table-row-font-size: rem-calc(12);
-$table-row-font-color: $jet;
+$table-row-font-color: $titanium;
 $table-line-height: rem-calc(16);
 
 // These are for controlling the layout, display and margin of tables

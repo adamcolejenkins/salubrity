@@ -1,6 +1,9 @@
 class InstallsController < ApplicationController
-  before_action :set_clinics, only: [:new, :create, :edit, :update]
-  before_action :set_surveys, only: [:new, :create, :edit, :update]
+  skip_before_filter :authenticate_user!, only: [:update]
+  skip_before_filter :verify_authenticity_token, :only => [:update]
+
+  before_action :set_clinics, only: [:new, :create]
+  before_action :set_surveys, only: [:new, :create]
 
   # GET /installs
   # GET /installs.json
@@ -29,13 +32,28 @@ class InstallsController < ApplicationController
     @device.os_version = get_os_version
     @device.save
 
-    render text: signed_payload(:profile_service), content_type: "application/x-apple-aspen-config"
+    # render plist: profile_service_payload, content_type: "application/x-apple-aspen-config"
+    send_data signed_payload(:profile_service).to_der, content_type: "application/x-apple-aspen-config"
   end
 
   # PATCH/PUT /installs/1
   # PATCH/PUT /installs/1.json
   def update
-    
+    # profile_service_response = OpenSSL::PKCS7.new request.raw_post
+    # profile_service_response.verify profile_service_response.certificates, ProfileServiceStore, nil, OpenSSL::PKCS7::NOINTERN | OpenSSL::PKCS7::NOCHAIN
+    # profile_service_attributes = CFPropertyList::List.new(:data => profile_service_response.data).value
+
+
+
+    # render text: "OK"
+    # @device = Device.find(params[:id])
+    # existing_device = Device.where(:udid => profile_service_attributes.value['UDID'].value).first
+    # if existing_device && existing_device != @device
+    #   @device.try :destroy
+    #   @device = existing_device
+    # end
+
+    # render plist: profile_service_payload, content_type: :mobileconfig
   end
 
   # DELETE /installs/1
@@ -69,14 +87,19 @@ class InstallsController < ApplicationController
     end
 
     def signed_payload(payload)
-      CFPropertyList.xml_parser_interface.new.to_str(:root => CFPropertyList.guess(self.send("#{payload}_payload")))
+      OpenSSL::PKCS7::sign ProfileServiceCert,
+                         ProfileServiceKey,
+                         CFPropertyList.xml_parser_interface.new.to_str(:root => CFPropertyList.guess(self.send("#{payload}_payload"))),
+                         nil,
+                         OpenSSL::PKCS7::BINARY
     end
 
     def profile_service_payload
       {
         PayloadContent: {
           URL: device_url(@device),
-          DeviceAttributes: %w(UDID VERSION PRODUCT ICCID)
+          DeviceAttributes: %w(UDID VERSION PRODUCT SERIAL)
+          # Challenge: @device.access_passcode
         },
         PayloadOrganization: current_team.name,
         PayloadDisplayName: t('devices.new.display_name'),

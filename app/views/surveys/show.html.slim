@@ -50,12 +50,58 @@ section.resource id="survey-#{@survey.id}"
             = column_chart chart_survey_path(@survey, :timing), height: "100%"
 
   .row(data-equalizer)
-    - @survey.fields.where.not(context: %w(intro outro provider_dropdown)).each do |field|
+    - @survey.data_fields.each do |field|
       article class="#{field.context.gsub('_', '-')}"
         = render "surveys/charts/#{field.context}", field: field
 
-  .row.hide
+  
+  .row
+
     article.responses-table
-      .block-panel.collapse
-        .header Responses
+      .block-panel.table
+        .header Response Data
         .content
+
+          table.response-table.display.no-border role="grid" id="response-table"
+            thead
+              tr
+                / Tools
+                th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
+
+                / Date
+                th width="100" Date
+
+                / Provider
+                th Provider
+
+                / Fields
+                - @survey.data_fields.each_with_index do |field, index|
+                  th class="#{field.context}"
+                    div
+                      span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
+
+                / Start date
+                th Response Time
+
+
+            tbody
+              - @survey.responses.active.each do |response|
+                tr
+                  
+                  / Tools
+                  td
+                    = check_box_tag 'select', nil, false, disabled: 'disabled'
+
+                  / Date
+                  td = response.created_at.to_formatted_s(:long)
+                  
+                  / Provider
+                  td = response.provider.full_name
+                  
+                  / Fields
+                  - @survey.data_fields.each do |field|
+                    td class="#{field.context}"
+                      = response.answers.where(field: field).first.response_value unless response.answers.where(field: field).blank?
+                  
+                  / Response Time
+                  td = Time.at(response.time).utc.strftime("%M:%S")
