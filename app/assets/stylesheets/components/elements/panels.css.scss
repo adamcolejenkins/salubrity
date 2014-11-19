@@ -52,11 +52,27 @@
     color: $body-font-color;
   }
 
+  &.table > .header {
+    
+  }
+
   & > .content {
 
     &.scroll {
       height: 200px;
       overflow-y: scroll;
+    }
+  }
+
+  &.table {
+    & > .header {
+      height: auto;
+      font-weight: bold;
+    }
+    
+    & > .content {
+      @include grid-row();
+      padding: 0px;
     }
   }
 }

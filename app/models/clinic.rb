@@ -43,6 +43,10 @@ class Clinic < ActiveRecord::Base
     self.survey.fields
   end
 
+  def data_fields
+    self.survey.fields.includes(:field_choices).where.not(context: Field::DATA_EXCLUDE)
+  end
+
   private
 
   def translate_slug

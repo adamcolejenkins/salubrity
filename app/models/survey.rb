@@ -37,4 +37,8 @@ class Survey < ActiveRecord::Base
     self.clinics.includes(:providers).map { |c| c.providers.size }.inject(0) { |sum,item| sum + item }
   end
 
+  def data_fields
+    self.fields.includes(:field_choices).where.not(context: Field::DATA_EXCLUDE)
+  end
+
 end

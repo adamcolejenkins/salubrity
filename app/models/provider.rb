@@ -57,6 +57,10 @@ class Provider < ActiveRecord::Base
     "#{self.surname} #{self.credential}, #{self.name}"
   end
 
+  def data_fields
+    self.clinic.survey.fields.includes(:field_choices).where.not(context: Field::DATA_EXCLUDE)
+  end
+
   private
   
 end

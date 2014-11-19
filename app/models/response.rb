@@ -33,4 +33,8 @@ class Response < ActiveRecord::Base
     a.to_json
   end
 
+  def self.active
+    self.joins(:provider, :clinic)
+  end
+
 end
