@@ -1,11 +1,9 @@
 = form_for @survey, html: {class: 'indent-fields'} do |f|
   - if @survey.errors.any?
-    .alert-box.alert
-      h2 = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved:"
-      ul
-        - @survey.errors.full_messages.each do |message|
-          li = message
-  
+    .alert-box.alert.radius
+      = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved: "
+      strong = @survey.errors.full_messages.join(", ")
+
   .block-panel
     .content
       .form-header
