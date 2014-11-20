@@ -33,7 +33,7 @@ class Provider < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :surname
-  validates_presence_of :clinic
+  validates_presence_of :clinic_id
   validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
 
   def average_time

@@ -12,7 +12,7 @@ class Clinic < ActiveRecord::Base
 
   validates :title, presence: true
   validates :guid, presence: true, uniqueness: { scope: :survey, message: " exists for this survey." }, on: :update
-  validates_presence_of :survey_id
+  validates :survey_id, presence: true
 
   # This method associates the attribute ":background" with a file attachment
   has_attached_file :background, 

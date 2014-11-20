@@ -2,3 +2,6 @@ hgroup
   .title
     h2 = t 'surveys.title'
     h3.subheader = t 'surveys.describe'
+  .actions
+    - if can?(:create, Survey) && action_name == 'index'
+      = link_to 'New Survey', new_survey_path, target: "_self", class: "radius success button"
