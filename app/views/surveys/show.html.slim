@@ -34,7 +34,7 @@ section.resource id="survey-#{@survey.id}"
       .block-panel(data-equalizer-watch)
         .content
           .stat
-            big = @survey.responses.count
+            big = @survey.responses.size
             span.muted  responses
           .chart bar-graph=""
             = column_chart chart_survey_path(@survey, :responses), height: "100%"
@@ -50,7 +50,7 @@ section.resource id="survey-#{@survey.id}"
             = column_chart chart_survey_path(@survey, :timing), height: "100%"
 
   .row(data-equalizer)
-    - @survey.data_fields.each do |field|
+    - @survey.data_fields.find_each do |field|
       article class="#{field.context.gsub('_', '-')}"
         = render "surveys/charts/#{field.context}", field: field
 
@@ -85,7 +85,7 @@ section.resource id="survey-#{@survey.id}"
 
 
             tbody
-              - @survey.responses.active.each do |response|
+              - @survey.responses.active.find_each do |response|
                 tr
                   
                   / Tools
@@ -99,7 +99,7 @@ section.resource id="survey-#{@survey.id}"
                   td = response.provider.full_name
                   
                   / Fields
-                  - @survey.data_fields.each do |field|
+                  - @survey.data_fields.find_each do |field|
                     td class="#{field.context}"
                       = response.answers.where(field: field).first.response_value unless response.answers.where(field: field).blank?
                   

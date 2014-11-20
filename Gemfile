@@ -56,6 +56,8 @@ group :development do
   gem 'spring'
   # Web console for helping with errors
   gem 'web-console', '2.0.0.beta3'
+  # Increase application's performance by reducing the number of queries it makes. Read more: https://github.com/flyerhzm/bullet
+  gem "bullet"
 end
 # Test environment gems
 group :test do

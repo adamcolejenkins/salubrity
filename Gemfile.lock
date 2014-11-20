@@ -57,6 +57,9 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     bump (0.5.1)
     cancancan (1.9.2)
     chart-js-rails (0.0.7)
@@ -205,6 +208,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.0.0.beta3)
@@ -224,6 +228,7 @@ DEPENDENCIES
   autoprefixer-rails
   aws-sdk
   bourbon
+  bullet
   bump (~> 0.5.1)
   cancancan (~> 1.9)
   chart-js-rails

@@ -24,12 +24,14 @@ class Response < ActiveRecord::Base
   end
 
   def self.field_total(field)
+    logger.debug("START:: Response.field_total =========================================================")
     a = []
     i = field.range_min.to_i
     until i > field.range_max.to_i
       a[i] = total_answers resource: self, where: { field: field, value: i.to_s }
       i += field.increment.to_i
     end
+    logger.debug("START:: Response.field_total =========================================================")
     a.to_json
   end
 

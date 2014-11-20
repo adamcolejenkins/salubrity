@@ -11,10 +11,12 @@ module ChartData
   private
 
   def total(args)
+    logger.debug("START:: ChartData.total =========================================================")
     count = 0
     self.responses.each do |response|
-      count += response.answers.where({ field: args[:field], value: args[:value] }).count
+      count += response.answers.where({ field: args[:field], value: args[:value] }).size
     end
+    logger.debug("STOP:: ChartData.total =========================================================")
     count
   end
 

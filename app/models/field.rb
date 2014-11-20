@@ -33,20 +33,24 @@ class Field < ActiveRecord::Base
   end
 
   def total_by_index
+    logger.debug("START:: Field.total_by_index =========================================================")
     a = []
     i = self.range_min.to_i
     until i > self.range_max.to_i
       a[i] = (self.answers.where(value: i.to_s).count)
       i += self.increment.to_i
     end
+    logger.debug("STOP:: Field.total_by_index =========================================================")
     a
   end
 
   def average_time
+    logger.debug("START:: Field.average_time =========================================================")
     avg = 0.0
     self.answers.each_with_index do |answer, index|
       avg = ((answer.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
     end
+    logger.debug("STOP:: Field.average_time =========================================================")
 
     Time.at(avg).utc.strftime("%H:%S")
   end

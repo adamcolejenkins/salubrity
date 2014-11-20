@@ -21,11 +21,14 @@ class Survey < ActiveRecord::Base
   end
 
   def average_time
+    logger.debug("START:: Survey.average_time =========================================================")
     @avg = 0.0
-    self.responses.each_with_index do |response, index|
-      @avg = ((response.time + (@avg * index.to_f)) / (index.to_f + 1)).to_f
+    i = 0
+    self.responses.find_each do |response|
+      @avg = ((response.time + (@avg * i.to_f)) / (i.to_f + 1)).to_f
+      i += 1
     end
-
+    logger.debug("STOP:: Survey.average_time =========================================================")
     Time.at(@avg).utc.strftime("%M:%S")
   end
 

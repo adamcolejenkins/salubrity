@@ -5,14 +5,14 @@
     .stat
       .above-median
         big
-          = percent(total_answers(resource: @survey.responses, where: { field: field, value: field.above_median_range }), @survey.responses.count, false, 0) * 100
+          = percent(total_answers(resource: @survey.responses, where: { field: field, value: field.above_median_range }), @survey.responses.size, false, 0) * 100
           small %
         i.fa.fa-arrow-up
 
 
       .below-median
         big
-          = percent(total_answers(resource: @survey.responses, where: { field: field, value: field.below_median_range }), @survey.responses.count, false, 0) * 100
+          = percent(total_answers(resource: @survey.responses, where: { field: field, value: field.below_median_range }), @survey.responses.size, false, 0) * 100
           small %
         sup
           i.fa.fa-arrow-down
