@@ -2,3 +2,6 @@ hgroup
   .title
     h2 = t 'clinics.title'
     h3.subheader = t 'clinics.describe'
+  .actions
+    - if can?(:create, Clinic) && action_name == 'index'
+      = link_to 'New Clinic', new_clinic_path, target: "_self", class: "radius success button"

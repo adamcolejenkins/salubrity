@@ -1,10 +1,8 @@
 = form_for @clinic, html: {class: "indent-fields"} do |f|
   - if @clinic.errors.any?
-    .alert-box.alert
-      h2 = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved:"
-      ul
-        - @clinic.errors.full_messages.each do |message|
-          li = message
+    .alert-box.alert.radius
+      = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved: "
+      strong = @clinic.errors.full_messages.join(", ")
   
   .block-panel
     .content
