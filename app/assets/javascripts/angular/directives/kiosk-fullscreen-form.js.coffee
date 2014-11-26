@@ -225,7 +225,18 @@
 
 					# Restart
 					@ctrlRestart.addEventListener 'click', ->
-						location.reload()
+						swal
+							title: 'Are you sure?'
+							text: 'Your answers will not be saved.'
+							type: 'warning'
+							showCancelButton: true
+							confirmButtonColor: "#DD6B55"
+							confirmButtonText: "Yes, start over!"
+							cancelButtonColor: '#67c082'
+							cancelButtonText: "No, continue!"
+						, ->
+							location.reload()
+						return
 
 
 					# navigation dots
