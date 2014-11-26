@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: f547eaf5f016a9597cd1ae33281488d71e81987c
+  branch: master
+  specs:
+    jquery-datatables-rails (3.1.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
+
+GIT
   remote: https://github.com/getsentry/raven-ruby.git
   revision: 647d6a60c0ced08b711a3f1d2269696f733e0c19
   specs:
@@ -40,6 +51,8 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.5.0)
       activerecord (>= 3.0)
+    ajax-datatables-rails (0.2.0)
+      railties (>= 3.1)
     arel (5.0.1.20140414130214)
     auto_strip_attributes (2.0.6)
       activerecord (>= 3.0)
@@ -59,8 +72,6 @@ GEM
     builder (3.2.2)
     bump (0.5.1)
     cancancan (1.9.2)
-    chart-js-rails (0.0.7)
-      railties (> 3.1)
     chartkick (1.3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -113,6 +124,9 @@ GEM
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
     json (1.8.1)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -220,13 +234,13 @@ DEPENDENCIES
   CFPropertyList (~> 2.2.8)
   CFPropertyList-rails
   acts_as_list
+  ajax-datatables-rails
   auto_strip_attributes (~> 2.0)
   autoprefixer-rails
   aws-sdk
   bourbon
   bump (~> 0.5.1)
   cancancan (~> 1.9)
-  chart-js-rails
   chartkick
   coffee-rails (~> 4.0.0)
   devise
@@ -238,8 +252,10 @@ DEPENDENCIES
   groupdate
   hightop
   jbuilder (~> 2.0)
+  jquery-datatables-rails!
   jquery-rails
   jquery-ui-rails
+  kaminari
   multi_json
   newrelic_rpm
   paperclip (~> 4.2)

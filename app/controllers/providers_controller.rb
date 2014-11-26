@@ -1,6 +1,6 @@
 class ProvidersController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_provider, only: [:show, :edit, :update, :destroy, :chart]
+  # load_and_authorize_resource, except: [:restore]
+  before_action :set_provider, only: [:show, :edit, :update, :archive, :chart, :data]
   layout 'angular'
 
   # GET /providers
@@ -56,15 +56,48 @@ class ProvidersController < ApplicationController
   # DELETE /providers/1
   # DELETE /providers/1.json
   def destroy
+    @provider.really_destroy!
+    respond_to do |format|
+      format.html { redirect_to archived_providers_url, notice: 'Provider was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # GET /providers/archived
+  def archived
+    @providers = current_team.providers.only_deleted
+  end
+
+  # GET /providers/1/restore
+  def restore
+    Provider.restore(params[:id], recursive: true)
+
+    respond_to do |format|
+      format.html { redirect_to archived_providers_url, notice: 'Provider was successfully restored.' }
+      format.json { render :show, status: :ok }
+    end
+  end
+
+  # DELETE /providers/1/delete
+  # DELETE /providers/1/delete.json
+  def archive
+    @provider = Provider.only_deleted.find(params[:id])
     @provider.destroy
     respond_to do |format|
-      format.html { redirect_to providers_url, notice: 'Provider was successfully destroyed.' }
+      format.html { redirect_to providers_url, notice: 'Provider was successfully archived.' }
       format.json { head :no_content }
     end
   end
 
   def chart
     self.send("#{params[:type]}_chart")
+  end
+
+  def data
+    respond_to do |format|
+      format.html
+      format.json { render json: ResponseDatatable.new(view_context) }
+    end
   end
 
   private
@@ -96,5 +129,9 @@ class ProvidersController < ApplicationController
     def scale_chart
       @field = Field.find(params[:field_id])
       render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @provider }
+    end
+
+    def response_data
+      
     end
 end

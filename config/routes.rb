@@ -21,12 +21,25 @@ Rails.application.routes.draw do
     resources :providers do
       member do 
         get 'chart/:type(/field/:field_id)' => 'providers#chart', as: :chart
+        get 'data' => 'providers#data', as: :data
+      end
+
+      collection do
+        get 'archived'
+      end
+      member do
+        get 'restore'
+      end
+      member do
+        delete 'archive'
       end
     end
 
-    get '/install', to: redirect('/install/new')
-    resource :install, only: [:new, :create, :edit], as: 'installs'
-    post 'install/:id' => 'installs#update', as: 'device'
+    get 'responses/:resource/:id' => 'responses#index'
+
+    # get '/install', to: redirect('/install/new')
+    # resource :install, only: [:new, :create, :edit], as: 'installs'
+    # post 'install/:id' => 'installs#update', as: 'device'
 
     devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }, :skip => [:sessions]
     as :user do

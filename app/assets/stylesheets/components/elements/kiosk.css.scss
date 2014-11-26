@@ -140,6 +140,15 @@ body.kiosk {
       height: 0.5em;
       background: $kiosk-controls-progress-bar-color;
     }
+
+    // Restart Button
+    .kiosk-restart {
+      @include position(fixed, null null 0px 0px);
+      margin: 40px;
+      color: $kiosk-control-button-text-color;
+      font-weight: 700;
+      font-size: 2em;
+    }
     
     // Step numbers
     .kiosk-numbers {
@@ -653,7 +662,8 @@ button.kiosk-continue {
 }
 
 
-.overview .kiosk-continue {
+.overview .kiosk-continue,
+.overview .kiosk-restart {
   display: none;
 }
 
@@ -689,6 +699,7 @@ button.kiosk-continue {
 .kiosk-progress,
 .kiosk-numbers,
 .kiosk-continue,
+.kiosk-restart,
 .kiosk-message-error,
 .kiosk-message-final {
   visibility: hidden;
