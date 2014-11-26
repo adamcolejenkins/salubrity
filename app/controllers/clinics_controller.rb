@@ -1,5 +1,6 @@
 class ClinicsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource only: [:chart]
   before_action :set_clinic, only: [:show, :edit, :update, :destroy, :chart]
   layout 'angular'
 

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :surname, :presence => true
 
-  ROLES = %w[superuser owner contributor spectator]
+  ROLES = %w[spectator contributor owner superuser]
 
   # validates_presence_of :name
   # validates_presence_of :surname

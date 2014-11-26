@@ -5,24 +5,51 @@ class Ability
 
     user ||= User.new
 
+    Rails.logger.debug("DEBUG:: #{user.role? :owner}")
+
+    if user.role? :spectator
+      can :read, :all
+    end
+
+    if user.role? :contributor
+      can :manage, Survey
+      can :manage, Clinic
+      can :manage, Provider
+      can :manage, Field
+      can :manage, FieldChoice
+    end
+
+    if user.role? :owner
+      can :manage, User
+      can :manage, Team
+    end
+
+
     if user.role? :superuser
       can :manage, :all
-
-    elsif user.role? :owner
-      can :manage, :all
-
-    elsif user.role? :contributor
-      cannot :manage, Team
-      cannot :manage, User
-      cannot :manage, Device
-
-    elsif user.role? :spectator
-      can :read, :all
-      cannot :manage, Device
-
-    else
-      can :create, Team
     end
+
+
+    # if user.role? :superuser
+    #   can :manage, :all
+
+    # elsif user.role? :owner
+    #   can :manage, :all
+
+    # elsif user.role? :contributor
+    #   cannot :manage, Team
+    #   cannot :manage, User
+    #   cannot :manage, Device
+
+    # elsif user.role? :spectator
+    #   can :read, :all
+    #   cannot :manage, Device
+    #   cannot :manage, User
+    #   cannot :manage, Team
+
+    # else
+    #   can :create, Team
+    # end
 
 
     # Define abilities for the passed in user here. For example:

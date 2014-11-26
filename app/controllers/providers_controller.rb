@@ -1,5 +1,6 @@
 class ProvidersController < ApplicationController
-  # load_and_authorize_resource, except: [:restore]
+  load_and_authorize_resource
+  skip_authorize_resource only: [:chart]
   before_action :set_provider, only: [:show, :edit, :update, :archive, :chart, :data]
   layout 'angular'
 

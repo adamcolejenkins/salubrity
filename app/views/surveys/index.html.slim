@@ -10,7 +10,6 @@
         .block-panel.faded(data-equalizer-watch)
           .content
             h4 = survey.title
-            h5.subheader = survey.description
 
             .tools
               ul.inline-list.left
@@ -37,8 +36,6 @@
             .stat
               big = survey.responses.count
               span.muted  responses
-            .chart bar-graph=""
-              = column_chart chart_survey_path(survey, :responses), height: "100%"
 
       / Timing Chart
       article.timing-chart
@@ -47,8 +44,6 @@
             .stat
               big = survey.average_time || "00:00"
               span.muted  avg time to complete
-            .chart bar-graph=""
-              = column_chart chart_survey_path(survey, :timing), height: "100%"
       
       article.more.small
         div.block-panel.block-button(data-equalizer-watch)

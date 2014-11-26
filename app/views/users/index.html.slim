@@ -1,8 +1,12 @@
+hgroup
+  .title
+    h2 Users
+    h3.subheader Invite users to your team.
+
 section.content
 
   dl.nav-tabs
     = tab_for "Users", users_path
-    / = tab_for "Groups", nil
     = tab_for "Invite", new_user_invitation_path
 
 
@@ -35,8 +39,7 @@ section.content
         .block-item.user-block
 
           .details
-            .avatar
-              = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 83 })
+            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
             .name
               h4 = identify(user)
 

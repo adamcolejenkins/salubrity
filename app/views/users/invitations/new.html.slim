@@ -1,8 +1,12 @@
+hgroup
+  .title
+    h2 Users
+    h3.subheader Invite users to your team.
+
 section.content
 
   dl.nav-tabs
     = tab_for "Users", users_path
-    / = tab_for "Groups", nil
     = tab_for "Invite", new_user_invitation_path
 
   h3 = t "devise.invitations.new.header"

@@ -1,13 +1,10 @@
 .block-panel.faded(data-equalizer-watch)
   .content
     h4 = provider.full_name
-
-    .tools
-      ul.inline-list.left
-        
-
-      ul.inline-list.right
-        - if can? :update, Provider
+    
+    - if can? :update, Provider
+      .tools
+        ul.inline-list.right
           li
             = link_to edit_provider_path(provider), target: "_self"
               i.fa.fa-wrench
