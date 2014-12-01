@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   ROLES = %w[spectator contributor owner superuser]
 
+  USABLE_ROLES = %w[spectator contributor owner]
+
   # validates_presence_of :name
   # validates_presence_of :surname
   # validates :role, presence: true, inclusion: ROLES
