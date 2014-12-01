@@ -6,8 +6,17 @@
     .row(data-equalizer)
 
       / Provider Info Block
-      article.header.small
-        = render 'info_block', provider: provider
+      article.header class="#{'small' if can? :read, provider}"
+        .block-panel.faded(data-equalizer-watch)
+          .content
+            h4 = provider.full_name
+            
+            - if can? :update, provider
+              .tools
+                ul.inline-list.right
+                  li
+                    = link_to edit_provider_path(provider), target: "_self"
+                      i.fa.fa-wrench
 
       / Responses Block
       article.response-chart
@@ -25,7 +34,8 @@
               big = provider.average_time || "00:00"
               span.muted  avg time to complete
       
-      article.more.small
-        div.block-panel.block-button(data-equalizer-watch)
-          = link_to provider, target: "_self", class: 'block-panel-button'
-            i.fa.fa-chevron-right
+      - if can? :read, provider
+        article.more.small
+          div.block-panel.block-button(data-equalizer-watch)
+            = link_to provider, target: "_self", class: 'block-panel-button'
+              i.fa.fa-chevron-right
