@@ -30,7 +30,7 @@
 //= require ng-underscore/build/ng-underscore.js
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
-//= require datatables
+//= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require ng-s3upload
@@ -43,21 +43,22 @@
 //= require sweetalert
 //= require nouislider
 
-// Charts
-//= require flot
-//= require flot/jquery.flot.pie
-//= require flot/jquery.flot.resize
-//= require flot.tooltip
-//= require Chart
-
-
 // DEPRECATED
+
+// Charts
+//  require flot
+//  require flot/jquery.flot.pie
+//  require flot/jquery.flot.resize
+//  require flot.tooltip
+//  require Chart
+
+
 //= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
 
 // Our Angular app files
 //= require angular/salubrity
 
-//= require_tree ./angular
+//= require_tree ./
 
 $(function() {
   $(document).foundation({
@@ -66,27 +67,27 @@ $(function() {
       equalize_on_stack: true
     }
   });
-  dTable = $(".response-table").dataTable({
-    scrollX: true,
-    scrollY: "500px",
-    scrollCollapse: true,
-    autoWidth: false,
-    pageLength: 50,
-    lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ],
-    stateSave: true,
-    order: [ 1, 'desc' ],
-    columnDefs: [
-      { "orderable": false, "targets": 0 }
-    ],
-    "tableTools": {
-      "aButtons": [
-        {
-            "sExtends": "print",
-            "bShowAll": false
-        }
-      ]
-    }
-  });
-
-
 })
+
+// DataTables Default Options
+var dTableOptions = {
+  scrollX: true,
+  scrollY: "500px",
+  scrollCollapse: true,
+  autoWidth: false,
+  pageLength: 50,
+  lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ],
+  stateSave: true,
+  order: [ 1, 'desc' ],
+  columnDefs: [
+    { "orderable": false, "targets": 0 }
+  ],
+  "tableTools": {
+    "aButtons": [
+      {
+          "sExtends": "print",
+          "bShowAll": false
+      }
+    ]
+  }
+};

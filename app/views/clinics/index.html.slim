@@ -16,8 +16,6 @@
             .stat
               big = clinic.responses.count
               span.muted  responses
-            .chart bar-graph=""
-              = column_chart chart_clinic_path(clinic, :responses), height: "100%"
 
       / Timing Chart
       article.timing-chart
@@ -26,8 +24,6 @@
             .stat
               big = clinic.average_time || "00:00"
               span.muted  avg time to complete
-            .chart bar-graph=""
-              = column_chart chart_clinic_path(clinic, :timing), height: "100%"
       
       article.more.small
         div.block-panel.block-button(data-equalizer-watch)

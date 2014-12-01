@@ -1,12 +1,13 @@
 class ClinicsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource only: [:chart]
   before_action :set_clinic, only: [:show, :edit, :update, :destroy, :chart]
   layout 'angular'
 
   # GET /clinics
   # GET /clinics.json
   def index
-    @clinics = current_team.clinics.all
+    @clinics = current_team.clinics.includes(:responses).all
   end
 
   # GET /clinics/1

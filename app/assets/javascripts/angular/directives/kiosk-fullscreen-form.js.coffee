@@ -146,6 +146,16 @@
 						@ctrlNav.innerHTML = dots
 						@_showCtrl @ctrlNav
 						@ctrlNavDots = [].slice.call( @ctrlNav.children )
+
+					# restart button
+					@ctrlRestart = createElement('button',
+						cName: 'kiosk-restart'
+						appendTo: @ctrls
+					)
+					createElement('i',
+						cName: 'fa fa-refresh'
+						appendTo: @ctrlRestart
+					)
 					
 					# field number status
 					if @options.ctrlNavPosition
@@ -204,12 +214,30 @@
 						self._setFieldTime self.formEl, 'started-at'
 						self._nextField()
 						self._showCtrl self.ctrlContinue
+						self._showCtrl self.ctrlRestart
 
 
 					# show next field
 					@ctrlContinue.addEventListener "click", ->
 						self._nextField()
 						return
+
+
+					# Restart
+					@ctrlRestart.addEventListener 'click', ->
+						swal
+							title: 'Are you sure?'
+							text: 'Your answers will not be saved.'
+							type: 'warning'
+							showCancelButton: true
+							confirmButtonColor: "#DD6B55"
+							confirmButtonText: "Yes, start over!"
+							cancelButtonColor: '#67c082'
+							cancelButtonText: "No, continue!"
+						, ->
+							location.reload()
+						return
+
 
 					# navigation dots
 					if @options.ctrlNavDots

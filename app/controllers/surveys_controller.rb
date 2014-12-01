@@ -1,12 +1,13 @@
 class SurveysController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource only: [:chart]
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :chart]
   layout 'angular'
 
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = current_team.surveys.all
+    @surveys = current_team.surveys.includes(:responses).all
   end
 
   # GET /surveys/1

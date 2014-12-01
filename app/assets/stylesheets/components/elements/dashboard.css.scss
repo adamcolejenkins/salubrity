@@ -16,7 +16,7 @@
   }
 
   section.resource {
-    padding: rem-calc(60 0 40);
+    padding: rem-calc(40 0 20);
     
     &:nth-child(odd) {
       background: darken($body-bg, 2%);
@@ -30,7 +30,7 @@
 
     article .block-panel .content {
       position: relative;
-      height: 100%;
+      // height: 100%;
     }
 
     // 3 Column Blocks
@@ -75,10 +75,18 @@
       }
 
       .tools {
-        @include position(absolute, null 0px 0px 0px);
         border-top: 1px solid #e5e6ea;
-        margin: rem-calc(10px 20px 0);
+        overflow: hidden;
         padding: rem-calc(5px 0 0);
+
+        .inline-list {
+          margin-bottom: 0px;
+        }
+      }
+
+      &:not(.small) .tools {
+        @include position(absolute, null 0px 0px 0px);
+        margin: rem-calc(10px 20px 0);
       }
     }
 

@@ -35,9 +35,11 @@ class Answer < ActiveRecord::Base
   
   # Fields with FieldChoices
   def choice_value
-    label = self.field.field_choices.where(id: self.value).first.label
+    return choice.label unless choice.label.nil?
+  end
 
-    return label unless label.nil?
+  def choice
+    self.field.field_choices.where(id: self.value).first
   end
   
 end

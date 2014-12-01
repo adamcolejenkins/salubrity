@@ -37,7 +37,7 @@ class Survey < ActiveRecord::Base
   end
 
   def providers_count
-    self.clinics.includes(:providers).map { |c| c.providers.size }.inject(0) { |sum,item| sum + item }
+    self.clinics.map { |c| c.providers.size }.inject(0) { |sum,item| sum + item }
   end
 
   def data_fields

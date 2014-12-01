@@ -79,4 +79,4 @@
         .full 
           = f.submit 'Save Provider', class: 'radius success button'
           = link_to 'Cancel', providers_path, class: 'radius button', target: "_self"
-          = link_to 'Archive', provider_path(@provider), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "radius alert button pull-right" if (can? :destroy, Provider) && action_name == 'edit'
+          = link_to 'Archive', archive_provider_path(@provider), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "radius alert button pull-right" if (can? :destroy, Provider) && action_name == 'edit'

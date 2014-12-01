@@ -8,7 +8,7 @@ class Provider < ActiveRecord::Base
   belongs_to :team, inverse_of: :providers
   belongs_to :clinic, inverse_of: :providers
   
-  has_many :responses, inverse_of: :provider
+  has_many :responses, inverse_of: :provider, dependent: :destroy
 
   # Strip attributes from whitespaces
   auto_strip_attributes :name, :surname, :credential, :email
@@ -59,6 +59,10 @@ class Provider < ActiveRecord::Base
 
   def data_fields
     self.clinic.survey.fields.includes(:field_choices).where.not(context: Field::DATA_EXCLUDE)
+  end
+
+  def data
+    
   end
 
   private

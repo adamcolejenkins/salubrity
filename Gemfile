@@ -56,7 +56,11 @@ group :development do
   gem 'spring'
   # Web console for helping with errors
   gem 'web-console', '2.0.0.beta3'
+<<<<<<< HEAD
   # Increase application's performance by reducing the number of queries it makes. Read more: https://github.com/flyerhzm/bullet
+=======
+  # Increase your application's performance by reducing the number of queries it makes. Read more: https://github.com/flyerhzm/bullet
+>>>>>>> master
   gem "bullet"
 end
 # Test environment gems
@@ -72,14 +76,22 @@ gem 'figaro'
 gem 'paranoia', '~> 2.0.2'
 # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes.
 gem "auto_strip_attributes", "~> 2.0"
-gem 'chart-js-rails'
+
+# COMMENT ME
 gem 'CFPropertyList-rails'
 gem 'CFPropertyList', '~> 2.2.8'
 gem 'multi_json'
 
+# Charting and Date
 gem 'groupdate'
 gem 'hightop'
 gem 'chartkick'
+
+# Wrapper around datatable's ajax methods that allow synchronization with server-side pagination in a rails app.
+# Read more: https://github.com/antillas21/ajax-datatables-rails
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git', branch: 'master'
+gem 'ajax-datatables-rails'
+gem "kaminari"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
