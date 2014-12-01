@@ -7,7 +7,7 @@ class ProvidersController < ApplicationController
   # GET /providers
   # GET /providers.json
   def index
-    @providers = current_team.providers.all
+    @providers = current_team.providers.includes(:responses).all
   end
 
   # GET /providers/1

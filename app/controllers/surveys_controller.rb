@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = current_team.surveys.all
+    @surveys = current_team.surveys.includes(:responses).all
   end
 
   # GET /surveys/1

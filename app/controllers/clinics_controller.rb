@@ -7,7 +7,7 @@ class ClinicsController < ApplicationController
   # GET /clinics
   # GET /clinics.json
   def index
-    @clinics = current_team.clinics.all
+    @clinics = current_team.clinics.includes(:responses).all
   end
 
   # GET /clinics/1
