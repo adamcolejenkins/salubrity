@@ -6,6 +6,7 @@ class Survey < ActiveRecord::Base
 
   has_many :clinics, inverse_of: :survey, dependent: :destroy
   has_many :responses, inverse_of: :survey, dependent: :destroy
+
   has_many :fields, -> { order("priority ASC").includes(:field_choices) }, inverse_of: :survey, dependent: :destroy
 
   scope :guid, -> (guid) { where(guid: guid).first }
@@ -20,28 +21,22 @@ class Survey < ActiveRecord::Base
     self.guid = self.title.parameterize('-')
   end
 
+  # Calculates the average time for responses
   def average_time
-    logger.debug("START:: Survey.average_time =========================================================")
-    @avg = 0.0
-    i = 0
-    self.responses.find_each do |response|
-      @avg = ((response.time + (@avg * i.to_f)) / (i.to_f + 1)).to_f
-      i += 1
-    end
-    logger.debug("STOP:: Survey.average_time =========================================================")
-    Time.at(@avg).utc.strftime("%M:%S")
+    return nil if self.responses.size == 0
+    Time.at( self.responses.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S")
   end
 
   def clinics_count
-    self.clinics.size
+    self.clinics.count
   end
 
   def providers_count
-    self.clinics.map { |c| c.providers.size }.inject(0) { |sum,item| sum + item }
+    self.clinics.includes(:providers).map { |c| c.providers.length }.inject(0) { |sum,item| sum + item }
   end
 
   def data_fields
-    self.fields.includes(:field_choices).where.not(context: Field::DATA_EXCLUDE)
+    self.fields.includes(:answers).where.not(context: Field::DATA_EXCLUDE)
   end
 
 end

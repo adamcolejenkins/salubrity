@@ -6,7 +6,7 @@
     .row(data-equalizer)
 
       / Survey Info Block
-      article.header.small
+      article.header class="#{'small' if can? :read, survey}"
         .block-panel.faded(data-equalizer-watch)
           .content
             h4 = survey.title
@@ -45,7 +45,9 @@
               big = survey.average_time || "00:00"
               span.muted  avg time to complete
       
-      article.more.small
-        div.block-panel.block-button(data-equalizer-watch)
-          = link_to survey, target: "_self", class: 'block-panel-button'
-            i.fa.fa-chevron-right
+
+      - if can? :read, survey
+        article.more.small
+          div.block-panel.block-button(data-equalizer-watch)
+            = link_to survey, target: "_self", class: 'block-panel-button'
+              i.fa.fa-chevron-right

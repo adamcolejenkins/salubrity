@@ -6,7 +6,16 @@ section.resource id="provider-#{@provider.id}"
 
     / Provider Info Block
     article.header
-      = render 'info_block', provider: @provider
+      .block-panel.faded(data-equalizer-watch)
+        .content
+          h4 = @provider.full_name
+          
+          - if can? :update, @provider
+            .tools
+              ul.inline-list.right
+                li
+                  = link_to edit_provider_path(@provider), target: "_self"
+                    i.fa.fa-wrench
 
     / Responses Block
     article.response-chart
@@ -33,47 +42,47 @@ section.resource id="provider-#{@provider.id}"
       article class="#{field.context.gsub('_', '-')}"
         = render "providers/charts/#{field.context}", field: field
 
-  .row
+  / .row
 
-    article.responses-table
-      .block-panel.table
-        .header Response Data
-        .content
+  /   article.responses-table
+  /     .block-panel.table
+  /       .header Response Data
+  /       .content
 
-          table#provider-response-table.response-table.display.no-border role="grid" data-source="#{data_provider_path(format: :json)}"
-            thead
-              tr
-                / Tools
-                / th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
+  /         table#provider-response-table.response-table.display.no-border role="grid" data-source="#{data_provider_path(format: :json)}"
+  /           thead
+  /             tr
+  /               / Tools
+  /               / th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
 
-                / Date
-                th width="100" Date
+  /               / Date
+  /               th width="100" Date
 
-                / Fields
-                - @provider.data_fields.each_with_index do |field, index|
-                  th class="#{field.context}"
-                    div
-                      span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
+  /               / Fields
+  /               - @provider.data_fields.each_with_index do |field, index|
+  /                 th class="#{field.context}"
+  /                   div
+  /                     span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
 
-                / Start date
-                th Response Time
+  /               / Start date
+  /               th Response Time
 
-            tbody
-              / - @provider.responses.active.each do |response|
-              /   tr
+  /           tbody
+  /             / - @provider.responses.active.each do |response|
+  /             /   tr
                   
-              /     / Tools
-              /     td
-              /       = check_box_tag 'select', nil, false, disabled: 'disabled'
+  /             /     / Tools
+  /             /     td
+  /             /       = check_box_tag 'select', nil, false, disabled: 'disabled'
 
-              /     / Date
-              /     td = response.created_at.to_formatted_s(:long)
+  /             /     / Date
+  /             /     td = response.created_at.to_formatted_s(:long)
                   
-              /     / Fields
-              /     - @provider.data_fields.each do |field|
-              /       td class="#{field.context}"
-              /         - answer = response.answers.where(field: field).first
-              /         = answer.response_value unless answer.blank?
+  /             /     / Fields
+  /             /     - @provider.data_fields.each do |field|
+  /             /       td class="#{field.context}"
+  /             /         - answer = response.answers.where(field: field).first
+  /             /         = answer.response_value unless answer.blank?
                   
-              /     / Response Time
-              /     td = Time.at(response.time).utc.strftime("%M:%S")
+  /             /     / Response Time
+  /             /     td = Time.at(response.time).utc.strftime("%M:%S")

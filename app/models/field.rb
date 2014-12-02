@@ -24,6 +24,14 @@ class Field < ActiveRecord::Base
     insert_at(value.to_i)
   end
 
+  def total_by_choice
+    mem = self.field_choices.inject({}) { |mem, choice|
+      mem[choice.label] = self.answers.where(value: choice.id.to_s).count
+      mem
+    }
+    mem
+  end
+
   def above_median
     self.answers.where(value: above_median_range)
   end
@@ -34,6 +42,7 @@ class Field < ActiveRecord::Base
 
   def total_by_index
     logger.debug("START:: Field.total_by_index =========================================================")
+
     a = []
     i = self.range_min.to_i
     until i > self.range_max.to_i
@@ -45,14 +54,7 @@ class Field < ActiveRecord::Base
   end
 
   def average_time
-    logger.debug("START:: Field.average_time =========================================================")
-    avg = 0.0
-    self.answers.each_with_index do |answer, index|
-      avg = ((answer.time + (avg * index.to_f)) / (index.to_f + 1)).to_f
-    end
-    logger.debug("STOP:: Field.average_time =========================================================")
-
-    Time.at(avg).utc.strftime("%H:%S")
+    Time.at( self.answers.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S")
   end
 
   def above_median_range

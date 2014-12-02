@@ -1,6 +1,8 @@
 class FieldChoice < ActiveRecord::Base
   belongs_to :field
 
+  has_many :answers, through: :field
+
   acts_as_list scope: :field, column: :priority, add_new_at: :bottom
   before_create :translate_key
   before_update :translate_key

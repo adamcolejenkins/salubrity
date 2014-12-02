@@ -13,9 +13,10 @@ module ChartData
   def total(args)
     logger.debug("START:: ChartData.total =========================================================")
     count = 0
-    self.responses.each do |response|
+    self.responses.includes(:answers).map do |response|
       count += response.answers.where({ field: args[:field], value: args[:value] }).size
     end
+
     logger.debug("STOP:: ChartData.total =========================================================")
     count
   end
@@ -31,10 +32,10 @@ module ChartData
   end
 
   def multiple_choice_field_data(args)
-    a = {}
-    args[:field].field_choices.map { |choice|
-      a[choice.label] = total(field: args[:field], value: choice.id.to_s) #TODO: choice.id
-    }
+    a = args[:field].field_choices.inject({}) do |a, choice|
+      a[choice.label] = total(field: args[:field], value: choice.id.to_s)
+      a
+    end
     a
   end
 

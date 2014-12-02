@@ -13,16 +13,10 @@ module DashboardHelper
   end
 
   def total_answers(opts)
-    logger.debug("START:: DashboardHelper.total_answers =========================================================")
     count = 0
     opts[:resource].find_each do |resource|
       count += resource.answers.where(opts[:where]).size
     end
-
-    logger.debug("NEW:::")
-    # logger.debug( Answer.where(response_id: opts[:resource].map { |r| r.id }).count )
-    logger.debug( "COUNT:: #{count}" )
-    logger.debug("STOP:: DashboardHelper.total_answers =========================================================")
     count
   end
   

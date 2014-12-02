@@ -3,7 +3,7 @@
 
   .content
     .response-time
-      - if @survey.responses.size > 0
+      - if @survey.responses.length > 0
         big = field.average_time
         small avg time
       - else

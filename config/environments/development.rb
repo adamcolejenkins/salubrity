@@ -15,11 +15,7 @@ Rails.application.configure do
     Bullet.bugsnag = false
     Bullet.airbrake = false
     Bullet.add_footer = true
-<<<<<<< HEAD
     Bullet.stacktrace_includes = [  ] # [ 'your_gem', 'your_middleware' ]
-=======
-    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
->>>>>>> master
   end
 
 
