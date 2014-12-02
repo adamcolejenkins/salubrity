@@ -6,7 +6,23 @@ section.resource id="clinic-#{@clinic.id}"
 
     / Clinic Info Block
     article.header
-      = render 'info_block', clinic: @clinic
+      .block-panel.faded(data-equalizer-watch)
+        .content
+          h4 = @clinic.title
+          h5.subheader
+
+          .tools.clearfix
+            ul.inline-list.left
+              li
+                span 
+                  = @clinic.providers.count
+                  span.muted  providers
+            
+            - if can? :update, @clinic
+              ul.inline-list.right
+                li
+                  = link_to edit_clinic_path(@clinic), target: "_self"
+                    i.fa.fa-wrench
     
     / Responses Block
     article.response-chart
