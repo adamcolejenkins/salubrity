@@ -1,3 +1,22 @@
 .button + .button {
   margin-left: 5px;
 }
+
+.button {
+  &:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.1);
+  }
+
+  &.link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $anchor-font-color;
+
+    &.alert {
+      color: $alert-color;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
