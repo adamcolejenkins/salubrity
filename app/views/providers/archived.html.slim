@@ -1,18 +1,16 @@
-hgroup
-  .title
-    h2 Archived Providers
-    h3.subheader Restore or destroy archived providers.
+= render 'header'
 
-section.content
-  .block
-    - @providers.sort.each do |provider|
-      .block-item
-        .details
-          .name = provider.full_name
-        .options
-          ul.actions
-            li = link_to restore_provider_path(provider), target: "_self"
-              i.fa.fa-refresh
-            - if can? :destroy, Provider
-              li = link_to provider_path(provider), data: {:confirm => 'Are you sure?'}, :method => :delete
-                i.fa.fa-trash
+.row
+  .small-12.columns
+    .block
+      - @providers.sort.each do |provider|
+        .block-item.alert-light
+          .details
+            .name = provider.full_name
+          .options
+            ul.actions
+              li = link_to restore_provider_path(provider), target: "_self"
+                i.fa.fa-refresh
+              - if can? :destroy, Provider
+                li = link_to provider_path(provider), data: {:confirm => 'Are you sure?'}, :method => :delete
+                  i.fa.fa-trash

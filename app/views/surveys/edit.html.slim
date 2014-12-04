@@ -1,11 +1,5 @@
-hgroup
-  .title
-    h2 Edit Survey
-    h3.subheader = "Editing #{@survey.title}"
+= render 'header'
 
-section.content
-  dl.nav-tabs
-    = tab_for "Fields", survey_fields_path(@survey)
-    = tab_for "Settings", edit_survey_path(@survey)
-    
-  = render 'form'
+.row
+  .small-12.columns
+    = render 'form'

@@ -1,8 +1,6 @@
-class SurveysController < ApplicationController
+class SurveysController < ConfigController
   load_and_authorize_resource
-  skip_authorize_resource only: [:chart]
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :chart]
-  layout 'angular', only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy]
 
   # GET /surveys
   # GET /surveys.json
@@ -64,8 +62,30 @@ class SurveysController < ApplicationController
     end
   end
 
-  def chart
-    self.send("#{params[:type]}_chart")
+  # GET /surveys/archived
+  def archived
+    @surveys = current_team.surveys.only_deleted
+  end
+
+  # GET /surveys/1/restore
+  def restore
+    Survey.restore(params[:id], recursive: true)
+
+    respond_to do |format|
+      format.html { redirect_to archived_surveys_url, notice: 'Survey was successfully restored.' }
+      format.json { render :show, status: :ok }
+    end
+  end
+
+  # DELETE /surveys/1/delete
+  # DELETE /surveys/1/delete.json
+  def archive
+    @survey = current_team.surveys.only_deleted.find(params[:id])
+    @survey.destroy
+    respond_to do |format|
+      format.html { redirect_to surveys_url, notice: 'Survey was successfully archived.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -80,22 +100,4 @@ class SurveysController < ApplicationController
       params.require(:survey).permit(:team_id, :title, :description, :guid, :status)
     end
 
-    # CHARTS
-    def responses_chart
-      render json: @survey.responses.group_by_day(:created_at, format: "%A, %B %e").count
-    end
-
-    def timing_chart
-      render json: @survey.responses.daily_avg_time
-    end
-
-    def multiple_choice_chart
-      @field = Field.find(params[:field_id])
-      render json: @survey.data_for(:multiple_choice_field, field: @field)
-    end
-
-    def scale_chart
-      @field = Field.find(params[:field_id])
-      render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @survey }
-    end
 end

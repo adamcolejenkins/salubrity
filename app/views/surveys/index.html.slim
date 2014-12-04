@@ -1,53 +1,26 @@
 = render 'header'
-  
-- @surveys.sort.each do |survey|
-  section.resource id="survey-#{survey.id}"
 
-    .row(data-equalizer)
+.row
+  .small-12.columns
 
-      / Survey Info Block
-      article.header class="#{'small' if can? :read, survey}"
-        .block-panel.faded(data-equalizer-watch)
-          .content
-            h4 = survey.title
+    .block
+      - @surveys.sort.each do |survey|
+        .block-item
+          .details
+            .status class="#{survey.status}"
+              i.fa.fa-circle
+            .name
+              = survey.title
+              span.muted = " (#{survey.status})"
 
-            .tools
-              ul.inline-list.left
+          .options
+            ul.actions
+              - if can? :manage, Field
                 li
-                  span
-                    = survey.clinics_count
-                    span.muted  clinics
-                li.divider
+                  = link_to survey_fields_path(survey), target: "_self", tooltip: "Fields"
+                    i.fa.fa-th-list
+
+              - if can? :update, survey
                 li
-                  span 
-                    = survey.providers_count
-                    span.muted  providers
-        
-              ul.inline-list.right
-                - if can? :update, Survey
-                  li
-                    = link_to edit_survey_path(survey), target: "_self"
-                      i.fa.fa-wrench
-
-      / Responses Block
-      article.response-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = survey.responses.count
-              span.muted  responses
-
-      / Timing Chart
-      article.timing-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = survey.average_time || "00:00"
-              span.muted  avg time to complete
-      
-
-      - if can? :read, survey
-        article.more.small
-          div.block-panel.block-button(data-equalizer-watch)
-            = link_to survey, target: "_self", class: 'block-panel-button'
-              i.fa.fa-chevron-right
+                  = link_to edit_survey_path(survey), target: "_self", tooltip: "Settings"
+                    i.fa.fa-cog

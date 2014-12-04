@@ -9,10 +9,10 @@
       @include grid-column($columns: 12, $last-column: true);
     }
     & > section.sidebar {
-      @include grid-column($columns: 4);
+      @include grid-column($columns: 3);
 
       & + section.content {
-        @include grid-column($columns: 8, $last-column: true);
+        @include grid-column($columns: 9, $last-column: true);
       }
     }
   }
@@ -134,6 +134,16 @@
           }
         }
       }
+    }
+  }
+}
+
+.config {
+  section.layout {
+    background-color: $white;
+
+    & > section.sidebar {
+      background-color: lighten($body-bg, 2%);
     }
   }
 }

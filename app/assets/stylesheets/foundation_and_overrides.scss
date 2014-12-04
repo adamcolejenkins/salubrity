@@ -656,12 +656,12 @@ $input-font-color: rgba(0,0,0,0.55);
 $input-font-size: rem-calc(14);
 $input-bg-color: $white;
 $input-focus-bg-color: $white;
-$input-border-color: scale-color($white, $lightness: -20%);
-$input-focus-border-color: scale-color($white, $lightness: -40%);
+$input-border-color: scale-color($body-font-color, $lightness: 80%);
+$input-focus-border-color: scale-color($body-font-color, $lightness: 20%);
 $input-border-style: solid;
 $input-border-width: 1px;
 $input-border-radius: $global-radius;
-$input-disabled-bg: $gainsboro;
+$input-disabled-bg: scale-color($body-font-color, $lightness: 80%);;
 $input-disabled-cursor: $cursor-default-value;
 $input-box-shadow: none;
 
@@ -1162,7 +1162,7 @@ $range-slider-handle-cursor: pointer;
 // $side-nav-list-margin: rem-calc(0 0 7 0);
 
 // We use these to control link styles.
-// $side-nav-link-color: $primary-color;
+$side-nav-link-color: $body-font-color;
 // $side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
 // $side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
 // $side-nav-link-bg-hover: hsla(0, 0, 0, 0.025);
@@ -1183,7 +1183,7 @@ $range-slider-handle-cursor: pointer;
 // We use these to control border styles
 // $side-nav-divider-size: 1px;
 // $side-nav-divider-style: solid;
-// $side-nav-divider-color: scale-color($white, $lightness: 10%);
+$side-nav-divider-color: darken($body-bg, 5%);
 
 // 27. Split Buttons
 // - - - - - - - - - - - - - - - - - - - - - - - - -

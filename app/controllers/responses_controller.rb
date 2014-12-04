@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :set_resource
+  layout 'angular'
 
   def index
     
@@ -8,6 +9,6 @@ class ResponsesController < ApplicationController
   private
 
   def set_resource
-    # @resource = 
+    
   end
 end

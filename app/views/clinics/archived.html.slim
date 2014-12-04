@@ -1,0 +1,16 @@
+= render 'header'
+
+.row
+  .small-12.columns
+    .block
+      - @clinics.sort.each do |clinic|
+        .block-item.alert-light
+          .details
+            .name = clinic.title
+          .options
+            ul.actions
+              li = link_to restore_clinic_path(clinic), target: "_self"
+                i.fa.fa-refresh
+              - if can? :destroy, clinic
+                li = link_to clinic_path(clinic), data: {:confirm => 'Are you sure?'}, :method => :delete
+                  i.fa.fa-trash

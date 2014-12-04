@@ -1,47 +1,83 @@
 Rails.application.routes.draw do
 
   constraints(Subdomain) do
-    
-    resources :teams, except: [:index, :show, :new], path_names: { new: 'get-started' }
 
-    resources :surveys do
-      member do 
-        get 'chart/:type(/field/:field_id)' => 'surveys#chart', as: :chart
+    scope :config do
+      resources :teams, except: [:show]
+      resources :surveys, except: [:show] do
+        resources :fields, except: [:show] do
+          resources :field_choices, except: [:show]
+        end
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
       end
-      resources :fields
+      resources :clinics, except: [:show] do
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
+      end
+      resources :providers, except: [:show] do
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
+      end
+      resources :devices, except: [:show] do
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
+      end
+      resources :locations, except: [:show] do
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
+      end
+      resources :services, except: [:show] do
+        collection do
+          get 'archived'
+        end
+        member do
+          get 'restore'
+          delete 'archive'
+        end
+      end
+      root to: redirect('/config/surveys'), as: 'config_root'
     end
 
-    resources :clinics do
-      member do 
-        get 'chart/:type(/field/:field_id)' => 'clinics#chart', as: :chart
-      end
-      resources :devices
-    end
+    get 'dashboard' => 'responses#index'
 
-    resources :providers do
-      member do 
-        get 'chart/:type(/field/:field_id)' => 'providers#chart', as: :chart
-        get 'data' => 'providers#data', as: :data
-      end
-
-      collection do
-        get 'archived'
-      end
-      member do
-        get 'restore'
-      end
-      member do
-        delete 'archive'
-      end
-    end
-
-    get 'responses/:resource/:id' => 'responses#index'
 
     # get '/install', to: redirect('/install/new')
     # resource :install, only: [:new, :create, :edit], as: 'installs'
     # post 'install/:id' => 'installs#update', as: 'device'
 
-    devise_for :users, :controllers => { :invitations => 'users/invitations', :registrations => 'users/registrations' }, :skip => [:sessions]
+    devise_for :users, 
+      controllers: { 
+        :invitations => 'users/invitations',
+        :registrations => 'users/registrations'
+      },
+      skip: [:sessions]
+
     as :user do
       get 'login' => 'devise/sessions#new', :as => :new_user_session
       post 'login' => 'devise/sessions#create', :as => :user_session
@@ -49,11 +85,11 @@ Rails.application.routes.draw do
       get "profile" => "users/registrations#edit"
       resources :users, except: [:show]
     end
-
-    get '/', to: redirect('/surveys')
     
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"
+
+    get '/', to: redirect('/dashboard')
   end
 
   namespace :api, defaults: {format: :json} do

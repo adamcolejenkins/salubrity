@@ -1,7 +1,5 @@
-hgroup
-  .title
-    h2 Edit Provider
-    h3.subheader = "Editing #{@provider.name}"
+= render 'header'
 
-section.content
-  = render 'form'
+.row
+  .small-12.columns
+    = render 'form'

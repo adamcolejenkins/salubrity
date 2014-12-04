@@ -1,7 +1,17 @@
 hgroup
   .title
-    h2 = t 'surveys.title'
-    h3.subheader = t 'surveys.describe'
+    = link_to '← Back to Surveys', surveys_path, target: "_self" if action_name != 'index'
+    h2 = t "surveys.#{action_name}.title"
+    h3.subheader = t "surveys.#{action_name}.describe"
+  
   .actions
-    - if can?(:create, Survey) && action_name == 'index'
-      = link_to 'New Survey', new_survey_path, target: "_self", class: "radius success button"
+    - if action_name == 'index'
+
+      - if can? :create, Survey
+        = link_to 'New Survey', new_survey_path, target: "_self", class: "radius success button"
+      
+      - if can?(:update, Survey) && current_team.surveys.only_deleted.size > 0
+        p = link_to "#{pluralize(current_team.surveys.only_deleted.count, 'archived survey')}...", archived_surveys_path, target: "_self"
+    
+    - if action_name == 'archived'
+      button.alert.radius.button disabled="disabled" Remove All

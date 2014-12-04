@@ -1,7 +1,5 @@
-class UsersController < ApplicationController
-  before_filter :authenticate_user!
+class UsersController < ConfigController
   before_action :set_user, only: [:edit, :update, :destroy]
-  layout 'angular'
 
   def index
     @users = current_team.users.invitation_accepted
