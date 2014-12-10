@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  include Filterable, ChartData
+  include Filterable
   acts_as_paranoid
 
   belongs_to :team, :inverse_of => :surveys
