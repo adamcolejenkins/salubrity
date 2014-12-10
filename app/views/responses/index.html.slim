@@ -1,2 +1,86 @@
-h1 Responses#index
-p Find me in app/views/responses/index.html.slim
+section.response-data#responses
+
+  / table.response-table.display.no-border#response-table role="grid"
+  /   thead
+  /     tr
+  /       / Tools
+  /       th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
+
+  /       / Date
+  /       th width="100" Date
+
+  /       / Provider
+  /       th Provider
+
+  /       / Fields
+  /       - @survey.data_fields.each_with_index do |field, index|
+  /         th class="#{field.context}"
+  /           div
+  /             span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
+
+  /       / Start date
+  /       th Response Time
+
+
+  /   tbody
+  /     - @responses.each do |response|
+  /       tr
+          
+  /         / Tools
+  /         td
+  /           = check_box_tag 'select', nil, false, disabled: 'disabled'
+
+  /         / Date
+  /         td = response.created_at.to_formatted_s(:long)
+          
+  /         / Provider
+  /         td 
+          
+  /         / Fields
+  /         - @survey.data_fields.find_each do |field|
+  /           td class="#{field.context}"
+  /             = response.answers.where(field: field).first.value unless response.answers.where(field: field).blank?
+          
+  /         / Response Time
+  /         td = Time.at(response.time).utc.strftime("%M:%S")
+
+
+section.layout
+  .row
+    .small-12.columns
+
+      / Survey Nav
+      dl.sub-nav
+        - @surveys.sort.each do |survey|
+          dd class="#{active_if(@current_survey == survey.id)}" = link_to survey.title, dashboard_path(survey: survey.id)
+
+  section.resource
+    
+    .row(data-equalizer)
+
+      / Survey Info Block
+      article.header
+        .block-panel.faded(data-equalizer-watch)
+          .content
+            h4 = @survey.title
+            h5.subheader = @survey.description
+
+      / Responses Block
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = @responses.length
+              span.muted  responses
+            .chart bar-graph=""
+              = column_chart recent_responses_chart_path(filter: params[:filter]), height: "100%"
+
+      / Timing Chart
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = "00:00"
+              span.muted  avg time to complete
+            / .chart bar-graph=""
+              / = column_chart chart_survey_path(@survey, :timing), height: "100%"

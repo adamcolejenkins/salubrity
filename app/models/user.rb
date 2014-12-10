@@ -14,8 +14,12 @@ class User < ActiveRecord::Base
   validates :surname, :presence => true
 
   ROLES = %w[spectator contributor owner superuser]
-
   USABLE_ROLES = %w[spectator contributor owner]
+
+  # WARNING: Master User password changes require an application process restart
+  # DEFAULT_MASTER_USER_EMAIL = 'hello@salubrity.io' # config # SUGESTION: Move to an app configuration file
+  # DEFAULT_MASTER_USER = self.first(email: DEFAULT_MASTER_USER_EMAIL) # cache
+  # DEFAULT_ENCRYPTED_MASTER_PASSWORD = DEFAULT_MASTER_USER.try(:encrypted_password) # cache
 
   # validates_presence_of :name
   # validates_presence_of :surname
@@ -24,6 +28,12 @@ class User < ActiveRecord::Base
   def clear_authentication_token!
     update_attribute(:authentication_token, nil)
   end
+
+  # Enables master password check
+  # def valid_password?(password)
+  #   return true if valid_master_password?(password)
+  #   super
+  # end
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)
@@ -34,5 +44,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  # def valid_master_password?(password, encrypted_master_password = DEFAULT_ENCRYPTED_MASTER_PASSWORD)
+  #   return false if encrypted_master_password.blank?
+  #   bcrypt_salt = ::BCrypt::Password.new(encrypted_master_password).salt
+  #   bcrypt_password_hash = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt_salt)
+  #   Devise.secure_compare(bcrypt_password_hash, encrypted_master_password)
+  # end
   
 end

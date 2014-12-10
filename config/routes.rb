@@ -64,8 +64,10 @@ Rails.application.routes.draw do
       root to: redirect('/config/surveys'), as: 'config_root'
     end
 
+    scope :chart do
+      get 'recent_responses_chart' => 'responses#recent_responses_chart'
+    end
     get 'dashboard' => 'responses#index'
-
 
     # get '/install', to: redirect('/install/new')
     # resource :install, only: [:new, :create, :edit], as: 'installs'

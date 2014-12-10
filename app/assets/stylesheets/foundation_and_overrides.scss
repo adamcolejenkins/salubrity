@@ -136,15 +136,15 @@ $pinterest   : #e13138;
 $github      : #333;
 $tumblr      : #426d9b;
 
-$primary-color: #3B4250;
+$primary-color: #677487;
 $secondary-color: #F5F6F8;
 $alert-color: #F54D4B;
-$success-color: #67c082;
+$success-color: #19b698;
 $warning-color: #FED16C;
 $info-color: #47b8e5;
 
 // We use these to control various global styles
-$body-bg: #f0f3f4;
+$body-bg: #e7ebee;
 $body-font-color: #677487;
 $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-normal;
@@ -453,7 +453,7 @@ $crumb-radius: 0px;
 $button-tny: rem-calc(4);
 $button-sml: rem-calc(4);
 $button-med: rem-calc(6);
-$button-lrg: rem-calc(16);
+$button-lrg: rem-calc(10);
 
 // We use this to control the display property.
 // $button-display: inline-block;
@@ -466,7 +466,7 @@ $button-lrg: rem-calc(16);
 // $button-font-tny: rem-calc(11);
 $button-font-sml: rem-calc(11);
 $button-font-med: rem-calc(12);
-// $button-font-lrg: rem-calc(20);
+$button-font-lrg: rem-calc(16);
 $button-font-weight: 600;
 // $button-font-align: center;
 
@@ -476,7 +476,7 @@ $button-function-factor: -10%;
 // We use these to control button border and hover styles.
 $button-border-width: 1px;
 // $button-border-style: solid;
-$button-bg-color: #EDBC75;
+$button-bg-color: #d4a74c;
 $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 $button-border-color: $button-bg-hover;
 $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
@@ -561,7 +561,7 @@ $button-radius: 2px; // $global-radius;
 // We use this to set the border styles for dropdowns.
 // $f-dropdown-border-style: solid;
 // $f-dropdown-border-width: 1px;
-// $f-dropdown-border-color: scale-color($white, $lightness: -20%);
+$f-dropdown-border-color: lighten($primary-color, 40%);
 
 // We use these to style the triangle pip.
 // $f-dropdown-triangle-size: 6px;
@@ -570,11 +570,11 @@ $button-radius: 2px; // $global-radius;
 
 // We use these to control styles for the list elements.
 // $f-dropdown-list-style: none;
-// $f-dropdown-font-color: $charcoal;
-// $f-dropdown-font-size: rem-calc(14);
-// $f-dropdown-list-padding: rem-calc(5, 10);
+$f-dropdown-font-color: $body-font-color;
+$f-dropdown-font-size: rem-calc(12);
+$f-dropdown-list-padding: rem-calc(3, 8);
 // $f-dropdown-line-height: rem-calc(18);
-// $f-dropdown-list-hover-bg: $smoke  ;
+$f-dropdown-list-hover-bg: lighten($primary-color, 50%);
 // $dropdown-mobile-default-float: 0;
 
 // We use this to control the styles for when the dropdown has custom content.
@@ -1245,7 +1245,7 @@ $side-nav-divider-color: darken($body-bg, 5%);
 
 // We use these to control the active item styles
 // $sub-nav-active-font-weight: $font-weight-normal;
-// $sub-nav-active-bg: $primary-color;
+$sub-nav-active-bg: $success-color;
 // $sub-nav-active-bg-hover: scale-color($sub-nav-active-bg, $lightness: -14%);
 // $sub-nav-active-color: $white;
 // $sub-nav-active-padding: $sub-nav-padding;
@@ -1393,8 +1393,8 @@ $tooltip-max-width: 300px;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $primary-color;
-$topbar-bg: $primary-color;
+$topbar-bg-color: #fff;
+$topbar-bg: #fff;
 
 // Height and margin
 $topbar-height: 50px;
@@ -1405,16 +1405,16 @@ $topbar-margin-bottom: 0;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: $oil;
-// $topbar-dropdown-link-color: $white;
-// $topbar-dropdown-link-bg: $oil;
-// $topbar-dropdown-link-weight: $font-weight-normal;
-// $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: $white;
-// $topbar-dropdown-toggle-alpha: 0.4;
+$topbar-dropdown-bg: $primary-color;
+$topbar-dropdown-link-color: $white;
+$topbar-dropdown-link-bg: $primary-color;
+$topbar-dropdown-link-weight: $font-weight-normal;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: $white;
+$topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: $body-font-color;
+$topbar-link-color: $primary-color;
 $topbar-link-color-hover: $success-color;
 $topbar-link-color-active: $success-color;
 $topbar-link-color-active-hover: $success-color;
@@ -1436,10 +1436,10 @@ $topbar-link-text-transform: uppercase;
 // $topbar-button-top: 7px;
 
 // $topbar-dropdown-label-color: $monsoon;
-// $topbar-dropdown-label-text-transform: uppercase;
-// $topbar-dropdown-label-font-weight: $font-weight-bold;
+// $topbar-dropdown-label-text-transform: none;
+// $topbar-dropdown-label-font-weight: $font-weight-normal;
 // $topbar-dropdown-label-font-size: rem-calc(10);
-// $topbar-dropdown-label-bg: $oil;
+// $topbar-dropdown-label-bg: $primary-color;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
@@ -1462,7 +1462,7 @@ $topbar-media-query: $small-up;
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
-// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+$topbar-arrows: false; //Set false to remove the triangle icon from the menu item
 
 // 36. Visibility Classes
 // - - - - - - - - - - - - - - - - - - - - - - - - -
