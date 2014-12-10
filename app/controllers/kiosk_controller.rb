@@ -23,7 +23,7 @@ class KioskController < ApplicationController
   end
 
   def new
-    @response = Response.new
+    @response = current_team.responses.new
     @response.clinic = @clinic
     @response.survey = @clinic.survey
 
@@ -33,7 +33,7 @@ class KioskController < ApplicationController
   end
 
   def create
-    @response = Response.new(response_params)
+    @response = current_team.responses.new(response_params)
     @response.user_agent = request.user_agent
     @response.ip_address = request.remote_ip
     @response.clinic = @clinic
