@@ -18,10 +18,7 @@ html(lang="en")
         
   body ng-app="salubrity" ng-controller="AppCtrl" class="config"
     .wrap
-      header
-        = render :partial => "layouts/header"
-      nav
-        = render :partial => "layouts/navigation"
+      header = render :partial => "layouts/header"
       main role="main"
         section.layout
           section.sidebar
