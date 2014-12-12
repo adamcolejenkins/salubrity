@@ -179,3 +179,34 @@ a.list-group-item {
     outline: none;
   }
 }
+
+
+ul.listed-resource {
+  @extend .no-bullet;
+
+  li {
+    @include grid-row;
+    border-bottom: 1px dotted $gainsboro;
+    padding: rem-calc(10 5);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    h5 {
+      margin: 0;
+      i {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+
+    .tools {
+      @extend .right;
+
+      .button {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

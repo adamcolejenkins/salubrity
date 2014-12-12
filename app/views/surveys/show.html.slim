@@ -62,46 +62,46 @@ section.resource id="survey-#{@survey.id}"
   /       .header Response Data
   /       .content
 
-  /         table.response-table.display.no-border role="grid" id="response-table"
-  /           thead
-  /             tr
-  /               / Tools
-  /               th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
+          / table.response-table.display.no-border role="grid" id="response-table"
+          /   thead
+          /     tr
+          /       / Tools
+          /       th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
 
-  /               / Date
-  /               th width="100" Date
+          /       / Date
+          /       th width="100" Date
 
-  /               / Provider
-  /               th Provider
+          /       / Provider
+          /       th Provider
 
-  /               / Fields
-  /               - @survey.data_fields.each_with_index do |field, index|
-  /                 th class="#{field.context}"
-  /                   div
-  /                     span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
+          /       / Fields
+          /       - @survey.data_fields.each_with_index do |field, index|
+          /         th class="#{field.context}"
+          /           div
+          /             span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
 
-  /               / Start date
-  /               th Response Time
+          /       / Start date
+          /       th Response Time
 
 
-  /           tbody
-  /             - @survey.responses.active.find_each do |response|
-  /               tr
+          /   tbody
+          /     - @survey.responses.active.find_each do |response|
+          /       tr
                   
-  /                 / Tools
-  /                 td
-  /                   = check_box_tag 'select', nil, false, disabled: 'disabled'
+          /         / Tools
+          /         td
+          /           = check_box_tag 'select', nil, false, disabled: 'disabled'
 
-  /                 / Date
-  /                 td = response.created_at.to_formatted_s(:long)
+          /         / Date
+          /         td = response.created_at.to_formatted_s(:long)
                   
-  /                 / Provider
-  /                 td = response.provider.full_name
+          /         / Provider
+          /         td = response.provider.full_name
                   
-  /                 / Fields
-  /                 - @survey.data_fields.find_each do |field|
-  /                   td class="#{field.context}"
-  /                     = response.answers.where(field: field).first.response_value unless response.answers.where(field: field).blank?
+          /         / Fields
+          /         - @survey.data_fields.find_each do |field|
+          /           td class="#{field.context}"
+          /             = response.answers.where(field: field).first.response_value unless response.answers.where(field: field).blank?
                   
-  /                 / Response Time
-  /                 td = Time.at(response.time).utc.strftime("%M:%S")
+          /         / Response Time
+          /         td = Time.at(response.time).utc.strftime("%M:%S")

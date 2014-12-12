@@ -24,10 +24,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bourbon";
+
 @import "foundation_and_overrides";
 /* Add imports of custom sass/scss files here */
-
-@import "bourbon";
 
 // Base
 @import "components/base/functions";

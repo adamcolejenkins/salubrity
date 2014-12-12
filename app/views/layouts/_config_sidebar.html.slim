@@ -1,0 +1,38 @@
+.row
+  ul.side-nav
+    
+    - if can? :manage, Survey
+      li class="#{active_if(controller_name == 'surveys')}" 
+        = link_to surveys_path, target: "_self"
+          i.fa.fa-cube
+          span  Surveys
+
+    - if can? :manage, Clinic
+      li class="#{active_if(controller_name == 'clinics')}" 
+        = link_to clinics_path, target: "_self"
+          i.fa.fa-building
+          span  Clinics
+
+    / li class="#{active_if(controller_name == 'locations')}" = link_to 'Locations', locations_path, target: "_self" if can? :manage, Location
+
+    - if can? :manage, Provider
+      li class="#{active_if(controller_name == 'providers')}" 
+        = link_to providers_path, target: "_self"
+          i.fa.fa-user-md
+          span  Providers
+
+    / li class="#{active_if(controller_name == 'services')}" = link_to 'Services', services_path, target: "_self" if can? :manage, Service
+
+    li.divider
+
+    - if can? :manage, Team
+      li class="#{active_if(controller_name == 'teams')}" 
+        = link_to teams_path, target: "_self"
+          i.fa.fa-users
+          span  Teams
+
+    - if can? :manage, User
+      li class="#{active_if(controller_name == 'users')}" 
+        = link_to users_path, target: "_self"
+          i.fa.fa-user
+          span  Users

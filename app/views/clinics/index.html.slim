@@ -1,47 +1,18 @@
 = render 'header'
-  
-- @clinics.sort.each do |clinic|
-  section.resource id="clinic-#{clinic.id}"
-    
-    .row(data-equalizer)
 
-      / Clinic Info Block
-      article.header.small
-        .block-panel.faded(data-equalizer-watch)
-          .content
-            h4 = clinic.title
-            h5.subheader
+.row
+  .small-12.columns
 
-            .tools.clearfix
-              ul.inline-list.left
+    .block
+      - @clinics.sort.each do |clinic|
+        .block-item
+          .details
+            .name
+              = clinic.title
+
+          .options
+            ul.actions
+              - if can? :update, clinic
                 li
-                  span 
-                    = clinic.providers.count
-                    span.muted  providers
-              
-              - if can? :update, Clinic
-                ul.inline-list.right
-                  li
-                    = link_to edit_clinic_path(clinic), target: "_self"
-                      i.fa.fa-wrench
-
-      / Responses Block
-      article.response-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = clinic.responses.count
-              span.muted  responses
-
-      / Timing Chart
-      article.timing-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = clinic.average_time || "00:00"
-              span.muted  avg time to complete
-      
-      article.more.small
-        div.block-panel.block-button(data-equalizer-watch)
-          = link_to clinic, target: "_self", class: 'block-panel-button'
-            i.fa.fa-chevron-right
+                  = link_to edit_clinic_path(clinic), target: "_self", tooltip: "Settings"
+                    i.fa.fa-cog

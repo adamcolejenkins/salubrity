@@ -9,10 +9,10 @@
       @include grid-column($columns: 12, $last-column: true);
     }
     & > section.sidebar {
-      @include grid-column($columns: 4);
+      @include grid-column($columns: 2);
 
       & + section.content {
-        @include grid-column($columns: 8, $last-column: true);
+        @include grid-column($columns: 10, $last-column: true);
       }
     }
   }
@@ -24,26 +24,26 @@
 //   }
 // }
 
-.wrap > header {
-  section.branding {
-    @include grid-column($columns: 6);
-  }
-  section.actions {
-    @include grid-column($columns: 6, $last-column: true);
-  }
-}
+// .wrap > header {
+//   section.branding {
+//     @include grid-column($columns: 6);
+//   }
+//   section.actions {
+//     @include grid-column($columns: 6, $last-column: true);
+//   }
+// }
 
-.wrap > nav {
-  @extend .contain-to-grid;
-  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
-  z-index: 2;
-  & > nav {
-    @extend .top-bar;
-    & > section {
-      @extend .top-bar-section;
-    }
-  }
-}
+// .wrap > nav {
+//   @extend .contain-to-grid;
+//   box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
+//   z-index: 2;
+//   & > nav {
+//     @extend .top-bar;
+//     & > section {
+//       @extend .top-bar-section;
+//     }
+//   }
+// }
 
 .wrap > main {
   z-index: 1;
@@ -134,6 +134,16 @@
           }
         }
       }
+    }
+  }
+}
+
+.config {
+  section.layout {
+    background-color: $white;
+
+    & > section.sidebar {
+      background-color: lighten($body-bg, 2%);
     }
   }
 }

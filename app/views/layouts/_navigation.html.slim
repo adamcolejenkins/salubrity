@@ -1,15 +1,35 @@
-nav
-  section
+nav.top-bar data-topbar="" role="navigation"
+  ul.title-area
+    li.name
+      h1
+        = link_to dashboard_path, target: "_self"
+          = image_tag current_team.logo.url(:medium), alt: current_team.name, size: '120x21'
+    li.toggle-topbar.menu-icon
+      = link_to '#'
+        span Menu
+
+  section.top-bar-section
+    / Right Nav Section
+    ul.right
+      li.user-profile
+        = link_to profile_path, target: '_self'
+          = gravatar_image_tag(current_user.email, alt: identify(current_user), :gravatar => { size: 50 })
+
+      - if current_user.role? :owner
+        li.has-dropdown
+          = link_to '#', target: '_self'
+            i.fa.fa-cog
+          
+          ul.dropdown
+            li = link_to 'General Settings', '#', target: '_self'
+            li = link_to 'Edit Team', edit_team_path(current_team), target: '_self' if can? :manage, Team
+            li = link_to 'Manage Users', users_path, target: '_self' if can? :manage, User
+
+      li
+        = link_to destroy_user_session_path, :method => :delete
+          i.fa.fa-sign-out
+
+    / Left Nav Section
     ul.left
-  
-      - if can? :read, Survey
-        li class="#{active_if(controller_name == 'surveys' || controller_name == 'fields')}"
-          = link_to "Surveys", surveys_path, target: "_self"
-
-      - if can? :read, Clinic
-        li class="#{active_if(controller_name == 'clinics')}"
-          = link_to "Clinics", clinics_path, target: "_self"
-
-      - if can? :read, Provider
-        li class="#{active_if(controller_name == 'providers')}"
-          = link_to "Providers", providers_path, target: "_self"
+      li class="#{active_if_current(dashboard_path)}" = link_to 'Dashboard', dashboard_path, target: "_self"
+      li class="#{active_if(request.fullpath.match(/config\//))}" = link_to 'Configure', config_root_path, target: "_self" if current_user.role? :contributor

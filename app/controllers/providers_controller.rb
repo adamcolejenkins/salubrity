@@ -1,13 +1,11 @@
-class ProvidersController < ApplicationController
+class ProvidersController < ConfigController
   load_and_authorize_resource
-  skip_authorize_resource only: [:chart]
-  before_action :set_provider, only: [:show, :edit, :update, :archive, :chart, :data]
-  layout 'angular'
+  before_action :set_provider, only: [:show, :edit, :update, :destroy, :archive]
 
   # GET /providers
   # GET /providers.json
   def index
-    @providers = current_team.providers.includes(:responses).all
+    @providers = current_team.providers.all
   end
 
   # GET /providers/1
@@ -90,17 +88,6 @@ class ProvidersController < ApplicationController
     end
   end
 
-  def chart
-    self.send("#{params[:type]}_chart")
-  end
-
-  def data
-    respond_to do |format|
-      format.html
-      format.json { render json: ResponseDatatable.new(view_context) }
-    end
-  end
-
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -113,26 +100,4 @@ class ProvidersController < ApplicationController
       params.require(:provider).permit(:name, :surname, :credential, :clinic_id, :clinic, :team_id, :position, :email, :phone, :photo)
     end
 
-    # CHARTS
-    def responses_chart
-      render json: @provider.responses.group_by_day(:created_at, format: "%A, %B %e").count
-    end
-
-    def timing_chart
-      render json: @provider.responses.daily_avg_time
-    end
-
-    def multiple_choice_chart
-      @field = Field.find(params[:field_id])
-      render json: @provider.data_for(:multiple_choice_field, field: @field)
-    end
-
-    def scale_chart
-      @field = Field.find(params[:field_id])
-      render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @provider }
-    end
-
-    def response_data
-      
-    end
 end

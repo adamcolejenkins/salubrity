@@ -1,5 +1,5 @@
 class Clinic < ActiveRecord::Base
-  include Filterable, ChartData
+  include Filterable
   acts_as_paranoid
   belongs_to :team, inverse_of: :clinics
   belongs_to :survey, inverse_of: :clinics, counter_cache: true

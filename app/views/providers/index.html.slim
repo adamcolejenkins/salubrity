@@ -1,41 +1,17 @@
 = render 'header'
 
-- @providers.sort.each do |provider|
-  section.resource id="provider-#{provider.id}"
+.row
+  .small-12.columns
+    .block
+      - @providers.sort.each do |provider|
+        .block-item
+          .details
+            .name
+              = provider.full_name
 
-    .row(data-equalizer)
-
-      / Provider Info Block
-      article.header class="#{'small' if can? :read, provider}"
-        .block-panel.faded(data-equalizer-watch)
-          .content
-            h4 = provider.full_name
-            
-            - if can? :update, provider
-              .tools
-                ul.inline-list.right
-                  li
-                    = link_to edit_provider_path(provider), target: "_self"
-                      i.fa.fa-wrench
-
-      / Responses Block
-      article.response-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = provider.responses.count
-              span.muted  responses
-
-      / Timing Chart
-      article.timing-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = provider.average_time || "00:00"
-              span.muted  avg time to complete
-      
-      - if can? :read, provider
-        article.more.small
-          div.block-panel.block-button(data-equalizer-watch)
-            = link_to provider, target: "_self", class: 'block-panel-button'
-              i.fa.fa-chevron-right
+          .options
+            ul.actions
+              - if can? :update, provider
+                li
+                  = link_to edit_provider_path(provider), target: "_self", tooltip: "Settings"
+                    i.fa.fa-cog

@@ -1,12 +1,17 @@
 hgroup
   .title
-    h2 = t 'providers.title'
-    h3.subheader = t 'providers.describe'
-
-  - if action_name == 'index'
+    = link_to '← Back to Providers', providers_path, target: "_self" if action_name != 'index'
+    h2 = t "providers.#{action_name}.title"
+    h3.subheader = t "providers.#{action_name}.describe"
+  
   .actions
-    - if can? :create, Provider
-      = link_to 'New Provider', new_provider_path, target: "_self", class: "radius success button"
+    - if action_name == 'index'
+
+      - if can? :create, Provider
+        = link_to 'New Provider', new_provider_path, target: "_self", class: "radius success button"
+      
+      - if can?(:update, Provider) && current_team.providers.only_deleted.size > 0
+        p = link_to "#{pluralize(current_team.providers.only_deleted.count, 'archived provider')}...", archived_providers_path, target: "_self"
     
-    - if can?(:update, Provider) && Provider.only_deleted.size > 0
-      p = link_to "#{pluralize(Provider.only_deleted.count, 'archived provider')}...", archived_providers_path, target: "_self"
+    - if action_name == 'archived'
+      button.alert.radius.button disabled="disabled" Remove All

@@ -1,3 +1,59 @@
 .button + .button {
   margin-left: 5px;
 }
+
+.button {
+  &:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.1);
+  }
+
+  &.link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $anchor-font-color;
+
+    &.alert {
+      color: $alert-color;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+
+.filter.button {
+  @include button(
+    $padding: $button-sml,
+    $bg: #e6eaf2,
+    $radius: true
+  );
+  border: none;
+  color: $primary-color;
+  font-size: $button-font-med;
+  font-weight: $font-weight-normal;
+
+  &:hover {
+    color: $primary-color;
+    box-shadow: none;
+  }
+
+  & + .filter.button {
+    margin-left: 5px;
+  }
+
+  & + .f-dropdown:focus {
+    outline: none !important;
+  }
+
+  &.dropdown {
+    @include dropdown-button(
+      $padding: small,
+      $pip-color: $primary-color
+    );
+  }
+
+  &.advanced[aria-expanded="true"] {
+    background-color: $success-color;
+    color: $white;
+  }
+}

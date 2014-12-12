@@ -1,0 +1,16 @@
+= render 'header'
+
+.row
+  .small-12.columns
+    .block
+      - @surveys.sort.each do |survey|
+        .block-item.alert-light
+          .details
+            .name = survey.title
+          .options
+            ul.actions
+              li = link_to restore_survey_path(survey), target: "_self"
+                i.fa.fa-refresh
+              - if can? :destroy, survey
+                li = link_to survey_path(survey), data: {:confirm => 'Are you sure?'}, :method => :delete
+                  i.fa.fa-trash

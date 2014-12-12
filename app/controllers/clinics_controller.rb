@@ -1,13 +1,11 @@
-class ClinicsController < ApplicationController
+class ClinicsController < ConfigController
   load_and_authorize_resource
-  skip_authorize_resource only: [:chart]
-  before_action :set_clinic, only: [:show, :edit, :update, :destroy, :chart]
-  layout 'angular'
+  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
 
   # GET /clinics
   # GET /clinics.json
   def index
-    @clinics = current_team.clinics.includes(:responses).all
+    @clinics = current_team.clinics.all
   end
 
   # GET /clinics/1
@@ -64,8 +62,30 @@ class ClinicsController < ApplicationController
     end
   end
 
-  def chart
-    self.send("#{params[:type]}_chart")
+  # GET /clinics/archived
+  def archived
+    @clinics = current_team.clinics.only_deleted
+  end
+
+  # GET /clinics/1/restore
+  def restore
+    Clinic.restore(params[:id], recursive: true)
+
+    respond_to do |format|
+      format.html { redirect_to archived_clinics_url, notice: 'Clinic was successfully restored.' }
+      format.json { render :show, status: :ok }
+    end
+  end
+
+  # DELETE /clinics/1/delete
+  # DELETE /clinics/1/delete.json
+  def archive
+    @clinic = current_team.clinics.only_deleted.find(params[:id])
+    @clinic.destroy
+    respond_to do |format|
+      format.html { redirect_to clinics_url, notice: 'Clinic was successfully archived.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -80,22 +100,4 @@ class ClinicsController < ApplicationController
       params.require(:clinic).permit(:title, :guid, :team, :survey, :survey_id, :address, :address2, :city, :state, :zip, :phone, :background)
     end
 
-    # CHARTS
-    def responses_chart
-      render json: @clinic.responses.group_by_day(:created_at, format: "%A, %B %e").count
-    end
-
-    def timing_chart
-      render json: @clinic.responses.daily_avg_time
-    end
-
-    def multiple_choice_chart
-      @field = Field.find(params[:field_id])
-      render json: @clinic.data_for(:multiple_choice_field, field: @field)
-    end
-
-    def scale_chart
-      @field = Field.find(params[:field_id])
-      render "fields/_scale.json.jbuilder", locals: { field: @field, resource: @clinic }
-    end
 end

@@ -18,16 +18,9 @@ html(lang="en")
         
   body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{params[:controller].split("/").first} #{controller_name} #{action_name}"
     .wrap
-      header
-        = render :partial => "layouts/header"
-      nav
-        = render :partial => "layouts/navigation"
-      flash
-        = render :partial => "layouts/flash"
-      main
-        section.layout
-          = yield
-      footer
-        = render :partial => "layouts/footer"
+      header = render :partial => "layouts/header"
+      flash = render :partial => "layouts/flash"
+      main = yield
+      footer = render :partial => "layouts/footer"
 
     = yield :javascript

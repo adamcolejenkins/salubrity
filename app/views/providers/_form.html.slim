@@ -1,82 +1,69 @@
-= form_for @provider, html: {class: "indent-fields"} do |f|
+= form_for @provider do |f|
   - if @provider.errors.any?
     .alert-box.alert.radius
       = "#{pluralize(@provider.errors.count, "error")} prohibited this provider from being saved: "
       strong = @provider.errors.full_messages.join(", ")
   
-  .block-panel
-    .content
-      .form-header
-        .tag
-          i.fa.fa-user-md.fa-4x
-        .header
-          h3 = t 'providers.form.details.title'
+  .form-header
+    .header
+      h3 = t 'providers.form.details.title'
 
-      .form-group
-        .row
-          .small-4.columns.medium-offset-1
-            = f.label :name
-            = f.text_field :name
-          .small-4.columns
-            = f.label :surname
-            = f.text_field :surname
-          .small-3.columns
-            = f.label :credential
-            = f.text_field :credential, placeholder: "e.g. MD, PhD, DDO"
+  .form-group
+    .small-5.columns
+      = f.label :name
+      = f.text_field :name
+    .small-4.columns
+      = f.label :surname
+      = f.text_field :surname
+    .small-3.columns
+      = f.label :credential
+      = f.text_field :credential, placeholder: "e.g. MD, PhD, DDO"
 
-      .form-group
-        .full
-          = f.label :position
-          = f.text_field :position
-      .form-group
-        .full
-          = f.label :email
-          = f.email_field :email
-      .form-group
-        .full
-          = f.label :phone
-          = f.phone_field :phone, placeholder: "e.g. (555) 555-1234"
-  
-  .block-panel
-    .content
-      .form-header
-        .tag
-          i.fa.fa-file-image-o.fa-4x
-        .header
-          h3 Clinic
+  .form-group
+    .full
+      = f.label :position
+      = f.text_field :position
+  .form-group
+    .full
+      = f.label :email
+      = f.email_field :email
+  .form-group
+    .full
+      = f.label :phone
+      = f.phone_field :phone, placeholder: "e.g. (555) 555-1234"
 
-      .form-group
-        .full
-          - if action_name == 'new' || action_name == 'create'
-            p.thin This provider needs a job, which clinic should they be working for?
-            = f.collection_select :clinic_id, current_team.clinics.all, :id, :title, prompt: true
-          - else
-            p.thin 
-              | This provider is linked to the #{link_to @provider.clinic.title, @provider.clinic} clinic. 
-              i.fa.fa-question-circle.muted.tip.tip-top data-tooltip="" title="Clinics cannot be changed at this time."
+  .form-header
+    .header
+      h3 Clinic
 
-  .block-panel
-    .content
-      .form-header
-        .tag
-          i.fa.fa-file-image-o.fa-4x
-        .header
-          h3 = t 'providers.form.photo.title'
+  .form-group
+    .full
+      - if action_name == 'new' || action_name == 'create'
+        p.thin This provider needs a job, which clinic should they be working for?
+        = f.collection_select :clinic_id, current_team.clinics.all, :id, :title, prompt: true
+      - else
+        p.thin 
+          | This provider is linked to the #{link_to @provider.clinic.title, @provider.clinic} clinic. 
+          i.fa.fa-question-circle.muted.tip.tip-top data-tooltip="" title="Clinics cannot be changed at this time."
 
-      .form-group
-        .full
-          = f.label :photo
-          p.thin Everyone enjoys being face-to-face, upload a fancy photo for this provider.
-          
-          - if @provider.photo.present?
-            .panel.text-center
-              = image_tag @clinic.photo.url(:thumb)
+  .form-header
+    .header
+      h3 = t 'providers.form.photo.title'
 
-          = f.file_field :photo
-          small Photo must be 800 x 640px
+  .form-group
+    .full
+      = f.label :photo
+      p.thin Everyone enjoys being face-to-face, upload a fancy photo for this provider.
+      
+      - if @provider.photo.present?
+        .panel.text-center
+          = image_tag @clinic.photo.url(:thumb)
 
-      .form-buttons
-        .full 
-          = f.submit 'Save Provider', class: 'radius success button'
-          = link_to 'Cancel', providers_path, class: 'radius button', target: "_self"
-          = link_to 'Archive', archive_provider_path(@provider), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "radius alert button pull-right" if (can? :destroy, Provider) && action_name == 'edit'
+      = f.file_field :photo
+      small Photo must be 800 x 640px
+
+  .form-buttons
+    .full 
+      = f.submit 'Save Provider', class: 'radius success button'
+      = link_to 'Cancel', providers_path, class: 'radius secondary button', target: "_self"
+      = link_to 'Archive', archive_provider_path(@provider), data: {:confirm => 'Are you sure?'}, :method => :delete, class: "radius alert button pull-right" if (can? :destroy, @provider) && action_name == 'edit'

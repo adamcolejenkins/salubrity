@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
-  layout 'angular', :only => [:edit]
+  layout 'angular', :only => [:edit, :update]
 
   def new
     redirect_to root_path
@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:name, :surname]
+    devise_parameter_sanitizer.for(:account_update) << [:name, :surname]
   end
 
 end
