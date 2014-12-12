@@ -29,11 +29,12 @@ $ ->
       $this.attr('aria-expanded', false)
       $this.text($this.data('label'))
 
+  console.log $('#response-table').data('sort-disabled')
 
   $( '#response-table' ).dataTable
-    # processing: true
-    # serverSide: true
-    # ajax: $('#provider-response-table').data('source')
+    processing: true
+    serverSide: true
+    ajax: $('#response-table').data('source')
     pagingType: 'full_numbers'
     scrollX: true,
     scrollY: "500px"
@@ -41,10 +42,9 @@ $ ->
     autoWidth: false
     pageLength: 50
     lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ]
-    stateSave: true
     order: [ 1, 'desc' ]
     columnDefs: [
-      { "orderable": false, "targets": 0 }
+      { "orderable": false, "targets": $('#response-table').data('sort-disabled') }
     ]
 
 

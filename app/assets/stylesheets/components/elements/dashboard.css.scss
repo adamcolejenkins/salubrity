@@ -151,7 +151,8 @@ section.filters#advanced-filters {
     }
 
     // 12 Column Blocks
-    article.responses-table {
+    article.responses-table,
+    article.clinic-usage {
       @include grid-column($columns: 12);
     }
   }

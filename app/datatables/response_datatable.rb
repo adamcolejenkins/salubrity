@@ -4,12 +4,17 @@ class ResponseDatatable < AjaxDatatablesRails::Base
   include AjaxDatatablesRails::Extensions::Kaminari
   # include AjaxDatatablesRails::Extensions::WillPaginate
   # include AjaxDatatablesRails::Extensions::SimplePaginator
+  
+  def_delegators :@view, :h, :current_team, :check_box_tag
 
   def sortable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
     @sortable_columns ||= [
-      'responses.created_at'
+      '',
+      'responses.created_at',
+      'clinics.title',
+      'providers.surname'
     ]
   end
 
@@ -17,7 +22,10 @@ class ResponseDatatable < AjaxDatatablesRails::Base
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
     @searchable_columns ||= [
-      'responses.created_at'
+      '',
+      'responses.created_at',
+      'clinics.title',
+      'providers.surname'
     ]
   end
 
@@ -26,20 +34,21 @@ class ResponseDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       [
-        # comma separated list of the values for each cell of a table row
-        # example: record.attribute,
-        record.created_at.to_formatted_s(:long),
-
-        record.time
-      ]
+        check_box_tag("response[#{record.id}]", record.id),
+        record.created_at.strftime("%B %e, %Y at %H:%M:%S"),
+        record.clinic.title,
+        record.provider.full_name,
+        record.time.to_s + " seconds"
+      ] + record.answers.joins(:field).select(:value).order('fields.priority ASC').map(&:value)
     end
   end
 
   def get_raw_records
-    Response.joins(
-      { provider: :provider },
-      { answers: :response }
-    ).references(:answer).distinct
+    current_team.responses
+      .joins(:provider, :clinic)
+      .includes(:provider, :clinic)
+      .between(params[:from], params[:to])
+      .filter(params.slice(:limit, :survey, :clinic, :provider))
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

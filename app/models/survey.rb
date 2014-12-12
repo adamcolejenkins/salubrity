@@ -7,7 +7,7 @@ class Survey < ActiveRecord::Base
   has_many :clinics, inverse_of: :survey, dependent: :destroy
   has_many :responses, inverse_of: :survey, dependent: :destroy
 
-  has_many :fields, -> { order("priority ASC").includes(:field_choices) }, inverse_of: :survey, dependent: :destroy
+  has_many :fields, -> { order("priority ASC") }, inverse_of: :survey, dependent: :destroy
 
   scope :guid, -> (guid) { where(guid: guid).first }
   store :opts, :accessors => [:intro_id, :outro_id, :logo_path], coder: JSON
@@ -36,7 +36,7 @@ class Survey < ActiveRecord::Base
   end
 
   def data_fields
-    self.fields.includes(:answers).where.not(context: Field::DATA_EXCLUDE)
+    self.fields.where.not(context: Field::DATA_EXCLUDE)
   end
 
 end

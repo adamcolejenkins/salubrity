@@ -6,17 +6,19 @@ class Response < ActiveRecord::Base
   belongs_to :survey, inverse_of: :responses
   belongs_to :clinic, inverse_of: :responses
   belongs_to :provider, inverse_of: :responses
-  has_many :answers, -> { includes :field }, autosave: true, dependent: :destroy
+  has_many :answers, autosave: true, dependent: :destroy
   accepts_nested_attributes_for :answers, reject_if: proc { |attributes| attributes['value'].nil? }
 
-  scope :created_between, lambda { |start_date, end_date|
+  scope :between, lambda { |start_date, end_date|
     start_date ||= Time.now
     end_date ||= Time.now
-    where("created_at >= ? AND created_at <= ?", start_date.beginning_of_day, end_date.end_of_day )
+    where("responses.created_at >= ? AND responses.created_at <= ?", start_date.beginning_of_day, end_date.end_of_day )
   }
 
-  scope :survey, -> (survey_id) { where survey_id: survey_id }
-  scope :clinic, -> (clinic_id) { where clinic_id: clinic_id }
+  # scope :start,    -> (start)       { where("created_at >= ?", start.beginning_of_day) }
+  # scope :stop,     -> (stop)        { where("created_at <= ?", stop.end_of_day) }
+  scope :survey,   -> (survey_id)   { where survey_id: survey_id }
+  scope :clinic,   -> (clinic_id)   { where clinic_id: clinic_id }
   scope :provider, -> (provider_id) { where provider_id: provider_id }
 
   def time

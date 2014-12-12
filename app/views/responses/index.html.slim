@@ -1,50 +1,3 @@
-section.response-data#responses
-
-  / table.response-table.display.no-border#response-table role="grid"
-  /   thead
-  /     tr
-  /       / Tools
-  /       th width="10" = check_box_tag 'select_all', nil, false, disabled: 'disabled'
-
-  /       / Date
-  /       th width="100" Date
-
-  /       / Provider
-  /       th Provider
-
-  /       / Fields
-  /       - @survey.data_fields.each_with_index do |field, index|
-  /         th class="#{field.context}"
-  /           div
-  /             span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
-
-  /       / Start date
-  /       th Response Time
-
-
-  /   tbody
-  /     - @responses.each do |response|
-  /       tr
-          
-  /         / Tools
-  /         td
-  /           = check_box_tag 'select', nil, false, disabled: 'disabled'
-
-  /         / Date
-  /         td = response.created_at.to_formatted_s(:long)
-          
-  /         / Provider
-  /         td 
-          
-  /         / Fields
-  /         - @survey.data_fields.find_each do |field|
-  /           td class="#{field.context}"
-  /             = response.answers.where(field: field).first.value unless response.answers.where(field: field).blank?
-          
-  /         / Response Time
-  /         td = Time.at(response.time).utc.strftime("%M:%S")
-
-
 section.layout
   .row
     .small-12.columns
@@ -71,16 +24,53 @@ section.layout
           .content
             .stat
               big = @responses.length
-              span.muted  responses
+              span.muted  survey responses
             .chart bar-graph=""
-              = column_chart recent_responses_chart_path(filter: params[:filter]), height: "100%"
+              = column_chart recent_responses_chart_path(params), height: "100%", library: { vAxis: { gridlines: {color: "transparent"}, textPosition: "none" } }
 
       / Timing Chart
       article.timing-chart
         .block-panel(data-equalizer-watch)
           .content
-            .stat
+            .stat.text-center
               big = "00:00"
               span.muted  avg time to complete
-            / .chart bar-graph=""
-              / = column_chart chart_survey_path(@survey, :timing), height: "100%"
+
+    .row
+      article.clinic-usage
+        .block-panel.chart
+          .header Clinic Usage
+          .content
+            = column_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] == 'day'
+            = line_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] != 'day'
+
+    .row
+
+      article.responses-table
+        .block-panel.table
+          .header Response Data
+          .content
+            - noSort = [0] + (4..(@survey.data_fields.count + 4)).to_a
+            table#response-table.response-table.display.no-border role="grid" data-source="#{dashboard_path(params)}" data-sort-disabled="#{noSort}"
+              thead
+                tr
+                  / Checkbox
+                  th = check_box_tag('responses-all')
+                
+                  / Date
+                  th Date
+
+                  / Clinic
+                  th Clinic
+
+                  / Provider
+                  th Provider
+                  
+                  / Response Time
+                  th Response Time
+
+                  / Fields
+                  - @survey.data_fields.each_with_index do |field, index|
+                    th
+                      div
+                        span.ellipsis = "#{(index + 1).to_s} - #{field.label}"

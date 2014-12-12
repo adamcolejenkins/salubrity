@@ -66,6 +66,7 @@ Rails.application.routes.draw do
 
     scope :chart do
       get 'recent_responses_chart' => 'responses#recent_responses_chart'
+      get 'clinic_usage_chart' => 'responses#clinic_usage_chart'
     end
     get 'dashboard' => 'responses#index'
 

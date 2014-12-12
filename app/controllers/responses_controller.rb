@@ -4,17 +4,33 @@ class ResponsesController < ApplicationController
 
   def index
     @current_survey = current_survey_id.to_i
-    @responses = current_team.responses.created_between(params[:from], params[:to]).filter(params.slice(:limit, :survey, :clinic, :provider))
+    @responses = current_team.responses.between(params[:from], params[:to]).filter(params.slice(:limit, :survey, :clinic, :provider))
+
+    respond_to do |format|
+      format.html
+      format.json { render json: ResponseDatatable.new(view_context) }
+    end
   end
 
   def recent_responses_chart
     case params[:filter]
     when 'day'
-      render json: current_team.responses.group_by_hour(:created_at, range: Time.now.midnight..Time.now, format: "%l %P").count
-    when 'week'
+      render json: current_team.responses.group_by_hour(:created_at, range: params[:from].midnight..params[:to].end_of_day, format: "%l %P").count
+    else
       render json: current_team.responses.group_by_day(:created_at, range: params[:from]..params[:to], format: "%B %d, %Y").count
-    when 'month'
-      render json: current_team.responses.group_by_week(:created_at, range: params[:from]..params[:to], format: "%B %d, %Y").count
+    end
+  end
+
+  def clinic_usage_chart
+    case params[:filter]
+    when 'day'
+      render json: @survey.clinics.map { |clinic| 
+        { name: clinic.title, data: clinic.responses.group_by_hour(:created_at, range: params[:from].midnight..params[:to].end_of_day, format: "%l %P").count }
+      }
+    else
+      render json: @survey.clinics.map { |clinic| 
+        { name: clinic.title, data: clinic.responses.group_by_day(:created_at, range: params[:from]..params[:to], format: "%B %d, %Y").count }
+      }
     end
   end
 
@@ -25,13 +41,13 @@ class ResponsesController < ApplicationController
     params[:to] ||= Date.today
 
     case params[:filter]
-    when 'week'
-      @filter = 1.week
-    when 'month'
-      @filter = 1.month
-    else
-      params[:filter] = 'day'
-      @filter = 1.day
+      when 'week'
+        @filter = 1.week
+      when 'month'
+        @filter = 1.month
+      else
+        params[:filter] = 'day'
+        @filter = 1.day
     end
   end
 
