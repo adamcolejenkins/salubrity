@@ -4,11 +4,10 @@
 
 updateSidebar = ->
   $header = jQuery('.wrap > header').outerHeight()
-  $nav = jQuery('.wrap > nav').height()
   $main = jQuery('.wrap > main').height()
 
   $width = document.documentElement.clientWidth
-  $height = document.documentElement.clientHeight - $header - $nav
+  $height = document.documentElement.clientHeight - $header 
 
   if $width > 755
     if $main > $height

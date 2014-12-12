@@ -1,9 +1,60 @@
-.surveys.index,
-.surveys.show,
-.clinics.index,
-.clinics.show,
-.providers.index,
-.providers.show {
+section.filters#advanced-filters,
+section.response-data#responses {
+  background-color: #f5f6f8;
+  padding: ($column-gutter / 1.5) 0;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  display: none;
+}
+
+section.filters#advanced-filters {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+
+  .row > section[class*="filter"] {
+    @include grid-column($columns: 12);
+    margin-bottom: $column-gutter;
+
+    @media #{$medium-up} {
+      @include grid-column($columns: 6);
+    }
+    @media #{$large-up} {
+      @include grid-column($columns: 3);
+      margin-bottom: 0;
+    }
+
+    .filter-title {
+      font-size: rem-calc(12px);
+      font-weight: 600;
+      i {
+        color: scale-color($primary-color, $lightness: 40%);
+        font-weight: normal;
+      }
+    }
+
+    .filter-list {
+      margin: 0px;
+      height: 160px;
+      overflow-y: scroll;
+      border-top: 1px solid #dadee6;
+      border-bottom: 1px solid #dadee6;
+
+      & > li {
+        label, input {
+          margin-bottom: 0;
+        }
+        input[type="checkbox"] {
+          margin-right: 5px;
+        }
+        label {
+          font-weight: normal;
+          font-size: rem-calc(12px);
+          line-height: rem-calc(20px);
+        }
+      }
+    }
+  }
+}
+
+.responses.index {
   // Float the last column left
   [class*="column"] + [class*="column"]:last-child {
     float: left;
@@ -11,12 +62,11 @@
 
   & > .wrap > main {
     section.layout {
-      max-width: 100%;
+      margin-top: $column-gutter;
     }
   }
 
   section.resource {
-    padding: rem-calc(40 0 20);
     
     &:nth-child(odd) {
       background: darken($body-bg, 2%);
@@ -101,7 +151,8 @@
     }
 
     // 12 Column Blocks
-    article.responses-table {
+    article.responses-table,
+    article.clinic-usage {
       @include grid-column($columns: 12);
     }
   }

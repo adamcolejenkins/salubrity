@@ -1,30 +1,36 @@
 Chartkick.options = {
-  colors: ["#dfe2e7"],
+  colors: ["#dfe2e7", "#677486", "#28B598", "#F54D4B", "#19b698", "#FED16C", "#47b8e5", "#d4a74c"],
   library: {
-    axisTitlesPosition: "none",
+    # axisTitlesPosition: "none",
     backgroundColor: "transparent",
     chartArea: {
-      # left: 0,
+      # left: 10,
       top: 10,
       height: "90%",
       width: "90%"
     },
     vAxis: {
       gridlines: {
-          color: 'transparent'
+          color: "#e5e6ea"
       },
-      textPosition: "none",
+      # textPosition: "none",
       baselineColor: "#e5e6ea"
     },
     hAxis: {
-      gridlines: {
-          color: 'transparent'
-      },
-      textPosition: "none",
+      # gridlines: {
+      #     color: "#e5e6ea"
+      # },
+      # textPosition: "none",
       baselineColor: "#e5e6ea"
     },
     pieHole: 0.37,
-    legend: "none"
+    legend: {
+      position: "bottom",
+      alignment: "start",
+      textStyle: {
+        fontSize: 10
+      }
+    }
   }
 }
 

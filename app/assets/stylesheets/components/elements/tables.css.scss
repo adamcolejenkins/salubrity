@@ -32,7 +32,18 @@ div.dataTables_wrapper {
     padding: rem-calc(5px);
     margin-bottom: 0px !important;
   }
+  
+  .dataTables_processing {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    color: $body-font-color;
+    transition: all 0.5s ease-out;
+  }
 
+  .dataTables_scrollBody {
+    min-height: 500px;
+  }
 
   .row + div[class*="dataTables"] {
     margin-left: -15px;
@@ -74,7 +85,7 @@ div.dataTables_wrapper {
         outline:none;
       }
     }
-    th.sorting_disabled {
+    th.sorting_disabled:first-of-type {
       min-width: 20px;
       width: 10px !important;
     }

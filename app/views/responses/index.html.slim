@@ -1,2 +1,76 @@
-h1 Responses#index
-p Find me in app/views/responses/index.html.slim
+section.layout
+  .row
+    .small-12.columns
+
+      / Survey Nav
+      dl.sub-nav
+        - @surveys.sort.each do |survey|
+          dd class="#{active_if(@current_survey == survey.id)}" = link_to survey.title, dashboard_path(survey: survey.id)
+
+  section.resource
+    
+    .row(data-equalizer)
+
+      / Survey Info Block
+      article.header
+        .block-panel.faded(data-equalizer-watch)
+          .content
+            h4 = @survey.title
+            h5.subheader = @survey.description
+
+      / Responses Block
+      article.response-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat
+              big = @responses.length
+              span.muted  survey responses
+            .chart bar-graph=""
+              = column_chart recent_responses_chart_path(params), height: "100%", library: { vAxis: { gridlines: {color: "transparent"}, textPosition: "none" } }
+
+      / Timing Chart
+      article.timing-chart
+        .block-panel(data-equalizer-watch)
+          .content
+            .stat.text-center
+              big = "00:00"
+              span.muted  avg time to complete
+
+    .row
+      article.clinic-usage
+        .block-panel.chart
+          .header Clinic Usage
+          .content
+            = column_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] == 'day'
+            = line_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] != 'day'
+
+    .row
+
+      article.responses-table
+        .block-panel.table
+          .header Response Data
+          .content
+            - noSort = [0] + (4..(@survey.data_fields.count + 4)).to_a
+            table#response-table.response-table.display.no-border role="grid" data-source="#{dashboard_path(params)}" data-sort-disabled="#{noSort}"
+              thead
+                tr
+                  / Checkbox
+                  th = check_box_tag('responses-all')
+                
+                  / Date
+                  th Date
+
+                  / Clinic
+                  th Clinic
+
+                  / Provider
+                  th Provider
+                  
+                  / Response Time
+                  th Response Time
+
+                  / Fields
+                  - @survey.data_fields.each_with_index do |field, index|
+                    th
+                      div
+                        span.ellipsis = "#{(index + 1).to_s} - #{field.label}"

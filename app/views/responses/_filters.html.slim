@@ -1,0 +1,69 @@
+.row
+  .medium-8.columns
+    
+    / Filter Previous Range Button
+    = link_to dashboard_path(params.merge(from: params[:from] - @filter, to: params[:to] - @filter)), class: 'filter button', target: "_self"
+      i.fa.fa-caret-left
+    
+    / Date Picker Button
+    a.filter.dropdown.button data-dropdown="date-picker" arial-controls="date-picker" aria-expanded="false"
+      strong
+        i.fa.fa-calendar
+        |  #{params[:filter].capitalize}: 
+      = Date.today
+
+    / Filter Next Range Button
+    = link_to dashboard_path(params.merge(from: params[:from] + @filter, to: params[:to] + @filter)), class: 'filter button', target: "_self"
+      i.fa.fa-caret-right
+    
+    / Jump to Current Button
+    = link_to 'Go to Today', dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day')), class: 'filter button', target: "_self"
+
+    / Filter Range Button
+    a.filter.button.dropdown data-dropdown="filter-by" aria-controls="filter-by" aria-expanded="false" = params[:filter].capitalize
+    ul#filter-by.f-dropdown data-dropdown-content="" aria-hidden="true" tabindex="-1"
+      li = link_to 'Day', dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day')), target: "_self"
+      li = link_to 'Week', dashboard_path(params.merge(from: Date.today.beginning_of_week, to: Date.today.end_of_week, filter: 'week')), target: "_self"
+      li = link_to 'Month', dashboard_path(params.merge(from: Date.today.beginning_of_month, to: Date.today.end_of_month, filter: 'month')), target: "_self"
+    
+    
+  .medium-4.columns.text-right
+    
+    / Advanced Filter Button
+    a.filter.button.advanced.dropdown data-slidedown="advanced-filters" data-apply="Apply Filters" data-label="Advanced Filters" aria-controls="advanced-filters" aria-expanded="false" Advanced Filters
+
+
+section.filters#advanced-filters
+  .row
+
+    / Clinic Filters
+    section.clinics-filter
+      h5.filter-title
+        | Clinic
+        i.fa.fa-filter.right
+      ul.no-bullet.filter-list
+        li
+          label 
+            input type="checkbox" All Clinics
+
+        - @clinics.sort_by(&:title).each do |clinic|
+          li
+            label
+              input type="checkbox"
+              = clinic.title
+    
+    / Provider Filters
+    section.providers-filter
+      h5.filter-title
+        | Provider
+        i.fa.fa-filter.right
+      ul.no-bullet.filter-list
+        li
+          label 
+            input type="checkbox" All Providers
+
+        - @providers.sort_by(&:surname).each do |provider|
+          li
+            label
+              input type="checkbox"
+              = provider.full_name
