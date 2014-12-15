@@ -41,6 +41,7 @@ $ ->
     scrollCollapse: true
     autoWidth: false
     pageLength: 50
+    searching: false
     lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ]
     order: [ 1, 'desc' ]
     columnDefs: [
