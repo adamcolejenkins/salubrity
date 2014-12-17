@@ -1,17 +1,30 @@
-= render 'header'
+section.section.section-provider-collection
+  article.article-content ng-controller="ProviderListCtrl" ng-init="init()"
 
-.row
-  .small-12.columns
+    section.section.section-filters
+      div.search
+        input.radius type="search" placeholder="Search..." ng-model="search"
+    
+    .alert-box.radius ng-hide="providers.length" Loading providers...
+
     .block
-      - @providers.sort.each do |provider|
-        .block-item
-          .details
-            .name
-              = provider.full_name
 
-          .options
-            ul.actions
-              - if can? :update, provider
-                li
-                  = link_to edit_provider_path(provider), target: "_self", tooltip: "Settings"
-                    i.fa.fa-cog
+      .block-item ng-repeat="provider in providers | filter:search" ng-class="{in: animate}"
+        .details
+          .name
+            | {{ provider.full_name }}
+            span.info.muted
+              |  {{ provider.email | filter:search }}
+          .info
+            .label.radius ng-repeat="clinic in provider.clinics"
+              | {{ clinic.title }}
+
+        .options
+          ul.actions
+            li
+              a href="{{ provider.dashboard_url }}"
+                i.fa.fa-bar-chart
+
+            li ng-if="provider.edit_url"
+              a href="{{ provider.edit_url }}"
+                i.fa.fa-edit
