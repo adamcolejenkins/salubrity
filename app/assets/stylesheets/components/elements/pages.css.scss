@@ -1,0 +1,16 @@
+section.section-user-collection {
+  .block {
+    margin-top: $column-gutter / 2;
+    margin-bottom: $column-gutter;
+  }
+}
+
+section[class*="collection"] {
+  section.section-filters {
+    @include grid-row($behavior: nest);
+
+    .search {
+      @include grid-column($columns: 12);
+    }
+  }
+}

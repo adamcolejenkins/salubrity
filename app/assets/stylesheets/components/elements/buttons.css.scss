@@ -37,7 +37,8 @@
     box-shadow: none;
   }
 
-  & + .filter.button {
+  & + .filter.button,
+  & + .f-dropdown + .filter.button {
     margin-left: 5px;
   }
 
@@ -45,14 +46,27 @@
     outline: none !important;
   }
 
+  i.fa {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
   &.dropdown {
     @include dropdown-button(
       $padding: small,
       $pip-color: $primary-color
     );
+
+    &.sort {
+      padding-right: 1rem;
+      &::after {
+        display: none;
+      }
+    }
   }
 
-  &.advanced[aria-expanded="true"] {
+  &[aria-expanded="true"] {
     background-color: $success-color;
     color: $white;
   }

@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require turbolinks
-//= require classie
 //= require moment
+//= require foundation-daterangepicker/moment.min
+//= require classie
 //= require fastclick
 //= require foundation
 
@@ -26,7 +27,7 @@
 //= require angular-sanitize
 //= require angular-ui-router
 //= require angular-touch
-//= require angular-animate
+// require angular-animate
 //= require ng-underscore/build/ng-underscore.js
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
@@ -37,11 +38,13 @@
 //= require angular-chartjs-directive
 
 // Vendor assets
+//= require jsUri/Uri
 //= require jquery-icheck/icheck
 //= require select2/select2
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
+//= require foundation-daterangepicker/daterangepicker
 
 // DEPRECATED
 

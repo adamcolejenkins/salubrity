@@ -2,84 +2,34 @@
 .wrap > main,
 .wrap > footer {
   position: relative;
-  section.layout {
+  
+  & > section.section {
     @include grid-row();
 
-    & > section.content {
-      @include grid-column($columns: 12, $last-column: true);
-    }
-    & > section.sidebar {
-      @include grid-column($columns: 2);
-
-      & + section.content {
-        @include grid-column($columns: 10, $last-column: true);
-      }
+    article.article-content,
+    article.article-navigation {
+      @include grid-column($columns: 12);
     }
   }
 }
 
-// .dashboard .wrap > main {
-//   & > section.layout {
-//     max-width: 100%;
-//   }
-// }
-
-// .wrap > header {
-//   section.branding {
-//     @include grid-column($columns: 6);
-//   }
-//   section.actions {
-//     @include grid-column($columns: 6, $last-column: true);
-//   }
-// }
-
-// .wrap > nav {
-//   @extend .contain-to-grid;
-//   box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
-//   z-index: 2;
-//   & > nav {
-//     @extend .top-bar;
-//     & > section {
-//       @extend .top-bar-section;
-//     }
-//   }
-// }
-
-.wrap > main {
+.wrap > main, 
+.wrap > footer {
   z-index: 1;
-  hgroup {
-    @include grid-row();
-    padding-top: 30px;
-    padding-bottom: 30px;
-    & > div.title {
-      @include grid-column($columns: 8);
-      & > div.crumb {
-        color: $base;
-        font-size: rem-calc(12);
-      }
-      & > .subheader {
-        font-size: rem-calc(16);
-      }
-    }
-    & > div.actions {
-      @include grid-column($columns: 4, $last-column: true);
-      text-align: right;
-    }
-  }
+  margin: $column-gutter 0;
 }
 
 .wrap > footer {
-  margin-top: 30px;
-  section.layout {
-    & > section {
+  section.section-footer {
+    & > div {
       border-top: 1px solid $secondary-color;
       padding-top: 15px;
       p { font-size: 13px; }
     }
-    & > section.copyright {
+    & > div.copyright {
       @include grid-column($columns: 8);
     }
-    & > section.support {
+    & > div.support {
       @include grid-column($columns: 4, $last-column: true);
       text-align: right;
     }
@@ -138,12 +88,7 @@
   }
 }
 
-.config {
-  section.layout {
-    background-color: $white;
+// .config {
+//   background-color: $white;
+// }
 
-    & > section.sidebar {
-      background-color: lighten($body-bg, 2%);
-    }
-  }
-}

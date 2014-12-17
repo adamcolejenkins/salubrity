@@ -11,14 +11,13 @@
  * file per style scope.
  */
 
-
 //= require jquery-icheck/skins/flat/green
 //= require select2/select2
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require sweetalert
 //= require nouislider
-//  require jquery.easypiechart/jquery.easy-pie-chart
+//= require foundation-daterangepicker/daterangepicker-f5
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -39,18 +38,22 @@
 
 // Components
 @import "components/elements/analytics";
+@import "components/elements/animation";
 @import "components/elements/block-list";
 @import "components/elements/builder";
 @import "components/elements/buttons";
 @import "components/elements/charts";
 @import "components/elements/cs-select";
 @import "components/elements/dashboard";
+@import "components/elements/date-range-picker";
 @import "components/elements/forms";
 @import "components/elements/header";
 @import "components/elements/home";
 @import "components/elements/kiosk";
 @import "components/elements/lists";
+@import "components/elements/navigation";
 @import "components/elements/page-stack";
+@import "components/elements/pages";
 @import "components/elements/panels";
 @import "components/elements/splash";
 @import "components/elements/tabs";

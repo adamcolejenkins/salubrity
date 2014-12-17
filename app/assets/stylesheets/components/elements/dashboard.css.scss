@@ -9,7 +9,7 @@ section.response-data#responses {
 section.filters#advanced-filters {
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 
-  .row > section[class*="filter"] {
+  .row > form > section[class*="filter"] {
     @include grid-column($columns: 12);
     margin-bottom: $column-gutter;
 
@@ -54,179 +54,159 @@ section.filters#advanced-filters {
   }
 }
 
-.responses.index {
+body.responses.index {
+
   // Float the last column left
   [class*="column"] + [class*="column"]:last-child {
     float: left;
   }
 
   & > .wrap > main {
-    section.layout {
-      margin-top: $column-gutter;
-    }
-  }
+    section.section {
+      
+      &.section-overall-responses .block-panel > .content {
+        height: rem-calc(160);
+      }
 
-  section.resource {
-    
-    &:nth-child(odd) {
-      background: darken($body-bg, 2%);
+      &.section-field-responses .block-panel > .content {
+        height: rem-calc(240);
+      }
 
-      .block-button {
-        &:hover {
-          background-color: $body-bg;
+      &.section-clinic-usage .block-panel > .content {
+        height: rem-calc(400);
+      }
+
+      article .block-panel > .content {
+        position: relative;
+      }
+
+      // 12/4/3 Column Blocks
+      article.article-multiple-choice,
+      article.article-checkboxes,
+      article.article-dropdown,
+      article.article-number,
+      article.article-scale {
+        // Small Screens
+        @include grid-column($columns: 12);
+
+        // Medium Screens
+        @media #{$medium-up} {
+          @include grid-column($columns: 4);
+        }
+
+        // Large Screens
+        @media #{$large-up} {
+          @include grid-column($columns: 3);
         }
       }
-    }
+      
+      // 12/8/6 Column Blocks
+      article.article-single-line-text,
+      article.article-paragraph-text,
+      article.article-header {
+        // Small Screens
+        @include grid-column($columns: 12);
 
-    article .block-panel .content {
-      position: relative;
-      // height: 100%;
-    }
+        // Medium Screens
+        @media #{$medium-up} {
+          @include grid-column($columns: 8);
+        }
 
-    // 3 Column Blocks
-    article.multiple-choice,
-    article.checkboxes,
-    article.dropdown,
-    article.number,
-    article.scale,
-    article.more {
-      @include grid-column($columns: 12);
-      @media #{$medium-up} {
-        @include grid-column($columns: 4);
-      }
-      @media #{$large-up} {
-        @include grid-column($columns: 3);
-      }
-    }
-    
-    // 6 Column Blocks
-    article.single-line-text,
-    article.paragraph-text,
-    article.header {
-      @include grid-column($columns: 12);
-      @media #{$medium-up} {
-        @include grid-column($columns: 8);
-      }
-      @media #{$large-up} {
-        @include grid-column($columns: 6);
-      }
-    }
-
-    article.response-chart,
-    article.timing-chart {
-      @media #{$medium-up} {
-        @include grid-column($columns: 3);
-      }
-    }
-
-    article.header {
-      @media #{$medium-up} {
-        @include grid-column($columns: 6);
-      }
-
-      .tools {
-        border-top: 1px solid #e5e6ea;
-        overflow: hidden;
-        padding: rem-calc(5px 0 0);
-
-        .inline-list {
-          margin-bottom: 0px;
+        // Large Screens
+        @media #{$large-up} {
+          @include grid-column($columns: 6);
         }
       }
-
-      &:not(.small) .tools {
-        @include position(absolute, null 0px 0px 0px);
-        margin: rem-calc(10px 20px 0);
-      }
-    }
-
-    article.header.small {
-      @media #{$medium-up} {
-        @include grid-column($columns: 5);
-      }
-    }
-    
-    article.more.small {
-      @include grid-column($columns: 1);
-    }
-
-    // 12 Column Blocks
-    article.responses-table,
-    article.clinic-usage {
-      @include grid-column($columns: 12);
-    }
-  }
-
-  article.response-chart,
-  article.timing-chart {
-    .stat {
-      color: $body-font-color;
-      display: table;
-      big, span {
-        display: table-cell;
-        vertical-align: middle;
-      }
-      big {
-        font-size: rem-calc(30);
-        font-weight: 600;
-        padding: 0 5px;
-      }
-      span {
-        font-weight: 300;
-      }
-    }
-  }
-
-  article.scale {
-    div.content {
-      @include grid-row();
-      color: $body-font-color;
-
-      div.stat,
-      div.extras {
+      
+      // 6/3/3 Column Blocks
+      article.article-response-chart,
+      article.article-timing-chart {
+        // Small Screens
         @include grid-column($columns: 6);
-      }
-      div.chart {
-        @include grid-column($columns: 12, $collapse: true)
-      }
 
-      div.stat {
-        text-align: right;
+        // Medium Screens
+        @media #{$medium-up} {
+          @include grid-column($columns: 3);
+        }
 
-        & > div {
-          line-height: rem-calc(32);
-          
+        .stat {
+          color: $body-font-color;
+          display: table;
+          big, span {
+            display: table-cell;
+            vertical-align: middle;
+          }
           big {
             font-size: rem-calc(30);
             font-weight: 600;
+            padding: 0 5px;
           }
-
-          i { font-size: rem-calc(16); }
-
-          &.above-median i {
-            color: $success-color;
-          }
-          &.below-median i {
-            color: $warning-color;
+          span {
+            font-weight: 300;
           }
         }
       }
 
-      div.extras {
-        font-size: rem-calc(18);
+      // 12/12/12 Column Blocks
+      article.article-responses-table,
+      article.article-clinic-usage,
+      article.article-nav {
+        @include grid-column($columns: 12);
+      }
 
-        .average-time {
-          & > div {
-            @include grid-column($columns: 6, $collapse: true)
+      article.article-scale {
+        div.content {
+          @include grid-row();
+          color: $body-font-color;
+
+          div.stat,
+          div.extras {
+            @include grid-column($columns: 6);
           }
-          & > div:last-child {
-            font-size: rem-calc(10);
-            line-height: rem-calc(11);
-            padding-left: 5px;
-            padding-top: 2px;
+          div.chart {
+            @include grid-column($columns: 12, $collapse: true)
+          }
+
+          div.stat {
+            text-align: right;
+
+            & > div {
+              line-height: rem-calc(32);
+              
+              big {
+                font-size: rem-calc(30);
+                font-weight: 600;
+              }
+
+              i { font-size: rem-calc(16); }
+
+              &.above-median i {
+                color: $success-color;
+              }
+              &.below-median i {
+                color: $warning-color;
+              }
+            }
+          }
+
+          div.extras {
+            font-size: rem-calc(18);
+
+            .average-time {
+              & > div {
+                @include grid-column($columns: 6, $collapse: true)
+              }
+              & > div:last-child {
+                font-size: rem-calc(10);
+                line-height: rem-calc(11);
+                padding-left: 5px;
+                padding-top: 2px;
+              }
+            }
           }
         }
       }
-    }
-  }
-}
+
+    } // End section.section
+  } // End & > .wrap > main
+} // End body.responses.index

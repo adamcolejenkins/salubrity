@@ -7,7 +7,7 @@ table {
 }
 
 div.dataTables_wrapper {
-  @include grid-column($columns: 12);
+  @include grid-column($columns: 12, $collapse: true);
   margin-bottom: 0;
 
   input[type="text"],
@@ -46,8 +46,6 @@ div.dataTables_wrapper {
   }
 
   .row + div[class*="dataTables"] {
-    margin-left: -15px;
-    margin-right: -15px;
     border-bottom: 1px solid $gainsboro;
   }
   
@@ -85,10 +83,12 @@ div.dataTables_wrapper {
         outline:none;
       }
     }
+
     th.sorting_disabled:first-of-type {
       min-width: 20px;
       width: 10px !important;
     }
+
     th.sorting {
       width: 250px;
     }
@@ -99,8 +99,9 @@ div.dataTables_wrapper {
         position: relative;
       }
       span {
-        width: 82%;
+        width: 95%;
         min-width: 75px;
+        max-width: 170px;
         text-align: center;
         position: absolute;
         left: 2%;
