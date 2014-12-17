@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Clinic</Data></Cell>
+        <Cell><Data ss:Type="String">Provider</Data></Cell>
+        <Cell><Data ss:Type="String">Response Time</Data></Cell>
+        <% @survey.data_fields.each do |field| %>
+          <Cell><Data ss:Type="String"><%= field.label %></Data></Cell>
+        <% end %>
+      </Row>
+    <% @responses.each do |response| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= response.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= response.clinic.title %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= response.provider.full_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= response.time.to_s + ' seconds' %></Data></Cell>
+        <% response.answers.each do |answer| %>
+          <Cell><Data ss:Type="String"><%= answer.value %></Data></Cell>
+        <% end %>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
