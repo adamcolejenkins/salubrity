@@ -5,7 +5,7 @@ $button-size: 30px;
   .block-item {
     @include grid-row();
     border-radius: $global-radius;
-    background: scale-color($body-bg, $lightness: 20%);
+    background: scale-color($body-bg, $lightness: 50%);
     padding: rem-calc(10 15);
     margin-bottom: 10px;
     // cursor: pointer;
@@ -31,14 +31,27 @@ $button-size: 30px;
       color: #fff;
     }
 
-    .details,
+    .details {
+      @include grid-column($columns: 11, $collapse: true);
+
+      @media #{$medium-up} {
+        @include grid-column($columns: 10, $collapse: true);
+      }
+    }
     .options {
-      @include grid-column($columns: 6, $collapse: true);
+      @include grid-column($columns: 1, $collapse: true);
+
+      @media #{$medium-up} {
+        @include grid-column($columns: 2, $collapse: true);
+      }
     }
 
     .details {
       .status, .name {
         display: inline-block;
+      }
+      .info {
+        font-size: rem-calc(12);
       }
       .status {
         margin-right: 15px;
@@ -52,13 +65,12 @@ $button-size: 30px;
       }
       .name {
         line-height: $button-size;
-        font-weight: 600;
       }
       .avatar {
         background-color: $primary-color;
         float: left;
         line-height: $button-size;
-        margin: -20px 20px -20px -20px;
+        margin: -10px 10px -10px -15px;
         border-radius: $global-radius 0 0 $global-radius;
       }
     }

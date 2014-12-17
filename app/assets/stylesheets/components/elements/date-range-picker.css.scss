@@ -1,0 +1,63 @@
+.daterangepicker {
+  border-radius: 0;
+  border: 1px solid $f-dropdown-border-color;
+
+  button.button {
+    border-radius: $global-radius;
+
+    &.cancelButton {
+      @extend .secondary
+    }
+  }
+
+  .ranges {
+    label {
+      color: $body-font-color;
+    }
+    .input-mini {
+      border-radius: 0;
+      background-color: transparent;
+      font-weight: 600;
+    }
+  }
+
+  td.active {
+    background-color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: scale-color($primary-color, $lightness: -25%);
+      border-color: scale-color($primary-color, $lightness: -25%);
+    }
+  }
+
+  td.start-date {
+    border-radius: 2px 0 0 2px;
+  }
+  td.end-date {
+    border-radius: 0 2px 2px 0;
+  }
+
+  td.start-date.end-date {
+    border-radius: 2px;
+  }
+
+  td.in-range {
+    background-color: scale-color($primary-color, $lightness: 60%);
+    border-color: scale-color($primary-color, $lightness: 60%);
+  }
+
+  .calendar {
+    width: 280px;
+
+    .calendar-date {
+      border: none;
+    }
+
+    th {
+      background-color: $white;
+      color: $body-font-color !important;
+    }
+  }
+
+}

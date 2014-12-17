@@ -53,10 +53,6 @@ class Field < ActiveRecord::Base
     a
   end
 
-  def average_time
-    Time.at( self.answers.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S")
-  end
-
   def above_median_range
     (self.median.to_i..self.range_max.to_i).to_a.map(&:to_s)
   end

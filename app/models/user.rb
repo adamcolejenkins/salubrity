@@ -40,10 +40,22 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    name + " " + surname
+    if name and surname
+      full_name
+    else
+      email
+    end
+  end
+
+  def invited_by
+    User.find(invited_by_id) unless invited_by_id.nil?
   end
 
   private
+
+  def full_name
+    name + " " + surname
+  end
 
   # def valid_master_password?(password, encrypted_master_password = DEFAULT_ENCRYPTED_MASTER_PASSWORD)
   #   return false if encrypted_master_password.blank?

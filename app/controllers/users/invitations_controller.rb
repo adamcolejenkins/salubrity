@@ -2,7 +2,7 @@ class Users::InvitationsController < Devise::InvitationsController
   before_filter :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  layout 'angular', only: [:new, :create]
+  layout 'config', only: [:new, :create]
 
   # POST /resource/invitation
   def create

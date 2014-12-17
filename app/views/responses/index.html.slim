@@ -1,76 +1,80 @@
-section.layout
-  .row
-    .small-12.columns
+/ Survey Navigation
+section.section.section-survey-nav
+  
+  article.article-nav
+    dl.sub-nav
+      - @surveys.sort.each do |survey|
+        dd class="#{active_if(@current_survey == survey.id)}" = link_to survey.title, dashboard_path(survey: survey.id)
 
-      / Survey Nav
-      dl.sub-nav
-        - @surveys.sort.each do |survey|
-          dd class="#{active_if(@current_survey == survey.id)}" = link_to survey.title, dashboard_path(survey: survey.id)
+section.section.section-overall-responses
 
-  section.resource
-    
-    .row(data-equalizer)
+  / Survey Info Block
+  article.article-header
+    .block-panel.faded
+      .content
+        h4 = @survey.title
+        h5.subheader = @survey.description
 
-      / Survey Info Block
-      article.header
-        .block-panel.faded(data-equalizer-watch)
-          .content
-            h4 = @survey.title
-            h5.subheader = @survey.description
+  / Responses Block
+  article.article-response-chart
+    .block-panel
+      .content
+        .stat
+          big = @responses.length
+          span.muted  survey responses
+        .chart bar-graph=""
+          = column_chart recent_responses_chart_path(params), height: "100%", width: "100%", library: { chartArea: { width: "100%", height: "100%", top: 0 }, vAxis: { gridlines: {color: "transparent"}, textPosition: "none" } }, colors: ["#dfe2e7"]
 
-      / Responses Block
-      article.response-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat
-              big = @responses.length
-              span.muted  survey responses
-            .chart bar-graph=""
-              = column_chart recent_responses_chart_path(params), height: "100%", library: { vAxis: { gridlines: {color: "transparent"}, textPosition: "none" } }
+  / Timing Chart
+  article.article-timing-chart
+    .block-panel
+      .content
+        .stat.text-center
+          big = @responses.average_time || "00:00"
+          span.muted  avg time to complete
 
-      / Timing Chart
-      article.timing-chart
-        .block-panel(data-equalizer-watch)
-          .content
-            .stat.text-center
-              big = "00:00"
-              span.muted  avg time to complete
+/ Field Responses Charts
+section.section.section-field-responses
+  
+  - @survey.data_fields.each do |field|
+    article class="article-#{field.context.gsub('_', '-')}" = render "responses/charts/#{field.context}", field: field
 
-    .row
-      article.clinic-usage
-        .block-panel.chart
-          .header Clinic Usage
-          .content
-            = column_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] == 'day'
-            = line_chart clinic_usage_chart_path(params), library: { chartArea: { width: "95%", height: "80%" } } if params[:filter] != 'day'
 
-    .row
+/ Clinic Usage Chart
+section.section.section-clinic-usage
+  article.article-clinic-usage
+    .block-panel.chart
+      .header Clinic Usage #{grouped_by(params[:filter])}
+      .content
+        = column_chart clinic_usage_chart_path(params), height: "100%", library: { chartArea: { width: "90%", height: "80%", top: 10 }, vAxis: { title: "Responses" } }
+  
+/ Tabular Response Data
+section.section.section-tabular-responses
+  article.article-responses-table
+    .block-panel.table
+      .header Response Data
+      .content
+        - noSort = [0] + (4..(@survey.data_fields.count + 4)).to_a
+        table.response-table.display.no-border ng-data-tables="" role="grid" source="#{dashboard_path(params)}" sort-disabled="#{noSort}"
+          thead
+            tr
+              / Checkbox
+              th = check_box_tag('responses-all')
+            
+              / Date
+              th Date
 
-      article.responses-table
-        .block-panel.table
-          .header Response Data
-          .content
-            - noSort = [0] + (4..(@survey.data_fields.count + 4)).to_a
-            table#response-table.response-table.display.no-border role="grid" data-source="#{dashboard_path(params)}" data-sort-disabled="#{noSort}"
-              thead
-                tr
-                  / Checkbox
-                  th = check_box_tag('responses-all')
-                
-                  / Date
-                  th Date
+              / Clinic
+              th Clinic
 
-                  / Clinic
-                  th Clinic
+              / Provider
+              th Provider
+              
+              / Response Time
+              th Response Time
 
-                  / Provider
-                  th Provider
-                  
-                  / Response Time
-                  th Response Time
-
-                  / Fields
-                  - @survey.data_fields.each_with_index do |field, index|
-                    th
-                      div
-                        span.ellipsis = "#{(index + 1).to_s} - #{field.label}"
+              / Fields
+              - @survey.data_fields.each_with_index do |field, index|
+                th
+                  div
+                    span.ellipsis = "#{(index + 1).to_s} - #{field.label}"

@@ -1,87 +1,89 @@
-= form_for @clinic do |f|
-  - if @clinic.errors.any?
-    .alert-box.alert.radius
-      = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved: "
-      strong = @clinic.errors.full_messages.join(", ")
+.block-panel
+  .content
+    = form_for @clinic do |f|
+      - if @clinic.errors.any?
+        .alert-box.alert.radius
+          = "#{pluralize(@clinic.errors.count, "error")} prohibited this clinic from being saved: "
+          strong = @clinic.errors.full_messages.join(", ")
 
 
-  .form-header
-    .header
-      h3 = t 'clinics.form.details.title'
+      .form-header
+        .header
+          h3 = t 'clinics.form.details.title'
 
-  .form-group
-    .full
-      = f.label :title
-      = f.text_field :title, class: 'radius'
-  .form-group
-    .full
-      = f.label :address
-      = f.text_field :address, class: 'radius'
-  .form-group
-    .full
-      = f.label :address2
-      = f.text_field :address2, class: 'radius'
-  .form-group
-    .medium-7.columns
-      = f.label :city
-      = f.text_field :city, class: 'radius'
-    .medium-3.columns
-      = f.label :state
-      = f.select :state, options_for_select(us_states, "MO")
-    .medium-2.columns
-      = f.label :zip
-      = f.number_field :zip, maxlength: 6, class: 'radius'
-  .form-group
-    .full
-      = f.label :phone
-      = f.phone_field :phone, placeholder: "e.g. (555) 555-1234", class: 'radius'
+      .form-group
+        .full
+          = f.label :title
+          = f.text_field :title, class: 'radius'
+      .form-group
+        .full
+          = f.label :address
+          = f.text_field :address, class: 'radius'
+      .form-group
+        .full
+          = f.label :address2
+          = f.text_field :address2, class: 'radius'
+      .form-group
+        .medium-7.columns
+          = f.label :city
+          = f.text_field :city, class: 'radius'
+        .medium-3.columns
+          = f.label :state
+          = f.select :state, options_for_select(us_states, "MO")
+        .medium-2.columns
+          = f.label :zip
+          = f.number_field :zip, maxlength: 6, class: 'radius'
+      .form-group
+        .full
+          = f.label :phone
+          = f.phone_field :phone, placeholder: "e.g. (555) 555-1234", class: 'radius'
 
-  .form-header
-    .header
-      h3 Surveys
+      .form-header
+        .header
+          h3 Surveys
 
-  .form-group
-    .full.block
-      - if action_name == 'new' || action_name == 'create'
-        p.thin This clinic needs a survey, which one would you like to use?
-        = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
-      - else
-        .block-item
-          .details
-            .name = @clinic.survey.title
+      .form-group
+        .full.block
+          - if action_name == 'new' || action_name == 'create'
+            p.thin This clinic needs a survey, which one would you like to use?
+            = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
+          - else
+            .block-item
+              .details
+                .name = @clinic.survey.title
 
-  - if action_name == 'edit'
+      - if action_name == 'edit'
 
-    .form-header
-      .header
-        h3 = t 'clinics.form.guid.title'
+        .form-header
+          .header
+            h3 = t 'clinics.form.guid.title'
 
-    .form-group
-      .full
-        p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
+        .form-group
+          .full
+            p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
 
-        = f.text_field :guid, placeholder: "e.g. my-super-awesome-clinic", class: 'radius'
-        - if action_name != 'new'
-          .alert-box.warning.radius
-            | Changing the slug is not recommended. Consider yourself warned!
+            = f.text_field :guid, placeholder: "e.g. my-super-awesome-clinic", class: 'radius'
+            - if action_name != 'new'
+              .alert-box.warning.radius
+                | Changing the slug is not recommended. Consider yourself warned!
 
-  .form-header
-    .header
-      h3 = t 'clinics.form.background.title'
+      .form-header
+        .header
+          h3 = t 'clinics.form.background.title'
 
-  .form-group
-    .full
-      = f.label :background
-      p.thin = t 'clinics.form.background.describe'
-      
-      - if @clinic.background.present?
-        .panel.text-center
-          = image_tag @clinic.background.url(:thumb)
+      .form-group
+        .full
+          = f.label :background
+          p.thin = t 'clinics.form.background.describe'
+          
+          - if @clinic.background.present?
+            .panel.text-center
+              = image_tag @clinic.background.url(:thumb)
 
-      = f.file_field :background
+          = f.file_field :background
 
-  .form-buttons
-    .full
-      = f.submit 'Save Clinic', class: 'radius success button'
-      = link_to 'Cancel', clinics_path, class: 'radius button', target: "_self"
-      = link_to 'Archive', clinic_path(@clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'
+      .form-buttons
+        .full
+          = f.submit 'Save Clinic', class: 'radius success button'
+          = link_to 'Cancel', clinics_path, class: 'radius secondary button', target: "_self"
+          = link_to 'Archive', clinic_path(@clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'

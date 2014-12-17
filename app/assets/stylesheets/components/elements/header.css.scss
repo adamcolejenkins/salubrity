@@ -1,7 +1,8 @@
 header {
   background: $white;
   z-index: 3;
-
+  
+  // Top Bar
   &, & > .navigation {
     box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
   }
@@ -10,6 +11,7 @@ header {
     border-left: 1px solid $smoke;
     border-right: 1px solid $smoke;
   }
+
   .top-bar-section {
     li:not(.has-form) a:not(.button) {
       border-right: 1px solid $smoke;
@@ -17,6 +19,13 @@ header {
         font-size: 16px;
       }
     }
+
+    li.superuser {
+      & > a, & > a:hover {
+        color: $alert-color;
+      }
+    }
+
     li.user-profile {
       a:not(.button) {
         padding: 0px !important;
@@ -27,17 +36,22 @@ header {
     }
   }
   
-  section.toolbox {
-    section.title-bar,
-    section.actions {
+  // Toolbox
+  section.section-toolbox {
+
+    // Grid
+    div.toolbox-header,
+    div.toolbox-actions {
       @include grid-column($columns: 12);
       padding: $column-gutter 0;
 
-      .large.button {
-        margin: ($column-gutter / 1.5) 0;
-        text-transform: uppercase;
+      @media #{$medium-up} {
+        @include grid-column($columns: 6);
       }
-
+    }
+  
+    // Toolbox Header
+    div.toolbox-header {
       hgroup {
         h2 {
           font-size: rem-calc(36);
@@ -48,9 +62,20 @@ header {
           margin-top: 0;
         }
       }
+    }
+    
+    // Toolbox Actions
+    div.toolbox-actions {
+      text-align: right;
 
-      @media #{$medium-up} {
-        @include grid-column($columns: 6);
+      .button {
+        margin: ($column-gutter / 1.5) 0 5px;
+        text-transform: uppercase;
+      }
+
+      .link {
+        font-size: rem-calc(12px);
+        margin-bottom: 0;
       }
     }
   }

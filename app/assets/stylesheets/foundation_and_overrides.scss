@@ -816,7 +816,7 @@ $icon-bar-item-padding: .875rem;
 
 // We use these to style the label text
 // $label-font-sizing: rem-calc(11);
-$label-font-weight: 700;
+$label-font-weight: $font-weight-normal;
 // $label-font-color: $oil;
 // $label-font-color-alt: $white;
 // $label-font-family: $body-font-family;
@@ -1236,7 +1236,7 @@ $side-nav-divider-color: darken($body-bg, 5%);
 // We use this to control the definition
 // $sub-nav-font-family: $body-font-family;
 // $sub-nav-font-size: rem-calc(14);
-// $sub-nav-font-color: $aluminum;
+$sub-nav-font-color: $white;
 // $sub-nav-font-weight: $font-weight-normal;
 // $sub-nav-text-decoration: none;
 // $sub-nav-padding: rem-calc(3 16);
@@ -1315,7 +1315,7 @@ $table-head-font-weight: $font-weight-bold;
 $table-head-padding: rem-calc(8 10 10);
 
 // These control the row padding and font styles
-$table-row-padding: rem-calc(9 10);
+$table-row-padding: rem-calc(6 8);
 $table-row-font-size: rem-calc(12);
 $table-row-font-color: $titanium;
 $table-line-height: rem-calc(16);

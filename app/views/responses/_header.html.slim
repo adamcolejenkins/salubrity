@@ -1,0 +1,12 @@
+section.section.section-toolbox
+
+  div.toolbox-header
+    hgroup
+      h2 Dashboard
+      h3.subheader Filterable survey response data.
+  
+  div.toolbox-actions.hide
+    = link_to "Export Data", dashboard_path(params: params, format: "xls"), class: "large radius button right"
+
+
+  = render 'filters' rescue nil

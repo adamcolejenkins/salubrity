@@ -4,3 +4,4 @@
 # Mime::Type.register "text/richtext", :rtf
 
 Mime::Type.register 'application/x-apple-aspen-config', :mobileconfig
+Mime::Type.register "application/xls", :xls

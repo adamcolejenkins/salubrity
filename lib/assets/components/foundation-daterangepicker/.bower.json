@@ -1,0 +1,13 @@
+{
+  "name": "foundation-daterangepicker",
+  "homepage": "https://github.com/mindblaze/foundation-daterangepicker",
+  "_release": "b5711a7d69",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b5711a7d69dcc36b479bb01a3805b5d8a077fd09"
+  },
+  "_source": "https://github.com/mindblaze/foundation-daterangepicker.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/mindblaze/foundation-daterangepicker.git"
+}

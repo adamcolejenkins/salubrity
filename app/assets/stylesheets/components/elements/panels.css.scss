@@ -55,17 +55,19 @@
   & > .content {
 
     &.scroll {
-      height: 200px !important;
       overflow-y: scroll;
     }
   }
 
+  &.chart,
   &.table {
     & > .header {
       height: auto;
       font-weight: bold;
     }
-    
+  }
+
+  &.table {
     & > .content {
       @include grid-row();
       padding: 0px;

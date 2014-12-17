@@ -4,7 +4,7 @@
 
     class Provider
       constructor: (errorHandler) ->
-        @service = $resource('/providers/:id.json',
+        @service = $resource('/config/providers/:id.json',
           {id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler

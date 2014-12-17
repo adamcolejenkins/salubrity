@@ -14,6 +14,8 @@ class Clinic < ActiveRecord::Base
   validates :guid, presence: true, uniqueness: { scope: :survey, message: " exists for this survey." }, on: :update
   validates :survey_id, presence: true
 
+  scope :clinic, -> (id) { where id: id }
+
   # This method associates the attribute ":background" with a file attachment
   has_attached_file :background, 
     styles: {
