@@ -1,43 +1,45 @@
-= form_for @survey do |f|
-  - if @survey.errors.any?
-    .alert-box.alert.radius
-      = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved: "
-      strong = @survey.errors.full_messages.join(", ")
+.block-panel
+  .content
+    = form_for @survey do |f|
+      - if @survey.errors.any?
+        .alert-box.alert.radius
+          = "#{pluralize(@survey.errors.count, "error")} prohibited this survey from being saved: "
+          strong = @survey.errors.full_messages.join(", ")
 
-  .form-header
-    .header
-      h3 = t 'surveys.form.details.title'
+      .form-header
+        .header
+          h3 = t 'surveys.form.details.title'
 
-  .form-group
-    .full
-      = f.label :title
-      = f.text_field :title, class: 'radius'
-  .form-group
-    .full
-      = f.label :description
-      = f.text_field :description, class: 'radius'
+      .form-group
+        .full
+          = f.label :title
+          = f.text_field :title, class: 'radius'
+      .form-group
+        .full
+          = f.label :description
+          = f.text_field :description, class: 'radius'
 
-  .form-header
-    .header
-      h3 = t 'surveys.form.guid.title'
+      .form-header
+        .header
+          h3 = t 'surveys.form.guid.title'
 
-  .form-group
-    .full
-      p = t('surveys.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/kiosk/").html_safe
-      
-      - if @survey.status == 'draft'
-        = f.text_field :guid, placeholder: "e.g. my-super-inquisitive-survey", class: 'radius'
-        - if action_name != 'new'
-          .alert-box.warning.radius
-            | Changing the slug is not recommended. Consider yourself warned!
+      .form-group
+        .full
+          p = t('surveys.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/kiosk/").html_safe
+          
+          - if @survey.status == 'draft'
+            = f.text_field :guid, placeholder: "e.g. my-super-inquisitive-survey", class: 'radius'
+            - if action_name != 'new'
+              .alert-box.warning.radius
+                | Changing the slug is not recommended. Consider yourself warned!
 
-      - if @survey.status == 'published'
-        = f.text_field :guid, readonly: "readonly", class: 'radius' if @survey.status == 'published'
-        .alert-box.warning.radius
-          | This survey has been published, changing the slug is absolutely forbidden!
+          - if @survey.status == 'published'
+            = f.text_field :guid, readonly: "readonly", class: 'radius' if @survey.status == 'published'
+            .alert-box.warning.radius
+              | This survey has been published, changing the slug is absolutely forbidden!
 
-  .form-buttons
-    .full
-      = f.submit 'Save Survey', class: 'radius success button' 
-      = link_to 'Cancel', surveys_path, class: 'radius secondary button', target: "_self"
-      = link_to 'Archive', @survey, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Survey) && action_name == 'edit'
+      .form-buttons
+        .full
+          = f.submit 'Save Survey', class: 'radius success button' 
+          = link_to 'Cancel', surveys_path, class: 'radius secondary button', target: "_self"
+          = link_to 'Archive', @survey, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Survey) && action_name == 'edit'
