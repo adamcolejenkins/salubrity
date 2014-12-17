@@ -1,17 +1,20 @@
-hgroup
-  .title
-    = link_to '← Back to Clinics', clinics_path, target: "_self" if action_name != 'index'
-    h2 = t "clinics.#{action_name}.title"
-    h3.subheader = t "clinics.#{action_name}.describe"
-  
-  .actions
+section.section.section-toolbox
+
+  div.toolbox-header
+    hgroup
+      .title
+        = link_to '← Back to Clinics', clinics_path, target: "_self", class: 'back-link' if action_name != 'index'
+        h2 = t "clinics.#{action_name}.title"
+        h3.subheader = t "clinics.#{action_name}.describe"
+      
+  div.toolbox-actions
     - if action_name == 'index'
 
       - if can? :create, Clinic
-        = link_to 'New Clinic', new_clinic_path, target: "_self", class: "radius success button"
-      
+        = link_to 'New Clinic', new_clinic_path, target: "_self", class: "large radius success button"
+
       - if can?(:update, Clinic) && current_team.clinics.only_deleted.size > 0
-        p = link_to "#{pluralize(current_team.clinics.only_deleted.count, 'archived clinic')}...", archived_clinics_path, target: "_self"
+        div = link_to pluralize(current_team.clinics.only_deleted.count, 'archived clinic'), archived_clinics_path, target: "_self", class: "color-alert link"
     
     - if action_name == 'archived'
-      button.alert.radius.button disabled="disabled" Remove All
+      button.large.alert.radius.button disabled="disabled" Remove All
