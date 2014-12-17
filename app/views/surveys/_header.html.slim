@@ -1,17 +1,19 @@
-hgroup
-  .title
-    = link_to '← Back to Surveys', surveys_path, target: "_self" if action_name != 'index'
-    h2 = t "surveys.#{action_name}.title"
-    h3.subheader = t "surveys.#{action_name}.describe"
-  
-  .actions
+section.section.section-toolbox
+
+  div.toolbox-header
+    hgroup
+      = link_to '← Back to Surveys', surveys_path, target: "_self", class: "back-link" if action_name != 'index'
+      h2 = t "surveys.#{action_name}.title"
+      h3.subheader = t "surveys.#{action_name}.describe"
+      
+  div.toolbox-actions
     - if action_name == 'index'
 
       - if can? :create, Survey
-        = link_to 'New Survey', new_survey_path, target: "_self", class: "radius success button"
+        = link_to 'New Survey', new_survey_path, target: "_self", class: "large radius success button"
       
       - if can?(:update, Survey) && current_team.surveys.only_deleted.size > 0
-        p = link_to "#{pluralize(current_team.surveys.only_deleted.count, 'archived survey')}...", archived_surveys_path, target: "_self"
+        div = link_to pluralize(current_team.surveys.only_deleted.count, 'archived survey'), archived_surveys_path, target: "_self", class: "color-alert link"
     
     - if action_name == 'archived'
-      button.alert.radius.button disabled="disabled" Remove All
+      button.large.alert.radius.button.right disabled="disabled" Remove All

@@ -25,17 +25,10 @@ class Response < ActiveRecord::Base
     (self.ended_at.to_f - self.started_at.to_f).to_i
   end
 
-  # def self.daily_avg_time
-  #   [
-  #     {
-  #       name: "Seconds",
-  #       data: self.select("date_trunc('day', created_at) AS day, EXTRACT(EPOCH FROM AVG(ended_at - started_at)) AS avg")
-  #         .group('day').order("day DESC")
-  #         .inject({}){|memo,(k,v)| memo[k.day.to_datetime.strftime("%A, %B %e")] = k.avg.to_i; memo}
-  #     }
-  #   ]
-  # end
-
+  def self.average_time
+    Time.at( all.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S") unless count == 0
+  end
+  
   # def self.field_total(field)
   #   logger.debug("START:: Response.field_total =========================================================")
   #   a = []
@@ -48,9 +41,9 @@ class Response < ActiveRecord::Base
   #   a.to_json
   # end
 
-  # def self.active
-  #   self.joins(:provider, :clinic)
-  # end
+  def self.active
+    self.joins(:provider, :clinic)
+  end
 
   # def created_at
   #   read_attribute(:created_at).strftime("%m/%d/%Y at %H:%M:%S")

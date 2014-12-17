@@ -1,38 +1,28 @@
-.row
-  ul.side-nav
-    
-    - if can? :manage, Survey
-      li class="#{active_if(controller_name == 'surveys')}" 
-        = link_to surveys_path, target: "_self"
-          i.fa.fa-cube
-          span  Surveys
+section.section.section-config-nav
+  article.article-navigation
 
-    - if can? :manage, Clinic
-      li class="#{active_if(controller_name == 'clinics')}" 
-        = link_to clinics_path, target: "_self"
-          i.fa.fa-building
-          span  Clinics
+    dl.sub-nav
 
-    / li class="#{active_if(controller_name == 'locations')}" = link_to 'Locations', locations_path, target: "_self" if can? :manage, Location
+      - if can? :manage, Survey
+        dd class="#{active_if(controller_name == 'surveys')}" 
+          = link_to 'Surveys', surveys_path, target: "_self"
 
-    - if can? :manage, Provider
-      li class="#{active_if(controller_name == 'providers')}" 
-        = link_to providers_path, target: "_self"
-          i.fa.fa-user-md
-          span  Providers
+      - if can? :manage, Clinic
+        dd class="#{active_if(controller_name == 'clinics')}" 
+          = link_to 'Clinics', clinics_path, target: "_self"
 
-    / li class="#{active_if(controller_name == 'services')}" = link_to 'Services', services_path, target: "_self" if can? :manage, Service
+      / dd class="#{active_if(controller_name == 'locations')}" = link_to 'Locations', locations_path, target: "_self" if can? :manage, Location
 
-    li.divider
+      - if can? :manage, Provider
+        dd class="#{active_if(controller_name == 'providers')}" 
+          = link_to 'Providers', providers_path, target: "_self"
 
-    - if can? :manage, Team
-      li class="#{active_if(controller_name == 'teams')}" 
-        = link_to teams_path, target: "_self"
-          i.fa.fa-users
-          span  Teams
+      / dd class="#{active_if(controller_name == 'services')}" = link_to 'Services', services_path, target: "_self" if can? :manage, Service
+      
+      - if can? :manage, User
+        dd class="#{active_if(controller_name == 'users')}" 
+          = link_to 'Users', users_path, target: "_self"
 
-    - if can? :manage, User
-      li class="#{active_if(controller_name == 'users')}" 
-        = link_to users_path, target: "_self"
-          i.fa.fa-user
-          span  Users
+      - if can? :manage, current_team
+        dd class="#{active_if(controller_name == 'teams')}" 
+          = link_to 'Config', edit_team_path(current_team), target: "_self"

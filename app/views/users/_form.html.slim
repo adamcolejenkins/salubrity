@@ -1,0 +1,17 @@
+.block-panel
+  .content
+    = form_for @user, url: user_path(@user), html: { method: :put} do |f|
+      - if @user.errors.any?
+        .alert-box.alert.radius
+          strong = @user.errors.full_messages.join(", ")
+
+      .form-group
+        .full
+          = f.label :role, 'Group'
+          = f.collection_select :role, User::USABLE_ROLES, :to_s, :humanize
+
+      .form-buttons
+        .full
+          = f.submit t("devise.profiles.role.submit_button"), class: "radius success button" 
+          = link_to t("devise.profiles.role.cancel_button"), users_path, class: "radius secondary button"
+          = link_to 'Delete', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'

@@ -11,6 +11,11 @@ nav.top-bar data-topbar="" role="navigation"
   section.top-bar-section
     / Right Nav Section
     ul.right
+      
+      - if current_user.admin?
+        li.color-alert.superuser.has-dropdown
+          = link_to 'Superuser', ''
+
       li.user-profile
         = link_to profile_path, target: '_self'
           = gravatar_image_tag(current_user.email, alt: identify(current_user), :gravatar => { size: 50 })
@@ -21,8 +26,7 @@ nav.top-bar data-topbar="" role="navigation"
             i.fa.fa-cog
           
           ul.dropdown
-            li = link_to 'General Settings', '#', target: '_self'
-            li = link_to 'Edit Team', edit_team_path(current_team), target: '_self' if can? :manage, Team
+            li = link_to 'General Settings', edit_team_path(current_team), target: '_self'
             li = link_to 'Manage Users', users_path, target: '_self' if can? :manage, User
 
       li

@@ -1,0 +1,11 @@
+.sub-nav dt a, 
+.sub-nav dd a, 
+.sub-nav li a {
+  background-color: scale-color($primary-color, $lightness: 25%);
+  border-radius: $global-radius;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white;
+  }
+}

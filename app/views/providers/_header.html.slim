@@ -1,17 +1,19 @@
-hgroup
-  .title
-    = link_to '← Back to Providers', providers_path, target: "_self" if action_name != 'index'
-    h2 = t "providers.#{action_name}.title"
-    h3.subheader = t "providers.#{action_name}.describe"
+section.section.section-toolbox
   
-  .actions
+  div.toolbox-header
+    hgroup
+      = link_to '← Back to Providers', providers_path, target: "_self", class: 'back-link' if action_name != 'index'
+      h2 = t "providers.#{action_name}.title"
+      h3.subheader = t "providers.#{action_name}.describe"
+      
+  div.toolbox-actions
     - if action_name == 'index'
 
       - if can? :create, Provider
-        = link_to 'New Provider', new_provider_path, target: "_self", class: "radius success button"
+        = link_to 'New Provider', new_provider_path, target: "_self", class: "large radius success button"
       
       - if can?(:update, Provider) && current_team.providers.only_deleted.size > 0
-        p = link_to "#{pluralize(current_team.providers.only_deleted.count, 'archived provider')}...", archived_providers_path, target: "_self"
+        div = link_to pluralize(current_team.providers.only_deleted.count, 'archived clinic'), archived_providers_path, target: "_self", class: "color-alert link"
     
     - if action_name == 'archived'
-      button.alert.radius.button disabled="disabled" Remove All
+      button.large.alert.radius.button disabled="disabled" Remove All

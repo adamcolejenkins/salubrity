@@ -1,22 +1,16 @@
-hgroup
-  .title
-    h2 Profile
+section.section.section-user-profile
+  article.article-content
 
-section.content
-
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "indent-fields", method: :put }) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     
     - if resource.errors.any?
       .alert-box.alert.radius
-        / = "#{pluralize(resource.errors.count, 'error')} prohibited you from updating your profile: "
         strong = resource.errors.full_messages.join(', ')
     
     .block-panel
       .content
 
         .form-header
-          .tag
-            i.fa.fa-user.fa-4x
           .header
             h3 Details
 
@@ -53,8 +47,6 @@ section.content
       .content
 
         .form-header
-          .tag
-            i.fa.fa-key.fa-4x
           .header
             h3 Password
 
@@ -74,9 +66,8 @@ section.content
       .content
 
         .form-header
-          .tag
-            i.fa.fa-users.fa-4x
-          h3 Teams
+          .header
+            h3 Teams
 
         .form-group.block
           .full

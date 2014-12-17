@@ -1,18 +1,26 @@
-= render 'header'
+section.section.section-clinic-collection
+  article.article-content ng-controller="ClinicListCtrl" ng-init="init()"
 
-.row
-  .small-12.columns
+    section.section.section-filters
+      div.search
+        input.radius type="search" placeholder="Search..." ng-model="search"
+    
+    .alert-box.radius ng-hide="clinics.length" Loading clinics...
 
     .block
-      - @clinics.sort.each do |clinic|
-        .block-item
-          .details
-            .name
-              = clinic.title
+      .block-item ng-repeat="clinic in clinics | filter:search"
+        .details
+          .name
+            | {{ clinic.title }}
+            span.info.muted
+              |  {{ clinic.phone }}
 
-          .options
-            ul.actions
-              - if can? :update, clinic
-                li
-                  = link_to edit_clinic_path(clinic), target: "_self", tooltip: "Settings"
-                    i.fa.fa-cog
+        .options
+          ul.actions
+            li
+              a href="{{ clinic.dashboard_url }}"
+                i.fa.fa-bar-chart
+
+            li ng-if="clinic.edit_url"
+              a href="{{ clinic.edit_url }}"
+                i.fa.fa-edit

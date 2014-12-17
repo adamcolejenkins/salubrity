@@ -67,8 +67,10 @@ Rails.application.routes.draw do
     scope :chart do
       get 'recent_responses_chart' => 'responses#recent_responses_chart'
       get 'clinic_usage_chart' => 'responses#clinic_usage_chart'
+      get 'multiple_choice_chart' => 'responses#multiple_choice_chart'
     end
     get 'dashboard' => 'responses#index'
+    post 'dashboard' => 'responses#index'
 
     # get '/install', to: redirect('/install/new')
     # resource :install, only: [:new, :create, :edit], as: 'installs'

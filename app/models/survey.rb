@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-  include Filterable
+  include Filterable, ChartData
   acts_as_paranoid
 
   belongs_to :team, :inverse_of => :surveys
@@ -24,7 +24,7 @@ class Survey < ActiveRecord::Base
   # Calculates the average time for responses
   def average_time
     return nil if self.responses.size == 0
-    Time.at( self.responses.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S")
+    Time.at( self.responses.map(&:time).inject([0.0,0]) { |r,el| [r[0]+el, r[1]+1] }.inject(:/) ).utc.strftime("%H:%S") unless count == 0
   end
 
   def clinics_count

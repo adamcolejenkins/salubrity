@@ -1,53 +1,57 @@
-hgroup
-  .title
-    h2 Users
-    h3.subheader Invite users to your team.
+section.section.section-user-collection
+  article.article-content
 
-section.content
+    - @users.reverse.group_by(&:role).each do |role, users|
+      h4 = role.to_s.humanize.pluralize
+      
+      .block
+        - users.each do |user|
+          .block-item
 
-  dl.nav-tabs
-    = tab_for "Users", users_path
-    = tab_for "Invite", new_user_invitation_path
+            .details
+              = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 71 })
+              .name
+                = user.to_s
+                span.info.muted  #{user.email}
 
+              .info
+                span.muted Last seen 
+                = user.current_sign_in_at.strftime("%c")
+                span.muted  from 
+                = user.current_sign_in_ip
+                span.muted  and has signed in 
+                = pluralize(user.sign_in_count, 'time')
 
-  - @users.group_by(&:role).each do |role, users|
-    h3.spacer3 = role.to_s.humanize.pluralize
-    
-    .block
-      - users.each do |user|
-        .block-item.user-block
+            .options
+              ul.actions
+                li
+                  = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                    i.fa.fa-users
+                li
+                  = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
+                    i.fa.fa-trash
 
-          .details
-            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
-            .name
-              h4 = identify(user)
+    - if @pending.length > 0
+      h4 Pending Invitations
 
-          .options
-            ul.actions
-              li
-                = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
-                  i.fa.fa-wrench
-              li
-                = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
-                  i.fa.fa-trash
+      .block
+        - @pending.each do |user|
+          .block-item.user-block
 
-  - if @pending.length > 0
-    h3.spacer3 Pending Invitations
+            .details
+              .name
+                | #{user.to_s} 
+                span.info
+                  span.muted  was invited on 
+                  = user.invitation_sent_at.strftime("%c")
+                  span.muted   by 
+                  = user.invited_by.to_s
 
-    .block
-      - @pending.each do |user|
-        .block-item.user-block
-
-          .details
-            = gravatar_image_tag(user.email, class: 'avatar', alt: identify(user), :gravatar => { size: 80 })
-            .name
-              h4 = identify(user)
-
-          .options
-            ul.actions
-              li
-                = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
-                  i.fa.fa-wrench
-              li
-                = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
-                  i.fa.fa-trash
+            .options
+              ul.actions
+                li
+                  = link_to edit_user_path(user), target: '_self', tooltip: 'Edit user', tooltip_placement: 'left'
+                    i.fa.fa-users
+                li
+                  = link_to user_path(user), target: '_self', method: 'delete', tooltip: 'Cancel invitation', tooltip_placement: 'right'
+                    i.fa.fa-ban
