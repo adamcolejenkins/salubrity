@@ -1,0 +1,10 @@
+section.section.section-toolbox
+  
+  div.toolbox-header
+    hgroup
+      h2 Users
+      h3.subheader Invite users to your team.
+      
+  div.toolbox-actions
+
+    = link_to 'Invite', new_user_invitation_path, target: "_self", class: "large radius success button" if can? :create, User
