@@ -25,43 +25,29 @@
 //= require angular-cookie
 //= require angular-resource
 //= require angular-sanitize
-//= require angular-ui-router
+//= require angular-route
 //= require angular-touch
-// require angular-animate
-//= require ng-underscore/build/ng-underscore.js
+//= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
 //= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require ng-s3upload
-//= require angular-chartjs-directive
 
 // Vendor assets
-//= require jsUri/Uri
 //= require jquery-icheck/icheck
 //= require select2/select2
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
 //= require foundation-daterangepicker/daterangepicker
-
-// DEPRECATED
-
-// Charts
-//  require flot
-//  require flot/jquery.flot.pie
-//  require flot/jquery.flot.resize
-//  require flot.tooltip
-//  require Chart
-
-
-//= require bootstrap-touchspin/dist/jquery.bootstrap-touchspin
+//= require jsUri
 
 // Our Angular app files
 //= require angular/salubrity
 
-//= require_tree ./
+//= require_tree .
 
 $(function() {
   $(document).foundation({
@@ -94,3 +80,5 @@ var dTableOptions = {
     ]
   }
 };
+
+

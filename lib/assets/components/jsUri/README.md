@@ -1,151 +1,124 @@
-jsUri
-=====
+# jsUri
 
-Uri and query string manipulation in javascript.
+URI parsing and manipulation for node.js and the browser.
 
-This project incorporates the excellent [parseUri](http://blog.stevenlevithan.com/archives/parseuri) regular expression library by Steven Levithan. You can safely parse URLs of all shapes and sizes, however invalid or hideous.
+[![Build Status](https://travis-ci.org/derek-watson/jsUri.png)](https://travis-ci.org/derek-watson/jsUri)
 
+[![NPM](https://nodei.co/npm/jsuri.png)](https://nodei.co/npm/jsuri/)
 
-Usage
------
+[![spm package](http://spmjs.io/badge/jsuri)](http://spmjs.io/package/jsuri)
 
-Pass anything that your browser would recognize as a url to the new Uri() constructor
+Pass any URL into the constructor:
 
-    var uri = new Uri('http://user:pass@www.test.com:81/index.html?q=books#fragment');
+```js
+var uri = new Uri('http://user:pass@www.test.com:81/index.html?q=books#fragment')
+```
 
-and then use the following accessor methods to get at the various parts.
+Use property methods to get at the various parts:
 
-    uri.protocol();                              // http
-    uri.userInfo();                              // user:pass
-    uri.host();                                  // www.test.com
-    uri.port();                                  // 81
-    uri.path();                                  // /index.html
-    uri.query();                                 // q=books
-    uri.anchor();                                // fragment
+```js
+uri.protocol()    // http
+uri.userInfo()    // user:pass
+uri.host()        // www.test.com
+uri.port()        // 81
+uri.path()        // /index.html
+uri.query()       // q=books
+uri.anchor()      // fragment
+```
 
-The accessor methods accept an optional value for setting the property
+Property methods accept an optional value to set:
 
-    uri.protocol('https');
-    uri.toString();                              // https://user:pass@www.test.com:81/index.html?q=books#fragment
+```js
+uri.protocol('https')
+uri.toString()    // https://user:pass@www.test.com:81/index.html?q=books#fragment
 
-    uri.host('mydomain.com');
-    uri.toString();                              // https://user:pass@www.mydomain.com:81/index.html?q=books#fragment
+uri.host('mydomain.com')
+uri.toString()    // https://user:pass@mydomain.com:81/index.html?q=books#fragment
+```
 
+Chainable setter methods help you compose strings:
 
-Fluent Setters
---------------
+```js
+new Uri()
+    .setPath('/archives/1979/')
+    .setQuery('?page=1')                   // /archives/1979?page=1
 
-The fluent interface provides a simple way to chain property assignment
+new Uri()
+    .setPath('/index.html')
+    .setAnchor('content')
+    .setHost('www.test.com')
+    .setPort(8080)
+    .setUserInfo('username:password')
+    .setProtocol('https')
+    .setQuery('this=that&some=thing')      // https://username:password@www.test.com:8080/index.html?this=that&some=thing#content
 
-    new Uri()
-        .setPath('/index.html')
-        .setAnchor('content')
-        .setHost('www.test.com')
-        .setPort(8080)
-        .setUserInfo('username:password')
-        .setProtocol('https')
-        .setQuery('this=that&some=thing')      // https://username:password@www.test.com:8080/index.html?this=that&some=thing#content
+new Uri('http://www.test.com')
+    .setHost('www.yahoo.com')
+    .setProtocol('https')                  // https://www.yahoo.com
+```
 
-    new Uri('http://www.test.com')
-        .setHost('www.yahoo.com')
-        .setProtocol('https')                  // https://www.yahoo.com
+## Query param methods
 
-    new Uri()
-        .setPath('/archives/1979/')
-        .setQuery('?page=1')                   // /archives/1979?page=1
+Returns the first query param value for the key:
 
-Query Parameter Access and Manipulation
----------------------------------------
+```js
+new Uri('?cat=1&cat=2&cat=3').getQueryParamValue('cat')             // 1
+```
 
-Special methods are available for fetching, building and modifying query string parameters. An emhpasis is placed on query string integrity; duplicate parameter names and values are preserved. Parameter ordering is preserved when possible. URI Components are decoded for comparision, but are otherwise left in their original state.
+Returns all query param values for the given key:
 
-### Getting query param values by name
+```js
+new Uri('?cat=1&cat=2&cat=3').getQueryParamValues('cat')            // [1, 2, 3]
+```
 
-Returns the first query param value for the key
+Internally, query key/value pairs are stored as a series of two-value arrays in the Query object:
 
-    new Uri('?cat=1&cat=2&cat=3').getQueryParamValue('cat')             // 1
+```js
+new Uri('?a=b&c=d').query().params                  // [ ['a', 'b'], ['c', 'd']]
+```
 
-Returns all query param values for the given key
+Add query param values:
 
-    new Uri('?cat=1&cat=2&cat=3').getQueryParamValues('cat')            // [1, 2, 3]
+```js
+new Uri().addQueryParam('q', 'books')               // ?q=books
 
-### Getting all query param keys and values
+new Uri('http://www.github.com')
+    .addQueryParam('testing', '123')
+    .addQueryParam('one', 1)                        // http://www.github.com/?testing=123&one=1
 
-Internally, query key/value pairs are stored as a series of two-value arrays in the Query object
+// insert param at index 0
+new Uri('?b=2&c=3&d=4').addQueryParam('a', '1', 0)  // ?a=1&b=2&c=3&d=4
+```
 
-    new Uri('?a=b&c=d').query().params                          // [ ['a', 'b'], ['c', 'd']]
+Replace every query string parameter named `key` with `newVal`:
 
-### Adding query param values
+```js
+new Uri().replaceQueryParam('page', 2)     // ?page=2
 
-    new Uri().addQueryParam('q', 'books')                         // ?q=books
+new Uri('?a=1&b=2&c=3')
+    .replaceQueryParam('a', 'eh')          // ?a=eh&b=2&c=3
 
-    new Uri('http://www.github.com')
-        .addQueryParam('testing', '123')
-        .addQueryParam('one', 1)                                    // http://www.github.com/?testing=123&one=1
+new Uri('?a=1&b=2&c=3&c=4&c=5&c=6')
+    .replaceQueryParam('c', 'five', '5')   // ?a=1&b=2&c=3&c=4&c=five&c=6
+```
 
-    // insert param at index 0
-    new Uri('?b=2&c=3&d=4').addQueryParam('a', '1', 0)            // ?a=1&b=2&c=3&d=4
+Removes instances of query parameters named `key`:
 
-### Replacing query param values
+```js
+new Uri('?a=1&b=2&c=3')
+    .deleteQueryParam('a')                 // ?b=2&c=3
 
-Replaces every query string parameter named `key` with a single instance with the value `newVal`. If `oldValue` is supplied, only parameters valued `oldVal` will be replaced.
+new Uri('test.com?a=1&b=2&c=3&a=eh')
+    .deleteQueryParam('a', 'eh')           // test.com/?a=1&b=2&c=3
+```
 
-    new Uri('?a=1&b=2&c=3')
-        .replaceQueryParam('a', 'eh')          // ?a=eh&b=2&c=3
+Create an identical URI object with no shared state:
 
-    new Uri('?a=1&b=2&c=3&c=4&c=5&c=6')
-        .replaceQueryParam('c', 'five', '5')   // ?a=1&b=2&c=3&c=4&c=five&c=6
+```js
+var baseUri = new Uri('http://localhost/')
 
-    new Uri().replaceQueryParam('page', 2)   // ?page=2
+baseUri.clone().setProtocol('https')   // https://localhost/
+baseUri                                // http://localhost/
+```
 
-
-### Deleting query param values
-
-Removes instances of query parameters named `key`. If `value` is passed, only params named `key` and valued `value` will be deleted.
-
-    new Uri('?a=1&b=2&c=3')
-        .deleteQueryParam('a')                 // ?b=2&c=3
-
-    new Uri('test.com?a=1&b=2&c=3&a=eh')
-        .deleteQueryParam('a', 'eh')           // test.com/?a=1&b=2&c=3
-
-
-Object Cloning
---------------
-
-Duplication (via `.clone()`) is an easy way to inflate an identical uri object, which you can muck around with as much as you like without destroying the original.
-
-    var baseUri = new Uri('http://localhost/');
-
-        baseUri.clone().setProtocol('https');  // https://localhost/
-        baseUri;                               // http://localhost/
-
-Testing
--------
-
-There is a comprensive set of unit tests written in [jasmine](http://pivotal.github.com/jasmine/).
-To run them, simply open `testrunner.html` from the root of the project in a browser.
-
-License
--------
-
-Copyright (c) 2012 Derek Watson
-Copyright (c) 2007 Steven Levithan
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
+This project incorporates the [parseUri](http://blog.stevenlevithan.com/archives/parseuri) regular expression by Steven Levithan.
