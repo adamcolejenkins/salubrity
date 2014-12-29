@@ -11,4 +11,4 @@
         small Responses
   
     .chart(pie-chart)
-      = pie_chart multiple_choice_chart_path(params.merge(field: field.id)), height: "100%", width: "100%", colors: @survey.data_for(:multiple_choice_field_colors, field: field).reverse unless @responses.length == 0
+      = pie_chart multiple_choice_chart_path(params.merge(field: field.id)), height: "100%", width: "100%", colors: @survey.data_for(:multiple_choice_field_colors, field: field).reverse, legend: true unless @responses.length == 0

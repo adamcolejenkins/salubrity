@@ -1,5 +1,5 @@
 / Survey Navigation
-section.section.section-survey-nav
+section.section.section-survey-nav.hide-for-print
   
   article.article-nav
     dl.sub-nav
@@ -50,7 +50,10 @@ section.section.section-clinic-usage
   
 / Tabular Response Data
 section.section.section-tabular-responses
-  article.article-responses-table
+  
+  .alert-box.info.radius.text-center.show-for-print Tablular data is too large to be printed. Please export your data via the export button.
+
+  article.article-responses-table.hide-for-print
     .block-panel.table
       .header Response Data
       .content
