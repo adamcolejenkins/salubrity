@@ -1,9 +1,10 @@
-nav.top-bar data-topbar="" role="navigation"
+nav.top-bar.hide-for-print data-topbar="" role="navigation"
   ul.title-area
     li.name
       h1
         = link_to dashboard_path, target: "_self"
           = image_tag current_team.logo.url(:medium), alt: current_team.name, size: '120x21'
+
     li.toggle-topbar.menu-icon
       = link_to '#'
         span Menu

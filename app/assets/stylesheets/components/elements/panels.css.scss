@@ -73,4 +73,18 @@
       padding: 0px;
     }
   }
+
+  @media print {
+    border: none;
+
+    & > .header {
+      padding-left: 0px;
+      padding-right: 0px;
+      height: auto;
+    }
+    & > .content {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
 }

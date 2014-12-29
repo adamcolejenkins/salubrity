@@ -98,6 +98,11 @@ body.responses.index {
         @media #{$large-up} {
           @include grid-column($columns: 3);
         }
+
+        // Print
+        @media print {
+          @include grid-column($columns: 3);
+        }
       }
       
       // 12/8/6 Column Blocks
@@ -116,6 +121,15 @@ body.responses.index {
         @media #{$large-up} {
           @include grid-column($columns: 6);
         }
+
+        // Print
+        @media print {
+          @include grid-column($columns: 6);
+
+          h4 {
+            font-weight: $font-weight-bold;
+          }
+        }
       }
       
       // 6/3/3 Column Blocks
@@ -126,6 +140,11 @@ body.responses.index {
 
         // Medium Screens
         @media #{$medium-up} {
+          @include grid-column($columns: 3);
+        }
+
+        // Print
+        @media print {
           @include grid-column($columns: 3);
         }
 
