@@ -12,7 +12,6 @@
  */
 
 //= require jquery-icheck/skins/flat/green
-//= require select2/select2
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require sweetalert
@@ -46,6 +45,7 @@
 @import "components/elements/cs-select";
 @import "components/elements/dashboard";
 @import "components/elements/date-range-picker";
+@import "components/elements/filters";
 @import "components/elements/forms";
 @import "components/elements/header";
 @import "components/elements/home";

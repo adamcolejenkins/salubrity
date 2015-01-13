@@ -9,6 +9,7 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
+gem 'select2-rails'
 # Use Zurb Foundation as the html/css framework
 gem 'foundation-rails'
 # Use Bourbon for SCSS helpers

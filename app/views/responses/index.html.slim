@@ -1,10 +1,7 @@
 / Survey Navigation
 section.section.section-survey-nav.hide-for-print
   
-  article.article-nav
-    dl.sub-nav
-      - @surveys.sort.each do |survey|
-        dd class="#{active_if(@current_survey == survey.id)}" = link_to survey.title, dashboard_path(survey: survey.id)
+  = render 'filters'
 
 section.section.section-overall-responses
 

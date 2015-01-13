@@ -1,59 +1,3 @@
-section.filters#advanced-filters,
-section.response-data#responses {
-  background-color: #f5f6f8;
-  padding: ($column-gutter / 1.5) 0;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-  display: none;
-}
-
-section.filters#advanced-filters {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
-
-  .row > form > section[class*="filter"] {
-    @include grid-column($columns: 12);
-    margin-bottom: $column-gutter;
-
-    @media #{$medium-up} {
-      @include grid-column($columns: 6);
-    }
-    @media #{$large-up} {
-      @include grid-column($columns: 3);
-      margin-bottom: 0;
-    }
-
-    .filter-title {
-      font-size: rem-calc(12px);
-      font-weight: 600;
-      i {
-        color: scale-color($primary-color, $lightness: 40%);
-        font-weight: normal;
-      }
-    }
-
-    .filter-list {
-      margin: 0px;
-      height: 160px;
-      overflow-y: scroll;
-      border-top: 1px solid #dadee6;
-      border-bottom: 1px solid #dadee6;
-
-      & > li {
-        label, input {
-          margin-bottom: 0;
-        }
-        input[type="checkbox"] {
-          margin-right: 5px;
-        }
-        label {
-          font-weight: normal;
-          font-size: rem-calc(12px);
-          line-height: rem-calc(20px);
-        }
-      }
-    }
-  }
-}
-
 body.responses.index {
 
   // Float the last column left
@@ -63,62 +7,41 @@ body.responses.index {
 
   & > .wrap > main {
     section.section {
+
+      section.section-filter-bar {
+        .resource-filters {
+          @include grid-column($columns: 12);
+
+          // Large Screens
+          @media #{$large-up} {
+            @include grid-column($columns: 7);
+          }
+        }
+
+        .date-filters {
+          @include grid-column($columns: 12);
+
+          // Large Screens
+          @media #{$large-up} {
+            @include grid-column($columns: 5);
+            text-align: right;
+          }
+        }
+      }
       
-      &.section-overall-responses .block-panel > .content {
-        height: rem-calc(160);
-      }
-
-      &.section-field-responses .block-panel > .content {
-        height: rem-calc(240);
-      }
-
-      &.section-clinic-usage .block-panel > .content {
-        height: rem-calc(400);
-      }
-
-      article .block-panel > .content {
-        position: relative;
-      }
-
-      // 12/4/3 Column Blocks
+      // 12/6/6 Column Blocks
       article.article-multiple-choice,
       article.article-checkboxes,
       article.article-dropdown,
       article.article-number,
-      article.article-scale {
-        // Small Screens
-        @include grid-column($columns: 12);
-
-        // Medium Screens
-        @media #{$medium-up} {
-          @include grid-column($columns: 4);
-        }
-
-        // Large Screens
-        @media #{$large-up} {
-          @include grid-column($columns: 3);
-        }
-
-        // Print
-        @media print {
-          @include grid-column($columns: 3);
-        }
-      }
-      
-      // 12/8/6 Column Blocks
+      article.article-scale,
       article.article-single-line-text,
-      article.article-paragraph-text,
-      article.article-header {
+      article.article-paragraph-text {
         // Small Screens
         @include grid-column($columns: 12);
 
         // Medium Screens
         @media #{$medium-up} {
-          @include grid-column($columns: 8);
-        }
-
-        // Large Screens
-        @media #{$large-up} {
           @include grid-column($columns: 6);
         }
 
@@ -132,20 +55,20 @@ body.responses.index {
         }
       }
       
-      // 6/3/3 Column Blocks
+      // 12/4/4 Column Blocks
       article.article-response-chart,
       article.article-timing-chart {
         // Small Screens
-        @include grid-column($columns: 6);
+        @include grid-column($columns: 12);
 
         // Medium Screens
         @media #{$medium-up} {
-          @include grid-column($columns: 3);
+          @include grid-column($columns: 4);
         }
 
         // Print
         @media print {
-          @include grid-column($columns: 3);
+          @include grid-column($columns: 6);
         }
 
         .stat {

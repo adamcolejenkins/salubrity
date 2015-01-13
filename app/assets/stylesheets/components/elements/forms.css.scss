@@ -37,11 +37,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
-// Select2 overrides
-.select2-container {
-  margin-bottom: 1rem;
-}
-
 div.form-header,
 div.form-group,
 div.form-buttons {
@@ -114,42 +109,6 @@ div.form-buttons {
     background-color: $inverse-input-bg-color;
     border-color: transparent;
     color: $inverse-input-font-color;
-  }
-
-  .select2-container-active .select2-choice,
-  .select2-container-active .select2-choices {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-  }
-
-  .select2-container .select2-choice {
-    border: none;
-    background-color: $inverse-input-bg-color;
-    background-image: none;
-    padding: $form-spacing / 2;
-    height: auto;
-  }
-  .select2-container {
-    width: 80%;
-  }
-  .select2-choice {
-    font-size: $input-font-size;
-    color: $inverse-input-font-color;
-  }
-  .input-group-btn .button, .select2-container .select2-choice .select2-arrow, .input-group-addon {
-    border: none;
-    background-image: none;
-    background-color: lighten($inverse-input-bg-color, 5%) !important;
-    font-size: $input-font-size;
-    color: $inverse-input-font-color !important;
-  }
-
-  .input-group-addon {
-    background-color: lighten($inverse-input-bg-color, 2%) !important;
-  }
-
-  .btn-primary, .select2-container .select2-choice .select2-arrow {
-    width: 25px;
   }
 
   .choices {

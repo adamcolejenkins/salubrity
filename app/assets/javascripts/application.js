@@ -29,6 +29,7 @@
 //= require angular-touch
 //= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
+//= require angular-ui-select
 //= require angular-ui-sortable/sortable
 //= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
@@ -36,8 +37,8 @@
 //= require ng-s3upload
 
 // Vendor assets
+// = require select2
 //= require jquery-icheck/icheck
-//= require select2/select2
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
@@ -56,29 +57,11 @@ $(function() {
       equalize_on_stack: true
     }
   });
-})
+});
 
-// DataTables Default Options
-var dTableOptions = {
-  scrollX: true,
-  scrollY: "500px",
-  scrollCollapse: true,
-  autoWidth: false,
-  pageLength: 50,
-  lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ],
-  stateSave: true,
-  order: [ 1, 'desc' ],
-  columnDefs: [
-    { "orderable": false, "targets": 0 }
-  ],
-  "tableTools": {
-    "aButtons": [
-      {
-          "sExtends": "print",
-          "bShowAll": false
-      }
-    ]
+Highcharts.dateFormat('%b %e', '%l %P', false)
+Highcharts.setOptions({
+  global: {
+    useUTC: false
   }
-};
-
-
+});
