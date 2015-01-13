@@ -45,3 +45,15 @@
     }
   }
 }
+
+@mixin ellipsis($max-width: false, $display: inline-block, $no-wrap: true) {
+  @if $no-wrap {
+    white-space: nowrap;
+  }
+  @if $max-width {
+    max-width: $max-width;
+  }
+  display: $display;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

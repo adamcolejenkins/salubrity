@@ -1,13 +1,15 @@
 .block-panel {
-  @include panel(
-    $bg: $white,
-    $padding: 0px,
-    $adjust: false
-  );
-  border-radius: $global-radius;
-  border: 1px solid #e5e6ea;
-  border-bottom-width: 2px;
-  border-bottom-color: darken(#e5e6ea, 1%);
+  // @include panel(
+    // $bg: $white,
+    // $padding: 0px,
+    // $adjust: false
+  // );
+  // border-radius: rem-calc(10); //$global-radius;
+  // border: 1px solid #e5e6ea;
+  // border-bottom-width: 2px;
+  // border-bottom-color: darken(#e5e6ea, 10%);
+  margin-bottom: $column-gutter;
+  overflow: hidden;
   
   &.transparent,
   &.block-button {
@@ -40,7 +42,7 @@
 
   & > .header,
   & > .content {
-    padding: rem-calc(20);
+    // padding: rem-calc(20);
   }
 
   & > .header {
@@ -64,6 +66,12 @@
     & > .header {
       height: auto;
       font-weight: bold;
+    }
+  }
+
+  &.chart-panel {
+    & > .content {
+      padding: 0px;
     }
   }
 

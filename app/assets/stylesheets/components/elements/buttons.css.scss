@@ -19,22 +19,84 @@
       }
     }
   }
+
+  &.primary {
+    @include button-style(
+      $bg: $primary-color, 
+      $bg-hover: scale-color($primary-color, $lightness: $button-function-factor),
+      $border-color: scale-color($primary-color, $lightness: $button-function-factor)
+    )
+  }
+  &.inverse {
+    border-width: rem-calc(2);
+    &.primary {
+      @include button-style(
+        $bg: rgba($white, 0), 
+        $bg-hover: rgba($white, 0),
+        $border-color: scale-color($primary-color, $lightness: $button-function-factor)
+      );
+      color: $primary-color;
+      &.dropdown {
+        @include dropdown-button(
+          $padding: small,
+          $pip-color: $primary-color
+        );
+      }
+    }
+    &.secondary {
+      @include button-style(
+        $bg: rgba($white, 0), 
+        $bg-hover: rgba($white, 0),
+        $border-color: scale-color($secondary-color, $lightness: $button-function-factor)
+      );
+      color: $secondary-color;
+      &.dropdown {
+        @include dropdown-button(
+          $padding: small,
+          $pip-color: $secondary-color
+        );
+      }
+    }
+    &.default {
+      @include button-style(
+        $bg: rgba($white, 0), 
+        $bg-hover: rgba($white, 0),
+        $border-color: scale-color($white-smoke, $lightness: $button-function-factor)
+      );
+      color: $base;
+      &.dropdown {
+        @include dropdown-button(
+          $padding: small,
+          $pip-color: $base
+        );
+      }
+    }
+  }
+
+
+}
+
+.f-dropdown {
+  
 }
 
 .filter.button {
   @include button(
     $padding: $button-sml,
-    $bg: #e6eaf2,
-    $radius: true
+    $bg: $primary-color, // #e6eaf2,
+    $radius: true//rem-calc(100)
   );
-  border: none;
-  color: $primary-color;
-  font-size: $button-font-med;
+  border-color: scale-color($primary-color, $lightness: -13%);
+  color: $white; // $primary-color;
+  font-size: rem-calc(13);
   font-weight: $font-weight-normal;
+  box-shadow: none;
+  // @include background(linear-gradient(lighten($primary-color, 1%), darken($primary-color, 1%)) left repeat);
+  // box-shadow: inset 0px 1px 0px 0px rgba(#fff, 0.1);
 
   &:hover {
-    color: $primary-color;
-    box-shadow: none;
+    color: $white; // $primary-color;
+    // box-shadow: none;
   }
 
   & + .filter.button,
@@ -55,7 +117,7 @@
   &.dropdown {
     @include dropdown-button(
       $padding: small,
-      $pip-color: $primary-color
+      $pip-color: $white // $primary-color
     );
 
     &.sort {
@@ -67,7 +129,7 @@
   }
 
   &[aria-expanded="true"] {
-    background-color: $success-color;
+    background-color: scale-color($primary-color, $lightness: -10%);
     color: $white;
   }
 }

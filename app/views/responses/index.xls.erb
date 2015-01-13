@@ -4,7 +4,7 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Worksheet ss:Name="<%= @survey.title.camelize %>">
     <Table>
       <Row>
         <Cell><Data ss:Type="String">Date</Data></Cell>
@@ -22,7 +22,7 @@
         <Cell><Data ss:Type="String"><%= response.provider.full_name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= response.time.to_s + ' seconds' %></Data></Cell>
         <% response.answers.each do |answer| %>
-          <Cell><Data ss:Type="String"><%= answer.value %></Data></Cell>
+          <Cell><Data ss:Type="<%= 'Number' if Float(answer.value) rescue 'String' %>"><%= answer.value %></Data></Cell>
         <% end %>
       </Row>
     <% end %>

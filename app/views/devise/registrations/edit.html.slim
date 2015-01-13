@@ -91,5 +91,5 @@ section.section.section-user-profile
 
         .form-buttons
           .full
-            = f.submit "Update", class: 'radius success button'
+            = f.submit "Update", class: 'radius primary button'
             = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'radius alert button pull-right', disabled: 'disabled' if current_user.role == 'owner'

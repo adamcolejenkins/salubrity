@@ -10,7 +10,7 @@ section.section.section-toolbox
     - if action_name == 'index'
 
       - if can? :create, Survey
-        = link_to 'New Survey', new_survey_path, target: "_self", class: "large radius success button"
+        = link_to 'New Survey', new_survey_path, target: "_self", class: "large radius primary button"
       
       - if can?(:update, Survey) && current_team.surveys.only_deleted.size > 0
         div = link_to pluralize(current_team.surveys.only_deleted.count, 'archived survey'), archived_surveys_path, target: "_self", class: "color-alert link"

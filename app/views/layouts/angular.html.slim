@@ -7,20 +7,23 @@ html(lang="en")
     = render 'layouts/apple_touch'
 
     title Salubrity
-    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800'
-    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Raleway:300,200,100'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Roboto:400,300,600,400italic,700,800'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
     = csrf_meta_tags
         
   body ng-app="salubrity" ng-controller="AppCtrl" class="angular #{params[:controller].split("/").first} #{controller_name} #{action_name}"
     .wrap
-      header.hide-for-print = render :partial => "layouts/header"
-      flash.hide-for-print = render :partial => "layouts/flash"
-      main = yield
-      footer.hide-for-print = render :partial => "layouts/footer"
-
+      header
+        = render :partial => "layouts/header"
+      flash.hide-for-print 
+        = render :partial => "layouts/flash"
+      main 
+        = yield
+      footer.hide-for-print 
+        = render :partial => "layouts/footer"
+    
+    = yield :modals
     = yield :javascript

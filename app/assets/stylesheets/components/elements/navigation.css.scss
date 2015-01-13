@@ -1,13 +1,19 @@
+.sub-nav {
+  margin-bottom: $column-gutter;
+  margin-top: $column-gutter;
+}
 .sub-nav dt a, 
 .sub-nav dd a, 
 .sub-nav li a {
-  background-color: scale-color($primary-color, $lightness: 25%);
-  border-radius: $global-radius;
+  // border: 2px solid $secondary-color;
+  // border-radius: $global-radius;
 
   &:hover {
-    background-color: $primary-color;
-    color: $white;
+    // background-color: $secondary-color;
+    // color: $white;
   }
+}
+
 .filter-bar {
   // background: $body-bg;
   padding-top: rem-calc(20);
@@ -19,4 +25,7 @@
     margin-top: 0;
   }
 }
+
+.f-dropdown {
+  overflow-y: scroll;
 }

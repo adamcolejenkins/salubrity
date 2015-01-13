@@ -12,6 +12,6 @@
 
       .form-buttons
         .full
-          = f.submit t("devise.profiles.role.submit_button"), class: "radius success button" 
-          = link_to t("devise.profiles.role.cancel_button"), users_path, class: "radius secondary button"
+          = f.submit t("devise.profiles.role.submit_button"), class: "radius primary button" 
+          = link_to t("devise.profiles.role.cancel_button"), users_path, class: "radius button"
           = link_to 'Delete', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'

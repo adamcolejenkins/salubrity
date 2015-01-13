@@ -1,9 +1,13 @@
+body.responses.index {
+  // background-color: #2f3f43;
+}
+
 .wrap > header,
 .wrap > main,
 .wrap > footer {
   position: relative;
   
-  & > section.section {
+  section.section {
     @include grid-row();
 
     article.article-content,
@@ -13,24 +17,29 @@
   }
 }
 
+.wrap > main {
+  & > section.section {
+    background: $white;
+  }
+}
+
 .wrap > main, 
 .wrap > footer {
   z-index: 1;
-  margin: $column-gutter 0;
+  // margin: $column-gutter 0;
 }
 
 .wrap > footer {
   section.section-footer {
     & > div {
-      border-top: 1px solid $secondary-color;
       padding-top: 15px;
       p { font-size: 13px; }
     }
     & > div.copyright {
-      @include grid-column($columns: 8);
+      @include grid-column($columns: 6);
     }
     & > div.support {
-      @include grid-column($columns: 4, $last-column: true);
+      @include grid-column($columns: 6, $last-column: true);
       text-align: right;
     }
   }

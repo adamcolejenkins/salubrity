@@ -1,20 +1,25 @@
 header {
-  background: $white;
-  z-index: 3;
-  
+  background: $secondary-color; // $white;
+  // box-shadow: 0px 0px 6px scale-color($secondary-color, $lightness: -20%);
+
   // Top Bar
   &, & > .navigation {
-    box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.2);
+    // box-shadow: 0px 0px 6px scale-color($secondary-color, $lightness: -20%); //rgba(50, 50, 50, 0.2);
+    border-bottom: 1px solid scale-color($secondary-color, $lightness: -10%);
+  }
+
+  & > .navigation {
+    box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2);
   }
   
   .top-bar .name h1 a {
-    border-left: 1px solid $smoke;
-    border-right: 1px solid $smoke;
+    // border-left: 1px solid darken($primary-color, 3%); // $smoke;
+    // border-right: 1px solid darken($primary-color, 3%); // $smoke;
   }
 
   .top-bar-section {
     li:not(.has-form) a:not(.button) {
-      border-right: 1px solid $smoke;
+      // border-right: 1px solid darken($primary-color, 3%); // $smoke;
       i.fa {
         font-size: 16px;
       }
@@ -22,7 +27,7 @@ header {
 
     li.superuser {
       & > a, & > a:hover {
-        color: $alert-color;
+        // color: $alert-color;
       }
     }
 
@@ -43,7 +48,7 @@ header {
     div.toolbox-header,
     div.toolbox-actions {
       @include grid-column($columns: 12);
-      padding: $column-gutter 0;
+      padding: $column-gutter / 2 0;
 
       @media #{$medium-up} {
         @include grid-column($columns: 6);
@@ -56,10 +61,12 @@ header {
         h2 {
           font-size: rem-calc(36);
           margin-bottom: 0;
+          color: $white;
         }
         h3.subheader {
           font-size: rem-calc(18);
           margin-top: 0;
+          color: rgba($white, .75);
         }
       }
     }

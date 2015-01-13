@@ -13,22 +13,20 @@ nav.top-bar.hide-for-print data-topbar="" role="navigation"
     / Right Nav Section
     ul.right
       
-      - if current_user.admin?
-        li.color-alert.superuser.has-dropdown
-          = link_to 'Superuser', ''
 
-      li.user-profile
+      li
         = link_to profile_path, target: '_self'
-          = gravatar_image_tag(current_user.email, alt: identify(current_user), :gravatar => { size: 50 })
+          i.fa.fa-user
 
-      - if current_user.role? :owner
-        li.has-dropdown
-          = link_to '#', target: '_self'
+      - if current_user.role? :contributor
+        li
+          = link_to config_root_path, target: '_self'
             i.fa.fa-cog
-          
-          ul.dropdown
-            li = link_to 'General Settings', edit_team_path(current_team), target: '_self'
-            li = link_to 'Manage Users', users_path, target: '_self' if can? :manage, User
+
+      - if current_user.admin?
+        li.superuser.has-dropdown
+          = link_to ''
+            i.fa.fa-cogs
 
       li
         = link_to destroy_user_session_path, :method => :delete
@@ -36,5 +34,5 @@ nav.top-bar.hide-for-print data-topbar="" role="navigation"
 
     / Left Nav Section
     ul.left
-      li class="#{active_if_current(dashboard_path)}" = link_to 'Dashboard', dashboard_path, target: "_self"
-      li class="#{active_if(request.fullpath.match(/config\//))}" = link_to 'Configure', config_root_path, target: "_self" if current_user.role? :contributor
+      li class="#{active_if_current(dashboard_path)}"
+        = link_to 'Reporting', dashboard_path, target: "_self"

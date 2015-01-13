@@ -40,6 +40,6 @@
 
       .form-buttons
         .full
-          = f.submit 'Save Survey', class: 'radius success button' 
-          = link_to 'Cancel', surveys_path, class: 'radius secondary button', target: "_self"
+          = f.submit 'Save Survey', class: 'radius primary button' 
+          = link_to 'Cancel', surveys_path, class: 'radius button', target: "_self"
           = link_to 'Archive', @survey, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Survey) && action_name == 'edit'

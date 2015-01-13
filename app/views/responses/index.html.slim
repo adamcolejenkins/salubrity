@@ -3,63 +3,51 @@ section.section.section-survey-nav.hide-for-print
   
   = render 'filters'
 
-section.section.section-overall-responses
-
-  / Survey Info Block
-  article.article-header
-    .block-panel.faded
-      .content
-        h4 = @survey.title
-        h5.subheader = @survey.description
+section.section.section-overall-responses(data-equalizer)
 
   / Responses Block
   article.article-response-chart
-    .block-panel
+    .block-panel(data-equalizer-watch)
       .content
         .stat
           big = @responses.length
-          span.muted  survey responses
-        .chart bar-graph=""
-          = column_chart recent_responses_chart_path(params), height: "100%", width: "100%", library: { chartArea: { width: "100%", height: "100%", top: 0 }, vAxis: { gridlines: {color: "transparent"}, textPosition: "none" } }, colors: ["#dfe2e7"]
+          span.muted  responses
 
-  / Timing Chart
   article.article-timing-chart
-    .block-panel
+    .block-panel(data-equalizer-watch)
       .content
         .stat.text-center
           big = @responses.average_time || "00:00"
           span.muted  avg time to complete
 
-/ Field Responses Charts
-section.section.section-field-responses
-  
-  - @survey.data_fields.each do |field|
-    article class="article-#{field.context.gsub('_', '-')}" = render "responses/charts/#{field.context}", field: field
+section.section.section-field-responses(data-equalizer)
 
+  / Field Responses Charts
+  - @survey.data_fields.each_with_index do |field, i|
+    article class="article-#{field.context.gsub('_', '-')}"
+      = render "responses/charts/#{field.context}", field: field, index: i
 
 / Clinic Usage Chart
-section.section.section-clinic-usage
-  article.article-clinic-usage
-    .block-panel.chart
-      .header Clinic Usage #{grouped_by(params[:filter])}
-      .content
-        = column_chart clinic_usage_chart_path(params), height: "100%", library: { chartArea: { width: "90%", height: "80%", top: 10 }, vAxis: { title: "Responses" } }
+- if params[:clinic]
+  section.section.section-clinic-usage
+    article.article-clinic-usage
+      .block-panel.chart-panel.chart
+        / .header Clinic Usage #{grouped_by(params[:filter])}
+        .content
+          = column_chart clinic_usage_chart_path(params), column_chart_options({ height: "500px", title: 'Clinic Usage' })
   
 / Tabular Response Data
 section.section.section-tabular-responses
-  
-  .alert-box.info.radius.text-center.show-for-print Tablular data is too large to be printed. Please export your data via the export button.
 
   article.article-responses-table.hide-for-print
-    .block-panel.table
-      .header Response Data
+    .block-panel
       .content
-        - noSort = [0] + (4..(@survey.data_fields.count + 4)).to_a
+        - noSort = (3..(@survey.data_fields.count + 3)).to_a
         table.response-table.display.no-border ng-data-tables="" role="grid" source="#{dashboard_path(params)}" sort-disabled="#{noSort}"
           thead
             tr
               / Checkbox
-              th = check_box_tag('responses-all')
+              / th = check_box_tag('responses-all')
             
               / Date
               th Date
