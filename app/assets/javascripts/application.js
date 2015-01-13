@@ -20,6 +20,14 @@
 //= require fastclick
 //= require foundation
 
+// Highcharts (PURCHASE LICENSE)
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/no-data-to-display
+
+// ChartKick must be last
+//= require chartkick
+
 // Angular Directives
 //= require angular
 //= require angular-cookie

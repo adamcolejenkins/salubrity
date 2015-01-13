@@ -1,29 +1,7 @@
-module ApplicationHelper
-  def active_if_current(path)
-    'active' if current_page?(path)
-  end
-
-  def active_if(conditions)
-    'active' if conditions
-  end
-
-  def identify(user)
-    if user.name and user.surname or user.name
-      "#{user.name} #{user.surname}"
-    else
-      user.email
-    end
-  end
-
-  def tab_for(name, path)
-    content_tag :dd, class: active_if_current(path) do
-      link_to name, path, target: "_self"
-    end
-  end
+module ColorHelper
 
   # Amount should be a decimal between 0 and 1. Lower means darker
   def darken_color(hex_color, amount=0.4)
-
     hex_color = hex_color.gsub('#','')
     rgb = hex_color.scan(/../).map {|color| color.hex}
     rgb[0] = (rgb[0].to_i * amount).round
@@ -34,9 +12,6 @@ module ApplicationHelper
     
   # Amount should be a decimal between 0 and 1. Higher means lighter
   def lighten_color(hex_color, amount=0.6)
-    logger.debug("DEBUG:: #{hex_color} #{amount}")
-
-
     hex_color = hex_color.gsub('#','')
     rgb = hex_color.scan(/../).map {|color| color.hex}
     rgb[0] = [(rgb[0].to_i + 255 * amount).round, 255].min
@@ -45,5 +20,12 @@ module ApplicationHelper
     "#%02x%02x%02x" % rgb
   end
 
+  def lighten_color_array(color)
+    [0, 0.1, 0.2, 0.3, 0.4].map { |i| lighten_color(color, i) }
+  end
+
+  def darken_color_array(color)
+    [0, 0.05, 0.1, 0.15, 0.2, 0.25].map { |i| darken_color(color, i) }
+  end
 
 end

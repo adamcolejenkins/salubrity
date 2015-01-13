@@ -2,7 +2,7 @@
 .chart {
   &[pie-chart],
   &[bar-graph] {
-    position: relative;
+    // position: relative;
     padding: 0px;
 
     .loader {
@@ -13,7 +13,7 @@
   }
 
   &[pie-chart] {
-    height: 200px;
+    // height: 200px;
     
     div.pie-label {
       font-size:11px;
@@ -24,7 +24,18 @@
     }
   }
   &[bar-graph] {
-    height: 75px;
+    // height: 75px;
+  }
+
+  &.multiple_choice {
+    .highcharts-title {
+      padding: 0 10px;
+      // display: table-cell !important; 
+    }
+  }
+
+  .highcharts-background {
+    fill: transparent;
   }
 }
 
@@ -35,7 +46,7 @@
   margin-left: -22px;
   margin-top: -18px;
   color: $body-font-color;
-  z-index: 2;
+  z-index: 50;
 
   small {
     color: lighten($body-font-color, 10%);

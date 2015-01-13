@@ -5,13 +5,12 @@ class ResponseDatatable < AjaxDatatablesRails::Base
   # include AjaxDatatablesRails::Extensions::WillPaginate
   # include AjaxDatatablesRails::Extensions::SimplePaginator
   
-  def_delegators :@view, :h, :current_team, :check_box_tag
+  def_delegators :@view, :h, :current_team, :check_box_tag, :can?
 
   def sortable_columns
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
     @sortable_columns ||= [
-      '',
       'responses.created_at',
       'clinics.title',
       'providers.surname'
@@ -22,7 +21,6 @@ class ResponseDatatable < AjaxDatatablesRails::Base
     # list columns inside the Array in string dot notation.
     # Example: 'users.email'
     @searchable_columns ||= [
-      '',
       'responses.created_at',
       'clinics.title',
       'providers.surname'
@@ -34,7 +32,7 @@ class ResponseDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       [
-        check_box_tag("response[#{record.id}]", record.id),
+        # check_box_tag("response[#{record.id}]", record.id),
         record.created_at.strftime("%B %e, %Y at %H:%M:%S"),
         record.clinic.title,
         record.provider.full_name,

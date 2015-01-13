@@ -4,17 +4,6 @@
 
 $URI = new Uri(window.location.href)
 
-responseDataHeight = ->
-  $header = jQuery('.wrap > header').outerHeight()
-
-  $width = document.documentElement.clientWidth
-  $height = document.documentElement.clientHeight - $header
-
-  if $width > 755
-    jQuery('section.response-data').css "min-height", $height
-  else
-    jQuery('section.response-data').removeAttr('style')
-
 $ ->
 
   # Page Slidedowns
@@ -34,10 +23,4 @@ $ ->
         $this.attr('aria-expanded', false)
         $this.text($this.data('label'))
 
-        $control.find('form').submit(parseAdvancedFilters)
-
-
-# Set Response Data table height
-$(window)
-  .load(responseDataHeight)
-  .resize(responseDataHeight)
+        $control.find('form').submit()

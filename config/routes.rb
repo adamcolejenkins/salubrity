@@ -68,7 +68,9 @@ Rails.application.routes.draw do
       get 'recent_responses_chart' => 'responses#recent_responses_chart'
       get 'clinic_usage_chart' => 'responses#clinic_usage_chart'
       get 'multiple_choice_chart' => 'responses#multiple_choice_chart'
+      get 'scale_chart' => 'responses#scale_chart'
     end
+    get 'dashboard/export' => 'responses#export'
     get 'dashboard' => 'responses#index'
     post 'dashboard' => 'responses#index'
 

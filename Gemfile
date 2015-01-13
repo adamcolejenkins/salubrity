@@ -59,12 +59,16 @@ group :development do
   gem 'web-console', '2.0.0.beta3'
   # Increase application's performance by reducing the number of queries it makes. Read more: https://github.com/flyerhzm/bullet
   gem "bullet"
+  gem "awesome_print"
 end
 # Test environment gems
 group :test do
   # gem 'rspec-rails'
   # gem 'factory_girl'
 end
+
+gem "hash_to_hidden_fields"
+
 gem 'newrelic_rpm'
 gem 'bump', '~> 0.5.1'
 # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
@@ -79,10 +83,19 @@ gem 'CFPropertyList-rails'
 gem 'CFPropertyList', '~> 2.2.8'
 gem 'multi_json'
 
-# Charting and Date
+# Charting
+
+# PURCHASE LICENSE
+gem "highcharts-rails"
+# The simplest way to group by date. Read more: https://github.com/ankane/groupdate
 gem 'groupdate'
+# A nice shortcut for group count queries. Read more: https://github.com/ankane/hightop
 gem 'hightop'
+# Create beautiful Javascript charts with one line of Ruby. Read more: https://github.com/ankane/chartkick
 gem 'chartkick'
+# Includes Highcharts as an asset in the Rails asset pipeline. Read more: https://github.com/PerfectlyNormal/highcharts-rails
+# Write the action with a simple DSL and get a report. Read more: https://github.com/ashrafuzzaman/query_report
+gem "query_report", "~> 1.2.1"
 
 # Wrapper around datatable's ajax methods that allow synchronization with server-side pagination in a rails app.
 # Read more: https://github.com/antillas21/ajax-datatables-rails

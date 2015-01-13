@@ -1,62 +1,72 @@
 Chartkick.options = {
-  colors: ["#677486", "#28B598", "#F54D4B", "#19b698", "#FED16C", "#47b8e5", "#d4a74c"],
+  colors: ['#55A9DC', '#886DB3', '#6CC080', '#E6645C', '#6FC3F6', '#A287CD', '#86DA9A', '#FF7E76', '#88DCFF', '#BBA0E6', '#9FF3B3', '#FF978F' ],
   library: {
-    axisTitlesPosition: "out",
     backgroundColor: "transparent",
-    lineWidth: 2,
-    fontName: "Open Sans",
+    chart: {
+      style: {
+        fontFamily: "Open Sans",
+        fontWeight: "normal"
+      }
+    },
+    xAxis: {
+      lineColor: "#f2f2f2",
+      gridLineColor: "#f2f2f2"
+    },
+    yAxis: {
+      gridLineColor: "#f2f2f2"
+    },
+    credit: false,
     animation: {
       duration: 1000,
       easing: "inAndOut"
     },
-    chartArea: {
-      # left: 10,
-      top: 10,
-      height: "90%",
-      width: "90%"
-    },
-    vAxis: {
-      gridlines: {
-          color: "#EFEFEF"
+    plotOptions: {
+      line: {
+        marker: {
+          enabled: true,
+          lineWidth: 8,
+          radius: 5,
+          fillColor: nil,
+          lineColor: 'rgba(0, 0, 0, 0.15)',
+          symbol: 'circle',
+          states: {
+            hover: {
+              lineWidth: 0,
+              radius: 10
+            }
+          }
+        }
       },
-      textPosition: "out",
-      baselineColor: "transparent",
-      textStyle: {
-        color: "#909baa",
-        fontSize: 10
+      bar: {
+        # pointWidth: 10
       },
-      titleTextStyle: {
-        color: "#677487",
-        fontSize: 10,
-        italic: false
-      }
-    },
-    hAxis: {
-      # gridlines: {
-      #     color: "#e5e6ea"
-      # },
-      textPosition: "out",
-      baselineColor: "transparent",
-      textStyle: {
-        color: "#909baa",
-        fontSize: 10
-      }
-    },
-    pieHole: 0.37,
-    legend: {
-      position: "bottom",
-      alignment: "start",
-      top: 10,
-      textStyle: {
-        color: "#909baa",
-        fontSize: 12
+      column: {
+        # pointWidth: 10
+      },
+      pie: {
+        dataLabels: {
+          enabled: true,
+          style: {
+            color: '#737373'
+          },
+          format: "{point.name} <b>{point.percentage:.1f}%</b>"
+        },
+        allowPointSelect: true,
+        cursor: 'pointer',
+        showInLegend: false,
+        size: '75%',
+        innerSize: '75%'
       }
     },
     tooltip: {
-      showColorCode: true,
-      textStyle: {
-        color: "#677487",
-        fontSize: 12
+      headerFormat: '<b>{point.key}<b/><br />'
+    },
+    legend: {
+      useHTML: true,
+      title: {
+        style: {
+          fontWeight: 300
+        }
       }
     }
   }

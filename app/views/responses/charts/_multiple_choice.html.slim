@@ -1,14 +1,4 @@
-.block-panel(data-equalizer-watch)
-  .header = truncate field.label, length: 70, separator: ' '
-
+.block-panel.chart-panel(data-equalizer-watch)
   .content
-    .response-time
-      - if @responses.length > 0
-        / big = field.average_time
-        / small avg time
-      - else
-        big No
-        small Responses
-  
-    .chart(pie-chart)
-      = pie_chart multiple_choice_chart_path(params.merge(field: field.id)), height: "100%", width: "100%", colors: @survey.data_for(:multiple_choice_field_colors, field: field).reverse, legend: true unless @responses.length == 0
+    .chart class="#{field.context}"
+      = bar_chart multiple_choice_chart_path(params.merge(field: field.id)), bar_chart_options({colors: lighten_color_array(ChartHelper::COLORS[index]), title: field.label})

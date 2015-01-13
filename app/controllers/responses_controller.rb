@@ -1,6 +1,10 @@
+require 'query_report/helper' 
+
 class ResponsesController < ApplicationController
+  include QueryReport::Helper
+
   before_action :set_group_date_options, :set_default_params, :format_dates, :set_resources
-  before_action :set_survey, only: [:index, :clinic_usage_chart]
+  before_action :set_survey, :set_filename, only: [:index, :clinic_usage_chart]
   before_action :set_responses
   layout 'angular'
 
@@ -10,7 +14,9 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: ResponseDatatable.new(view_context) }
-      format.xls
+      format.xls do
+        response.headers['Content-Disposition'] = "attachment; filename=\"#{@filename}.xls\""
+      end
     end
   end
 
@@ -33,9 +39,9 @@ class ResponsesController < ApplicationController
       render json: @survey.clinics.filter(params.slice(:clinic)).map { |clinic| 
         { 
           name: clinic.title, 
-          data: clinic.responses.filter(params.slice(:provider)).group_by_hour('responses.created_at', 
-            range: (params[:from].beginning_of_day + 6.hours)..(params[:to].end_of_day - 5.hours), 
-            format: "%l %P"
+          data: clinic.responses.group_by_hour(:created_at, 
+                  range: (params[:from].beginning_of_day + 7.hours)..(params[:to].end_of_day - 5.hours),
+                  format: "%l %P"
           ).count
         }
       }
@@ -43,21 +49,31 @@ class ResponsesController < ApplicationController
       render json: @survey.clinics.filter(params.slice(:clinic)).map { |clinic| 
         { 
           name: clinic.title, 
-          data: clinic.responses.filter(params.slice(:provider))
-                      .group_by_week('responses.created_at', range: params[:from]..params[:to], format: "%b %d").count }
+          data: clinic.responses.group_by_week(:created_at,
+                    range: params[:from].beginning_of_day..params[:to].end_of_day,
+                    format: "%b %e"
+          ).count
+        }
       }
     else
       render json: @survey.clinics.filter(params.slice(:clinic)).map { |clinic| 
         { 
           name: clinic.title, 
-          data: clinic.responses.filter(params.slice(:provider))
-                      .group_by_day('responses.created_at', range: params[:from]..params[:to], format: "%b %d").count }
+          data: clinic.responses.group_by_day(:created_at,
+                  range: params[:from]..params[:to],
+                  format: '%b %e'
+          ).count
+        }
       }
     end
   end
 
   def multiple_choice_chart
     render json: @responses.joins(:answers).where('answers.field_id = ?', params[:field]).group('answers.value').count
+  end
+
+  def scale_chart
+    render json: [@responses.joins(:answers).where('answers.field_id = ?', params[:field]).average('answers.value :: Integer').to_f]
   end
 
   private
@@ -75,6 +91,12 @@ class ResponsesController < ApplicationController
       else
         @filter = 1.day
     end
+  end
+
+  # UmhcPatientSurveyResults_2015-01-01_2015-01-31.xls
+  def set_filename
+    @filename = @survey.title.camelize + ' Results ' + params[:from].to_s
+    @filename += ' to ' + params[:to].to_s unless params[:from] == params[:to]
   end
 
   def format_dates
@@ -102,7 +124,7 @@ class ResponsesController < ApplicationController
 
   def set_group_date_options
     Groupdate.time_zone = "America/Chicago"
-    Groupdate.week_start = :mon
+    Groupdate.week_start = :sun
     Groupdate.day_start = 6
   end
 
