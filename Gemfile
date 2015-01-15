@@ -10,7 +10,7 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
 # Use Zurb Foundation as the html/css framework
-gem 'foundation-rails'
+gem 'foundation-rails', '5.4.5'
 # Use Bourbon for SCSS helpers
 gem 'bourbon'
 # Use Uglifier as compressor for JavaScript assets
@@ -69,7 +69,7 @@ gem 'bump', '~> 0.5.1'
 # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
 gem 'figaro'
 # A Rails plugin to add soft delete.
-gem 'paranoia', '~> 2.0.2'
+gem "paranoia", :github => "radar/paranoia", :branch => "rails4"
 # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes.
 gem "auto_strip_attributes", "~> 2.0"
 

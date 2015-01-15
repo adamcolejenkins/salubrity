@@ -8,7 +8,7 @@ class Ability
     Rails.logger.debug("DEBUG:: #{user.role? :owner}")
 
     if user.role? :spectator
-      can :read, :all
+      can :read, Response, Answer
     end
 
     if user.role? :contributor
@@ -23,7 +23,6 @@ class Ability
       can :manage, User
       can :manage, Team
     end
-
 
     if user.role? :superuser
       can :manage, :all

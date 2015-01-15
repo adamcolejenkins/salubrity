@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   respond_to :html, :xml, :json
-  load_and_authorize_resource
+  authorize_resource
   before_action :set_device, only: [:show, :edit, :update, :destroy]
   layout 'angular'
 

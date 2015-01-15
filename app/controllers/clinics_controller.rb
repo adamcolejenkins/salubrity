@@ -1,6 +1,6 @@
 class ClinicsController < ConfigController
-  load_and_authorize_resource
-  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+  before_action :set_clinic, only: [:show, :edit, :update, :destroy, :archive]
 
   # GET /clinics
   # GET /clinics.json
@@ -55,7 +55,7 @@ class ClinicsController < ConfigController
   # DELETE /clinics/1
   # DELETE /clinics/1.json
   def destroy
-    @clinic.destroy
+    @clinic.really_destroy!
     respond_to do |format|
       format.html { redirect_to clinics_url, notice: 'Clinic was successfully destroyed.' }
       format.json { head :no_content }
@@ -80,7 +80,6 @@ class ClinicsController < ConfigController
   # DELETE /clinics/1/delete
   # DELETE /clinics/1/delete.json
   def archive
-    @clinic = current_team.clinics.only_deleted.find(params[:id])
     @clinic.destroy
     respond_to do |format|
       format.html { redirect_to clinics_url, notice: 'Clinic was successfully archived.' }
