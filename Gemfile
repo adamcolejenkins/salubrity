@@ -10,7 +10,7 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
 # Use Zurb Foundation as the html/css framework
-gem 'foundation-rails'
+gem 'foundation-rails', '5.4.5'
 # Use Bourbon for SCSS helpers
 gem 'bourbon'
 # Use Uglifier as compressor for JavaScript assets
