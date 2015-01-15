@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+  # load_and_authorize_resource
   before_action :set_group_date_options, :set_default_params, :format_dates, :set_resources
   before_action :set_survey, only: [:index, :clinic_usage_chart]
   before_action :set_responses
