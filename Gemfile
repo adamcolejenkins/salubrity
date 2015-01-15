@@ -85,6 +85,7 @@ gem 'multi_json'
 
 # Charting
 
+# Includes Highcharts as an asset in the Rails asset pipeline. Read more: https://github.com/PerfectlyNormal/highcharts-rails
 # PURCHASE LICENSE
 gem "highcharts-rails"
 # The simplest way to group by date. Read more: https://github.com/ankane/groupdate
@@ -93,9 +94,6 @@ gem 'groupdate'
 gem 'hightop'
 # Create beautiful Javascript charts with one line of Ruby. Read more: https://github.com/ankane/chartkick
 gem 'chartkick'
-# Includes Highcharts as an asset in the Rails asset pipeline. Read more: https://github.com/PerfectlyNormal/highcharts-rails
-# Write the action with a simple DSL and get a report. Read more: https://github.com/ashrafuzzaman/query_report
-gem "query_report", "~> 1.2.1"
 
 # Wrapper around datatable's ajax methods that allow synchronization with server-side pagination in a rails app.
 # Read more: https://github.com/antillas21/ajax-datatables-rails

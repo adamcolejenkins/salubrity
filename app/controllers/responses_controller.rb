@@ -1,8 +1,4 @@
-require 'query_report/helper' 
-
 class ResponsesController < ApplicationController
-  include QueryReport::Helper
-
   before_action :set_group_date_options, :set_default_params, :format_dates, :set_resources
   before_action :set_survey, :set_filename, only: [:index, :clinic_usage_chart]
   before_action :set_responses

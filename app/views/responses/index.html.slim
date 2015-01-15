@@ -28,7 +28,7 @@ section.section.section-field-responses(data-equalizer)
       = render "responses/charts/#{field.context}", field: field, index: i
 
 / Clinic Usage Chart
-- if params[:clinic]
+- unless params[:provider]
   section.section.section-clinic-usage
     article.article-clinic-usage
       .block-panel.chart-panel.chart
