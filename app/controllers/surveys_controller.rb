@@ -1,6 +1,6 @@
 class SurveysController < ConfigController
-  load_and_authorize_resource
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  authorize_resource
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :archive]
 
   # GET /surveys
   # GET /surveys.json
@@ -55,7 +55,7 @@ class SurveysController < ConfigController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
+    @survey.really_destroy!
     respond_to do |format|
       format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
       format.json { head :no_content }
@@ -80,7 +80,6 @@ class SurveysController < ConfigController
   # DELETE /surveys/1/delete
   # DELETE /surveys/1/delete.json
   def archive
-    @survey = current_team.surveys.only_deleted.find(params[:id])
     @survey.destroy
     respond_to do |format|
       format.html { redirect_to surveys_url, notice: 'Survey was successfully archived.' }
