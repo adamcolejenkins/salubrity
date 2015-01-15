@@ -1,0 +1,65 @@
+div.section
+
+  ul.toolbar.left ng-mouseleave="display()"
+    li ng-repeat="field in fieldContexts" ng-if="field.enabled"
+      button.tool class="field-{{field.context}}" ng-mouseover="display('Add a ' + field.label + ' Field')" ng-click="addField(field)"
+        i.fa.fa-fw class="fa-{{field.icon}}"
+
+div.section
+
+  div.display
+    / i.fa.fa-plus.fa-fw.left
+    | {{ displayText || survey.title }}
+    i.fa.fa-spinner.fa-spin.right ng-show="loading"
+  
+  
+div.section
+
+  ul.toolbar.left
+    li.right
+      button.tool.success Save
+
+  / NOTE: Min & Max will be adjustable via inline slider
+  ul.toolbar.right ng-mouseleave="display()"
+    / Required
+    li
+      button.tool ng-mouseover="display('Set Required')" ng-disabled="toolDisabled('required')" ng-model="activeField.required" btn-checkbox="" btn-checkbox-true="true" btn-checkbox-false="false"
+        i.fa.fa-asterisk
+    / Visibility
+    li
+      button.tool ng-mouseover="display('Set Visibility')" ng-disabled="toolDisabled('visibility')" ng-model="activeField.visibility" btn-checkbox="" btn-checkbox-true="'public'" btn-checkbox-false="'admin'"
+        i.fa.fa-eye ng-show="toolDisabled('required') || activeField.visibility == 'public'"
+        i.fa.fa-eye-slash ng-show="activeField.visibility == 'admin'"
+
+    / Step & Median
+    li
+      button.tool.dropdown data-dropdown="drop-slider" aria-controls="drop-slider" aria-expanded="false" ng-mouseover="display('Set Slider Options')" ng-disabled="toolDisabled('range')"
+        i.fa.fa-sliders
+      div#drop-slider.f-dropdown.content data-dropdown-content="" aria-hidden="true" tabindex="-1"
+        label Step
+        input type="number" ng-model="activeField.increment"
+        label Median
+        input type="number" ng-model="activeField.predefined_value"
+
+    / Layout
+    li
+      button.tool.dropdown data-dropdown="drop-layout" aria-controls="drop-layout" aria-expanded="false" ng-mouseover="display('Set Layout')" ng-disabled="toolDisabled('layout')"
+        i.fa.fa-sitemap
+      div#drop-layout.f-dropdown.content data-dropdown-content="" aria-hidden="true" tabindex="-1"
+        label Layout
+        select ng-model="activeField.layout"
+          option value="oneColumn" One Column
+          option value="twoColumns" Two Columns
+          option value="threeColumns" Three Columns
+          option value="fourColumns" Four Columns
+          option value="" Side by Side
+
+    / Display
+    li
+      button.tool.dropdown data-dropdown="drop-display" aria-controls="drop-display" aria-expanded="false" ng-mouseover="display('Set Display')" ng-disabled="toolDisabled('display')"
+        i.fa.fa-adjust
+      div#drop-display.f-dropdown.content data-dropdown-content="" aria-hidden="true" tabindex="-1"
+        label Display
+        select ng-model="activeField.display_as"
+          option value="standard" Standard
+          option value="buttons" Buttons

@@ -29,8 +29,8 @@ $tooltip-arrow-size: 10px;
 .tooltip {
     background-color: rgba($primary-color, 0.8) !important;
     border-radius: $global-radius !important;
-    padding: 8px 10px;
-    font-size: 12px;
+    padding: 6px 8px;
+    font-size: 10px;
     white-space: nowrap;
     
     &.tip-left {

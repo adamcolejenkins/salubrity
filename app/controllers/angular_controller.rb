@@ -1,5 +1,4 @@
 class AngularController < ApplicationController
-  load_and_authorize_resource
   layout 'angular'
 
   def index

@@ -82,6 +82,7 @@ gem 'multi_json'
 gem 'groupdate'
 gem 'hightop'
 gem 'chartkick'
+gem "query_report"
 
 # Wrapper around datatable's ajax methods that allow synchronization with server-side pagination in a rails app.
 # Read more: https://github.com/antillas21/ajax-datatables-rails

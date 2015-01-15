@@ -1,118 +1,124 @@
-.builder {
-  
-  .button-group.text-center {
-    > li {
-      float: none;
-    }
+body.config.fields.index {
+  height: auto !important;
+  overflow: auto;
+
+  &.locked {
+    overflow: hidden;
   }
 
-  .button-group {
-    button {
-      &.field-intro {
-        color: $success-color;
+  #release-button {
+    display: none;
+  }
+}
+
+.form-preview {
+
+  ol.form-preview-fields {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    & > li {
+      font-weight: 600;
+      // cursor: move;
+      cursor: pointer;
+      background: $white;
+      border-top: 1px solid $smoke;
+      
+      .field-container {
+        border: 1px dashed transparent;
+        padding: $column-gutter;
+        
+        .toolbar {
+          display: none;
+        }
+
+        &:hover {
+          border: 1px dashed $iron;
+
+          .toolbar {
+            display: block;
+          }
+        }
+
+        &.active {
+          
+        }
+
+        .field-section {
+          margin-bottom: rem-calc(10);
+        }
       }
-      &.field-outro {
+
+      &:last-of-type .field-container {
+        padding-bottom: 0;
+      }
+
+      .editable {
+        display: inline-block;
+        padding: 2px;
+        border: 2px solid transparent;
+        cursor: text;
+        margin: auto -4px;
+
+        &.editable-empty {
+          color: $iron;
+          font-weight: $font-weight-normal;
+        }
+
+        &:hover, &:focus, &:focus:hover {
+          outline: none;
+          background: $white;
+          border-color: darken(#FFF8DD, 10%);
+        }
+
+        &:hover {
+          background: lighten(#FFF8DD, 2%);
+        }
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="tel"],
+      input[type="email"],
+      textarea {
+        &, &.editable {
+          border: 2px solid $primary-color;
+          background: $white;
+          margin: auto 0;
+        }
+
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+      }
+
+      textarea {
+        padding: 0.25em;
+      }
+
+      .field-instructions {
         color: $info-color;
       }
+
+      .field-label {
+        color: $primary-color;
+        font-size: 1.2rem;
+      }
+
+      .field-input {
+
+      }
+
     }
   }
 
-  .timeline {
-    & > li {
-      cursor: pointer;
+}
 
-      &.sort-item:not(.field-intro):not(.field-outro) .content {
-        border: 1px dashed transparent;
-        &:before {
-          border-left: 1px dashed transparent;
-          border-bottom: 1px dashed transparent;
-        }
-      }
-
-      &.field-intro { 
-        & > .fa,
-        & > .content,
-        & > .content:before {
-          background-color: $success-color;
-        }
-        .content {
-          color: $white;
-          &, &:before {
-            border-color: lighten($success-color, 15%);
-          }
-        }
-      }
-      &.field-outro { 
-        & > .fa,
-        & > .content,
-        & > .content:before {
-          background-color: $info-color;
-        }
-        .content {
-          color: $white;
-          &, &:before {
-            border-color: lighten($info-color, 15%);
-          }
-        }
-      }
-
-      .details {
-        @include grid-column($columns: 8, $collapse: true);
-        min-height: 40px;
-      }
-      .options {
-        @include grid-column($columns: 4, $collapse: true);
-      }
-
-      &.field-intro ul.actions li a,
-      &.field-outro ul.actions li a {
-        color: $white;
-      }
-      &.field-intro ul.actions li a {
-        background-color: lighten($success-color, 15%);
-      }
-      &.field-outro ul.actions li a {
-        background-color: lighten($info-color, 15%);
-      }
-    }
-    
-    &:hover {
-      .sort-item:not(.field-intro):not(.field-outro) .content {
-        border-color: $iron;
-        &:before {
-          border-color: $iron;
-        }
-        &:hover {
-          border-color: $base;
-          &:before {
-            border-color: $base;
-          }
-        }
-      }
-    }
+.toolbar {
+  & > .section {
+    @include grid-column($columns: 4, $collapse: true);
   }
-
-  .block.empty {
-    .block-item {
-      background-color: $ghost;
-      border: 1px dashed $gainsboro;
-      cursor: default;
-      .details {
-        @include grid-column($columns: 12);
-        text-align: center;
-      }
-    }
-    &.intro .block-item {
-      background-color: lighten($success-color, 40%);
-      border-color: lighten($success-color, 25%);
-    }
-    &.outro .block-item {
-      background-color: lighten($info-color, 40%);
-      border-color: lighten($info-color, 25%);
-    }
-  }
-
-
 }
 
 
@@ -142,8 +148,8 @@
     margin: 5px 0;
     padding: 0;
     min-height: 30px;
-    background: #FFF !important;
-    border: 1px dashed #b6bcbf !important;
+    background: $white-smoke !important;
+    border: 1px dashed $iron !important;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
@@ -155,4 +161,31 @@
     left: 0;
     pointer-events: none;
     z-index: 9999;
+}
+
+section.section-dropables {
+  @include grid-row($behavior: nest);
+  margin-bottom: $column-gutter;
+
+  & > div {
+    @include grid-column($columns: 12);
+
+    @media #{$medium-up} {
+      @include grid-column($columns: 6);
+    }
+
+    & > .dropable {
+      border: 3px dashed darken($body-bg, 10%);
+      border-radius: $global-radius;
+      text-align: center;
+      padding: $column-gutter;
+      font-size: rem-calc(30);
+      color: darken($body-bg, 10%);
+
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+  }
 }

@@ -5,6 +5,8 @@
 
       @field = null
 
+      $scope.fieldLabel = "Add a field"
+
       $scope.init = ->
         @FieldService = new FieldService($rootScope.id, serverErrorHandler)
 
@@ -25,6 +27,8 @@
           angular.forEach fieldData.field_choices, (choice, index) ->
             new FieldChoice(data.id, field.id, serverErrorHandler).create(choice)
 
+      $scope.display = (label) ->
+        $scope.fieldLabel = label
 
       serverErrorHandler = ->
         alert("There was a server error, please reload the page and try again.")

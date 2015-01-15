@@ -30,6 +30,7 @@
 //= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
+//= require angular-xeditable
 //= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables

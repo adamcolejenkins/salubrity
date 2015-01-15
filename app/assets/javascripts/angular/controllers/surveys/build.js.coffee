@@ -1,15 +1,49 @@
 @salubrity
 
   .controller 'SurveyBuildCtrl', 
-    ($scope, $rootScope, $timeout, $modal, $pageslide, SurveyService, FieldService, FieldChoice, $location) ->
+    ($scope, $rootScope, $timeout, $modal, $document, SurveyService, FieldService, FieldChoice, $location, CONFIG) ->
 
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
+      $scope.activeField = null
+      $scope.editMode = false
 
-      $scope.init = (survey_id) ->
-        @FieldService = new FieldService(survey_id, serverErrorHandler)
+      $scope.init = (surveyId) ->
+        # Set up Survey
         @SurveyService = new SurveyService(serverErrorHandler)
-        $scope.survey = @SurveyService.find survey_id
+        $scope.survey = @SurveyService.find surveyId
+
+        # Set up Fields
+        @FieldService = new FieldService(surveyId, serverErrorHandler)
+        @FieldService.all (fields) ->
+          $scope.fields = fields
+
+          # $scope.$watch 'fields', (newValue, oldValue) ->
+          #   if (newValue and newValue isnt oldValue)
+          #     $scope.loading = true
+          #     $scope.fields.$save()
+
+
+      # NEW
+      $scope.startEditMode = (field) ->
+        $scope.activeField = field
+        $scope.editMode = true
+
+
+      $scope.endEditMode = ->
+        console.log 'End edit mode'
+        $scope.activeField = null
+        $scope.editMode = false
+
+
+      $scope.isActive = (id) ->
+        $scope.activeField isnt null and $scope.activeField.id is id
+
+
+      # NEW
+      $scope.updateField = (id, $data) ->
+        console.log id, $data
+
 
       $scope.addField = (field) ->
 
@@ -23,18 +57,8 @@
 
           # Display Field Settings window
           $scope.editField(field)
-          $scope.survey.fields.push(field)
+          $scope.fields.push(field)
 
-
-      $scope.editField = (field, $event) ->
-        FieldService = @FieldService
-        
-        @pageslide = $pageslide.open
-          templateUrl: '/templates/fields/settings.html'
-          controller: 'FieldSettingsCtrl'
-          resolve:
-            data: -> field
-        
 
       $scope.deleteField = (field, index) ->
 
@@ -53,57 +77,9 @@
             # Delete field via the API
             FieldService.delete field
             # Remove clinic from the list
-            $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
+            $scope.fields.splice($scope.fields.indexOf(field), 1)
         )
-
-      $scope.editSurvey = (survey) ->
-
-        @modal = $modal.open
-          templateUrl: '/templates/surveys/edit.html'
-          windowTemplateUrl: '/templates/partials/modalFormWindow.html'
-          controller: 'SurveyEditCtrl'
-          resolve:
-            survey: -> survey
             
-
-      # $scope.deleteSurvey = (survey) ->
-      #   SurveyService = @SurveyService
-
-      #   swal(
-      #     title: 'Are you sure?'
-      #     text: 'Deleting this survey will delete all results, including results tied to clinics and providers.'
-      #     type: 'warning'
-      #     showCancelButton: true
-      #     confirmButtonColor: '#DD6B55'
-      #     confirmButtonText: 'Yes, delete it!'
-      #     , ->
-      #       $timeout(->
-      #         swal(
-      #           title: 'Are you absolutely sure?'
-      #           text: 'This cannot be undone, what\'s done is done. There is absolutely no return.'
-      #           type: 'warning'
-      #           showCancelButton: true
-      #           cancelButtonText: 'I\'m having second thoughts!'
-      #           confirmButtonColor: '#DD6B55'
-      #           confirmButtonText: 'Yes, I\'m absolutely sure, delete it!'
-      #           , ->
-      #             SurveyService.delete($scope.survey).then ->
-      #               $timeout(->
-      #                 swal(
-      #                   title: 'Successfully deleted survey!'
-      #                   text: 'I hope you didn\'t need that.'
-      #                   confirmButtonColor: '#A5DC86'
-      #                   type: 'success'
-      #                 )
-      #                 # Remove clinic from the list
-      #                 $scope.$parent.surveys.splice $scope.$parent.surveys.indexOf(survey), 1
-      #                 # Redirect to clinic list
-      #                 $location.path('/surveys')
-      #               , 300)
-      #         )
-      #       , 300)
-      #   )
-
 
       $scope.priorityChanged = (field) ->
         @FieldService.update(field, target_priority: field.priority)
@@ -111,7 +87,7 @@
 
 
       $scope.sortableOptions = 
-        axis: 'y'
+        # axis: 'y'
         opacity: 0.7
         placeholder: 'sort-placeholder'
         sort: (e, ui) ->
@@ -119,7 +95,7 @@
 
         update: (e, ui) ->
           # TODO: Don't let item priority be last
-          if ui.item.scope().field.properties.noSort == true
+          if ui.item.scope().field.properties.noSort is true
             ui.item.sortable.cancel()
 
           domIndexOf = (e) -> e.siblings().andSelf().index(e)
@@ -134,12 +110,12 @@
         # During rendering it's simplest to just mirror priorities based
         # on field positiions in the list
         $timeout ->
-          angular.forEach $scope.survey.fields, (field, index) ->
+          angular.forEach $scope.fields, (field, index) ->
             field.priority = index + 1
 
 
       raisePriorities = ->
-        angular.forEach $scope.survey.fields, (f) -> f.priority += 1
+        angular.forEach $scope.fields, (f) -> f.priority += 1
 
 
       lowerPrioritiesBelow = (field) ->
@@ -148,7 +124,7 @@
 
 
       fieldsBelow = (field) ->
-        $scope.survey.fields.slice($scope.survey.fields.indexOf(field), $scope.survey.fields.length)
+        $scope.fields.slice($scope.fields.indexOf(field), $scope.fields.length)
 
 
       updateSurvey = (params) ->
@@ -158,3 +134,7 @@
 
       serverErrorHandler = ->
         alert("There was a server error, please reload the page and try again.")
+
+      # $document.find('main, .form-preview').click () ->
+      #   console.log 'main clicked'
+      #   $scope.endEditMode()

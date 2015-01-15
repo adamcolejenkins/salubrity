@@ -14,3 +14,16 @@ section[class*="collection"] {
     }
   }
 }
+
+section.section-survey-fields-collection {
+  position: relative;
+
+  .block-panel {
+      -webkit-box-shadow: inset 0px -10px 5px -5px rgba(255, 255, 255, 0.75);
+      -moz-box-shadow:    inset 0px -10px 5px -5px rgba(255, 255, 255, 0.75);
+      box-shadow:         inset 0px -10px 5px -5px rgba(255, 255, 255, 0.75);
+    .content {
+      overflow: scroll;
+    }
+  }
+}
