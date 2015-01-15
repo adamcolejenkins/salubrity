@@ -1,5 +1,5 @@
 class ProvidersController < ConfigController
-  load_and_authorize_resource
+  authorize_resource
   before_action :set_provider, only: [:show, :edit, :update, :destroy, :archive]
 
   # GET /providers
@@ -80,7 +80,6 @@ class ProvidersController < ConfigController
   # DELETE /providers/1/delete
   # DELETE /providers/1/delete.json
   def archive
-    @provider = Provider.only_deleted.find(params[:id])
     @provider.destroy
     respond_to do |format|
       format.html { redirect_to providers_url, notice: 'Provider was successfully archived.' }

@@ -69,7 +69,7 @@ gem 'bump', '~> 0.5.1'
 # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
 gem 'figaro'
 # A Rails plugin to add soft delete.
-gem 'paranoia', '~> 2.0.2'
+gem "paranoia", :github => "radar/paranoia", :branch => "rails4"
 # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes.
 gem "auto_strip_attributes", "~> 2.0"
 
