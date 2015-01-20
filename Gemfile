@@ -96,6 +96,9 @@ gem "kaminari"
 # Use unicorn as the app server
 gem 'unicorn'
 
+
+gem 'ledermann-rails-settings'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
