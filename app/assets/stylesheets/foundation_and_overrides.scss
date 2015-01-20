@@ -666,7 +666,7 @@ $input-disabled-cursor: $cursor-default-value;
 $input-box-shadow: none;
 
 $inverse-input-bg-color: lighten($primary-color, 5%);
-$inverse-input-font-color: lighten($body-font-color, 10%);
+$inverse-input-font-color: scale-color($body-font-color, $lightness: 50%);
 
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;

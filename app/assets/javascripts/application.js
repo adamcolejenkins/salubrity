@@ -30,6 +30,7 @@
 //= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
 //= require angular-ui-sortable/sortable
+//= require angular-xeditable
 //= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
@@ -43,6 +44,7 @@
 //= require nouislider
 //= require foundation-daterangepicker/daterangepicker
 //= require jsUri
+//= require bootstrap-touchspin/src/jquery.bootstrap-touchspin
 
 // Our Angular app files
 //= require angular/salubrity

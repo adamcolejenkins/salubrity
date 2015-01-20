@@ -4,7 +4,7 @@ section.section.section-config-nav
     dl.sub-nav
 
       - if can? :manage, Survey
-        dd class="#{active_if(controller_name == 'surveys')}" 
+        dd class="#{active_if(controller_name == 'surveys' || controller_name == 'fields')}" 
           = link_to 'Surveys', surveys_path, target: "_self"
 
       - if can? :manage, Clinic

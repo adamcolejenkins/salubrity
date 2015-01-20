@@ -13,7 +13,8 @@
         noSort: false,
         hasChoices: false,
         templates: {
-          view: '/templates/fields/view/into.html'
+          view: '/templates/fields/view/into.html',
+          preview: '/templates/fields/preview/intro.html'
         },
         settings: @defaultSettings.concat('attachment', 'intro'),
         defaults: {
@@ -27,7 +28,8 @@
         noSort: false,
         hasChoices: false,
         templates: {
-          view: '/templates/fields/view/outro.html'
+          view: '/templates/fields/view/outro.html',
+          preview: '/templates/fields/preview/outro.html'
         },
         settings: @defaultSettings.concat('attachment', 'outro'),
         defaults: {
@@ -36,11 +38,12 @@
         }
       },{
         enabled: true, # We need this for provider options, such as label
-        label: 'Provider Dropdown'
+        label: 'Providers'
         context: 'provider_dropdown'
         icon: 'user-md'
         templates: {
-          view: '/templates/fields/view/provider_dropdown.html'
+          view: '/templates/fields/view/provider_dropdown.html',
+          preview: '/templates/fields/preview/provider_dropdown.html'
         },
         settings: @defaultSettings.concat('provider', 'options', 'required'),
         defaults: {

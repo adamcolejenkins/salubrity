@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
     scope :config do
       resources :teams, except: [:show]
-      resources :surveys, except: [:show] do
-        resources :fields, except: [:show] do
-          resources :field_choices, except: [:show]
+      resources :surveys do
+        resources :fields do
+          resources :field_choices
         end
         collection do
           get 'archived'
