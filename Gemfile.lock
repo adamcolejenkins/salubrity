@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/radar/paranoia.git
-  revision: bfde2aac92743d460410b5c07d1d43c8d425a1ca
+  revision: 9595a2c2c89a01fc45bda50334b39584c34ec461
   branch: rails4
   specs:
     paranoia (2.0.4)
@@ -19,9 +19,9 @@ GIT
 
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
-  revision: 5aef0a61a1b46a729343a878f8daf016731a2d6f
+  revision: dfb5930301b703d1125b4996342f9607f8a98c27
   specs:
-    sentry-raven (0.12.1)
+    sentry-raven (0.12.3)
       faraday (>= 0.7.6)
 
 GEM
@@ -64,21 +64,21 @@ GEM
     arel (5.0.1.20140414130214)
     auto_strip_attributes (2.0.6)
       activerecord (>= 3.0)
-    autoprefixer-rails (5.0.0)
+    autoprefixer-rails (5.0.0.1)
       execjs
-    aws-sdk (1.60.2)
-      aws-sdk-v1 (= 1.60.2)
-    aws-sdk-v1 (1.60.2)
+    aws-sdk (1.61.0)
+      aws-sdk-v1 (= 1.61.0)
+    aws-sdk-v1 (1.61.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
-    bourbon (3.2.3)
+    bourbon (3.2.4)
       sass (~> 3.2)
       thor
     builder (3.2.2)
-    bullet (4.14.0)
+    bullet (4.14.1)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
     bump (0.5.1)
@@ -140,7 +140,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
-    kaminari (0.16.1)
+    kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
