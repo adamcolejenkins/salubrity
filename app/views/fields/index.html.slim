@@ -1,14 +1,4 @@
-hgroup
-  .title
-    h2 Build
-    h3.subheader Double click to edit fields, drag to reorder.
-
-section.content
-  dl.nav-tabs
-    = tab_for "Build", survey_fields_path(@survey)
-    = tab_for "Settings", edit_survey_path(@survey)
-    
-.builder ng-controller="SurveyBuildCtrl" ng-init="init(#{@survey.id})"
+section.section.builder ng-controller="SurveyBuildCtrl" ng-init="init(#{@survey.id})"
   
   div(ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl")
 

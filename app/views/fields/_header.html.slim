@@ -1,0 +1,7 @@
+section.section.section-toolbox
+
+  div.toolbox-header
+    hgroup
+      = link_to '← Back to Surveys', surveys_path, target: "_self", class: "back-link" if action_name != 'index'
+      h2 = "Fields for #{@survey.title}"
+      h3.subheader Double click to edit fields, drag to reorder.
