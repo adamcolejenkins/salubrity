@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   constraints(Subdomain) do
 
     scope :config do
-      resources :teams
+      resources :teams, except: [:show]
       resources :surveys do
         resources :fields do
           resources :field_choices

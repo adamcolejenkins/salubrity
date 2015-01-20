@@ -4,7 +4,7 @@
 
     class FieldChoice
       constructor: (surveyId, fieldId, errorHandler) ->
-        @service = $resource('/api/surveys/:survey_id/fields/:field_id/field_choices/:id',
+        @service = $resource('/config/surveys/:survey_id/fields/:field_id/field_choices/:id',
           {survey_id: surveyId, field_id: fieldId, id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler

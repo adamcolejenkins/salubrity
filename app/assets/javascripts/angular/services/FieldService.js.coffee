@@ -4,7 +4,7 @@
 
     class FieldService
       constructor: (surveyId, errorHandler) ->
-        @service = $resource('/api/surveys/:survey_id/fields/:id',
+        @service = $resource('/config/surveys/:survey_id/fields/:id.json',
           {survey_id: surveyId, id: '@id'},
           {update: {method: 'PATCH'}})
         @errorHandler = errorHandler
@@ -23,8 +23,8 @@
       update: (field, attrs) ->
         new @service(field: attrs).$update {id: field.id}, (-> null), @errorHandler
 
-      all: ->
-        @service.query((-> null), @errorHandler)
+      all: (callback) ->
+        @service.query(callback || (-> null), @errorHandler)
 
       find: (id, successHandler) ->
         @service.get(id: id, ((field)->

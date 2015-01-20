@@ -1,23 +1,43 @@
-section.section.builder ng-controller="SurveyBuildCtrl" ng-init="init(#{@survey.id})"
-  
-  div(ng-include="'/templates/fields/add.html'" ng-controller="FieldAddCtrl")
+section.section.section-survey-fields-collection
+  article.article-content ng-controller="SurveyBuildCtrl" ng-init="init(#{@survey.id})"
 
-  section.content
-    ul.timeline ui-sortable="sortableOptions" ng-model="survey.fields" tooltip="Double click to edit, drag to reorder."
-          
-      li.sort-item ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)" class="field-{{field.context}}"
+    button.release#release-button
+      i.fa.fa-arrow-up.fa-fw
+    
+    .block-panel
+      .header.toolbar scroll-lock-toolbar="" ng-controller="SurveyToolbarCtrl"
+        = render 'tools'
 
-        i.fa class="fa-{{field.properties.icon}}"
-        span.date
-          | {{field.priority}}
-        div.content
-          div.details
-            | {{field.label}}
-          div.options
-            ul.actions
-              li ng-if="field.field_type != 'intro' && field.field_type != 'outro'"
-                a.add tooltip="Duplicate field" tooltip_placement="left"
-                  i.fa.fa-copy
-              li
-                a.delete ng-click="deleteField(field, $index)" tooltip="Delete field" tooltip_placement="right"
-                  i.fa.fa-trash-o
+      .content.form-preview scroll-lock-content=""
+
+        p.muted Click the field to start editing or drag it to reorder. Questions, instructions, predefined values, field choices and buttons can be edited in place by clicking on the text, button text or input. Change additional settings, including required and visibility, and add additional fields via the toolbar above.
+        
+        .content-scroll 
+          ol.form-preview-fields ui-sortable="sortableOptions" ng-model="survey.fields"
+
+            li ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)"
+              
+              .field-container ng-class="{active: isActive(field.id)}" ng-click="startEditMode(field)" outside-click="endEditMode()"
+
+                .field-section.field-instructions
+                  / div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.instructions" empty-value="Add instructions"
+                  | {{field.instructions}}
+
+                .field-section.field-label
+                  / div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.label"
+                  | {{field.label}}
+                    
+                  sup ng-show="field.required" tooltip="This field is required"
+                    i.fa.fa-asterisk.fa-fw.color-alert
+
+                .field-section.field-input
+                  ng-include src="field.properties.templates.preview"
+
+    section.section.section-dropables.hide style="height:0" scroll-lock-dropables=""
+      div
+        div#copy-drop.dropable
+          i.fa.fa-copy
+
+      div
+        div#trash-drop.dropable
+          i.fa.fa-trash

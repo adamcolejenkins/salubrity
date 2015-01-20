@@ -5,7 +5,7 @@
 
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ui.router', 'mm.foundation', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ipCookie'
+  'ngResource', 'ngRoute', 'mm.foundation', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ipCookie'
 ]
 
 
@@ -16,13 +16,10 @@
 
 
 # Here we define our main route
-@salubrity.config ($urlRouterProvider, $locationProvider) ->
+@salubrity.config ($locationProvider) ->
 
   # Enable HTML5mode
-  # $locationProvider.html5Mode true;
-
-  # If no route, redirect to /
-  # $urlRouterProvider.otherwise '/'
+  # $locationProvider.html5Mode true
 
 
 # Set the AWS Upload theme
@@ -34,35 +31,11 @@
 
 
 # Angular run methods
-@salubrity.run ($rootScope, $state) ->
+@salubrity.run ($rootScope) ->
 
-  # On routeChangeSuccess, set our current controller, action && id
-  # $rootScope.$on '$stateChangeSuccess', ->
-  #   ctrl = $state.current.controller.split(/(?=[A-Z])/).map (s) ->
-  #     s.toLowerCase()
-  #   ctrl.pop()
-
-  #   $rootScope.controller = ctrl[0]
-  #   $rootScope.action = ctrl[1]
-  #   $rootScope.id = $state.params.id
 
 # Main App controller
 @salubrity.controller 'AppCtrl', ($scope, $rootScope) ->
-
-  # Helper functions for determining current page, ctrl & action
-  # $scope.current = 
-
-  #   page: (ctrl, action) ->
-  #     true if ($rootScope.controller == ctrl) && ($rootScope.action == action)
-
-  #   ctrl: (ctrl) ->
-  #     true if $rootScope.controller == ctrl
-
-  #   action: (action) ->
-  #     true if $rootScope.action == action
-
-  #   id: (id) ->
-  #     true if $rootScope.id && ($rootScope.id == id)
 
 
 # Makes AngularJS work with turbolinks.

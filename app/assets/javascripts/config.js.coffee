@@ -2,22 +2,39 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-updateSidebar = ->
+updateBuildWindowHeight = ->
+  $content = jQuery('[scroll-lock-content]')
   $header = jQuery('.wrap > header').outerHeight()
-  $main = jQuery('.wrap > main').height()
+  $toolbar = jQuery('[scroll-lock-toolbar]').outerHeight()
+  $dropables = jQuery('[scroll-lock-dropables]').outerHeight()
+  $padding = 40
 
   $width = document.documentElement.clientWidth
-  $height = document.documentElement.clientHeight - $header 
+  $height = document.documentElement.clientHeight - $padding - $toolbar - $dropables
 
   if $width > 755
-    if $main > $height
-      jQuery('section.sidebar').css "min-height", $main
-    else
-      jQuery('section.sidebar').css "min-height", $height
+    $content.css "height", $height
   else
-    jQuery('section.sidebar').removeAttr('style')
+    $content.removeAttr('style')
 
+lockWindowScroll = ->
+  $documentHeight = document.body.offsetHeight
+  $windowHeight = window.innerHeight
+  $scrollY = window.scrollY
+  $body = $(document.body)
+  $release = $('#release-button')
+
+  if ($windowHeight + $scrollY) >= $documentHeight
+    $body.addClass 'locked'
+    $release.fadeIn().click ->
+      $body.removeClass 'locked'
+      $body.animate
+        scrollTop: 0
+  else
+    $body.removeClass 'locked'
+    $release.fadeOut()
 
 $(window)
-  .load(updateSidebar)
-  .resize(updateSidebar)
+  .load(updateBuildWindowHeight)
+  .resize(updateBuildWindowHeight)
+  .scroll(lockWindowScroll)

@@ -3,12 +3,10 @@
 .controller "FieldSettingsCtrl",
   ($scope, $pageslideInstance, data, FieldService, FieldChoice, CONFIG) ->
 
-    @field = data
-
-    $scope.fieldChoice = new FieldChoice(@field.survey_id, @field.id, serverErrorHandler)
-
     # Bind field to scope
-    $scope.field = @field
+    $scope.field = data
+
+    @FieldChoiceService = new FieldChoice($scope.field.survey_id, $scope.field.id, serverErrorHandler)
 
     # Build select options
     $scope.contexts = []
@@ -46,18 +44,18 @@
 
     # Add a choice to choices
     $scope.addChoice = (index) ->
-      $scope.fieldChoice.create(label: 'My Choice', key: 'my_choice').then (choice) ->
+      @FieldChoiceService.create(label: 'My Choice').then (choice) ->
         $scope.field.field_choices.push choice
 
     $scope.addChoice() if $scope.field.properties.hasChoices and $scope.field.field_choices.length is 0
 
     $scope.updateChoice = (choice, index) ->
-      $scope.fieldChoice.update(choice, choice)
+      @FieldChoiceService.update(choice, choice)
 
 
     # Remove a choice from choices
     $scope.deleteChoice = (choice, index) ->
-      $scope.fieldChoice.delete(choice).then ->
+      @FieldChoiceService.delete(choice).then ->
         $scope.field.field_choices.splice index, 1
 
 
