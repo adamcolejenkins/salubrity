@@ -21,6 +21,24 @@
   }
 }
 
+button.release {
+  @include size(50);
+  text-align: center;
+  background: $primary-color;
+  color: $white;
+  font-size: rem-calc(20);
+  opacity: .7;
+  border-radius: $global-rounded;
+  border: none;
+  @include transition(opacity .3s ease-in);
+  position: absolute;
+  right: -60px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .filter.button {
   @include button(
     $padding: $button-sml,
@@ -69,5 +87,123 @@
   &[aria-expanded="true"] {
     background-color: $success-color;
     color: $white;
+  }
+}
+
+$display-color: $primary-color;
+
+ul.toolbar {
+  @include button-group-container();
+
+  .tool {
+    @include button(
+      $padding: $button-sml,
+      $bg: $primary-color,
+      $is-input: true
+    );
+    @include background(linear-gradient(lighten($primary-color, 5%), $primary-color) top repeat);
+    font-weight: $font-weight-normal;
+    margin-bottom: 0px;
+    border-left-width: 0px;
+
+    &:hover:not(:disabled) {
+      @include background(linear-gradient(lighten($primary-color, 5%), darken($primary-color, 10%)) top repeat);
+    }
+
+    &.dropdown {
+      @include dropdown-button(
+        $padding: small,
+        $pip-color: $white
+      );
+
+      &[aria-expanded="true"] {
+        @include background(linear-gradient($primary-color, lighten($primary-color, 5%)) top repeat);
+      }
+    }
+
+    & + .f-dropdown:focus {
+      outline: none !important;
+    }
+
+    &:disabled {
+      cursor: default;
+      color: rgba($white, .4);
+      &:after {
+        border-color: rgba($white, .4) transparent transparent transparent;
+      }
+    }
+
+    &.success, &.active {
+      @include background(linear-gradient(lighten($success-color, 5%), $success-color) top repeat);
+      // border: 1px solid scale-color($success-color, $lightness: -10%);
+      
+      &.active {
+        @include background(linear-gradient($success-color, lighten($success-color, 5%)) top repeat);
+      }
+
+      &:hover:not(.active):not(:disabled) {
+        @include background(linear-gradient(lighten($success-color, 5%), darken($success-color, 10%)) top repeat);
+      }
+    }
+
+    &.alert {
+      @include background(linear-gradient(lighten($alert-color, 5%), $alert-color) top repeat);
+      // border: 1px solid scale-color($alert-color, $lightness: -10%);
+      
+      &.active {
+        @include background(linear-gradient($alert-color, lighten($alert-color, 5%)) top repeat);
+      }
+
+      &:hover:not(.active):not(:disabled) {
+        @include background(linear-gradient(lighten($alert-color, 5%), darken($alert-color, 10%)) top repeat);
+      }
+    }
+  }
+
+  & > li { 
+    @include button-group-style(
+      $radius: true
+    );
+    margin: 0 0;
+  }
+}
+
+.header.toolbar {
+  @include clearfix();
+  ul.toolbar {
+    & > li {
+      &:first-child {
+        &, & > button, & > .button {
+          border-bottom-left-radius: 0px;
+        }
+        & > button, &> .button {
+          border-left: 1px solid #5d687a !important;
+        }
+      }
+      &:last-child {
+        &, & > button, & > .button {
+          border-bottom-right-radius: 0px;
+        }
+      }
+    }
+  }
+
+  div.display {
+    @include button(
+      $padding: $button-sml,
+      $bg: $display-color,
+      $radius: true,
+      $full-width: true
+    );
+    @include background(linear-gradient($display-color, lighten($display-color, 10%)) top repeat);
+    font-weight: $font-weight-normal;
+    margin-bottom: 0px;
+    color: $snow;
+    padding-left: rem-calc(10px);
+    padding-right: rem-calc(10px);
+
+    & > i.fa {
+      margin: rem-calc(2 0 0);
+    }
   }
 }

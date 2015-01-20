@@ -50,6 +50,12 @@
     font-size: rem-calc(12);
     height: rem-calc(75);
     color: $body-font-color;
+
+    &.toolbar {
+      padding: rem-calc(5);
+      border-radius: $global-radius $global-radius 0 0;
+      @include background(linear-gradient(lighten($primary-color, 5%), $primary-color) top repeat);
+    }
   }
 
   & > .content {
