@@ -29,6 +29,8 @@ $zindex-modal: 1000;
   bottom: 0;
   z-index: $zindex-modal;
 
+  color: $white;
+
   @media #{$large-up}, #{$landscape} {
     overflow: hidden;
   }
