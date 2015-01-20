@@ -1,7 +1,7 @@
-<div class="list-unstyled layout {{field.layout}}">
+<div class="no-bullet layout {{field.layout}}">
     <span ng-repeat="choice in field.field_choices | orderBy:priority">
         <label>
-            <input type="radio" value="{{choice.key}}" ng-model="choice" ng-checked="field.predefined_value == '{{choice.key}}'" class="icheck small">
+            <input type="radio" value="{{choice.key}}" ng-model="choice" ng-checked="field.predefined_value == '{{choice.key}}'" class="icheck small" disabled="disabled">
             <span>{{ choice.label }}</span>
         </label>
     </span>

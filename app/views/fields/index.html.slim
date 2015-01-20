@@ -12,18 +12,20 @@ section.section.section-survey-fields-collection
 
         p.muted Click the field to start editing or drag it to reorder. Questions, instructions, predefined values, field choices and buttons can be edited in place by clicking on the text, button text or input. Change additional settings, including required and visibility, and add additional fields via the toolbar above.
         
-        /ui-sortable="sortableOptions"
         .content-scroll 
-          ol.form-preview-fields
-            li ng-repeat="field in fields | orderBy:sortMethod" ng-prop="field"
+          ol.form-preview-fields ui-sortable="sortableOptions" ng-model="survey.fields"
+
+            li ng-repeat="field in survey.fields | orderBy:sortMethod" ng-prop="field" ng-dblclick="editField(field, $event)"
               
               .field-container ng-class="{active: isActive(field.id)}" ng-click="startEditMode(field)" outside-click="endEditMode()"
 
                 .field-section.field-instructions
-                  div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.instructions" empty-value="Add instructions"
+                  / div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.instructions" empty-value="Add instructions"
+                  | {{field.instructions}}
 
                 .field-section.field-label
-                  div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.label"
+                  / div.editable ng-attr-content-editable="{{ isActive(field.id) }}" ng-model="field.label"
+                  | {{field.label}}
                     
                   sup ng-show="field.required" tooltip="This field is required"
                     i.fa.fa-asterisk.fa-fw.color-alert
@@ -31,7 +33,7 @@ section.section.section-survey-fields-collection
                 .field-section.field-input
                   ng-include src="field.properties.templates.preview"
 
-    section.section.section-dropables scroll-lock-dropables=""
+    section.section.section-dropables.hide style="height:0" scroll-lock-dropables=""
       div
         div#copy-drop.dropable
           i.fa.fa-copy

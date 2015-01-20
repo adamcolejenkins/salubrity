@@ -7,9 +7,10 @@ updateBuildWindowHeight = ->
   $header = jQuery('.wrap > header').outerHeight()
   $toolbar = jQuery('[scroll-lock-toolbar]').outerHeight()
   $dropables = jQuery('[scroll-lock-dropables]').outerHeight()
+  $padding = 40
 
   $width = document.documentElement.clientWidth
-  $height = document.documentElement.clientHeight - 80 - $toolbar - $dropables
+  $height = document.documentElement.clientHeight - $padding - $toolbar - $dropables
 
   if $width > 755
     $content.css "height", $height

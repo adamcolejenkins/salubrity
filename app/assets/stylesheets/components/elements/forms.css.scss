@@ -116,10 +116,22 @@ div.form-buttons {
     color: $inverse-input-font-color;
   }
 
+  label, & {
+    color: scale-color($inverse-input-font-color, $lightness: -10%);
+  }
+
+  select.select2 {
+    display: none !important;
+  }
+
   .select2-container-active .select2-choice,
   .select2-container-active .select2-choices {
     box-shadow: none;
     -webkit-box-shadow: none;
+  }
+
+  .radio label > div {
+    margin-right: 5px;
   }
 
   .select2-container .select2-choice {

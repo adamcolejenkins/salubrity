@@ -44,6 +44,7 @@
 //= require nouislider
 //= require foundation-daterangepicker/daterangepicker
 //= require jsUri
+//= require bootstrap-touchspin/src/jquery.bootstrap-touchspin
 
 // Our Angular app files
 //= require angular/salubrity

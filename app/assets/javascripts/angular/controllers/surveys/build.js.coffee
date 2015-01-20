@@ -1,49 +1,18 @@
 @salubrity
 
   .controller 'SurveyBuildCtrl', 
-    ($scope, $rootScope, $timeout, $modal, $document, SurveyService, FieldService, FieldChoice, $location, CONFIG) ->
+    ($scope, $rootScope, $timeout, $modal, $pageslide, $document, SurveyService, FieldService, FieldChoice, $location, CONFIG) ->
 
       $scope.sortMethod = 'priority'
       $scope.sortableEnabled = true
       $scope.activeField = null
       $scope.editMode = false
+      $scope.survey = null
 
-      $scope.init = (surveyId) ->
-        # Set up Survey
+      $scope.init = (survey_id) ->
+        @FieldService = new FieldService(survey_id, serverErrorHandler)
         @SurveyService = new SurveyService(serverErrorHandler)
-        $scope.survey = @SurveyService.find surveyId
-
-        # Set up Fields
-        @FieldService = new FieldService(surveyId, serverErrorHandler)
-        @FieldService.all (fields) ->
-          $scope.fields = fields
-
-          # $scope.$watch 'fields', (newValue, oldValue) ->
-          #   if (newValue and newValue isnt oldValue)
-          #     $scope.loading = true
-          #     $scope.fields.$save()
-
-
-      # NEW
-      $scope.startEditMode = (field) ->
-        $scope.activeField = field
-        $scope.editMode = true
-
-
-      $scope.endEditMode = ->
-        console.log 'End edit mode'
-        $scope.activeField = null
-        $scope.editMode = false
-
-
-      $scope.isActive = (id) ->
-        $scope.activeField isnt null and $scope.activeField.id is id
-
-
-      # NEW
-      $scope.updateField = (id, $data) ->
-        console.log id, $data
-
+        $scope.survey = @SurveyService.find survey_id
 
       $scope.addField = (field) ->
 
@@ -57,7 +26,16 @@
 
           # Display Field Settings window
           $scope.editField(field)
-          $scope.fields.push(field)
+          $scope.survey.fields.push(field)
+
+
+      $scope.editField = (field, $event) ->
+
+        @pageslide = $pageslide.open
+          templateUrl: '/templates/fields/settings.html'
+          controller: 'FieldSettingsCtrl'
+          resolve:
+            data: -> field
 
 
       $scope.deleteField = (field, index) ->
@@ -77,7 +55,7 @@
             # Delete field via the API
             FieldService.delete field
             # Remove clinic from the list
-            $scope.fields.splice($scope.fields.indexOf(field), 1)
+            $scope.survey.fields.splice($scope.survey.fields.indexOf(field), 1)
         )
             
 
@@ -110,12 +88,12 @@
         # During rendering it's simplest to just mirror priorities based
         # on field positiions in the list
         $timeout ->
-          angular.forEach $scope.fields, (field, index) ->
+          angular.forEach $scope.survey.fields, (field, index) ->
             field.priority = index + 1
 
 
       raisePriorities = ->
-        angular.forEach $scope.fields, (f) -> f.priority += 1
+        angular.forEach $scope.survey.fields, (f) -> f.priority += 1
 
 
       lowerPrioritiesBelow = (field) ->
@@ -124,12 +102,13 @@
 
 
       fieldsBelow = (field) ->
-        $scope.fields.slice($scope.fields.indexOf(field), $scope.fields.length)
+        console.log $scope.survey
+        # $scope.survey.fields.slice($scope.survey.fields.indexOf(field), $scope.survey.fields.length)
 
 
-      updateSurvey = (params) ->
-        angular.extend($scope.survey, params)
-        @SurveyService.update($scope.survey, params)
+      # updateSurvey = (params) ->
+      #   angular.extend($scope.survey, params)
+      #   @SurveyService.update($scope.survey, params)
 
 
       serverErrorHandler = ->
