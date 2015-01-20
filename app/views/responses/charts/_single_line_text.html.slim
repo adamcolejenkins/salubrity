@@ -1,0 +1,6 @@
+/ .block-panel(data-equalizer-watch)
+/   .header = field.label
+
+/   .content.scroll
+/     / - @responses.joins(:answers).select('answer.value').where('answers.field_id = ?', field.id).each do |answer|
+/     /     p = answer.value
