@@ -21,7 +21,7 @@
         <Cell><Data ss:Type="String"><%= response.clinic.title %></Data></Cell>
         <Cell><Data ss:Type="String"><%= response.provider.full_name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= response.time.to_s + ' seconds' %></Data></Cell>
-        <% response.answers.each do |answer| %>
+        <% response.answers.joins(:field).order('fields.priority ASC').each do |answer| %>
           <Cell><Data ss:Type="String"><%= answer.value %></Data></Cell>
         <% end %>
       </Row>
