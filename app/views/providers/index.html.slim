@@ -22,9 +22,9 @@ section.section.section-provider-collection
         .options
           ul.actions
             li
-              a href="{{ provider.dashboard_url }}"
+              a href="{{ provider.dashboard_url }}" target="_self"
                 i.fa.fa-bar-chart
 
             li ng-if="provider.edit_url"
-              a href="{{ provider.edit_url }}"
+              a href="{{ provider.edit_url }}" target="_self"
                 i.fa.fa-edit
