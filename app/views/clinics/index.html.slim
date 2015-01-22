@@ -18,9 +18,9 @@ section.section.section-clinic-collection
         .options
           ul.actions
             li
-              a href="{{ clinic.dashboard_url }}"
+              a href="{{ clinic.dashboard_url }}" target="_self"
                 i.fa.fa-bar-chart
 
             li ng-if="clinic.edit_url"
-              a href="{{ clinic.edit_url }}"
+              a href="{{ clinic.edit_url }}" target="_self"
                 i.fa.fa-edit
