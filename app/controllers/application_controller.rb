@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :subdomain, :current_team
   before_filter :validate_subdomain, :authenticate_user!
-  before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url
