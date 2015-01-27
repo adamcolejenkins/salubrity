@@ -1,58 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unauthorized (401)</title>
+  <title>Unauthorized (401) | Salubrity</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-  }
-
-  div.dialog {
-    width: 25em;
-    margin: 4em auto 0 auto;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 4em 0 4em;
-  }
-
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  body > p {
-    width: 33em;
-    margin: 0 auto 1em;
-    padding: 1em 0;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+  *,:after,:before{box-sizing:border-box}body,html{height:100%}body{font:14px/1.5 normal normal "Open Sans","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;text-align:center;background:#e7ebee;color:#677487;padding:60px 15px;margin:0}div.dialog{width:95%;max-width:65em;margin:0 auto}div.dialog>div{border:1px solid #E2E3E8;background-color:#fff;padding:20px 40px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;margin-bottom:20px}div.dialog>small{color:#a1a6b6;font-weight:400}div.dialog>div>div.header{margin-top:-60px;padding-top:150px;background:url(/assets/elephant_alert.png) center top/150px no-repeat}h1{font-size:150%}h2.subheader{line-height:normal;color:#a1a6b6;font-weight:300;margin-top:.2rem;margin-bottom:.5rem}a{color:#677487;}
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/401.html -->
   <div class="dialog">
-    <h1>You don't have enough privileges to view this page.</h1>
-    <p>You may try going back to <a href="/">the main page</a> and logging in.</p>
+    <div>
+      <div class="header">
+        <h1>You don't have enough privileges to view this page.</h1>
+      </div>
+      <p>You may try going back to <a href="/">the main page</a> and logging in.</p>
+    </div>
+    <small>&copy; 2014-2015, Adam Cole Jenkins</small>
   </div>
-  <p>If you are the application owner check the logs for more information.</p>
 </body>
 </html>
