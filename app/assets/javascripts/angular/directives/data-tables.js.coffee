@@ -42,7 +42,16 @@
           endDate: $URI.getQueryParamValue('to')
           maxDate: new Date()
           showDropdowns: true
-          cancelClass: 'secondary'
+          applyClass: 'primary'
+          cancelClass: ''
+          opens: 'left'
+          ranges:
+            'Today': [moment(), moment()]
+            'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)]
+            'This Week': [moment().startOf('week'), moment().endOf('week')]
+            'Last Week': [moment().subtract('week', 1).startOf('week'), moment().subtract('week', 1).endOf('week')]
+            'This Month': [moment().startOf('month'), moment().endOf('month')]
+            'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
         , (start, end, label) ->
 
           start = start.format('YYYY-MM-DD')

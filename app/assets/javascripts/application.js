@@ -29,6 +29,7 @@
 //= require angular-touch
 //= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
+//= require angular-ui-select
 //= require angular-ui-sortable/sortable
 //= require angular-xeditable
 //= require dataTables/jquery.dataTables

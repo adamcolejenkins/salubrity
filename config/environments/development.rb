@@ -14,7 +14,7 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.bugsnag = false
     Bullet.airbrake = false
-    Bullet.add_footer = true
+    Bullet.add_footer = false
     Bullet.stacktrace_includes = [  ] # [ 'your_gem', 'your_middleware' ]
   end
 
