@@ -39,7 +39,8 @@
     "datatables-plugins": "*",
     "foundation-daterangepicker": "https://github.com/mindblaze/foundation-daterangepicker.git",
     "jsUri": "~1.3.0",
-    "angular-ui-select": "~0.9.6"
+    "angular-xeditable": "~0.1.8",
+    "bootstrap-touchspin": "~3.0.1"
   },
   "dependencies": {},
   "resolutions": {

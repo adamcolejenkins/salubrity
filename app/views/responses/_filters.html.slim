@@ -1,42 +1,79 @@
-section.sticky.filter-bar ng-controller="DashboardFilterCtrl" ng-init="init(#{params.to_json})"
-  section.section.section-filter-bar data-topbar=""
+.row
+  .medium-8.columns
     
-    .resource-filters
+    / Filter Previous Range Button
+    = link_to dashboard_path(params.merge(from: params[:from] - @filter, to: params[:to] - @filter)), class: 'filter button'
+      i.fa.fa-caret-left
+    
+    / Date Picker Button
+    a.filter.dropdown.button ng-date-picker="" aria-expanded="false"
+      i.fa.fa-calendar
+      strong
+        |  #{date_range_filter_label(params)}: 
+      = date_range_label(params)
+    
+    / Filter Next Range Button
+    = link_to dashboard_path(params.merge(from: params[:from] + @filter, to: params[:to] + @filter)), class: 'filter button'
+      i.fa.fa-caret-right
 
-      / Survey Filter
-      ui-select.filter ng-model="survey.selected" theme="select2" on-select="setSurvey($item, $model)"
-        ui-select-match placeholder="Select a survey..." {{$select.selected.title}}
-        ui-select-choices repeat="survey in surveys | filter: $select.search"
-          div ng-bind-html="survey.title | highlight: $select.search"
+    / Filter Range Button
+    a.filter.button.dropdown.sort data-dropdown="filter-by" aria-controls="filter-by" aria-expanded="false"
+      i.fa.fa-sort
+      |  #{params[:filter].capitalize}
 
-      / Clinic Filter
-      ui-select.filter ng-model="clinic.selected" theme="select2" on-select="setClinic($item, $model)" ng-disabled="!survey.selected"
-        ui-select-match placeholder="All Clinics" allow-clear="true" {{$select.selected.title}}
-        ui-select-choices repeat="clinic in clinics | filter: {survey_id: survey.selected.id || -1} | filter: $select.search"
-          div ng-bind-html="clinic.title | highlight: $select.search"
+    ul#filter-by.f-dropdown data-dropdown-content="" aria-hidden="true" tabindex="-1"
+      li = link_to 'Day', dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day'))
+      li = link_to 'Week', dashboard_path(params.merge(from: Date.today.beginning_of_week, to: Date.today.end_of_week, filter: 'week'))
+      li = link_to 'Month', dashboard_path(params.merge(from: Date.today.beginning_of_month, to: Date.today.end_of_month, filter: 'month'))
+    
+    / Jump to Current Button
+    = link_to dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day')), class: 'filter button'
+      i.fa.fa-undo
+      |  Go to Today
+    
+  .medium-4.columns.text-right
 
-      / Provider Filter
-      ui-select.filter ng-model="provider.selected" theme="select2" on-select="setProvider($item, $model)" ng-disabled="!clinic.selected"
-        ui-select-match placeholder="All Providers" allow-clear="true" {{$select.selected.full_name}}
-        ui-select-choices repeat="provider in providers | filter: {clinic_id: clinic.selected.id || -1} | filter: $select.search"
-          div ng-bind-html="provider.full_name | highlight: $select.search"
 
-      button.filter.round.button ng-click="clear()"
-        i.fa.fa-refresh
-  
+    
+    / Advanced Filter Button
+    / a.filter.button.advanced.dropdown data-slidedown="advanced-filters" data-apply="Apply Filters" data-label="Advanced Filters" aria-controls="advanced-filters" aria-expanded="false" data-form="true"
+    /   i.fa.fa-filter
+    /   |  Advanced Filters
 
-    .date-filters
 
-      / Download
-      = link_to dashboard_path(params.merge(format: :xls)), class: "filter button"
-        i.fa.fa-download
+section.filters#advanced-filters
+  .row
 
-      / Jump to Current / Reset
-      = link_to dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day')), class: 'filter button', target: "_self"
-        i.fa.fa-undo
+    form action="#{dashboard_path(params)}" method="get"
+
+      / Clinic Filters
+      section.clinics-filter
+        h5.filter-title
+          | Clinic
+          i.fa.fa-filter.right
+        
+        ul.no-bullet.filter-list
+          li
+            label 
+              input data-check="all" type="checkbox" All Clinics
+
+          - @clinics.sort_by(&:title).each do |clinic|
+            li
+              label
+                input data-check="" type="checkbox" name="clinic[]" value="#{clinic.id}" = clinic.title
       
-      / Date Picker
-      a.dropdown.filter.button ng-date-picker="" aria-expanded="false"
-        i.fa.fa-calendar
-        |  
-        = date_range_label(params)
+      / Provider Filters
+      section.providers-filter
+        h5.filter-title
+          | Provider
+          i.fa.fa-filter.right
+        
+        ul.no-bullet.filter-list
+          li
+            label 
+              input data-check="all" type="checkbox" All Providers
+
+          - @providers.sort_by(&:surname).each do |provider|
+            li
+              label
+                input data-check="" type="checkbox" name="provider[]" value="#{provider.id}" = provider.full_name
