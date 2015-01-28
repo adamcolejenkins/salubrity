@@ -8,7 +8,7 @@
 // compiled file.
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives. TEST TEST
+// about supported directives.
 //
 //= require jquery
 //= require jquery_ujs
@@ -20,6 +20,14 @@
 //= require fastclick
 //= require foundation
 
+// Highcharts (PURCHASE LICENSE)
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require highcharts/modules/no-data-to-display
+
+// ChartKick must be last
+//= require chartkick
+
 // Angular Directives
 //= require angular
 //= require angular-cookie
@@ -29,22 +37,21 @@
 //= require angular-touch
 //= require angular-animate
 //= require angular-foundation/mm-foundation-tpls
+//= require angular-ui-select
 //= require angular-ui-sortable/sortable
-//= require angular-xeditable
 //= require dataTables/jquery.dataTables
 //= require datatables-plugins/integration/foundation/dataTables.foundation
 //= require responsive-tables/responsive-tables
 //= require ng-s3upload
 
 // Vendor assets
+// = require select2
 //= require jquery-icheck/icheck
-//= require select2/select2
 //= require selectfx.js/dist/js/selectfx
 //= require sweetalert
 //= require nouislider
 //= require foundation-daterangepicker/daterangepicker
 //= require jsUri
-//= require bootstrap-touchspin/src/jquery.bootstrap-touchspin
 
 // Our Angular app files
 //= require angular/salubrity
@@ -58,32 +65,11 @@ $(function() {
       equalize_on_stack: true
     }
   });
-})
+});
 
-// DataTables Default Options
-var dTableOptions = {
-  scrollX: true,
-  scrollY: "500px",
-  scrollCollapse: true,
-  autoWidth: false,
-  pageLength: 50,
-  lengthMenu: [ [50, 100, 150, -1], [50, 100, 150, "All"] ],
-  stateSave: true,
-  order: [ 1, 'desc' ],
-  columnDefs: [
-    { "orderable": false, "targets": 0 }
-  ],
-  "tableTools": {
-    "aButtons": [
-      {
-          "sExtends": "print",
-          "bShowAll": false
-      }
-    ]
+Highcharts.dateFormat('%b %e', '%l %P', false)
+Highcharts.setOptions({
+  global: {
+    useUTC: false
   }
-};
-
-
-
-
-
+});
