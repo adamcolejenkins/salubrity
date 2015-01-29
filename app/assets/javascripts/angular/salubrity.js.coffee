@@ -5,7 +5,7 @@
 
 
 @salubrity = angular.module 'salubrity', [
-  'ngResource', 'ngRoute', 'mm.foundation', 'ui.sortable', 'ngTouch', 'ngS3upload', 'ipCookie'
+  'ngResource', 'ngRoute', 'mm.foundation', 'ui.select', 'ui.sortable', 'ngSanitize', 'ngTouch', 'ngS3upload', 'ipCookie'
 ]
 
 
@@ -23,11 +23,13 @@
 
 
 # Set the AWS Upload theme
-@salubrity.config (ngS3Config) ->
+@salubrity.config (ngS3Config, uiSelectConfig) ->
 
   # We will use the Bootstrap3 theme
   # TODO: Create own theme
   ngS3Config.theme = 'flatdream'
+  uiSelectConfig.theme = 'select2'
+  uiSelectConfig.resetSearchInput = true
 
 
 # Angular run methods
