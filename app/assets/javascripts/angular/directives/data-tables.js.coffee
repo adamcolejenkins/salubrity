@@ -42,8 +42,8 @@
           endDate: $URI.getQueryParamValue('to')
           maxDate: new Date()
           showDropdowns: true
-          applyClass: 'primary'
-          cancelClass: ''
+          applyClass: 'success'
+          cancelClass: 'secondary'
           opens: 'left'
           ranges:
             'Today': [moment(), moment()]

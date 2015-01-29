@@ -98,7 +98,8 @@ $filter-select-border-color: $filter-color;
       background: $secondary-select-bg-hover;
     }
     &.filter .select2-choice {
-      background: $filter-select-bg-hover;
+      background: $success-color;
+      color: $white;
     }
   }
 
@@ -261,7 +262,7 @@ $filter-select-border-color: $filter-color;
       }
 
       &.select2-highlighted {
-        background: $info-color;
+        background: $primary-color;
         color: $white;
         border-radius: $global-radius;
 
