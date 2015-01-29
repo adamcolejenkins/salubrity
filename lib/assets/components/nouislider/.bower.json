@@ -28,12 +28,12 @@
   "author": {
     "name": "Leon Gersen"
   },
-  "version": "7.0.9",
-  "_release": "7.0.9",
+  "version": "7.0.10",
+  "_release": "7.0.10",
   "_resolution": {
     "type": "version",
-    "tag": "7.0.9",
-    "commit": "c8a70344bebb0b69a09adf12a1e7cc08894f8c3b"
+    "tag": "7.0.10",
+    "commit": "7f50c48758cf06ec3bd4a3e134ac1ad914ede531"
   },
   "_source": "git://github.com/leongersen/noUiSlider.git",
   "_target": "~7.0.8",

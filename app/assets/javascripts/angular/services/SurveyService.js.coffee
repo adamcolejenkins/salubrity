@@ -6,7 +6,7 @@
       constructor: (errorHandler) ->
         @service = $resource('/config/surveys/:id.json',
           {id: '@id'},
-          {update: {method: 'PATCH'}, save: {method: 'PATCH'}})
+          {update: {method: 'PATCH'}})
         @errorHandler = errorHandler
 
         # Fix needed for the PATCH method to use application/json content type
