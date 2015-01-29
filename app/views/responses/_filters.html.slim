@@ -23,18 +23,14 @@ section.sticky.filter-bar ng-controller="DashboardFilterCtrl" ng-init="init(#{pa
             div ng-bind-html="provider.full_name | highlight: $select.search"
 
         button.filter.button ng-click="clear()" tooltip="Reset filters"
-          i.fa.fa-refresh
+          i.fa.fa-undo
     
 
       .date-filters
 
         / Download
-        = link_to dashboard_path(params.merge(format: :xls)), class: "filter button"
+        = link_to dashboard_path(params.merge(format: :xls)), class: "export filter button"
           i.fa.fa-download
-
-        / Jump to Current / Reset
-        = link_to dashboard_path(params.merge(from: Date.today, to: Date.today, filter: 'day')), class: 'filter button', target: "_self"
-          i.fa.fa-undo
         
         / Date Picker
         a.dropdown.filter.button ng-date-picker="" aria-expanded="false"
