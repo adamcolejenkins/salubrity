@@ -91,8 +91,8 @@ Rails.application.routes.draw do
       resources :users, except: [:show]
     end
     
-    get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "new_response"
-    post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z\-]+/, clinic_guid: /[a-z\-]+/ }, as: "responses"
+    get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z0-9\-]+/, clinic_guid: /[a-z0-9\-]+/ }, as: "new_response"
+    post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z0-9\-]+/, clinic_guid: /[a-z0-9\-]+/ }, as: "responses"
 
     get '/', to: redirect('/dashboard')
   end
