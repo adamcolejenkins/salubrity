@@ -39,7 +39,6 @@
       go()
 
     $scope.setSurvey = ($item) ->
-      console.log 'setSurvey', $item
 
       # Unset Clinic & Provider params
       setParam 'clinic'
@@ -53,7 +52,6 @@
 
 
     $scope.setClinic = ($item) ->
-      console.log 'setClinic', $item
 
       # Unset Provider param
       setParam 'provider'
@@ -66,7 +64,6 @@
 
 
     $scope.setProvider = ($item) ->
-      console.log 'setProvider', $item
 
       # Set Provider param
       setParam 'provider', $item.id

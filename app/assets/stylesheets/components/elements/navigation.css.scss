@@ -13,7 +13,6 @@
 .filter-bar {
   // background: $body-bg;
   padding-top: rem-calc(20);
-  margin: $column-gutter 0;
   
   &.fixed {
     box-shadow: 0 0 3px 0 rgba($black, 0.3);

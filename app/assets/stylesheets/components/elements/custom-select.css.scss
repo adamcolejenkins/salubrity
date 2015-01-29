@@ -7,6 +7,10 @@ $secondary-select-border-color: $secondary-select-bg-hover;
 $default-select-bg-hover: scale-color($default-color, $lightness: $button-function-factor) !default;
 $default-select-border-color: $default-select-bg-hover;
 
+$filter-color: #e6eaf2;
+$filter-select-bg-hover: scale-color($filter-color, $lightness: $button-function-factor) !default;
+$filter-select-border-color: $filter-color;
+
 .select2-container {
   margin: rem-calc(0 5 0 0);
   position: relative;
@@ -56,6 +60,25 @@ $default-select-border-color: $default-select-bg-hover;
       $border-color: $secondary-select-border-color
     );
   }
+  // Filter Styles
+  &.filter .select2-choice {
+    @include button-size($padding: $button-sml, $full-width: true);
+    @include button-style(
+      $bg: $filter-color,
+      $bg-hover: $filter-select-bg-hover,
+      $border-color: $filter-select-border-color
+    );
+    @include dropdown-button($pip-color: $primary-color, $padding:small);
+    border: none;
+    color: $primary-color;
+    font-size: $button-font-med;
+    font-weight: $font-weight-normal;
+
+    &:hover {
+      color: $primary-color;
+      box-shadow: none;
+    }
+  }
   &.primary .select2-choice,
   &.secondary .select2-choice {
     @include dropdown-button($pip-color: $white);
@@ -73,6 +96,9 @@ $default-select-border-color: $default-select-bg-hover;
     }
     &.secondary .select2-choice {
       background: $secondary-select-bg-hover;
+    }
+    &.filter .select2-choice {
+      background: $filter-select-bg-hover;
     }
   }
 
@@ -95,6 +121,11 @@ $default-select-border-color: $default-select-bg-hover;
     &.secondary {
       .select2-choice:hover {
         background: $secondary-color;
+      }
+    }
+    &.filter {
+      .select2-choice:hover {
+        background: $filter-color;
       }
     }
   }
