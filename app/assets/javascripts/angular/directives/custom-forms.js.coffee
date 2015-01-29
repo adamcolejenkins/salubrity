@@ -24,19 +24,19 @@
   )
 ])
 
-.directive "select2", ["$timeout", ($timeout) ->
-  return (
-    restrict: "C"
-    link: (scope, elem, attrs) ->
-      $timeout ->
-        elem.select2(
-          placeholder: attrs.title
-          dropdownCssClass: elem.attr("class")
-          width: '100%'
-        ).css "display", "block"
+# .directive "select2", ["$timeout", ($timeout) ->
+#   return (
+#     restrict: "C"
+#     link: (scope, elem, attrs) ->
+#       $timeout ->
+#         elem.select2(
+#           placeholder: attrs.title
+#           dropdownCssClass: elem.attr("class")
+#           width: '100%'
+#         ).css "display", "block"
 
-  )
-]
+#   )
+# ]
 
 .directive "mask", ($timeout) ->
   return (
