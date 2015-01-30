@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129214108) do
+ActiveRecord::Schema.define(version: 20141210192913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,23 +48,10 @@ ActiveRecord::Schema.define(version: 20150129214108) do
     t.datetime "background_updated_at"
     t.integer  "team_id"
     t.datetime "deleted_at"
+    t.integer  "survey_id"
   end
 
   add_index "clinics", ["team_id"], name: "index_clinics_on_team_id", using: :btree
-
-  create_table "clinics_providers", id: false, force: true do |t|
-    t.integer "provider_id", null: false
-    t.integer "clinic_id",   null: false
-  end
-
-  add_index "clinics_providers", ["provider_id", "clinic_id"], name: "index_clinics_providers_on_provider_id_and_clinic_id", using: :btree
-
-  create_table "clinics_surveys", id: false, force: true do |t|
-    t.integer "clinic_id", null: false
-    t.integer "survey_id", null: false
-  end
-
-  add_index "clinics_surveys", ["clinic_id", "survey_id"], name: "index_clinics_surveys_on_clinic_id_and_survey_id", using: :btree
 
   create_table "devices", force: true do |t|
     t.integer  "team_id"
@@ -148,6 +135,7 @@ ActiveRecord::Schema.define(version: 20150129214108) do
     t.datetime "deleted_at"
     t.string   "surname"
     t.string   "credential"
+    t.integer  "clinic_id"
   end
 
   add_index "providers", ["team_id"], name: "index_providers_on_team_id", using: :btree
