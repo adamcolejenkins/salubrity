@@ -1,5 +1,5 @@
 json.array!(@clinics) do |clinic|
-  json.extract! clinic, :id, :survey_id, :title, :guid, :address, :address2, :city, :state, :zip, :phone
+  json.extract! clinic, :id, :title, :guid, :address, :address2, :city, :state, :zip, :phone
 
   # Total responses for this clinic
   json.total_responses clinic.responses.count

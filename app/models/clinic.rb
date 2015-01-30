@@ -5,16 +5,13 @@ class Clinic < ActiveRecord::Base
 
   belongs_to :survey, inverse_of: :clinics
   has_and_belongs_to_many :surveys
+  has_and_belongs_to_many :providers
 
-  has_many :providers
+  # has_many :providers
   has_many :responses, inverse_of: :clinic, dependent: :destroy
   has_many :devices, inverse_of: :clinic, dependent: :destroy
 
   before_validation :translate_slug, on: :create
-
-  validates :title, presence: true
-  validates :guid, presence: true, uniqueness: { scope: :survey, message: " exists for this survey." }, on: :update
-  validates :survey_id, presence: true
 
   scope :clinic, -> (id) { where id: id }
 
@@ -33,6 +30,7 @@ class Clinic < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :background, :content_type => /\Aimage\/.*\Z/
   validates :background, :dimensions => { :width => 1920, :height => 1200 }
+  validates :title, presence: true
   
   def average_time
     avg = 0.0

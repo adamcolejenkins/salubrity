@@ -4,7 +4,7 @@ class Survey < ActiveRecord::Base
 
   belongs_to :team, :inverse_of => :surveys
 
-  has_many :clinics
+  has_and_belongs_to_many :clinics
   has_many :responses, inverse_of: :survey, dependent: :destroy
   has_many :fields, -> { order("priority ASC") }, inverse_of: :survey, dependent: :destroy
 
