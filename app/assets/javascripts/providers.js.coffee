@@ -2,6 +2,12 @@
   
   .controller 'ProviderListCtrl', ($scope, ProviderService, $modal) ->
 
+    $scope.merge = 
+      provider:
+        selected: null
+      with:
+        selected: null
+
     $scope.init = ->
       @ProviderService = new ProviderService(serverErrorHandler)
       $scope.providers = @ProviderService.all()

@@ -1,6 +1,56 @@
 section.section.section-provider-collection
   article.article-content ng-controller="ProviderListCtrl" ng-init="init()"
 
+    section.section.section-merger
+      div.merge.from
+        / SELECT
+        ui-select theme="selectize" ng-model="merge.provider.selected"
+          ui-select-match placeholder="Merge this provider..." allow-clear="true"
+            | {{$select.selected.full_name}} 
+            span.identifier
+              | created on {{$select.selected.created_at}}
+          ui-select-choices repeat="provider in providers | filter: $select.search" style="width: 100%" ng-class="providers"
+            div
+              div.title
+                span.name
+                  i.fa.fa-user-md
+                  | {{provider.full_name}} 
+                span.identifier
+                  | created on {{provider.created_at}}
+              div.description
+                | This provider belongs to the following clinics:
+              div.meta
+                span ng-repeat="clinic in provider.clinics"
+                  | {{clinic.title}}{{$last ? '' : ', '}} 
+
+      div.small-merge
+        i.fa.fa-code-fork.fa-3x.fa-rotate-270
+
+      div.merge.to
+        / SELECT
+        ui-select theme="selectize" ng-model="merge.with.selected"
+          ui-select-match placeholder="Merge this provider..." allow-clear="true"
+            | {{$select.selected.full_name}} 
+            span.identifier
+              | created on {{$select.selected.created_at}}
+          ui-select-choices repeat="provider in providers | filter: $select.search" style="width: 100%"
+            div
+              div.title
+                span.name
+                  i.fa.fa-user-md
+                  | {{provider.full_name}} 
+                span.identifier
+                  | created on {{provider.created_at}}
+              div.description
+                | This provider belongs to the following clinics:
+              div.meta
+                span ng-repeat="clinic in provider.clinics"
+                  | {{clinic.title}}{{$last ? '' : ', '}} 
+        
+      div.small-merge.text-right
+        button.medium.success.radius.button Merge
+
+
     section.section.section-filters
       div.search
         input.radius type="search" placeholder="Search..." ng-model="search"
@@ -17,7 +67,7 @@ section.section.section-provider-collection
               |  {{ provider.email | filter:search }}
           .info
             .label.radius ng-repeat="clinic in provider.clinics"
-              | {{ clinic.title }}
+              | {{ clinic.title }} 
 
         .options
           ul.actions

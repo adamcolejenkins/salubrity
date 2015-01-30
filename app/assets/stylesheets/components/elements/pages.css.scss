@@ -27,3 +27,43 @@ section.section-survey-fields-collection {
     }
   }
 }
+
+section.section-merger {
+  & > div.merge {
+    @include grid-column($columns: 5, $collapse: true);
+
+    .selectize-dropdown {
+      [data-selectable] {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        color: $body-font-color;
+      }
+    }
+    .name {
+      font-weight: 600;
+      i {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+    .identifier {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .description {
+      font-size: 12px;
+      opacity: 0.5;
+      width: 100%;
+      @include ellipsis($display: block);
+    }
+    .meta {
+      font-size: 12px;
+      opacity: 0.8;
+      width: 100%;
+      @include ellipsis($display: block);
+    }
+  }
+  & > div.small-merge {
+    @include grid-column($columns: 1, $collapse: true);
+    text-align: center;
+  }
+}

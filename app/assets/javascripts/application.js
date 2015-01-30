@@ -38,6 +38,7 @@
 //= require ng-s3upload
 
 // Vendor assets
+//= require selectize
 //= require jquery-icheck/icheck
 //= require select2/select2
 //= require selectfx.js/dist/js/selectfx
