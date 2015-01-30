@@ -8,7 +8,11 @@ class Ability
     Rails.logger.debug("DEBUG:: #{user.role? :owner}")
 
     if user.role? :spectator
-      can :read, Response, Answer
+      can :read, Response
+      can :read, Answer
+      can :read, Survey
+      can :read, Clinic
+      can :read, Provider
     end
 
     if user.role? :contributor
