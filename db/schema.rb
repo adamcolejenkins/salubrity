@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116215231) do
+ActiveRecord::Schema.define(version: 20150129214108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20150116215231) do
 
   create_table "clinics", force: true do |t|
     t.string   "title"
-    t.integer  "survey_id"
     t.string   "guid"
     t.string   "address"
     t.string   "address2"
@@ -51,8 +50,21 @@ ActiveRecord::Schema.define(version: 20150116215231) do
     t.datetime "deleted_at"
   end
 
-  add_index "clinics", ["survey_id"], name: "index_clinics_on_survey_id", using: :btree
   add_index "clinics", ["team_id"], name: "index_clinics_on_team_id", using: :btree
+
+  create_table "clinics_providers", id: false, force: true do |t|
+    t.integer "provider_id", null: false
+    t.integer "clinic_id",   null: false
+  end
+
+  add_index "clinics_providers", ["provider_id", "clinic_id"], name: "index_clinics_providers_on_provider_id_and_clinic_id", using: :btree
+
+  create_table "clinics_surveys", id: false, force: true do |t|
+    t.integer "clinic_id", null: false
+    t.integer "survey_id", null: false
+  end
+
+  add_index "clinics_surveys", ["clinic_id", "survey_id"], name: "index_clinics_surveys_on_clinic_id_and_survey_id", using: :btree
 
   create_table "devices", force: true do |t|
     t.integer  "team_id"
@@ -121,7 +133,6 @@ ActiveRecord::Schema.define(version: 20150116215231) do
   add_index "fields", ["survey_id"], name: "index_fields_on_survey_id", using: :btree
 
   create_table "providers", force: true do |t|
-    t.integer  "clinic_id"
     t.string   "name"
     t.string   "position"
     t.string   "email"
@@ -139,7 +150,6 @@ ActiveRecord::Schema.define(version: 20150116215231) do
     t.string   "credential"
   end
 
-  add_index "providers", ["clinic_id"], name: "index_providers_on_clinic_id", using: :btree
   add_index "providers", ["team_id"], name: "index_providers_on_team_id", using: :btree
 
   create_table "responses", force: true do |t|
@@ -160,17 +170,6 @@ ActiveRecord::Schema.define(version: 20150116215231) do
   add_index "responses", ["provider_id"], name: "index_responses_on_provider_id", using: :btree
   add_index "responses", ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   add_index "responses", ["team_id"], name: "index_responses_on_team_id", using: :btree
-
-  create_table "settings", force: true do |t|
-    t.string   "var",         null: false
-    t.text     "value"
-    t.integer  "target_id",   null: false
-    t.string   "target_type", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
 
   create_table "survey_options", force: true do |t|
     t.integer  "survey_id"

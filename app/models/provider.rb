@@ -8,7 +8,9 @@ class Provider < ActiveRecord::Base
   DASHBOARD_CONTEXT_EXCLUDE = %w(intro outro provider_dropdown)
 
   belongs_to :team, inverse_of: :providers
-  belongs_to :clinic, inverse_of: :providers
+
+  belongs_to :clinic, inverse_of: :providers # remove this later
+  has_and_belongs_to_many :clinics
   
   has_many :responses, inverse_of: :provider, dependent: :destroy
 

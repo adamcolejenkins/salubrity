@@ -2,9 +2,11 @@ class Clinic < ActiveRecord::Base
   include Filterable
   acts_as_paranoid
   belongs_to :team, inverse_of: :clinics
-  belongs_to :survey, inverse_of: :clinics, counter_cache: true
 
-  has_many :providers, -> { order(:surname) }, inverse_of: :clinic, dependent: :destroy
+  belongs_to :survey, inverse_of: :clinics
+  has_and_belongs_to_many :surveys
+
+  has_many :providers
   has_many :responses, inverse_of: :clinic, dependent: :destroy
   has_many :devices, inverse_of: :clinic, dependent: :destroy
 

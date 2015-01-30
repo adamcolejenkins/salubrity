@@ -4,9 +4,8 @@ class Survey < ActiveRecord::Base
 
   belongs_to :team, :inverse_of => :surveys
 
-  has_many :clinics, inverse_of: :survey, dependent: :destroy
+  has_many :clinics
   has_many :responses, inverse_of: :survey, dependent: :destroy
-
   has_many :fields, -> { order("priority ASC") }, inverse_of: :survey, dependent: :destroy
 
   scope :guid, -> (guid) { where(guid: guid).first }
