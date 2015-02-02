@@ -1,8 +1,9 @@
-json.array!(@providers) do |provider|
-  json.extract! provider, :id, :clinic_id, :full_name, :position, :email, :phone
+json.array!(@providers.includes(:clinics)) do |provider|
+  json.extract! provider, :id, :full_name, :position, :email, :phone
+  json.created_at provider.created_at.strftime("%B %e, %Y")
   json.photo provider.photo.url(:thumb)
   
-  json.clinics [provider.clinic] do |clinic|
+  json.clinics provider.clinics do |clinic|
     json.title clinic.title
   end
 

@@ -15,7 +15,6 @@
 }
 
 // List Groups
-
 @mixin list-group-item-variant($state, $background, $color) {
   .list-group-item-#{$state} {
     color: $color;
@@ -46,6 +45,7 @@
   }
 }
 
+// Overflow ellipsis
 @mixin ellipsis($max-width: false, $display: inline-block, $no-wrap: true) {
   @if $no-wrap {
     white-space: nowrap;

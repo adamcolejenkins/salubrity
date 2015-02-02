@@ -96,7 +96,7 @@ class ClinicsController < ConfigController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clinic_params
-      params.require(:clinic).permit(:title, :guid, :team, :survey, :survey_id, :address, :address2, :city, :state, :zip, :phone, :background)
+      params.require(:clinic).permit(:title, :guid, :team, :address, :address2, :city, :state, :zip, :phone, :background, {survey_ids: []})
     end
 
 end

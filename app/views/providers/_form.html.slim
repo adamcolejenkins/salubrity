@@ -36,17 +36,20 @@
 
       .form-header
         .header
-          h3 Clinic
+          h3 Clinics
 
       .form-group
         .full
-          / - if action_name == 'new' || action_name == 'create'
-          p.thin This provider needs a job, which clinic should they be working for?
-          = f.collection_select :clinic_id, current_team.clinics.all, :id, :title, prompt: true
-          / - else
-          /   p.thin 
-          /     | This provider is linked to the #{link_to @provider.clinic.title, @provider.clinic} clinic. 
-          /     i.fa.fa-question-circle.muted.tip.tip-top data-tooltip="" title="Clinics cannot be changed at this time."
+          p.thin Which clinic(s) will this provider be working for?
+
+          = f.select :clinic_ids, options_from_collection_for_select(current_team.clinics.all, :id, :title, @provider.clinics.map {|c| c.id}), {}, {multiple: true}
+
+          = content_for :javascript
+            javascript:
+              $('#provider_clinic_ids').selectize({
+                plugins: ['remove_button'],
+                hideSelected: true
+              });
 
       .form-header
         .header
