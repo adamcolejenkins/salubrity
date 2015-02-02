@@ -2,7 +2,7 @@ class Provider < ActiveRecord::Base
   include Filterable
   acts_as_paranoid
 
-  default_scope { order('providers.surname ASC') }
+  # default_scope { order('providers.surname ASC') }
 
   # Exclude these field contexts in the dashboard
   DASHBOARD_CONTEXT_EXCLUDE = %w(intro outro provider_dropdown)
