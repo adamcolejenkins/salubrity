@@ -15,10 +15,7 @@ section.section.section-provider-collection
             | {{ provider.full_name }}
             span.info.muted
               |  {{ provider.email | filter:search }}
-          .info
-            .label.radius ng-repeat="clinic in provider.clinics"
-              | {{ clinic.title }} 
-
+              
         .options
           ul.actions
             li

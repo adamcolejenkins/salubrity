@@ -67,3 +67,7 @@ $tooltip-arrow-size: 10px;
         margin-right: 5px;
     }
 }
+
+span.label + span.label {
+    margin-left: 5px;
+}
