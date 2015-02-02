@@ -87,4 +87,4 @@
         .full
           = f.submit 'Save Clinic', class: 'radius success button'
           = link_to 'Cancel', clinics_path, class: 'radius secondary button', target: "_self"
-          = link_to 'Archive', clinic_path(@clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'
+          = link_to 'Archive', archive_clinic_path(@clinic), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'radius alert button pull-right' if (can? :destroy, Clinic) && action_name == 'edit'
