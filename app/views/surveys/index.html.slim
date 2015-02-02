@@ -9,7 +9,7 @@ section.section.section-survey-collection
               i.fa.fa-circle
             .name
               = survey.title
-              span.muted = " (#{survey.status})"
+              span.muted = " is #{survey.status} with #{pluralize(survey.clinics.count, 'clinic')}"
 
           .options
             ul.actions

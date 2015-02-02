@@ -18,6 +18,7 @@
 //= require nouislider
 //= require foundation-daterangepicker/daterangepicker-f5
 //= require bootstrap-touchspin/src/jquery.bootstrap-touchspin
+//= require selectize
 
 // Place all the styles related to the backend controller here.
 // They will automatically be included in application.css.
@@ -57,6 +58,7 @@
 @import "components/elements/pages";
 @import "components/elements/panels";
 @import "components/elements/splash";
+@import "components/elements/selectize";
 @import "components/elements/tabs";
 @import "components/elements/tables";
 @import "components/elements/timeline";

@@ -1,6 +1,6 @@
 class KioskController < ApplicationController
   skip_before_filter :authenticate_user!
-  before_action :set_clinic, only: [:new, :create]
+  before_action :set_clinic, :set_survey, :validate, :check_survey_status, only: [:new, :create]
   layout 'kiosk'
   
   def index
@@ -25,10 +25,12 @@ class KioskController < ApplicationController
   def new
     @response = current_team.responses.new
     @response.clinic = @clinic
-    @response.survey = @clinic.survey
+    @response.survey = @survey
 
-    @response.survey.fields.each do |field|
-      @response.answers.build(field: field)
+    unless @survey.fields.nil?
+      @response.survey.fields.each do |field|
+        @response.answers.build(field: field)
+      end
     end
   end
 
@@ -37,7 +39,7 @@ class KioskController < ApplicationController
     @response.user_agent = request.user_agent
     @response.ip_address = request.remote_ip
     @response.clinic = @clinic
-    @response.survey = @clinic.survey
+    @response.survey = @survey
 
     if @response.save
       redirect_to new_response_path
@@ -49,15 +51,23 @@ class KioskController < ApplicationController
 
   private
 
-  def survey
-    @survey ||= current_team.surveys.where(guid: params[:survey_guid]).limit(1).first
+  def set_survey
+    @survey ||= @clinic.surveys.where(guid: params[:survey_guid]).limit(1).first
   end
 
   def set_clinic
-    @clinic ||= survey.clinics.where(guid: params[:clinic_guid]).limit(1).first
+    @clinic ||= current_team.clinics.where(guid: params[:clinic_guid]).limit(1).first
+  end
 
-    if @clinic.blank?
-      redirect_to kiosk_path, alert: "That clinic was not found."
+  def validate
+    if @clinic.nil? || @survey.nil?
+      render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
+    end
+  end
+
+  def check_survey_status
+    if @survey.status == 'draft'
+      render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
     end
   end
 

@@ -8,7 +8,9 @@ class Provider < ActiveRecord::Base
   DASHBOARD_CONTEXT_EXCLUDE = %w(intro outro provider_dropdown)
 
   belongs_to :team, inverse_of: :providers
-  belongs_to :clinic, inverse_of: :providers
+
+  belongs_to :clinic, inverse_of: :providers # remove this later
+  has_and_belongs_to_many :clinics
   
   has_many :responses, inverse_of: :provider, dependent: :destroy
 
@@ -35,8 +37,6 @@ class Provider < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :surname
-  validates_presence_of :clinic_id
-  validates :email, presence: true, uniqueness: { scope: :clinic, message: " exists for this clinic." }
 
   def average_time
     avg = 0.0
@@ -68,5 +68,15 @@ class Provider < ActiveRecord::Base
   end
 
   private
+
+  def require_at_least_one_clinic
+    if clinics.count == 0
+      errors.add :clinic_ids, "Please select at least one Clinic"
+    end
+  end
+
+  def flat_number
+    phone.gsub(/[^0-9]/, '')
+  end
   
 end

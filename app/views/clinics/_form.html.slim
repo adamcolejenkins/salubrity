@@ -44,13 +44,14 @@
 
       .form-group
         .full.block
-          - if action_name == 'new' || action_name == 'create'
-            p.thin This clinic needs a survey, which one would you like to use?
-            = f.collection_select :survey_id, current_team.surveys.all, :id, :title, prompt: true
-          - else
-            .block-item
-              .details
-                .name = @clinic.survey.title
+          = f.select :survey_ids, options_from_collection_for_select(current_team.surveys.all, :id, :title, @clinic.surveys.map {|s| s.id}), {}, {multiple: true}
+
+          = content_for :javascript
+            javascript:
+              $('#clinic_survey_ids').selectize({
+                plugins: ['remove_button'],
+                hideSelected: true
+              });
 
       - if action_name == 'edit'
 
@@ -60,7 +61,7 @@
 
         .form-group
           .full
-            p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/#{@clinic.survey.guid}/").html_safe
+            p = t('clinics.form.guid.describe', url: "#{request.protocol}#{current_team.subdomain}.#{request.domain}/[survey guid]/").html_safe
 
             = f.text_field :guid, placeholder: "e.g. my-super-awesome-clinic", class: 'radius'
             - if action_name != 'new'
