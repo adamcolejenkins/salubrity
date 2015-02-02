@@ -87,11 +87,6 @@ class ProvidersController < ConfigController
     end
   end
 
-  # POST /providers/1/merge
-  def merge
-    
-  end
-
   private
 
     # Use callbacks to share common setup or constraints between actions.

@@ -32,7 +32,6 @@ Rails.application.routes.draw do
         member do
           get 'restore'
           delete 'archive'
-          post 'merge'
         end
       end
       resources :devices, except: [:show] do

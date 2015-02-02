@@ -1,6 +1,6 @@
 @salubrity
   
-  .controller 'ProviderListCtrl', ($scope, ProviderService, $modal) ->
+  .controller 'ProviderListCtrl', ($scope, ProviderService, $modal, $http) ->
 
     $scope.merge = 
       provider:
@@ -13,10 +13,10 @@
       $scope.providers = @ProviderService.all()
 
 
-    serverErrorHandler = ->
+    defaultErrorHandler = (msg) ->
       swal(
-        title: 'Error!'
-        text: "There was a server error, please reload the page and try again."
-        type: 'error'
+        title: 'Oops!'
+        text: msg
+        type: "error"
         confirmButtonText: 'Ok'
       )
