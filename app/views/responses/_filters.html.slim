@@ -13,13 +13,13 @@ section.sticky.filter-bar ng-controller="DashboardFilterCtrl" ng-init="init(#{pa
         / Clinic Filter
         ui-select.filter ng-model="clinic.selected" on-select="setClinic($item, $model)" ng-disabled="!survey.selected"
           ui-select-match placeholder="All Clinics" allow-clear="true" {{$select.selected.title}}
-          ui-select-choices repeat="clinic in clinics | filter: {survey_id: survey.selected.id || -1} | filter: $select.search"
+          ui-select-choices repeat="clinic in clinics | filterByAssoc:'surveys':survey.selected.id | filter: $select.search | orderBy:'title'"
             div ng-bind-html="clinic.title | highlight: $select.search"
 
-        / / Provider Filter
+        / Provider Filter
         ui-select.filter ng-model="provider.selected" on-select="setProvider($item, $model)" ng-disabled="!clinic.selected"
           ui-select-match placeholder="All Providers" allow-clear="true" {{$select.selected.full_name}}
-          ui-select-choices repeat="provider in providers | filter: {clinic_id: clinic.selected.id || -1} | filter: $select.search"
+          ui-select-choices repeat="provider in providers | filterByAssoc:'clinics':clinic.selected.id | filter: $select.search | orderBy:'name'"
             div ng-bind-html="provider.full_name | highlight: $select.search"
 
         button.filter.button ng-click="clear()" tooltip="Reset filters"
