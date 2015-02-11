@@ -31,7 +31,7 @@
     "nouislider": "~7.0.8",
     "datatables": "~1.10.2",
     "responsive-tables": "https://github.com/zurb/responsive-tables.git",
-    "sweetalert": "~0.1.1",
+    "sweetalert": "https://github.com/t4t5/sweetalert.git",
     "ng-s3upload": "~0.1.1",
     "selectfx.js": "*",
     "moment": "~2.8.3",
