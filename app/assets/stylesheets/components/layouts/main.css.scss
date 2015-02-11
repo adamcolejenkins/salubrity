@@ -2,7 +2,8 @@
 .wrap > main,
 .wrap > footer {
   position: relative;
-  
+  @include clearfix;
+
   & > section.section {
     @include grid-row();
 
@@ -13,7 +14,7 @@
   }
 }
 
-.wrap > main, 
+.wrap > main,
 .wrap > footer {
   z-index: 1;
   margin: $column-gutter 0;
@@ -47,7 +48,7 @@
       @include grid-column(
         $columns: 12
       );
-      
+
       @media #{$medium-up} {
         @include grid-column(
           $columns: 6,
@@ -61,7 +62,7 @@
           $center: true
         );
       }
-      
+
       .shared-links {
         p {
           margin: 0;
