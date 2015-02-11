@@ -1,7 +1,7 @@
-.block-panel {
+div.block-panel {
   @include clearfix;
   @include panel(
-    $bg: $white,
+    $bg: #ffffff,
     $padding: 0px,
     $adjust: false
   );
@@ -41,6 +41,7 @@
 
   & > .header,
   & > .content {
+    @include clearfix;
     padding: rem-calc(20);
   }
 
