@@ -1,6 +1,7 @@
-.block-panel {
+div.block-panel {
+  @include clearfix;
   @include panel(
-    $bg: $white,
+    $bg: #ffffff,
     $padding: 0px,
     $adjust: false
   );
@@ -8,7 +9,7 @@
   border: 1px solid #e5e6ea;
   border-bottom-width: 2px;
   border-bottom-color: darken(#e5e6ea, 1%);
-  
+
   &.transparent,
   &.block-button {
     background-color: transparent;
@@ -40,6 +41,7 @@
 
   & > .header,
   & > .content {
+    @include clearfix;
     padding: rem-calc(20);
   }
 
@@ -49,7 +51,7 @@
     line-height: normal;
     font-size: rem-calc(12);
     color: $body-font-color;
-    
+
     &.large {
       height: rem-calc(75);
     }
