@@ -9,13 +9,13 @@ section.response-data#responses {
 section.filter-bar {
   section.section-filter-bar {
     @include grid-row();
-    
+
     .resource-filters {
       @include grid-column($columns: 12);
 
       // Large Screens
       @media #{$large-up} {
-        @include grid-column($columns: 7);
+        @include grid-column($columns: 8);
       }
     }
 
@@ -24,7 +24,7 @@ section.filter-bar {
 
       // Large Screens
       @media #{$large-up} {
-        @include grid-column($columns: 5);
+        @include grid-column($columns: 4);
         text-align: right;
       }
     }
@@ -40,7 +40,7 @@ body.responses.index {
 
   & > .wrap > main {
     section.section {
-      
+
       &.section-overall-responses .block-panel > .content {
         height: rem-calc(160);
       }
@@ -81,7 +81,7 @@ body.responses.index {
           @include grid-column($columns: 3);
         }
       }
-      
+
       // 12/8/6 Column Blocks
       article.article-single-line-text,
       article.article-paragraph-text,
@@ -108,7 +108,7 @@ body.responses.index {
           }
         }
       }
-      
+
       // 6/3/3 Column Blocks
       article.article-response-chart,
       article.article-timing-chart {
@@ -168,7 +168,7 @@ body.responses.index {
 
             & > div {
               line-height: rem-calc(32);
-              
+
               big {
                 font-size: rem-calc(30);
                 font-weight: 600;
