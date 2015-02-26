@@ -34,15 +34,15 @@ Rails.application.routes.draw do
           delete 'archive'
         end
       end
-      resources :devices, except: [:show] do
-        collection do
-          get 'archived'
-        end
-        member do
-          get 'restore'
-          delete 'archive'
-        end
-      end
+      # resources :devices, except: [:show] do
+      #   collection do
+      #     get 'archived'
+      #   end
+      #   member do
+      #     get 'restore'
+      #     delete 'archive'
+      #   end
+      # end
       resources :locations, except: [:show] do
         collection do
           get 'archived'
@@ -72,12 +72,12 @@ Rails.application.routes.draw do
     get 'dashboard' => 'responses#index'
     post 'dashboard' => 'responses#index'
 
-    # get '/install', to: redirect('/install/new')
-    # resource :install, only: [:new, :create, :edit], as: 'installs'
-    # post 'install/:id' => 'installs#update', as: 'device'
+    get '/install', to: redirect('/install/new')
+    resource :install, only: [:new, :create, :edit], as: 'installs'
+    post 'install/:id' => 'installs#update', as: 'device'
 
-    devise_for :users, 
-      controllers: { 
+    devise_for :users,
+      controllers: {
         :invitations => 'users/invitations',
         :registrations => 'users/registrations'
       },
@@ -90,7 +90,7 @@ Rails.application.routes.draw do
       get "profile" => "users/registrations#edit"
       resources :users, except: [:show]
     end
-    
+
     get "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#new', constraints: { survey_guid: /[a-z0-9\-]+/, clinic_guid: /[a-z0-9\-]+/ }, as: "new_response"
     post "/kiosk/:survey_guid/:clinic_guid" => 'kiosk#create', constraints: { survey_guid: /[a-z0-9\-]+/, clinic_guid: /[a-z0-9\-]+/ }, as: "responses"
 
@@ -114,7 +114,7 @@ Rails.application.routes.draw do
 
   get 'get-started' => 'teams#new', constraints: {subdomain: /(www)?/x}
   post 'get-started' => 'teams#create', constraints: {subdomain: /(www)?/x}
-  
+
   root :to => 'home#index', constraints: {subdomain: /(www)?/x}
 
   get '/templates/:path.html' => 'angular#template', :constraints => { :path => /.+/  }
